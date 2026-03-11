@@ -9,6 +9,7 @@ const Sidebar = () => {
     { name: 'Members', path: '/members', icon: <Users size={20} /> },
     { name: 'Plans', path: '/plans', icon: <CreditCard size={20} /> },
     { name: 'CRM / Leads', path: '/crm', icon: <Users size={20} /> },
+    { name: 'Trainer list', path: '/trainer', icon: <Users size={20} /> },
     { name: 'Settings', path: '/settings', icon: <Settings size={20} /> },
     { name: 'Home Page', path: '/home-page', icon: <Settings size={20} /> },
   ];

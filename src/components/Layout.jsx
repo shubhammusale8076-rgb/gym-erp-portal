@@ -6,7 +6,7 @@ import './Layout.css';
 const Sidebar = () => {
   const navItems = [
     { name: 'Dashboard', path: '/', icon: <LayoutDashboard size={20} /> },
-    { name: 'Members', path: '/members', icon: <Users size={20} /> },
+    { name: 'Members List', path: '/members', icon: <Users size={20} /> },
     { name: 'Plans', path: '/plans', icon: <CreditCard size={20} /> },
     { name: 'CRM / Leads', path: '/crm', icon: <Users size={20} /> },
     { name: 'Trainer list', path: '/trainer', icon: <Users size={20} /> },

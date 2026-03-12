@@ -7,6 +7,8 @@ import Plans from './pages/Plans/Plans';
 import Login from './pages/Login/Login';
 import CRM from './pages/CRM/CRM';
 import Trainer from './pages/Trainer/Trainer';
+import MemberDetail from './pages/Members/Member detail/MemberDetail';
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="members" element={<Members />} />
+          <Route path="members/:id" element={<MemberDetail />} />
           <Route path="plans" element={<Plans />} />
           <Route path="crm" element={<CRM />} />
           <Route path="trainer" element={<Trainer/>} />

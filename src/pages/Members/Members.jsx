@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Plus, Filter, MoreVertical, Edit2, Trash2 } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
+
 
 const initialMembers = [
   { id: 1, name: 'Sarah Connor', email: 'sarah@example.com', plan: 'Pro', status: 'Active', joinDate: '2025-11-12' },
@@ -12,6 +14,7 @@ const initialMembers = [
 const Members = () => {
   const [members, setMembers] = useState(initialMembers);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   const filteredMembers = members.filter(member => 
     member.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -71,7 +74,9 @@ const Members = () => {
             </thead>
             <tbody>
               {filteredMembers.map((member) => (
-                <tr key={member.id}>
+                <tr key={member.id}
+                    onClick={() => navigate(`/members/${member.id}`)}
+                    style={{ cursor: "pointer" }}>
                   <td>
                     <div className="flex items-center gap-3">
                       <img src={`https://ui-avatars.com/api/?name=${member.name.replace(' ', '+')}&background=random`} alt={member.name} className="w-10 h-10 rounded-full" />

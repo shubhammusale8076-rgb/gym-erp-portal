@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
-import Dashboard from './pages/Dashboard';
-import Members from './pages/Members';
-import Plans from './pages/Plans';
-import Login from './pages/Login';
-import CRM from './pages/CRM';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Members from './pages/Members/Members';
+import Plans from './pages/Plans/Plans';
+import Login from './pages/Login/Login';
+import CRM from './pages/CRM/CRM';
 import Trainer from './pages/Trainer/Trainer';
 
 function App() {

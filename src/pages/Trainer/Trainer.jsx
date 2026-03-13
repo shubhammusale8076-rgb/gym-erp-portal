@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Trainer.css";
 import { Plus, Filter, Download } from "lucide-react";
+import TrainerDetail from "../TrainerDetail/TrainerDetail";
 
 const trainers = [
   {
@@ -46,6 +47,8 @@ const trainers = [
 ];
 
 const Trainer = () => {
+  const [selectedTrainer, setSelectedTrainer] = useState(null);
+
   return (
     <div className="trainer-page">
 
@@ -120,7 +123,7 @@ const Trainer = () => {
 
           <tbody>
             {trainers.map((trainer)=>(
-              <tr key={trainer.id}>
+              <tr key={trainer.id} onClick={() => setSelectedTrainer(trainer)} style={{cursor: 'pointer'}}>
 
                 <td>
                   <div className="trainer-info">
@@ -155,6 +158,13 @@ const Trainer = () => {
           </tbody>
         </table>
       </div>
+
+      {selectedTrainer && (
+        <TrainerDetail 
+          trainer={selectedTrainer} 
+          onClose={() => setSelectedTrainer(null)} 
+        />
+      )}
 
     </div>
   );

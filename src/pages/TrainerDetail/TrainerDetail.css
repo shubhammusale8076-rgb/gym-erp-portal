@@ -1,0 +1,386 @@
+.trainer-detail-overlay {
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.trainer-detail-modal {
+  background-color: #fff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 950px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  max-height: 95vh;
+  overflow-y: auto;
+  font-family: inherit;
+}
+
+.td-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 32px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.td-header h2 {
+  color: #317f87; /* teal */
+  margin: 0 0 4px 0;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.td-header p {
+  color: #8c98a4;
+  margin: 0;
+  font-size: 14px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #a0aec0;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  color: #4a5568;
+}
+
+.td-content {
+  display: flex;
+  gap: 40px;
+  padding: 32px;
+}
+
+/* Left Column */
+.td-left {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.profile-img-container {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  padding: 4px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 24px;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.camera-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: #f28c28; /* orange */
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.upload-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #e2edf0;
+  background-color: #f7fbfa;
+  color: #317f87;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.recommend-text {
+  font-size: 12px;
+  color: #a0aec0;
+  font-style: italic;
+  text-align: center;
+  margin: 0 0 32px 0;
+}
+
+.community-links {
+  width: 100%;
+}
+
+.community-links h5 {
+  color: #a0aec0;
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ebdcd5;
+  border-radius: 24px;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+}
+
+.input-icon {
+  color: #a0aec0;
+  margin-right: 12px;
+}
+
+.input-group input {
+  border: none;
+  background: none;
+  width: 100%;
+  color: #2d3748;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Right Column */
+.td-right {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.name-cert-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-input {
+  flex: 1;
+  padding: 12px 20px;
+  border: 1px solid #ebdcd5;
+  border-radius: 24px;
+  font-size: 15px;
+  color: #2d3748;
+  outline: none;
+}
+
+.td-right h5 {
+  color: #718096;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 0 12px 0;
+}
+
+.skills-tags {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.skill-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #317f87;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.skill-tag svg {
+  cursor: pointer;
+}
+
+.add-skill-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: #317f87;
+  border: 1px dashed #317f87;
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.add-skill-btn:hover {
+  background-color: #ebf6f5;
+}
+
+.bio-section textarea {
+  width: 100%;
+  border: 1px solid #ebdcd5;
+  border-radius: 20px;
+  padding: 16px 20px;
+  color: #4a5568;
+  font-size: 14px;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+}
+
+.availability-section h5 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 11px;
+  color: #a0aec0;
+  margin-bottom: 16px;
+}
+
+.days-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.day-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #a0aec0;
+  position: relative;
+  cursor: pointer;
+}
+
+.day-circle.active {
+  border-color: #f28c28;
+  color: #f28c28;
+}
+
+.day-circle .dot {
+  width: 4px;
+  height: 4px;
+  background-color: #f28c28;
+  border-radius: 50%;
+  margin-top: 4px;
+}
+
+.shifts-row {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ebdcd5;
+  border-radius: 30px;
+  padding: 12px 24px;
+}
+
+.shift-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.shift-icon-bg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shift-card:first-child .shift-icon-bg {
+  background-color: #ebf6f5;
+}
+.shift-card:first-child .shift-icon {
+  color: #317f87;
+}
+
+.shift-card:last-child .shift-icon-bg {
+  background-color: #fdf5f0;
+}
+.shift-card:last-child .shift-icon {
+  color: #f28c28;
+}
+
+.shift-info h6 {
+  margin: 0 0 4px 0;
+  font-size: 10px;
+  color: #a0aec0;
+  letter-spacing: 1px;
+}
+
+.shift-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.shift-divider {
+  width: 1px;
+  height: 40px;
+  background-color: #e2e8f0;
+  margin: 0 24px;
+}
+
+/* Footer */
+.td-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 32px;
+  border-top: 1px solid #f0f0f0;
+  background-color: #fafbfc;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.cancel-btn {
+  background: none;
+  border: none;
+  color: #718096;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.cancel-btn:hover {
+  text-decoration: underline;
+}
+
+.save-btn {
+  background-color: #317f87;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background-color: #276e73;
+}

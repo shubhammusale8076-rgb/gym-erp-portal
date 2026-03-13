@@ -1,12 +1,13 @@
 import React from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
-import { LayoutDashboard, Users, CreditCard, Settings, LogOut, Menu, Bell, Search } from 'lucide-react';
+import { LayoutDashboard, Users, CreditCard, Settings, LogOut, Menu, Bell, Search, CalendarDays } from 'lucide-react';
 import './Layout.css';
 
 const Sidebar = () => {
   const navItems = [
     { name: 'Dashboard', path: '/', icon: <LayoutDashboard size={20} /> },
     { name: 'Members List', path: '/members', icon: <Users size={20} /> },
+    { name: 'Attendance', path: '/attendance', icon: <CalendarDays size={20} /> },
     { name: 'Membership Plans', path: '/plans', icon: <CreditCard size={20} /> },
     { name: 'CRM / Leads', path: '/crm', icon: <Users size={20} /> },
     { name: 'Trainers', path: '/trainer', icon: <Users size={20} /> },

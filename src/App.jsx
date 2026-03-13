@@ -8,6 +8,7 @@ import Login from './pages/Login/Login';
 import CRM from './pages/CRM/CRM';
 import Trainer from './pages/Trainer/Trainer';
 import MemberDetail from './pages/Members/Member detail/MemberDetail';
+import Attendance from './pages/Attendance/Attendance';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="plans" element={<Plans />} />
           <Route path="crm" element={<CRM />} />
           <Route path="trainer" element={<Trainer/>} />
+          <Route path="attendance" element={<Attendance />} />
           <Route path="*" element={
             <div className="flex justify-center flex-col items-center h-full gap-4">
               <h2 className="heading-2 text-gradient">Coming Soon</h2>

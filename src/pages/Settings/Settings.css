@@ -1,0 +1,57 @@
+.settings-page {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.settings-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .settings-container {
+        grid-template-columns: 280px 1fr;
+    }
+}
+
+.settings-sidebar {
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+}
+
+.tab-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: none;
+    background: transparent;
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 0.25rem;
+}
+
+.tab-item:hover {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+}
+
+.tab-item.active {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.settings-content {
+    min-height: 500px;
+}
+
+/* Custom Toggle Style */
+.peer:checked~.peer-checked\:bg-primary {
+    background-color: var(--primary);
+}

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { 
-  Phone, 
-  Calendar, 
-  MapPin, 
-  Clock, 
-  MoreVertical, 
-  Plus, 
-  Filter, 
+import {
+  Phone,
+  Calendar,
+  MapPin,
+  Clock,
+  MoreVertical,
+  Plus,
+  Filter,
   Search,
   Instagram,
   Globe,
@@ -108,7 +108,7 @@ const CRM = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Filtering leads
-  const filteredLeads = leads.filter(lead => 
+  const filteredLeads = leads.filter(lead =>
     lead.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     lead.phone.includes(searchQuery)
   );
@@ -120,7 +120,7 @@ const CRM = () => {
   };
 
   const handleDragEnd = (e) => {
-     e.currentTarget.classList.remove('is-dragging');
+    e.currentTarget.classList.remove('is-dragging');
   }
 
   const handleDragOver = (e) => {
@@ -131,8 +131,8 @@ const CRM = () => {
     e.preventDefault();
     const leadId = e.dataTransfer.getData('leadId');
     if (leadId) {
-      setLeads(prevLeads => 
-        prevLeads.map(lead => 
+      setLeads(prevLeads =>
+        prevLeads.map(lead =>
           lead.id === leadId ? { ...lead, stage: newStage } : lead
         )
       );
@@ -141,27 +141,27 @@ const CRM = () => {
 
   return (
     <div className="crm-page">
-      
+
       {/* Header Area */}
       <div className="crm-header">
         <div>
           <h1 className="crm-title">Lead Management</h1>
           <p className="crm-subtitle">Track and convert prospects into loyal members.</p>
         </div>
-        
+
         <div className="crm-actions">
           {/* Search Bar */}
           <div className="search-container">
             <span className="search-icon-wrapper">
               <Search size={16} />
             </span>
-             <input 
-               type="text" 
-               placeholder="Search leads..." 
-               value={searchQuery}
-               onChange={(e) => setSearchQuery(e.target.value)}
-               className="search-input"
-             />
+            <input
+              type="text"
+              placeholder="Search leads..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
+            />
           </div>
           <button className="btn-icon">
             <Filter size={20} />
@@ -179,7 +179,7 @@ const CRM = () => {
           const stageLeads = filteredLeads.filter(lead => lead.stage === stageKey);
 
           return (
-            <div 
+            <div
               key={stageKey}
               className="kanban-column"
               onDragOver={handleDragOver}
@@ -202,7 +202,7 @@ const CRM = () => {
               {/* Cards Container */}
               <div className="cards-container">
                 {stageLeads.map((lead) => (
-                  <div 
+                  <div
                     key={lead.id}
                     draggable
                     onDragStart={(e) => handleDragStart(e, lead.id)}
@@ -211,9 +211,9 @@ const CRM = () => {
                   >
                     {/* Follow-up reminder banner if it's the follow-up stage */}
                     {stageKey === STAGES.FOLLOW_UP && (
-                        <div className="followup-badge">
-                            <Clock size={12} /> Due Soon
-                        </div>
+                      <div className="followup-badge">
+                        <Clock size={12} /> Due Soon
+                      </div>
                     )}
 
                     <div className="card-header">
@@ -231,7 +231,7 @@ const CRM = () => {
                         <Phone size={14} />
                         <span>{lead.phone}</span>
                       </div>
-                      
+
                       {lead.trialDate && (
                         <div className="info-row">
                           <div className="trial-date-container">
@@ -247,7 +247,7 @@ const CRM = () => {
                         <SourceIcon source={lead.source} />
                         <span className="source-text">{lead.source}</span>
                       </div>
-                      
+
                       <div className="drag-indicator">
                         <MoreVertical size={16} />
                       </div>

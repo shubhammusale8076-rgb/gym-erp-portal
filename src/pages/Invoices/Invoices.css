@@ -1,0 +1,74 @@
+.invoices-page {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.invoice-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 1280px) {
+    .invoice-container {
+        grid-template-columns: 1fr 1.2fr;
+    }
+}
+
+.invoice-preview-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.invoice-preview {
+    min-height: 800px;
+    background-color: white;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+}
+
+.logo-placeholder {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary);
+    border-radius: 8px;
+}
+
+.preview-table th {
+    padding-bottom: 0.5rem;
+}
+
+.preview-table td {
+    padding: 0.75rem 0;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #48bb78;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(72, 187, 120, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(72, 187, 120, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(72, 187, 120, 0);
+    }
+}

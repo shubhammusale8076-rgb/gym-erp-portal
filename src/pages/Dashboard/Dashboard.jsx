@@ -1,5 +1,6 @@
 import React from 'react';
 import { Users, TrendingUp, CalendarCheck, Activity } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const data = [
@@ -39,33 +40,35 @@ const Dashboard = () => {
 
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <StatCard 
-          title="Total Members" 
-          value="1,248" 
-          trend="+12%" 
-          icon={Users} 
-          colorClass="bg-primary bg-opacity-20 text-primary" 
+        <StatCard
+          title="Total Members"
+          value="1,248"
+          trend="+12%"
+          icon={Users}
+          colorClass="bg-primary bg-opacity-20 text-primary"
         />
-        <StatCard 
-          title="Monthly Revenue" 
-          value="$42,500" 
-          trend="+8.5%" 
-          icon={TrendingUp} 
-          colorClass="bg-secondary bg-opacity-20 text-secondary" 
+        <Link to="/finance" className="block transition-transform hover:scale-105">
+          <StatCard
+            title="Monthly Revenue"
+            value="$42,500"
+            trend="+8.5%"
+            icon={TrendingUp}
+            colorClass="bg-secondary bg-opacity-20 text-secondary"
+          />
+        </Link>
+        <StatCard
+          title="Today's Check-ins"
+          value="342"
+          trend="+5%"
+          icon={CalendarCheck}
+          colorClass="bg-accent bg-opacity-20 text-accent"
         />
-        <StatCard 
-          title="Today's Check-ins" 
-          value="342" 
-          trend="+5%" 
-          icon={CalendarCheck} 
-          colorClass="bg-accent bg-opacity-20 text-accent" 
-        />
-        <StatCard 
-          title="Active Classes" 
-          value="24" 
-          trend="-2%" 
-          icon={Activity} 
-          colorClass="bg-danger bg-opacity-20 text-danger" 
+        <StatCard
+          title="Active Classes"
+          value="24"
+          trend="-2%"
+          icon={Activity}
+          colorClass="bg-danger bg-opacity-20 text-danger"
         />
       </div>
 
@@ -78,19 +81,19 @@ const Dashboard = () => {
               <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="var(--primary)" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="var(--primary)" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="colorMembers" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="var(--secondary)" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="var(--secondary)" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="var(--secondary)" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="var(--secondary)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--border-light)" vertical={false} />
                 <XAxis dataKey="name" stroke="var(--text-secondary)" tick={{ fill: 'var(--text-secondary)' }} axisLine={false} tickLine={false} />
                 <YAxis yAxisId="left" stroke="var(--text-secondary)" tick={{ fill: 'var(--text-secondary)' }} axisLine={false} tickLine={false} />
                 <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fill: 'var(--text-secondary)' }} axisLine={false} tickLine={false} />
-                <Tooltip 
+                <Tooltip
                   contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)', borderRadius: '8px', color: 'var(--text-primary)' }}
                   itemStyle={{ color: 'var(--text-primary)' }}
                 />

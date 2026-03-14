@@ -1,0 +1,38 @@
+.reports-page {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.reports-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+@media (min-width: 1280px) {
+    .reports-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .col-span-2 {
+        grid-column: span 2 / span 2;
+    }
+
+    .col-span-3 {
+        grid-column: span 3 / span 3;
+    }
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.attendance-heatmap {
+    overflow-x: auto;
+}
+
+.heatmap-body {
+    min-width: 600px;
+}

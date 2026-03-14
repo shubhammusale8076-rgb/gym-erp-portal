@@ -8,11 +8,12 @@ const Sidebar = () => {
     { name: 'Dashboard', path: '/', icon: <LayoutDashboard size={20} /> },
     { name: 'Members List', path: '/members', icon: <Users size={20} /> },
     { name: 'Attendance', path: '/attendance', icon: <CalendarDays size={20} /> },
-    { name: 'Membership Plans', path: '/plans', icon: <CreditCard size={20} /> },
+    { name: 'Finance', path: '/finance', icon: <CreditCard size={20} /> },
+    { name: 'Invoices', path: '/invoices', icon: <CreditCard size={20} /> },
+    { name: 'Reports', path: '/reports', icon: <LayoutDashboard size={20} /> },
     { name: 'CRM / Leads', path: '/crm', icon: <Users size={20} /> },
     { name: 'Trainers', path: '/trainer', icon: <Users size={20} /> },
     { name: 'Settings', path: '/settings', icon: <Settings size={20} /> },
-    { name: 'Home Page', path: '/home-page', icon: <Settings size={20} /> },
   ];
 
   return (
@@ -23,7 +24,7 @@ const Sidebar = () => {
           <h2>GymSync</h2>
         </div>
       </div>
-      
+
       <nav className="sidebar-nav">
         {navItems.map((item) => (
           <NavLink
@@ -36,7 +37,7 @@ const Sidebar = () => {
           </NavLink>
         ))}
       </nav>
-      
+
       <div className="sidebar-footer">
         <button className="nav-item logout-btn">
           <LogOut size={20} />
@@ -54,7 +55,7 @@ const Header = () => {
         <Search size={18} className="search-icon" />
         <input type="text" placeholder="Search members, plans..." className="search-input" />
       </div>
-      
+
       <div className="header-actions">
         <button className="icon-btn position-relative">
           <Bell size={20} />

@@ -107,12 +107,12 @@
 }
 
 .nav-item:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: #f8fafc;
   color: var(--text-primary);
 }
 
 .nav-item.active {
-  background: linear-gradient(90deg, #e6f7ec, transparent); /* matching the subtle light green gradient from screenshot */
+  background: linear-gradient(90deg, #e6f4ea, transparent); /* matching the subtle light green gradient from screenshot */
   color: var(--primary); /* Deep teal green */
   border-left: 3px solid var(--primary);
   font-weight: 600; /* bold the active item */
@@ -151,12 +151,13 @@
   border-top: none;
   border-left: none;
   border-right: none;
+  background: #ffffff;
 }
 
 .header-search {
   display: flex;
   align-items: center;
-  background: rgba(15, 23, 42, 0.6);
+  background: #f8fafc;
   border: 1px solid var(--border-light);
   border-radius: 9999px;
   padding: 0.5rem 1rem;

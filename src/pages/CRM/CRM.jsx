@@ -24,10 +24,10 @@ const STAGES = {
 };
 
 const STAGE_CONFIG = {
-  [STAGES.NEW_LEAD]: { title: 'New Lead', color: 'bg-blue-500', icon: UserCheck },
-  [STAGES.TRIAL_SCHEDULED]: { title: 'Trial Scheduled', color: 'bg-purple-500', icon: Calendar },
-  [STAGES.FOLLOW_UP]: { title: 'Follow-up', color: 'bg-orange-500', icon: Clock },
-  [STAGES.CONVERTED]: { title: 'Converted to Member', color: 'bg-green-500', icon: UserCheck },
+  [STAGES.NEW_LEAD]: { title: 'New Lead', color: 'stage-blue', icon: UserCheck },
+  [STAGES.TRIAL_SCHEDULED]: { title: 'Trial Scheduled', color: 'stage-purple', icon: Calendar },
+  [STAGES.FOLLOW_UP]: { title: 'Follow-up', color: 'stage-orange', icon: Clock },
+  [STAGES.CONVERTED]: { title: 'Converted', color: 'stage-green', icon: UserCheck },
 };
 
 const INITIAL_LEADS = [
@@ -88,10 +88,10 @@ const INITIAL_LEADS = [
 const SourceIcon = ({ source }) => {
   const iconStyle = { width: '14px', height: '14px' };
   switch (source.toLowerCase()) {
-    case 'instagram': return <Instagram style={{ ...iconStyle, color: '#ec4899' }} />;
-    case 'google': return <Globe style={{ ...iconStyle, color: '#3b82f6' }} />;
-    case 'walk-in': return <MapPin style={{ ...iconStyle, color: '#f97316' }} />;
-    default: return <UserCheck style={{ ...iconStyle, color: '#6b7280' }} />;
+    case 'instagram': return <Instagram style={{ ...iconStyle, color: '#e1306c' }} />;
+    case 'google': return <Globe style={{ ...iconStyle, color: '#4285f4' }} />;
+    case 'walk-in': return <MapPin style={{ ...iconStyle, color: 'var(--primary)' }} />;
+    default: return <UserCheck style={{ ...iconStyle, color: 'var(--text-muted)' }} />;
   }
 };
 

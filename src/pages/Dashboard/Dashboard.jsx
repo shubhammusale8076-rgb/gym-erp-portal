@@ -39,33 +39,33 @@ const Dashboard = () => {
 
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <StatCard 
+      <StatCard 
           title="Total Members" 
           value="1,248" 
           trend="+12%" 
           icon={Users} 
-          colorClass="bg-primary bg-opacity-20 text-primary" 
+          colorClass="bg-primary-light text-primary" 
         />
         <StatCard 
           title="Monthly Revenue" 
           value="$42,500" 
           trend="+8.5%" 
           icon={TrendingUp} 
-          colorClass="bg-secondary bg-opacity-20 text-secondary" 
+          colorClass="bg-secondary-light text-secondary" 
         />
         <StatCard 
           title="Today's Check-ins" 
           value="342" 
           trend="+5%" 
           icon={CalendarCheck} 
-          colorClass="bg-accent bg-opacity-20 text-accent" 
+          colorClass="bg-accent-light text-accent" 
         />
         <StatCard 
           title="Active Classes" 
           value="24" 
           trend="-2%" 
           icon={Activity} 
-          colorClass="bg-danger bg-opacity-20 text-danger" 
+          colorClass="bg-danger-light text-danger" 
         />
       </div>
 
@@ -109,11 +109,11 @@ const Dashboard = () => {
                 <div className="flex items-center gap-3">
                   <img src={`https://ui-avatars.com/api/?name=User+${i}&background=random`} alt="User" className="w-10 h-10 rounded-full" />
                   <div>
-                    <p className="font-medium text-text-primary">Sarah Connor</p>
-                    <p className="text-sm text-text-secondary">Pro Plan</p>
+                    <p className="font-medium text-primary">Sarah Connor</p>
+                    <p className="text-sm text-secondary">Pro Plan</p>
                   </div>
                 </div>
-                <span className="text-sm text-text-muted">10 mins ago</span>
+                <span className="text-sm text-muted">10 mins ago</span>
               </div>
             ))}
           </div>

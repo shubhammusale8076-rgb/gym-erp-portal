@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Plus, Filter, MoreVertical, Edit2, Trash2 } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
+import AddMember from './AddMember';
 
 
 const initialMembers = [
@@ -14,7 +15,21 @@ const initialMembers = [
 const Members = () => {
   const [members, setMembers] = useState(initialMembers);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isAddingMember, setIsAddingMember] = useState(false);
   const navigate = useNavigate();
+
+  const handleAddMember = (newMemberData) => {
+    const newMember = {
+      id: members.length + 1,
+      name: newMemberData.fullName,
+      email: newMemberData.email,
+      plan: newMemberData.membershipPlan,
+      status: 'Active',
+      joinDate: newMemberData.joinDate
+    };
+    setMembers([...members, newMember]);
+    setIsAddingMember(false);
+  };
 
   const filteredMembers = members.filter(member => 
     member.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -28,7 +43,7 @@ const Members = () => {
           <h1 className="heading-1">Members Directory</h1>
           <p className="subtitle mt-1">Manage your gym members and their subscriptions.</p>
         </div>
-        <button className="btn btn-primary">
+        <button className="btn btn-primary" onClick={() => setIsAddingMember(true)}>
           <Plus size={18} />
           Add Member
         </button>
@@ -127,6 +142,12 @@ const Members = () => {
           </div>
         </div>
       </div>
+      {isAddingMember && (
+        <AddMember 
+          onClose={() => setIsAddingMember(false)} 
+          onAdd={handleAddMember} 
+        />
+      )}
     </div>
   );
 };

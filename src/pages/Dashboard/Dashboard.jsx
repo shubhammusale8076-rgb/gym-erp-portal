@@ -1,6 +1,7 @@
 import React from 'react';
 import { Users, TrendingUp, CalendarCheck, Activity } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import './Dashboard.css';
 
 const data = [
   { name: 'Jan', members: 400, revenue: 2400 },
@@ -12,15 +13,15 @@ const data = [
 ];
 
 const StatCard = ({ title, value, trend, icon: Icon, colorClass }) => (
-  <div className="glass-card p-6 flex items-center justify-between">
-    <div>
-      <p className="subtitle mb-1">{title}</p>
-      <h3 className="heading-2">{value}</h3>
-      <p className={`text-sm mt-2 ${trend.startsWith('+') ? 'text-primary' : 'text-danger'}`}>
+  <div className="stat-card">
+    <div className="stat-card-content">
+      <p className="stat-card-title">{title}</p>
+      <h3 className="stat-card-value">{value}</h3>
+      <p className={`stat-card-trend ${trend.startsWith('+') ? 'trend-up' : 'trend-down'}`}>
         {trend} from last month
       </p>
     </div>
-    <div className={`p-4 rounded-full ${colorClass}`}>
+    <div className={`stat-card-icon-wrapper ${colorClass}`}>
       <Icon size={24} />
     </div>
   </div>
@@ -28,52 +29,51 @@ const StatCard = ({ title, value, trend, icon: Icon, colorClass }) => (
 
 const Dashboard = () => {
   return (
-    <div className="dashboard">
-      <div className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="heading-1">Dashboard</h1>
-          <p className="subtitle mt-1">Welcome back, here's what's happening today.</p>
+    <div className="dashboard-container">
+      <header className="dashboard-header">
+        <div className="dashboard-header-text">
+          <h1 className="dashboard-title">Dashboard</h1>
+          <p className="dashboard-subtitle">Welcome back, here's what's happening today.</p>
         </div>
-        <button className="btn btn-primary">Download Report</button>
-      </div>
+        <button className="dashboard-action-btn">Download Report</button>
+      </header>
 
-      {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-      <StatCard 
+      <section className="dashboard-stats-grid">
+        <StatCard 
           title="Total Members" 
           value="1,248" 
           trend="+12%" 
           icon={Users} 
-          colorClass="bg-primary-light text-primary" 
+          colorClass="icon-primary" 
         />
         <StatCard 
           title="Monthly Revenue" 
           value="$42,500" 
           trend="+8.5%" 
           icon={TrendingUp} 
-          colorClass="bg-secondary-light text-secondary" 
+          colorClass="icon-secondary" 
         />
         <StatCard 
           title="Today's Check-ins" 
           value="342" 
           trend="+5%" 
           icon={CalendarCheck} 
-          colorClass="bg-accent-light text-accent" 
+          colorClass="icon-accent" 
         />
         <StatCard 
           title="Active Classes" 
           value="24" 
           trend="-2%" 
           icon={Activity} 
-          colorClass="bg-danger-light text-danger" 
+          colorClass="icon-danger" 
         />
-      </div>
+      </section>
 
       {/* Charts Area */}
-      <div className="flex flex-col lg:flex-row gap-6 mb-8">
-        <div className="glass-panel p-6 flex-[2]">
-          <h3 className="heading-3 mb-6">Revenue & Member Growth</h3>
-          <div style={{ height: '300px' }}>
+      <div className="dashboard-charts-layout">
+        <div className="chart-main-panel">
+          <h3 className="chart-panel-title">Revenue & Member Growth</h3>
+          <div className="chart-container">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                 <defs>
@@ -101,23 +101,23 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="glass-panel p-6 flex-1">
-          <h3 className="heading-3 mb-6">Recent Check-ins</h3>
-          <div className="space-y-4">
+        <div className="checkins-sidebar">
+          <h3 className="chart-panel-title">Recent Check-ins</h3>
+          <div className="checkins-list">
             {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors">
-                <div className="flex items-center gap-3">
-                  <img src={`https://ui-avatars.com/api/?name=User+${i}&background=random`} alt="User" className="w-10 h-10 rounded-full" />
-                  <div>
-                    <p className="font-medium text-primary">Sarah Connor</p>
-                    <p className="text-sm text-secondary">Pro Plan</p>
+              <div key={i} className="checkin-item">
+                <div className="checkin-user-info">
+                  <img src={`https://ui-avatars.com/api/?name=User+${i}&background=random`} alt="User" className="checkin-avatar" />
+                  <div className="checkin-text-details">
+                    <p className="checkin-user-name">Sarah Connor</p>
+                    <p className="checkin-user-plan">Pro Plan</p>
                   </div>
                 </div>
-                <span className="text-sm text-muted">10 mins ago</span>
+                <span className="checkin-time-ago">10 mins ago</span>
               </div>
             ))}
           </div>
-          <button className="btn btn-secondary w-full mt-4">View All</button>
+          <button className="checkins-view-all-btn">View All</button>
         </div>
       </div>
     </div>

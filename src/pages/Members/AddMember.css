@@ -4,7 +4,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.167);
     backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
@@ -13,7 +13,7 @@
     padding: 2rem;
 }
 
-.add-member-modal {
+.add-member-overlay .add-member-modal {
     background: #ffffff;
     border: 1px solid #f1f5f9;
     border-radius: 20px;
@@ -36,14 +36,14 @@
     }
 }
 
-.add-member-header {
+.add-member-overlay .add-member-modal .add-member-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 2rem;
 }
 
-.breadcrumb {
+.add-member-overlay .add-member-modal .add-member-header  .breadcrumb {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -52,73 +52,69 @@
     margin-bottom: 0.5rem;
 }
 
-.breadcrumb .separator {
+.add-member-overlay .add-member-modal .add-member-header .breadcrumb .separator {
     color: var(--text-muted);
     opacity: 0.5;
 }
 
-.breadcrumb .current {
+.add-member-overlay .add-member-modal .add-member-header .breadcrumb .current {
     color: var(--text-primary);
 }
 
-.back-btn {
+.add-member-overlay .add-member-modal .add-member-header .back-btn {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.add-member-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+.add-member-overlay .add-member-modal  .add-member-grid {
+    display: flex;
+    justify-content: space-between;
     gap: 2rem;
 }
 
-@media (max-width: 992px) {
-    .add-member-grid {
-        grid-template-columns: 1fr;
-    }
+.add-member-overlay .add-member-modal .main-content-form {
+    width: 70%;
 }
 
-.section-card {
+.add-member-overlay .add-member-modal .main-content-form .section-card {
     padding: 1.5rem;
     margin-bottom: 2rem;
     background: #ffffff;
-    border: 1px solid #f1f5f9;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
 }
 
-.section-card h3 {
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-}
 
-.section-header {
+.add-member-overlay .add-member-modal .main-content-form .section-card .section-header {
     display: flex;
+    justify-content: start;
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
 }
 
-.section-header h3 {
-    margin-bottom: 0;
-}
-
-.section-icon {
+.add-member-overlay .add-member-modal .main-content-form .section-card .section-header h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
     color: var(--primary);
 }
 
-.form-grid {
+.add-member-overlay .add-member-modal .main-content-form .section-card .section-icon {
+    color: var(--primary);
+}
+
+.add-member-overlay .add-member-modal .main-content-form .section-card .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
 }
 
-.form-group.full-width {
+.add-member-overlay .add-member-modal .main-content-form .section-card .form-grid .form-group.full-width {
     grid-column: span 2;
 }
 
-.form-group label {
+.add-member-overlay .add-member-modal .main-content-form .section-card .form-grid .form-group label {
     display: block;
     font-size: 0.875rem;
     font-weight: 500;
@@ -126,14 +122,14 @@
     margin-bottom: 0.5rem;
 }
 
-.plan-selection {
+.add-member-overlay .add-member-modal .main-content-form .section-card .plan-selection {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin-bottom: 2rem;
 }
 
-.plan-card {
+.add-member-overlay .add-member-modal .main-content-form .section-card .plan-card {
     background: #f8fafc;
     border: 1px solid #f1f5f9;
     border-radius: 12px;
@@ -147,25 +143,25 @@
     gap: 0.5rem;
 }
 
-.plan-card.active {
+.add-member-overlay .add-member-modal .main-content-form .section-card .plan-card.active {
     background: #ffffff;
     border-color: var(--primary);
     box-shadow: 0 0 0 1px var(--primary);
 }
 
-.plan-name {
+.add-member-overlay .add-member-modal .main-content-form .section-card .plan-card .plan-name {
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-muted);
 }
 
-.plan-price {
+.add-member-overlay .add-member-modal .main-content-form .section-card .plan-card .plan-price {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--text-primary);
 }
 
-.active-check {
+.add-member-overlay .add-member-modal .main-content-form .section-card .plan-card .active-check {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -181,7 +177,7 @@
     font-weight: bold;
 }
 
-.most-popular {
+.add-member-overlay .add-member-modal .main-content-form .section-card .plan-card .most-popular {
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -195,14 +191,22 @@
     white-space: nowrap;
 }
 
-.profile-upload-container {
+
+.add-member-overlay .add-member-modal .member-sidebar{
+    width: 35%;
+    height: 520px;
+    padding:15px;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+}
+.add-member-overlay .add-member-modal .member-sidebar .profile-upload-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-.avatar-preview {
+.add-member-overlay .add-member-modal .member-sidebar .profile-upload-container .avatar-preview {
     width: 120px;
     height: 120px;
     background: #f8fafc;
@@ -215,11 +219,11 @@
     margin-bottom: 1.5rem;
 }
 
-.placeholder-user {
+.add-member-overlay .add-member-modal .member-sidebar .profile-upload-container .avatar-preview .placeholder-user {
     color: var(--text-muted);
 }
 
-.camera-icon-bg {
+.add-member-overlay .add-member-modal .member-sidebar .profile-upload-container .avatar-preview .camera-icon-bg {
     position: absolute;
     bottom: 5px;
     right: 5px;
@@ -233,32 +237,32 @@
     border: 2px solid #ffffff;
 }
 
-.upload-tip {
+.add-member-overlay .add-member-modal .member-sidebar .profile-upload-container .upload-tip {
     font-size: 0.75rem;
     color: var(--text-muted);
     margin-bottom: 1rem;
 }
 
-.upload-btn {
+.add-member-overlay .add-member-modal .member-sidebar .profile-upload-container .upload-btn {
     width: 100%;
     background: #e6f4ea;
     border: none;
     color: var(--primary);
 }
 
-.actions-stack {
+.add-member-overlay .add-member-modal .member-sidebar .actions-stack {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
+    gap: 1rem;
+    margin: 1.5rem 0;
 }
 
-.create-btn {
+.add-member-overlay .add-member-modal .member-sidebar .actions-stack .create-btn {
     width: 100%;
     gap: 0.75rem;
 }
 
-.cancel-btn {
+.add-member-overlay .add-member-modal .member-sidebar .actions-stack .cancel-btn {
     width: 100%;
     gap: 0.75rem;
     background: #ffffff;
@@ -266,7 +270,7 @@
     color: var(--text-primary);
 }
 
-.invoice-info-card {
+.add-member-overlay .add-member-modal .member-sidebar .invoice-info-card {
     background: #fffcf0;
     border: 1px solid #fff3c7;
     border-radius: 8px;
@@ -276,7 +280,7 @@
     align-items: flex-start;
 }
 
-.info-icon {
+.add-member-overlay .add-member-modal .member-sidebar .invoice-info-card .info-icon {
     width: 18px;
     height: 18px;
     border: 1px solid #f6ad55;
@@ -290,7 +294,7 @@
     flex-shrink: 0;
 }
 
-.invoice-info-card p {
+.add-member-overlay .add-member-modal .member-sidebar .invoice-info-card p {
     font-size: 0.75rem;
     color: var(--text-muted);
     margin: 0;

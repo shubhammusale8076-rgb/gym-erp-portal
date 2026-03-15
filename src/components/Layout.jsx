@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
-import { LayoutDashboard, Users, CreditCard, Settings, LogOut, Menu, Bell, Search, CalendarDays } from 'lucide-react';
+import { LayoutDashboard, Users, CreditCard, Settings, LogOut, Bell, Search, CalendarDays, UserCog } from 'lucide-react';
 import './Layout.css';
 
 const Sidebar = () => {
@@ -35,6 +35,7 @@ const Sidebar = () => {
     {
       category: 'SETTINGS',
       items: [
+        { name: 'Users', path: '/settings/users', icon: <UserCog size={20} /> },
         { name: 'Settings', path: '/settings', icon: <Settings size={20} /> },
       ]
     }

@@ -10,6 +10,7 @@ import Trainer from './pages/Trainer/Trainer';
 import MemberDetail from './pages/Members/Member detail/MemberDetail';
 import Attendance from './pages/Attendance/Attendance';
 import WebsiteManager from './pages/WebsiteManager/WebsiteManager';
+import Users from './pages/Settings/Users';
 import HeroBannerManager from './pages/WebsiteManager/HeroBannerManager/HeroBannerManager';
 import GalleryManager from './pages/WebsiteManager/GalleryManager/GalleryManager';
 import TrainersPageManager from './pages/WebsiteManager/TrainersPageManager/TrainersPageManager';
@@ -35,6 +36,7 @@ function App() {
           <Route path="website-manager/trainers" element={<TrainersPageManager />} />
           <Route path="website-manager/testimonials" element={<TestimonialsManager />} />
           <Route path="website-manager/contact" element={<ContactManager />} />
+          <Route path="settings/users" element={<Users />} />
           <Route path="*" element={
             <div className="flex justify-center flex-col items-center h-full gap-4">
               <h2 className="heading-2 text-gradient">Coming Soon</h2>

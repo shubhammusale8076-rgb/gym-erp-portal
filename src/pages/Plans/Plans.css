@@ -40,8 +40,8 @@
 
 .plans-page .plans-grid .plan-card.popular {
     border-color: var(--primary);
-    background: linear-gradient(to bottom, #ffffff, #f0fdfa);
-    box-shadow: 0 20px 25px -5px rgba(13, 148, 136, 0.1), 0 10px 10px -5px rgba(13, 148, 136, 0.04);
+    background: #ffffff;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
 }
 
 /* Popular Badge */
@@ -58,7 +58,7 @@
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    box-shadow: 0 10px 15px -3px var(--primary-glow);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -134,8 +134,8 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #f0fdfa;
-    color: var(--primary);
+    background: #f5f5f7;
+    color: var(--text-primary);
     display: flex;
     align-items: center;
     justify-content: center;

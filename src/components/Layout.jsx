@@ -1,6 +1,19 @@
 import React from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
-import { LayoutDashboard, Users, CreditCard, Settings, LogOut, Bell, Search, CalendarDays, UserCog } from 'lucide-react';
+import { 
+  Home, 
+  User, 
+  Calendar, 
+  Layers, 
+  Target, 
+  Dumbbell, 
+  Globe, 
+  ShieldCheck, 
+  Settings, 
+  LogOut, 
+  Bell, 
+  Search 
+} from 'lucide-react';
 import './Layout.css';
 
 const Sidebar = () => {
@@ -8,48 +21,48 @@ const Sidebar = () => {
     {
       category: 'MAIN',
       items: [
-        { name: 'Dashboard', path: '/', icon: <LayoutDashboard size={20} /> },
+        { name: 'Dashboard', path: '/', icon: <Home size={20} /> },
       ]
     },
     {
       category: 'OPERATIONS',
       items: [
-        { name: 'Members List', path: '/members', icon: <Users size={20} /> },
-        { name: 'Attendance', path: '/attendance', icon: <CalendarDays size={20} /> },
-        { name: 'Membership Plans', path: '/plans', icon: <CreditCard size={20} /> },
-        { name: 'CRM / Leads', path: '/crm', icon: <Users size={20} /> },
-        { name: 'Trainers', path: '/trainer', icon: <Users size={20} /> },
+        { name: 'Members List', path: '/members', icon: <User size={20} /> },
+        { name: 'Attendance', path: '/attendance', icon: <Calendar size={20} /> },
+        { name: 'Membership Plans', path: '/plans', icon: <Layers size={20} /> },
+        { name: 'CRM / Leads', path: '/crm', icon: <Target size={20} /> },
+        { name: 'Trainers', path: '/trainer', icon: <Dumbbell size={20} /> },
       ]
     },
     {
       category: 'WEBSITE',
       items: [
-        { name: 'Website Manager', path: '/website-manager', icon: <Settings size={20} /> },
-        { name: 'Hero Banner', path: '/website-manager/hero-banner', icon: <Settings size={20} /> },
-        { name: 'Gallery', path: '/website-manager/gallery', icon: <Settings size={20} /> },
-        { name: 'Trainers (Web)', path: '/website-manager/trainers', icon: <Settings size={20} /> },
-        { name: 'Testimonials', path: '/website-manager/testimonials', icon: <Settings size={20} /> },
-        { name: 'Contact Info', path: '/website-manager/contact', icon: <Settings size={20} /> },
+        { name: 'Website Manager', path: '/website-manager', icon: <Globe size={20} /> },
+        { name: 'Hero Banner', path: '/website-manager/hero-banner', icon: <Globe size={20} /> },
+        { name: 'Gallery', path: '/website-manager/gallery', icon: <Globe size={20} /> },
+        { name: 'Trainers (Web)', path: '/website-manager/trainers', icon: <Globe size={20} /> },
+        { name: 'Testimonials', path: '/website-manager/testimonials', icon: <Globe size={20} /> },
+        { name: 'Contact Info', path: '/website-manager/contact', icon: <Globe size={20} /> },
       ]
     },
     {
       category: 'SETTINGS',
       items: [
-        { name: 'Users', path: '/settings/users', icon: <UserCog size={20} /> },
+        { name: 'Users', path: '/settings/users', icon: <ShieldCheck size={20} /> },
         { name: 'Settings', path: '/settings', icon: <Settings size={20} /> },
       ]
     }
   ];
 
   return (
-    <aside className="sidebar glass-panel">
+    <aside className="sidebar">
       <div className="sidebar-header">
         <div className="logo">
           <div className="logo-icon"></div>
           <h2>GymSync</h2>
         </div>
       </div>
-      
+
       <nav className="sidebar-nav">
         {navItems.map((group, idx) => (
           <div key={idx} className="sidebar-group">
@@ -68,7 +81,7 @@ const Sidebar = () => {
           </div>
         ))}
       </nav>
-      
+
       <div className="sidebar-footer">
         <button className="nav-item logout-btn">
           <LogOut size={20} />
@@ -81,12 +94,12 @@ const Sidebar = () => {
 
 const Header = () => {
   return (
-    <header className="header glass-panel">
+    <header className="header ">
       <div className="header-search">
         <Search size={18} className="search-icon" />
         <input type="text" placeholder="Search members, plans..." className="search-input" />
       </div>
-      
+
       <div className="header-actions">
         <button className="icon-btn position-relative">
           <Bell size={20} />

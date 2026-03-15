@@ -49,7 +49,7 @@ const AddMember = ({ onClose, onAdd }) => {
 
                 <form className="add-member-grid" onSubmit={handleSubmit}>
                     <div className="main-content-form">
-                        <div className=" section-card">
+                        <section className="section-card">
                             <div className="section-header">
                                 <User className="section-icon" size={20} />
                                 <h3>Personal Information</h3>
@@ -63,6 +63,7 @@ const AddMember = ({ onClose, onAdd }) => {
                                         className="input-field"
                                         value={formData.fullName}
                                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                                        required
                                     />
                                 </div>
                                 <div className="form-group">
@@ -73,6 +74,7 @@ const AddMember = ({ onClose, onAdd }) => {
                                         className="input-field"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        required
                                     />
                                 </div>
                                 <div className="form-group">
@@ -87,14 +89,12 @@ const AddMember = ({ onClose, onAdd }) => {
                                 </div>
                                 <div className="form-group">
                                     <label>Date of Birth</label>
-                                    <div className="date-input-wrapper">
-                                        <input
-                                            type="date"
-                                            className="input-field"
-                                            value={formData.dateOfBirth}
-                                            onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
-                                        />
-                                    </div>
+                                    <input
+                                        type="date"
+                                        className="input-field"
+                                        value={formData.dateOfBirth}
+                                        onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
+                                    />
                                 </div>
                                 <div className="form-group">
                                     <label>Gender</label>
@@ -110,11 +110,11 @@ const AddMember = ({ onClose, onAdd }) => {
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </section>
 
-                        <div className="section-card">
+                        <section className="section-card">
                             <div className="section-header">
-                                <Calendar className="section-icon" size={20} />
+                                <Layers className="section-icon" size={20} />
                                 <h3>Membership Details</h3>
                             </div>
                             <div className="plan-selection">
@@ -123,23 +123,22 @@ const AddMember = ({ onClose, onAdd }) => {
                                     onClick={() => handlePlanSelect('BASIC')}
                                 >
                                     <span className="plan-name">BASIC</span>
-                                    <span className="plan-price">$29/mo</span>
+                                    <span className="plan-price">$29</span>
                                 </div>
                                 <div
                                     className={`plan-card ${formData.membershipPlan === 'PRO' ? 'active' : ''}`}
                                     onClick={() => handlePlanSelect('PRO')}
                                 >
-                                    {/* <div className="active-check">✓</div> */}
                                     <span className="plan-name">PRO</span>
-                                    <span className="plan-price">$59/mo</span>
-                                    <span className="most-popular">MOST POPULAR</span>
+                                    <span className="plan-price">$59</span>
+                                    <span className="most-popular">IDEAL</span>
                                 </div>
                                 <div
                                     className={`plan-card ${formData.membershipPlan === 'ELITE' ? 'active' : ''}`}
                                     onClick={() => handlePlanSelect('ELITE')}
                                 >
                                     <span className="plan-name">ELITE</span>
-                                    <span className="plan-price">$99/mo</span>
+                                    <span className="plan-price">$99</span>
                                 </div>
                             </div>
                             <div className="form-grid">
@@ -165,9 +164,9 @@ const AddMember = ({ onClose, onAdd }) => {
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </section>
 
-                        <div className="section-card">
+                        <section className="section-card">
                             <div className="section-header">
                                 <UserPlus className="section-icon" size={20} />
                                 <h3>Assignment & Emergency</h3>
@@ -206,40 +205,41 @@ const AddMember = ({ onClose, onAdd }) => {
                                     />
                                 </div>
                             </div>
-                        </div>
+                        </section>
                     </div>
 
                     <div className="member-sidebar">
-                        <div className="section-card">
-                            <h3>Profile Picture</h3>
+                        <section className="section-card">
+                            <div className="section-header">
+                                <Camera className="section-icon" size={18} />
+                                <h3>Profile Picture</h3>
+                            </div>
                             <div className="profile-upload-container">
                                 <div className="avatar-preview">
                                     <User size={48} className="placeholder-user" />
                                     <div className="camera-icon-bg">
-                                        <Camera size={16} color="white" />
+                                        <Camera size={14} color="white" />
                                     </div>
                                 </div>
-                                <p className="upload-tip">Upload a high-resolution portrait. JPG or PNG, max 5MB.</p>
+                                <p className="upload-tip">JPG/PNG, max 5MB.</p>
                                 <button type="button" className="btn btn-secondary upload-btn">Upload Photo</button>
                             </div>
-                        </div>
+                        </section>
+                        
+                        <div className="sidebar-divider"></div>
 
-                        <div className="section-card">
-                            <h3>Form Actions</h3>
-                            <div className="actions-stack">
-                                <button type="submit" className="btn btn-primary create-btn">
-                                    <UserPlus size={18} />
-                                    Create Member
-                                </button>
-                                <button type="button" className="btn btn-secondary cancel-btn" onClick={onClose}>
-                                    <X size={18} />
-                                    Cancel
-                                </button>
-                            </div>
-                            <div className="invoice-info-card">
-                                <div className="info-icon">i</div>
-                                <p>Submitting this form will automatically generate an invoice for the first billing cycle.</p>
-                            </div>
+                        <div className="actions-stack">
+                            <button type="submit" className="btn btn-primary create-btn">
+                                Create Member
+                            </button>
+                            <button type="button" className="btn btn-secondary cancel-btn" onClick={onClose}>
+                                Cancel
+                            </button>
+                        </div>
+                        
+                        <div className="invoice-info-card">
+                            <div className="info-icon">i</div>
+                            <p>An invoice will be generated automatically for the first cycle.</p>
                         </div>
                     </div>
                 </form>

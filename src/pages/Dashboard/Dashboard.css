@@ -53,14 +53,14 @@
   border: none;
   cursor: pointer;
   background-color: var(--primary);
-  color: white;
-  box-shadow: 0 4px 10px var(--primary-glow);
-  transition: all 0.15s ease-in-out;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
 }
 
 .dashboard-container .dashboard-header .dashboard-action-btn:hover {
   background-color: var(--primary-hover);
-  box-shadow: 0 6px 15px var(--primary-glow);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   transform: translateY(-1px);
 }
 
@@ -125,24 +125,12 @@
   justify-content: center;
 }
 
-.dashboard-container .dashboard-stats-grid .stat-card .icon-primary {
-  background-color: rgba(13, 148, 136, 0.1);
-  color: var(--primary);
-}
-
-.dashboard-container .dashboard-stats-grid .stat-card .icon-secondary {
-  background-color: rgba(246, 173, 85, 0.1);
-  color: var(--secondary);
-}
-
-.dashboard-container .dashboard-stats-grid .stat-card .icon-accent {
-  background-color: rgba(245, 166, 35, 0.1);
-  color: var(--accent);
-}
-
+.dashboard-container .dashboard-stats-grid .stat-card .icon-primary,
+.dashboard-container .dashboard-stats-grid .stat-card .icon-secondary,
+.dashboard-container .dashboard-stats-grid .stat-card .icon-accent,
 .dashboard-container .dashboard-stats-grid .stat-card .icon-danger {
-  background-color: rgba(245, 101, 101, 0.1);
-  color: var(--danger);
+  background-color: #f5f5f7;
+  color: var(--text-primary);
 }
 
 /* Charts Layout */

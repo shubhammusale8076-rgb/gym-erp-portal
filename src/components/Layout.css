@@ -2,6 +2,7 @@
 
 .app-layout {
   display: flex;
+  gap: 20px;
   min-height: 100vh;
   width: 100%;
 }
@@ -9,22 +10,24 @@
 /* Sidebar Styles */
 .sidebar {
   width: var(--sidebar-width);
-  height: 100vh;
   position: fixed;
-  left: 0;
-  top: 0;
+  left: 0px;
+  top: 0px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   z-index: 50;
-  border-radius: 0;
+  border-right: 1px solid var(--border-light);
   border-top: none;
   border-left: none;
   border-bottom: none;
+  background-color: var(--bg-card);
+
 }
+
 
 .sidebar-header {
   padding: 1.5rem;
-  border-bottom: 1px solid var(--border-light);
 }
 
 .logo {
@@ -36,9 +39,9 @@
 .logo-icon {
   width: 32px;
   height: 32px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: var(--primary);
   border-radius: 8px;
-  box-shadow: 0 0 10px var(--primary-glow);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .logo h2 {
@@ -61,13 +64,16 @@
 .sidebar-nav::-webkit-scrollbar {
   width: 6px;
 }
+
 .sidebar-nav::-webkit-scrollbar-track {
   background: transparent;
 }
+
 .sidebar-nav::-webkit-scrollbar-thumb {
   background: var(--border-light);
   border-radius: 10px;
 }
+
 .sidebar-nav:hover::-webkit-scrollbar-thumb {
   background: #cbd5e1;
 }
@@ -98,7 +104,8 @@
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.95rem; /* slightly larger or maintaining modern size, referencing screenshot's clean typography */
+  font-size: 0.95rem;
+  /* slightly larger or maintaining modern size, referencing screenshot's clean typography */
   transition: all var(--transition-fast);
   background: transparent;
   border: none;
@@ -112,15 +119,14 @@
 }
 
 .nav-item.active {
-  background: linear-gradient(90deg, #e6f4ea, transparent); /* matching the subtle light green gradient from screenshot */
-  color: var(--primary); /* Deep teal green */
-  border-left: 3px solid var(--primary);
-  font-weight: 600; /* bold the active item */
+  background: #f5f5f7;
+  color: var(--primary);
+  border-left: 2px solid var(--primary);
+  font-weight: 600;
 }
 
 .sidebar-footer {
-  padding: 1.5rem 1rem;
-  border-top: 1px solid var(--border-light);
+  padding: 0.3rem 1rem;
 }
 
 .logout-btn:hover {
@@ -128,9 +134,8 @@
   background: rgba(239, 68, 68, 0.1);
 }
 
-/* Main Content Area */
 .main-content {
-  flex: 1;
+  width: 100%;
   margin-left: var(--sidebar-width);
   display: flex;
   flex-direction: column;
@@ -139,20 +144,19 @@
 
 /* Header Styles */
 .header {
+  width: 100%;
   height: var(--header-height);
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 40;
-  border-radius: 0;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
 }
+
 
 .header-search {
   display: flex;
@@ -218,7 +222,7 @@
   position: absolute;
   top: -2px;
   right: -2px;
-  background: var(--danger);
+  background: var(--primary);
   color: white;
   font-size: 0.65rem;
   font-weight: bold;
@@ -279,6 +283,7 @@
   .sidebar {
     transform: translateX(-100%);
   }
+
   .main-content {
     margin-left: 0;
   }

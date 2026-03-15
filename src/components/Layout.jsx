@@ -5,14 +5,39 @@ import './Layout.css';
 
 const Sidebar = () => {
   const navItems = [
-    { name: 'Dashboard', path: '/', icon: <LayoutDashboard size={20} /> },
-    { name: 'Members List', path: '/members', icon: <Users size={20} /> },
-    { name: 'Attendance', path: '/attendance', icon: <CalendarDays size={20} /> },
-    { name: 'Membership Plans', path: '/plans', icon: <CreditCard size={20} /> },
-    { name: 'CRM / Leads', path: '/crm', icon: <Users size={20} /> },
-    { name: 'Trainers', path: '/trainer', icon: <Users size={20} /> },
-    { name: 'Settings', path: '/settings', icon: <Settings size={20} /> },
-    { name: 'Home Page', path: '/home-page', icon: <Settings size={20} /> },
+    {
+      category: 'MAIN',
+      items: [
+        { name: 'Dashboard', path: '/', icon: <LayoutDashboard size={20} /> },
+      ]
+    },
+    {
+      category: 'OPERATIONS',
+      items: [
+        { name: 'Members List', path: '/members', icon: <Users size={20} /> },
+        { name: 'Attendance', path: '/attendance', icon: <CalendarDays size={20} /> },
+        { name: 'Membership Plans', path: '/plans', icon: <CreditCard size={20} /> },
+        { name: 'CRM / Leads', path: '/crm', icon: <Users size={20} /> },
+        { name: 'Trainers', path: '/trainer', icon: <Users size={20} /> },
+      ]
+    },
+    {
+      category: 'WEBSITE',
+      items: [
+        { name: 'Website Manager', path: '/website-manager', icon: <Settings size={20} /> },
+        { name: 'Hero Banner', path: '/website-manager/hero-banner', icon: <Settings size={20} /> },
+        { name: 'Gallery', path: '/website-manager/gallery', icon: <Settings size={20} /> },
+        { name: 'Trainers (Web)', path: '/website-manager/trainers', icon: <Settings size={20} /> },
+        { name: 'Testimonials', path: '/website-manager/testimonials', icon: <Settings size={20} /> },
+        { name: 'Contact Info', path: '/website-manager/contact', icon: <Settings size={20} /> },
+      ]
+    },
+    {
+      category: 'SETTINGS',
+      items: [
+        { name: 'Settings', path: '/settings', icon: <Settings size={20} /> },
+      ]
+    }
   ];
 
   return (
@@ -25,15 +50,21 @@ const Sidebar = () => {
       </div>
       
       <nav className="sidebar-nav">
-        {navItems.map((item) => (
-          <NavLink
-            key={item.name}
-            to={item.path}
-            className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
-          >
-            {item.icon}
-            <span>{item.name}</span>
-          </NavLink>
+        {navItems.map((group, idx) => (
+          <div key={idx} className="sidebar-group">
+            <h3 className="sidebar-section-title">{group.category}</h3>
+            {group.items.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.path}
+                end={item.path === '/'}
+                className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+              >
+                {item.icon}
+                <span>{item.name}</span>
+              </NavLink>
+            ))}
+          </div>
         ))}
       </nav>
       

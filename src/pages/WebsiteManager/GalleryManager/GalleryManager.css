@@ -1,0 +1,138 @@
+.gm-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: var(--bg-dark); /* match the overall cream background */
+}
+
+.gm-subtitle {
+  color: #64748b;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.gm-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.gm-image-count {
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.gm-btn-add {
+  background-color: #8b2b2b; /* Match precise crimson red color from button */
+  color: white;
+  border-radius: 8px;
+  padding: 0.6rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(139, 43, 43, 0.2);
+  transition: all 0.2s;
+}
+
+.gm-btn-add:hover {
+  background-color: #752222;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 8px -1px rgba(139, 43, 43, 0.25);
+}
+
+.gm-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .gm-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gm-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.gm-card {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.gm-delete-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s;
+}
+
+.gm-delete-btn:hover {
+  background-color: #e2e8f0;
+  color: #64748b;
+}
+
+.gm-image-placeholder {
+  border-radius: 8px;
+  background-color: #f6f5f3; /* very soft grey/cream */
+  border: 1px solid #eef2f6;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cbd5e1;
+}
+
+.gm-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.gm-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.gm-input {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  color: #334155;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.gm-input:focus {
+  outline: none;
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 0 0 2px rgba(226, 232, 240, 0.5);
+}

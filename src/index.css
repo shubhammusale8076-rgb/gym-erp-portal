@@ -1,13 +1,13 @@
 :root {
-  /* Core Colors - Light Modern Theme (Based on Image) */
-  --bg-dark: #fbfbf9; /* Soft cream/off-white background */
+  /* Core Colors - Premium Modern Theme */
+  --bg-dark: #f8fafc; /* Crisp, cool off-white for better contrast */
   --bg-sidebar: #ffffff;
   --bg-card: #ffffff;
-  --bg-glass: rgba(255, 255, 255, 0.9);
+  --bg-glass: rgba(255, 255, 255, 0.95);
   
-  --primary: #52b7a6; /* Teal primary from image */
-  --primary-hover: #459b8d;
-  --primary-glow: rgba(82, 183, 166, 0.3);
+  --primary: #0d9488; /* Deeper, richer teal */
+  --primary-hover: #0f766e;
+  --primary-glow: rgba(13, 148, 136, 0.25);
   
   --secondary: #f6ad55; /* Orange/Yellow from charts */
   --accent: #f5a623;
@@ -16,13 +16,13 @@
   --success: #48bb78;
   
   /* Text Colors */
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --text-muted: #94a3b8;
+  --text-primary: #0f172a; /* Slate 900 for stronger contrast */
+  --text-secondary: #475569; /* Slate 600 */
+  --text-muted: #94a3b8; /* Slate 400 */
   
   /* Borders */
-  --border-light: #f1f5f9;
-  --border-focus: rgba(82, 183, 166, 0.5);
+  --border-light: #e2e8f0; /* Slightly cooler, softer border */
+  --border-focus: rgba(13, 148, 136, 0.4);
   
   /* Layout constraints */
   --sidebar-width: 250px;
@@ -37,6 +37,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  font-size: 15px; /* Scales entire project down slightly for a tighter, premium dashboard density */
 }
 
 body {
@@ -59,41 +63,42 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: 20px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.03), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
 }
 
 .glass-card {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: 16px;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
 }
 
 .glass-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.04), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
   border-color: var(--border-focus);
 }
 
 /* Typography Utilities */
 .heading-1 {
   font-size: 2.25rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: var(--text-primary);
 }
 
 .heading-2 {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
 }
 
 .heading-3 {
   font-size: 1.125rem;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--text-primary);
 }
 

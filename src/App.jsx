@@ -9,7 +9,12 @@ import CRM from './pages/CRM/CRM';
 import Trainer from './pages/Trainer/Trainer';
 import MemberDetail from './pages/Members/Member detail/MemberDetail';
 import Attendance from './pages/Attendance/Attendance';
-
+import WebsiteManager from './pages/WebsiteManager/WebsiteManager';
+import HeroBannerManager from './pages/WebsiteManager/HeroBannerManager/HeroBannerManager';
+import GalleryManager from './pages/WebsiteManager/GalleryManager/GalleryManager';
+import TrainersPageManager from './pages/WebsiteManager/TrainersPageManager/TrainersPageManager';
+import TestimonialsManager from './pages/WebsiteManager/TestimonialsManager/TestimonialsManager';
+import ContactManager from './pages/WebsiteManager/ContactManager/ContactManager';
 
 function App() {
   return (
@@ -24,6 +29,12 @@ function App() {
           <Route path="crm" element={<CRM />} />
           <Route path="trainer" element={<Trainer/>} />
           <Route path="attendance" element={<Attendance />} />
+          <Route path="website-manager" element={<WebsiteManager />} />
+          <Route path="website-manager/hero-banner" element={<HeroBannerManager />} />
+          <Route path="website-manager/gallery" element={<GalleryManager />} />
+          <Route path="website-manager/trainers" element={<TrainersPageManager />} />
+          <Route path="website-manager/testimonials" element={<TestimonialsManager />} />
+          <Route path="website-manager/contact" element={<ContactManager />} />
           <Route path="*" element={
             <div className="flex justify-center flex-col items-center h-full gap-4">
               <h2 className="heading-2 text-gradient">Coming Soon</h2>

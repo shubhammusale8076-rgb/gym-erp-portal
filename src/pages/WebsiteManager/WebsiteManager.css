@@ -1,0 +1,248 @@
+.website-manager-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: var(--bg-dark); /* match the overall cream background */
+}
+
+.wm-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.wm-badge {
+  background-color: #fceceb;
+  color: #8b3a32;
+  border-radius: 99px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(139, 58, 50, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #8b3a32;
+  border-radius: 50%;
+}
+
+.wm-title {
+  text-transform: uppercase;
+  font-family: 'Oswald', 'Inter', sans-serif; /* assuming a condensed bold font like Oswald or similar, keeping generic fallback */
+  font-size: 2.5rem;
+  letter-spacing: -0.5px;
+  margin: 0;
+  line-height: 1.1;
+  color: #1a1a1a;
+}
+
+.wm-subtitle {
+  color: #64748b;
+  font-size: 1rem;
+}
+
+.wm-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .wm-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .wm-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #64748b;
+}
+
+.stat-value {
+  font-size: 3rem;
+  font-weight: 800;
+  font-family: 'Oswald', 'Inter', sans-serif;
+  line-height: 1;
+  color: #1a1a1a;
+}
+
+.stat-subtext {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #c96e62 !important; /* overriden danger color specifically for the design */
+}
+
+/* SECTION STATUS */
+.wm-section-status {
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.section-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #64748b;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.status-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.status-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.status-item:first-child {
+  padding-top: 0;
+}
+
+.status-name {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #334155;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot-live {
+  background-color: #10b981;
+}
+
+.dot-update {
+  background-color: #d97706;
+}
+
+.status-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.last-updated {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.status-pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 0.35rem 0.75rem;
+  border-radius: 99px;
+  text-transform: uppercase;
+}
+
+.pill-live {
+  background-color: #ecfdf5;
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.pill-update {
+  background-color: #fffbeb;
+  color: #b45309;
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+/* AI AUDIT BANNER */
+.wm-ai-audit {
+  background: linear-gradient(135deg, #fceceb 0%, #f6e6e4 100%);
+  border: 1px solid rgba(139, 58, 50, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.ai-audit-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ai-audit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ai-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #8b3a32;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.wm-btn-ai {
+  background-color: #8b3a32;
+  color: white;
+  border-radius: 8px;
+  padding: 0.6rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(139, 58, 50, 0.2);
+  transition: all 0.2s;
+}
+
+.wm-btn-ai:hover {
+  background-color: #7a332c;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 8px -1px rgba(139, 58, 50, 0.25);
+}
+
+.ai-audit-desc {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin: 0;
+}

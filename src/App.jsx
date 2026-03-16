@@ -7,10 +7,14 @@ import Plans from './pages/Plans/Plans';
 import Login from './pages/Login/Login';
 import CRM from './pages/CRM/CRM';
 import Trainer from './pages/Trainer/Trainer';
-import MemberDetail from './pages/Members/Member detail/MemberDetail';
+import MemberDetail from './pages/Members/Member Detail/MemberDetail';
 import Attendance from './pages/Attendance/Attendance';
 import WebsiteManager from './pages/WebsiteManager/WebsiteManager';
 import Users from './pages/Settings/Users';
+import Settings from './pages/Settings/Settings';
+import GymProfile from './pages/Settings/GymProfile';
+import Integrations from './pages/Settings/Integrations';
+import Notifications from './pages/Settings/Notifications';
 import HeroBannerManager from './pages/WebsiteManager/HeroBannerManager/HeroBannerManager';
 import GalleryManager from './pages/WebsiteManager/GalleryManager/GalleryManager';
 import TrainersPageManager from './pages/WebsiteManager/TrainersPageManager/TrainersPageManager';
@@ -28,7 +32,7 @@ function App() {
           <Route path="members/:id" element={<MemberDetail />} />
           <Route path="plans" element={<Plans />} />
           <Route path="crm" element={<CRM />} />
-          <Route path="trainer" element={<Trainer/>} />
+          <Route path="trainer" element={<Trainer />} />
           <Route path="attendance" element={<Attendance />} />
           <Route path="website-manager" element={<WebsiteManager />} />
           <Route path="website-manager/hero-banner" element={<HeroBannerManager />} />
@@ -36,7 +40,11 @@ function App() {
           <Route path="website-manager/trainers" element={<TrainersPageManager />} />
           <Route path="website-manager/testimonials" element={<TestimonialsManager />} />
           <Route path="website-manager/contact" element={<ContactManager />} />
+          <Route path="settings" element={<Settings />} />
           <Route path="settings/users" element={<Users />} />
+          <Route path="settings/profile" element={<GymProfile />} />
+          <Route path="settings/integrations" element={<Integrations />} />
+          <Route path="settings/notifications" element={<Notifications />} />
           <Route path="*" element={
             <div className="flex justify-center flex-col items-center h-full gap-4">
               <h2 className="heading-2 text-gradient">Coming Soon</h2>

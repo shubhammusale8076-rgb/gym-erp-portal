@@ -8,8 +8,9 @@
 .users-stats-strip {
   display: flex;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2.5rem;
   gap: 0;
+  margin-bottom: 2rem;
 }
 
 .stat-chip {
@@ -140,8 +141,15 @@
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .modal-header {

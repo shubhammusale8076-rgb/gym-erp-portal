@@ -4,13 +4,13 @@
 
 .profile-layout {
     display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 2rem;
+    grid-template-columns: 340px 1fr;
+    gap: 3rem;
     align-items: start;
 }
 
 .logo-card {
-    padding: 1.5rem;
+    padding: 2.5rem;
     text-align: center;
 }
 

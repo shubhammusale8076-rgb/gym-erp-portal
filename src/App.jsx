@@ -15,6 +15,8 @@ import Settings from './pages/Settings/Settings';
 import GymProfile from './pages/Settings/GymProfile';
 import Integrations from './pages/Settings/Integrations';
 import Notifications from './pages/Settings/Notifications';
+import Payments from './pages/Settings/Payments';
+import Security from './pages/Settings/Security';
 import HeroBannerManager from './pages/WebsiteManager/HeroBannerManager/HeroBannerManager';
 import GalleryManager from './pages/WebsiteManager/GalleryManager/GalleryManager';
 import TrainersPageManager from './pages/WebsiteManager/TrainersPageManager/TrainersPageManager';
@@ -45,6 +47,8 @@ function App() {
           <Route path="settings/profile" element={<GymProfile />} />
           <Route path="settings/integrations" element={<Integrations />} />
           <Route path="settings/notifications" element={<Notifications />} />
+          <Route path="settings/payments" element={<Payments />} />
+          <Route path="settings/security" element={<Security />} />
           <Route path="*" element={
             <div className="flex justify-center flex-col items-center h-full gap-4">
               <h2 className="heading-2 text-gradient">Coming Soon</h2>

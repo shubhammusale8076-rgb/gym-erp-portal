@@ -1,0 +1,52 @@
+.security-settings {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.security-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 3rem;
+    align-items: start;
+}
+
+.password-strength {
+    max-width: 300px;
+}
+
+.strength-bars {
+    display: flex;
+    gap: 4px;
+}
+
+.bar {
+    height: 4px;
+    flex: 1;
+    background: var(--border-light);
+    border-radius: 2px;
+}
+
+.bar.filled {
+    background: var(--success);
+}
+
+.audit-logs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.log-item {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.log-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+    .security-layout {
+        grid-template-columns: 1fr;
+    }
+}

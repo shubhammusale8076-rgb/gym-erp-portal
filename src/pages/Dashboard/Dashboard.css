@@ -53,8 +53,8 @@
   border: none;
   cursor: pointer;
   background-color: var(--primary);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: var(--text-on-primary);
+  box-shadow: 0 4px 12px var(--primary-glow);
   transition: all 0.2s ease;
 }
 
@@ -203,8 +203,8 @@
 }
 
 .dashboard-container .dashboard-charts-layout .checkins-sidebar .checkins-list .checkin-item .checkin-user-name {
-  font-weight: 500;
-  color: var(--primary);
+  font-weight: 600;
+  color: var(--text-primary);
   margin: 0;
   font-size: 0.95rem;
 }

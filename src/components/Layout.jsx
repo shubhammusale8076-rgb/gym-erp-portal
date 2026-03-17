@@ -12,7 +12,8 @@ import {
   Settings, 
   LogOut, 
   Bell, 
-  Search 
+  Search,
+  ArrowUpRight
 } from 'lucide-react';
 import './Layout.css';
 
@@ -29,7 +30,7 @@ const Sidebar = () => {
       items: [
         { name: 'Members List', path: '/members', icon: <User size={20} /> },
         { name: 'Attendance', path: '/attendance', icon: <Calendar size={20} /> },
-        { name: 'Membership Plans', path: '/plans', icon: <Layers size={20} /> },
+        { name: 'Membership Plans', path: '/plans', icon: <Layers size={20} />, badge: 'New' },
         { name: 'CRM / Leads', path: '/crm', icon: <Target size={20} /> },
         { name: 'Trainers', path: '/trainer', icon: <Dumbbell size={20} /> },
       ]
@@ -76,6 +77,7 @@ const Sidebar = () => {
               >
                 {item.icon}
                 <span>{item.name}</span>
+                {item.badge && <span className="sidebar-nav-badge">{item.badge}</span>}
               </NavLink>
             ))}
           </div>
@@ -83,6 +85,23 @@ const Sidebar = () => {
       </nav>
 
       <div className="sidebar-footer">
+        <div className="sidebar-app-banner">
+          <div className="banner-icon-bg">
+            <ArrowUpRight size={20} />
+          </div>
+          <div className="banner-content">
+            <p className="banner-title">Download our mobile app</p>
+          </div>
+          <div className="banner-decoration">
+            <div className="decoration-dots">
+              <div className="dot-line long"></div>
+              <div className="dot-line"></div>
+              <div className="dot-line long"></div>
+              <div className="dot-line"></div>
+            </div>
+          </div>
+        </div>
+
         <button className="nav-item logout-btn">
           <LogOut size={20} />
           <span>Log Out</span>

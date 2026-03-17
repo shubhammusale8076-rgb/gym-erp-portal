@@ -1,37 +1,40 @@
 :root {
-  /* Core Colors - Minimalist Apple-inspired Theme */
-  --bg-dark: #fbfbfb; 
-  --bg-sidebar: #ffffff;
+  /* Core Colors - New Design (Lime & Dark) */
+  --bg-dark: #f8f9fc; 
+  --bg-sidebar: #1d1d2b; /* Dark Navy/Slate */
   --bg-card: #ffffff;
   --bg-glass: rgba(255, 255, 255, 0.8);
   
-  --primary: #000000; /* Pure Black */
-  --primary-hover: #1d1d1f;
-  --primary-glow: rgba(0, 0, 0, 0.1);
+  --primary: #d4ff3d; /* Lime Green */
+  --primary-hover: #bde635;
+  --primary-glow: rgba(212, 255, 61, 0.2);
   
-  --secondary: #86868b; /* Apple Gray */
-  --accent: #0071e3; /* System Blue */
-  --danger: #ff3b30; /* System Red */
+  --secondary: #86868b; 
+  --accent: #d4ff3d; /* Accent matches primary lime */
+  --danger: #ff3b30; 
   --danger-hover: #d70015;
-  --success: #34c759; /* System Green */
-  --warning: #ff9500; /* System Orange */
+  --success: #34c759;
+  --warning: #ff9500;
+  --badge-peach: #ffd7b5; /* Notification badge color from image */
   
   /* Text Colors */
-  --text-primary: #1d1d1f; /* SF Pro style black */
-  --text-secondary: #86868b; 
+  --text-primary: #1d1d1f;
+  --text-secondary: #86868b;
   --text-muted: #afafb6;
+  --text-on-primary: #000000;
+  --text-on-dark: #ffffff;
   
   /* Borders */
-  --border-light: #d2d2d7; 
-  --border-focus: #000000;
+  --border-light: #e6e6e9; 
+  --border-focus: var(--primary);
   
   /* Layout constraints */
-  --sidebar-width: 250px;
+  --sidebar-width: 260px;
   --header-height: 70px;
   
   /* Transitions */
-  --transition-fast: 0.15s ease-in-out;
-  --transition-normal: 0.3s ease-in-out;
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -134,7 +137,7 @@ body {
 
 .btn-primary {
   background-color: var(--primary);
-  color: white;
+  color: var(--text-on-primary);
   box-shadow: 0 4px 10px var(--primary-glow);
 }
 

@@ -29,8 +29,8 @@
 }
 
 .dashboard-container .dashboard-header .dashboard-title {
-  font-size: 2.25rem;
-  font-weight: 800;
+  font-size: 1.7rem;
+  font-weight: 600;
   letter-spacing: -0.03em;
   color: var(--text-primary);
 }

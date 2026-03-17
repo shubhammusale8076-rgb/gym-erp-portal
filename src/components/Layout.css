@@ -156,7 +156,7 @@
     display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem 1rem 0.1rem;
+  padding: 1rem 2rem 1rem 1rem;
   /* background-color: #a0a0b0; */
   border-bottom: none;
 }
@@ -166,7 +166,7 @@
 }
 
 .header-title {
-  font-size: 1.8rem;
+  font-size: 1.95rem;
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.5px;
@@ -284,6 +284,7 @@
 
 /* Page Content */
 .page-content {
+  padding: 1rem 2rem 1rem 1rem;
   flex: 1;
   animation: fadeIn 0.4s ease-out;
 }

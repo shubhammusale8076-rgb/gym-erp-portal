@@ -114,7 +114,7 @@ const AddMember = ({ onClose, onAdd }) => {
 
                         <section className="section-card">
                             <div className="section-header">
-                                <Layers className="section-icon" size={20} />
+                                {/* <Layers className="section-icon" size={20} /> */}
                                 <h3>Membership Details</h3>
                             </div>
                             <div className="plan-selection">

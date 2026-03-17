@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { 
   Home, 
   User, 
@@ -30,7 +30,7 @@ const Sidebar = () => {
       items: [
         { name: 'Members List', path: '/members', icon: <User size={20} /> },
         { name: 'Attendance', path: '/attendance', icon: <Calendar size={20} /> },
-        { name: 'Membership Plans', path: '/plans', icon: <Layers size={20} />, badge: 'New' },
+        { name: 'Membership Plans', path: '/plans', icon: <Layers size={20} /> },
         { name: 'CRM / Leads', path: '/crm', icon: <Target size={20} /> },
         { name: 'Trainers', path: '/trainer', icon: <Dumbbell size={20} /> },
       ]
@@ -57,7 +57,7 @@ const Sidebar = () => {
 
   return (
     <aside className="sidebar">
-    <div className="sidebar-wrapper">
+    {/* <div className="sidebar-wrapper"> */}
       
         <div className="sidebar-header">
           <div className="logo">
@@ -78,14 +78,13 @@ const Sidebar = () => {
                 >
                   {item.icon}
                   <span>{item.name}</span>
-                  {item.badge && <span className="sidebar-nav-badge">{item.badge}</span>}
                 </NavLink>
               ))}
             </div>
           ))}
         </nav>
         <div className="sidebar-footer">
-          <div className="sidebar-app-banner">
+          {/* <div className="sidebar-app-banner">
             <div className="banner-icon-bg">
               <ArrowUpRight size={20} />
             </div>
@@ -100,36 +99,53 @@ const Sidebar = () => {
                 <div className="dot-line"></div>
               </div>
             </div>
-          </div>
+          </div> */}
           <button className="nav-item logout-btn">
             <LogOut size={20} />
             <span>Log Out</span>
           </button>
         </div>
         
-    </div>
+    {/* </div> */}
     </aside>
   );
 };
 
 const Header = () => {
-  return (
-    <header className="header ">
-      <div className="header-search">
-        <Search size={18} className="search-icon" />
-        <input type="text" placeholder="Search members, plans..." className="search-input" />
-      </div>
+  const location = useLocation();
+  
+  // const getPageHeading = () => {
+  //   const path = location.pathname;
+  //   if (path === '/') return <h1 className="header-title">Welcome back Taylor 👋</h1>;
+    
+  //   // Capitalize first letter and handle sub-routes
+  //   const pageName = path.split('/')[1];
+  //   if (!pageName) return <h1 className="header-title">Dashboard</h1>;
+    
+  //   const formattedName = pageName.toUpperCase();
+  //   return <h1 className="header-title">{formattedName}</h1>;
+  // };
 
-      <div className="header-actions">
-        <button className="icon-btn position-relative">
-          <Bell size={20} />
-          <span className="notification-badge">3</span>
-        </button>
-        <div className="user-profile">
-          <img src="https://ui-avatars.com/api/?name=Admin+User&background=10b981&color=fff" alt="Profile" className="avatar" />
-          <div className="user-info">
-            <span className="user-name">Admin User</span>
-            <span className="user-role">Manager</span>
+  return (
+    <header className="header">
+      <div className="header-wrapper">
+        <div className="header-left">
+          <h1 className="header-title">Welcome back Shubham 👋</h1>
+        </div>
+        <div className="header-right">
+          <div className="header-search">
+            <Search size={18} className="search-icon" />
+            <input type="text" placeholder="Search courses" className="search-input" />
+          </div>
+        
+          <div className="header-actions">
+            <button className="icon-btn position-relative">
+              <Bell size={20} />
+              <span className="notification-badge">3</span>
+            </button>
+            <div className="user-profile-simple">
+              <img src="https://ui-avatars.com/api/?name=Taylor&background=ffb7b7&color=000" alt="Profile" className="avatar-small" />
+            </div>
           </div>
         </div>
       </div>

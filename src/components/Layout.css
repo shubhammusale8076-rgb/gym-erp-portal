@@ -9,11 +9,18 @@
 
 /* Sidebar Styles */
 .sidebar {
-  width: var(--sidebar-width);
-  position: fixed;
+   width: var(--sidebar-width);
+  /* position: fixed;
   left: 0px;
-  top: 0px;
-  height: 100vh;
+  top: 0px; */
+  /* height: 100vh; */
+  padding: 10px;
+}
+
+.sidebar-wrapper
+{
+ 
+  height: 98vh;
   display: flex;
   flex-direction: column;
   z-index: 50;
@@ -23,8 +30,8 @@
   border-bottom: none;
   background-color: var(--bg-sidebar);
   color: #8e8ea0;
+  overflow: auto;
 }
-
 
 .sidebar-header {
   padding: 1.5rem;

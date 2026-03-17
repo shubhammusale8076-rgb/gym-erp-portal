@@ -57,56 +57,57 @@ const Sidebar = () => {
 
   return (
     <aside className="sidebar">
-      <div className="sidebar-header">
-        <div className="logo">
-          <div className="logo-icon"></div>
-          <h2>GymSync</h2>
+    <div className="sidebar-wrapper">
+      
+        <div className="sidebar-header">
+          <div className="logo">
+            <div className="logo-icon"></div>
+            <h2>GymSync</h2>
+          </div>
         </div>
-      </div>
-
-      <nav className="sidebar-nav">
-        {navItems.map((group, idx) => (
-          <div key={idx} className="sidebar-group">
-            <h3 className="sidebar-section-title">{group.category}</h3>
-            {group.items.map((item) => (
-              <NavLink
-                key={item.name}
-                to={item.path}
-                end={item.path === '/'}
-                className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
-              >
-                {item.icon}
-                <span>{item.name}</span>
-                {item.badge && <span className="sidebar-nav-badge">{item.badge}</span>}
-              </NavLink>
-            ))}
-          </div>
-        ))}
-      </nav>
-
-      <div className="sidebar-footer">
-        <div className="sidebar-app-banner">
-          <div className="banner-icon-bg">
-            <ArrowUpRight size={20} />
-          </div>
-          <div className="banner-content">
-            <p className="banner-title">Download our mobile app</p>
-          </div>
-          <div className="banner-decoration">
-            <div className="decoration-dots">
-              <div className="dot-line long"></div>
-              <div className="dot-line"></div>
-              <div className="dot-line long"></div>
-              <div className="dot-line"></div>
+        <nav className="sidebar-nav">
+          {navItems.map((group, idx) => (
+            <div key={idx} className="sidebar-group">
+              <h3 className="sidebar-section-title">{group.category}</h3>
+              {group.items.map((item) => (
+                <NavLink
+                  key={item.name}
+                  to={item.path}
+                  end={item.path === '/'}
+                  className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+                >
+                  {item.icon}
+                  <span>{item.name}</span>
+                  {item.badge && <span className="sidebar-nav-badge">{item.badge}</span>}
+                </NavLink>
+              ))}
+            </div>
+          ))}
+        </nav>
+        <div className="sidebar-footer">
+          <div className="sidebar-app-banner">
+            <div className="banner-icon-bg">
+              <ArrowUpRight size={20} />
+            </div>
+            <div className="banner-content">
+              <p className="banner-title">Download our mobile app</p>
+            </div>
+            <div className="banner-decoration">
+              <div className="decoration-dots">
+                <div className="dot-line long"></div>
+                <div className="dot-line"></div>
+                <div className="dot-line long"></div>
+                <div className="dot-line"></div>
+              </div>
             </div>
           </div>
+          <button className="nav-item logout-btn">
+            <LogOut size={20} />
+            <span>Log Out</span>
+          </button>
         </div>
-
-        <button className="nav-item logout-btn">
-          <LogOut size={20} />
-          <span>Log Out</span>
-        </button>
-      </div>
+        
+    </div>
     </aside>
   );
 };

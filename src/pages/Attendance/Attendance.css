@@ -6,14 +6,14 @@
 }
 
 /* Header */
-.attendance-header {
+.attendance-page .attendance-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 2rem;
 }
 
-.attendance-header h1 {
+.attendance-page .attendance-header h1 {
   font-size: 2.25rem;
   font-weight: 800;
   color: var(--text-primary);
@@ -21,18 +21,18 @@
   letter-spacing: -0.03em;
 }
 
-.attendance-header p {
+.attendance-page .attendance-header p {
   color: var(--text-secondary);
   margin: 0;
   font-size: 0.95rem;
 }
 
-.header-actions {
+.attendance-page .attendance-header .header-actions {
   display: flex;
   gap: 1rem;
 }
 
-.btn-filter {
+.attendance-page .attendance-header .header-actions .btn-filter {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -47,12 +47,12 @@
   transition: all var(--transition-fast);
 }
 
-.btn-filter:hover {
+.attendance-page .attendance-header .header-actions .btn-filter:hover {
   background-color: #f8fafc;
   border-color: #cbd5e1;
 }
 
-.btn-manual {
+.attendance-page .attendance-header .header-actions .btn-manual {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -68,21 +68,21 @@
   transition: all var(--transition-fast);
 }
 
-.btn-manual:hover {
+.attendance-page .attendance-header .header-actions .btn-manual:hover {
   background-color: var(--primary-hover);
   transform: translateY(-1px);
   box-shadow: 0 6px 15px var(--primary-glow);
 }
 
 /* Stats Grid */
-.stats-grid {
+.attendance-page .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
-.stat-card {
+.attendance-page .stats-grid .stat-card {
   background-color: #ffffff;
   border-radius: 16px;
   padding: 1.5rem;
@@ -95,13 +95,13 @@
   transition: all var(--transition-fast);
 }
 
-.stat-card:hover {
+.attendance-page .stats-grid .stat-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.04);
   border-color: var(--primary);
 }
 
-.stat-icon-wrapper {
+.attendance-page .stats-grid .stat-card .stat-icon-wrapper {
   width: 40px;
   height: 40px;
   border-radius: 10px;
@@ -111,27 +111,27 @@
   margin-bottom: 1.5rem;
 }
 
-.stat-icon-wrapper.green {
+.attendance-page .stats-grid .stat-card .stat-icon-wrapper.green {
   background-color: #e6f4ea;
   color: var(--success);
 }
 
-.stat-icon-wrapper.blue {
+.attendance-page .stats-grid .stat-card .stat-icon-wrapper.blue {
   background-color: #eff6ff;
   color: #3b82f6;
 }
 
-.stat-icon-wrapper.purple {
+.attendance-page .stats-grid .stat-card .stat-icon-wrapper.purple {
   background-color: #faf5ff;
   color: #a855f7;
 }
 
-.stat-icon-wrapper.teal {
+.attendance-page .stats-grid .stat-card .stat-icon-wrapper.teal {
   background-color: var(--primary-glow);
   color: var(--text-primary);
 }
 
-.stat-trend {
+.attendance-page .stats-grid .stat-card .stat-trend {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
@@ -141,12 +141,12 @@
   border-radius: 12px;
 }
 
-.stat-trend.positive {
+.attendance-page .stats-grid .stat-card .stat-trend.positive {
   background-color: #e6f4ea;
   color: var(--success);
 }
 
-.online-dot {
+.attendance-page .stats-grid .stat-card .online-dot {
   position: absolute;
   top: -2px;
   right: -2px;
@@ -157,19 +157,19 @@
   border-radius: 50%;
 }
 
-.stat-info {
+.attendance-page .stats-grid .stat-card .stat-info {
   display: flex;
   flex-direction: column;
 }
 
-.stat-label {
+.attendance-page .stat-label {
   font-size: 0.875rem;
   color: var(--text-secondary);
   margin-bottom: 0.25rem;
   font-weight: 500;
 }
 
-.stat-value {
+.attendance-page .stats-grid .stat-card .stat-value {
   font-size: 1.75rem;
   font-weight: 800;
   color: var(--text-primary);
@@ -178,13 +178,13 @@
 
 
 /* Main Content Split */
-.attendance-content {
+.attendance-page .attendance-content {
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
 }
 
-.recent-activity-section {
+.attendance-page .attendance-content .recent-activity-section {
   flex: 2;
   min-width: 600px;
   background-color: white;
@@ -196,16 +196,8 @@
   flex-direction: column;
 }
 
-.right-sidebar {
-  flex: 1;
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
 /* Recent Activity Section */
-.section-header {
+.attendance-page .attendance-content .recent-activity-section .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -213,14 +205,14 @@
   border-bottom: 1px solid #f0f4f4;
 }
 
-.section-header h3 {
+.attendance-page .attendance-content .recent-activity-section .section-header h3 {
   margin: 0;
   font-size: 16px;
   color: #1a202c;
   font-weight: 600;
 }
 
-.btn-outline {
+.attendance-page .attendance-content .recent-activity-section .section-header .btn-outline {
   background: white;
   border: 1px solid #e2e8f0;
   color: #4a5568;
@@ -231,17 +223,17 @@
   cursor: pointer;
 }
 
-.table-responsive {
+.attendance-page .attendance-content .recent-activity-section .table-responsive {
   width: 100%;
   overflow-x: auto;
 }
 
-.attendance-table {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.attendance-table th {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table th {
   text-align: left;
   padding: 16px 24px;
   font-size: 11px;
@@ -252,26 +244,26 @@
   font-weight: 600;
 }
 
-.attendance-table td {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table td {
   padding: 16px 24px;
   border-bottom: 1px solid #f9fafa;
   vertical-align: middle;
 }
 
-.member-profile {
+.attendance-page .member-profile {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.member-profile .avatar {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .member-profile .avatar {
   width: 36px;
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.member-name {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .member-profile .member-profile .member-name {
   display: block;
   font-size: 14px;
   font-weight: 600;
@@ -279,41 +271,41 @@
   margin-bottom: 2px;
 }
 
-.member-id {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .member-profile .member-profile .member-id {
   display: block;
   font-size: 12px;
   color: #a0aec0;
 }
 
-.time-text {
+.attendance-page.attendance-content .recent-activity-section .table-responsive .attendance-table .time-text {
   font-size: 14px;
   color: #4a5568;
   font-weight: 500;
 }
 
-.plan-badge {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .plan-badge {
   padding: 4px 10px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 600;
 }
 
-.plan-badge.pro-elite {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .plan-badge.pro-elite {
   background-color: #e6fcf1;
   color: #00b35b;
 }
 
-.plan-badge.basic {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .plan-badge.basic {
   background-color: #f1f5f9;
   color: #64748b;
 }
 
-.plan-badge.family {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .plan-badge.family {
   background-color: #e6fffa;
   color: #319795;
 }
 
-.status-badge {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .status-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -322,29 +314,29 @@
   letter-spacing: 0.5px;
 }
 
-.status-badge .dot {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .status-badge .dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
 }
 
-.status-badge.active {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .status-badge.active {
   color: #00b35b;
 }
 
-.status-badge.active .dot {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .status-badge.active .dot {
   background-color: #00ea77;
 }
 
-.status-badge.signed-out {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .status-badge.signed-out {
   color: #a0aec0;
 }
 
-.status-badge.signed-out .dot {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .status-badge.signed-out .dot {
   background-color: #cbd5e1;
 }
 
-.btn-icon {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .btn-icon {
   background: none;
   border: none;
   cursor: pointer;
@@ -352,17 +344,17 @@
   border-radius: 4px;
 }
 
-.btn-icon:hover {
+.attendance-page .attendance-content .recent-activity-section .table-responsive .attendance-table .btn-icon:hover {
   background-color: #f1f5f9;
 }
 
-.view-all-link {
+.attendance-page .attendance-content .recent-activity-section .view-all-link {
   padding: 16px;
   text-align: center;
   border-top: 1px solid #f0f4f4;
 }
 
-.btn-text {
+.attendance-page .attendance-content .recent-activity-section .view-all-link .btn-text {
   background: none;
   border: none;
   color: var(--primary-hover);
@@ -371,12 +363,19 @@
   cursor: pointer;
 }
 
-.btn-text:hover {
+.attendance-page .attendance-content .recent-activity-section .view-all-link .btn-text:hover {
   text-decoration: underline;
 }
 
 /* Right Sidebar: Chart Widget */
-.list-widget {
+.attendance-page .attendance-content .right-sidebar {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.attendance-page .attendance-content .right-sidebar .list-widget {
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
@@ -384,38 +383,38 @@
   padding: 24px;
 }
 
-.chart-header {
+.attendance-page .chart-header {
   margin-bottom: 32px;
 }
 
-.chart-header h3 {
+.attendance-page .chart-header h3 {
   font-size: 16px;
   margin: 0 0 12px 0;
   color: #1a202c;
 }
 
-.chart-stats {
+.attendance-page .chart-stats {
   display: flex;
   align-items: baseline;
   gap: 12px;
 }
 
-.chart-stats .big-num {
+.attendance-page .chart-stats .big-num {
   font-size: 28px;
   font-weight: 700;
   color: #1a202c;
 }
 
-.chart-stats .trend {
+.attendance-page .chart-stats .trend {
   font-size: 13px;
   font-weight: 600;
 }
 
-.chart-stats .trend.positive {
+.attendance-page .chart-stats .trend.positive {
   color: #00b35b;
 }
 
-.bar-chart {
+.attendance-page .bar-chart {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -424,7 +423,7 @@
   gap: 8px;
 }
 
-.bar-col {
+.attendance-page .bar-col {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -432,7 +431,7 @@
   flex: 1;
 }
 
-.bar-bg {
+.attendance-page .bar-bg {
   width: 100%;
   max-width: 32px;
   height: 120px;
@@ -442,30 +441,30 @@
   position: relative;
 }
 
-.bar-fill {
+.attendance-page .bar-fill {
   width: 100%;
   border-radius: 4px 4px 0 0;
   position: absolute;
   bottom: 0;
 }
 
-.bar-fill.green-light {
+.attendance-page .bar-fill.green-light {
   background-color: #c6f6d5;
   z-index: 1;
 }
 
-.bar-fill.green-solid {
+.attendance-page .bar-fill.green-solid {
   background-color: #00ea77;
   z-index: 2;
 }
 
-.day-label {
+.attendance-page .day-label {
   font-size: 10px;
   color: #a0aec0;
   font-weight: 600;
 }
 
-.chart-footer {
+.attendance-page .chart-footer {
   display: flex;
   justify-content: space-between;
   padding-top: 16px;
@@ -473,17 +472,17 @@
   font-size: 12px;
 }
 
-.chart-footer .label {
+.attendance-page .chart-footer .label {
   color: #a0aec0;
 }
 
-.chart-footer .value {
+.attendance-page .chart-footer .value {
   color: #2d3748;
   font-weight: 600;
 }
 
 /* Right Sidebar: Trainers Widget */
-.trainers-widget {
+.attendance-page .trainers-widget {
   background-color: #1a2622;
   /* Dark green/black */
   border-radius: 12px;
@@ -491,70 +490,70 @@
   color: white;
 }
 
-.widget-header {
+.attendance-page .widget-header {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 24px;
 }
 
-.widget-header .icon-wrapper {
+.attendance-page .widget-header .icon-wrapper {
   color: #00ea77;
 }
 
-.widget-header h3 {
+.attendance-page .widget-header h3 {
   margin: 0;
   font-size: 16px;
   font-weight: 600;
 }
 
-.trainer-list {
+.attendance-page .trainer-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin-bottom: 32px;
 }
 
-.trainer-item {
+.attendance-page .trainer-item {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.trainer-avatar {
+.attendance-page .trainer-avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 2px solid #2d4039;
 }
 
-.trainer-info { flex: 1; }
+.attendance-page .trainer-info { flex: 1; }
 
-.trainer-info h4 {
+.attendance-page .trainer-info h4 {
   margin: 0 0 4px 0;
   font-size: 14px;
   font-weight: 500;
 }
 
-.trainer-info p {
+.attendance-page .trainer-info p {
   margin: 0;
   font-size: 10px;
   color: #a0aec0;
   letter-spacing: 1px;
 }
 
-.status-dot {
+.attendance-page .status-dot {
   width: 8px;
-  height: 8px;
+  height: 8px;  
   border-radius: 50%;
   margin-left: auto;
 }
 
-.status-dot.online {
+.attendance-page .status-dot.online {
   background-color: #00ea77;
 }
 
-.btn-assign {
+.attendance-page .btn-assign {
   width: 100%;
   padding: 12px;
   background-color: #263832;
@@ -568,7 +567,7 @@
   transition: background-color 0.2s;
 }
 
-.btn-assign:hover {
+.attendance-page .btn-assign:hover {
   background-color: #314a42;
 }
 

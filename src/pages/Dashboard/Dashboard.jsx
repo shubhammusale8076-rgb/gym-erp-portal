@@ -33,7 +33,6 @@ const Dashboard = () => {
       <header className="dashboard-header">
         <div className="dashboard-header-text">
           <h1 className="dashboard-title">Dashboard</h1>
-          <p className="dashboard-subtitle">Welcome back, here's what's happening today.</p>
         </div>
         <button className="dashboard-action-btn">Download Report</button>
       </header>

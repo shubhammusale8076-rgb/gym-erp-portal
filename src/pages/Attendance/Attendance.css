@@ -383,38 +383,38 @@
   padding: 24px;
 }
 
-.attendance-page .attendance-content .right-sidebar .chart-header {
+.attendance-page .attendance-content .right-sidebar .list-widget .chart-header {
   margin-bottom: 32px;
 }
 
-.attendance-page .chart-header h3 {
+.attendance-page .attendance-content .right-sidebar .list-widget .chart-header h3 {
   font-size: 16px;
   margin: 0 0 12px 0;
   color: #1a202c;
 }
 
-.attendance-page .chart-stats {
+.attendance-page .attendance-content .right-sidebar .list-widget .chart-header .chart-stats {
   display: flex;
   align-items: baseline;
   gap: 12px;
 }
 
-.attendance-page .chart-stats .big-num {
+.attendance-page .attendance-content .right-sidebar .list-widget .chart-header .chart-stats .big-num {
   font-size: 28px;
   font-weight: 700;
   color: #1a202c;
 }
 
-.attendance-page .chart-stats .trend {
+.attendance-page .attendance-content .right-sidebar .list-widget .chart-header .chart-stats .trend {
   font-size: 13px;
   font-weight: 600;
 }
 
-.attendance-page .chart-stats .trend.positive {
+.attendance-page .attendance-content .right-sidebar .list-widget .chart-header .chart-stats .trend.positive {
   color: #00b35b;
 }
 
-.attendance-page .bar-chart {
+.attendance-page .attendance-content .right-sidebar .list-widget .bar-chart {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -423,7 +423,7 @@
   gap: 8px;
 }
 
-.attendance-page .bar-col {
+.attendance-page .attendance-content .right-sidebar .list-widget .bar-chart .bar-col {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -431,7 +431,7 @@
   flex: 1;
 }
 
-.attendance-page .bar-bg {
+.attendance-page .attendance-content .right-sidebar .list-widget .bar-chart .bar-col .bar-bg {
   width: 100%;
   max-width: 32px;
   height: 120px;
@@ -441,30 +441,30 @@
   position: relative;
 }
 
-.attendance-page .bar-fill {
+.attendance-page .attendance-content .right-sidebar .list-widget .bar-chart .bar-col .bar-bg .bar-fill {
   width: 100%;
   border-radius: 4px 4px 0 0;
   position: absolute;
   bottom: 0;
 }
 
-.attendance-page .bar-fill.green-light {
+.attendance-page .attendance-content .right-sidebar .list-widget .bar-chart .bar-col .bar-bg .bar-fill.green-light {
   background-color: #c6f6d5;
   z-index: 1;
 }
 
-.attendance-page .bar-fill.green-solid {
+.attendance-page .attendance-content .right-sidebar .list-widget .bar-chart .bar-col .bar-bg .bar-fill.green-solid {
   background-color: #00ea77;
   z-index: 2;
 }
 
-.attendance-page .day-label {
+.attendance-page .attendance-content .right-sidebar .list-widget .bar-chart .bar-col .day-label {
   font-size: 10px;
   color: #a0aec0;
   font-weight: 600;
 }
 
-.attendance-page .chart-footer {
+.attendance-page .attendance-content .right-sidebar .list-widget .chart-footer {
   display: flex;
   justify-content: space-between;
   padding-top: 16px;
@@ -472,17 +472,17 @@
   font-size: 12px;
 }
 
-.attendance-page .chart-footer .label {
+.attendance-page .attendance-content .right-sidebar .list-widget .chart-footer .label {
   color: #a0aec0;
 }
 
-.attendance-page .chart-footer .value {
+.attendance-page .attendance-content .right-sidebar .list-widget .chart-footer .value {
   color: #2d3748;
   font-weight: 600;
 }
 
 /* Right Sidebar: Trainers Widget */
-.attendance-page .trainers-widget {
+.attendance-page .attendance-content .right-sidebar .trainers-widget {
   background-color: #1a2622;
   /* Dark green/black */
   border-radius: 12px;
@@ -490,70 +490,70 @@
   color: white;
 }
 
-.attendance-page .widget-header {
+.attendance-page .attendance-content .right-sidebar .trainers-widget .widget-header {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 24px;
 }
 
-.attendance-page .widget-header .icon-wrapper {
+.attendance-page .attendance-content .right-sidebar .trainers-widget .widget-header .icon-wrapper {
   color: #00ea77;
 }
 
-.attendance-page .widget-header h3 {
+.attendance-page .attendance-content .right-sidebar .trainers-widget .widget-header h3 {
   margin: 0;
   font-size: 16px;
   font-weight: 600;
 }
 
-.attendance-page .trainer-list {
+.attendance-page .attendance-content .right-sidebar .trainers-widget .trainer-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin-bottom: 32px;
 }
 
-.attendance-page .trainer-item {
+.attendance-page .attendance-content .right-sidebar .trainers-widget .trainer-list .trainer-item {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.attendance-page .trainer-avatar {
+.attendance-page .attendance-content .right-sidebar .trainers-widget .trainer-list .trainer-item .trainer-avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 2px solid #2d4039;
 }
 
-.attendance-page .trainer-info { flex: 1; }
+.attendance-page .attendance-content .right-sidebar .trainers-widget .trainer-list .trainer-item .trainer-info { flex: 1; }
 
-.attendance-page .trainer-info h4 {
+.attendance-page .attendance-content .right-sidebar .trainers-widget .trainer-list .trainer-item .trainer-info h4 {
   margin: 0 0 4px 0;
   font-size: 14px;
   font-weight: 500;
 }
 
-.attendance-page .trainer-info p {
+.attendance-page .attendance-content .right-sidebar .trainers-widget .trainer-list .trainer-item .trainer-info p {
   margin: 0;
   font-size: 10px;
   color: #a0aec0;
   letter-spacing: 1px;
 }
 
-.attendance-page .status-dot {
+.attendance-page .attendance-content .right-sidebar .trainers-widget .trainer-list .trainer-item .status-dot {
   width: 8px;
   height: 8px;  
   border-radius: 50%;
   margin-left: auto;
 }
 
-.attendance-page .status-dot.online {
+.attendance-page .attendance-content .right-sidebar .trainers-widget .trainer-list .trainer-item .status-dot.online {
   background-color: #00ea77;
 }
 
-.attendance-page .btn-assign {
+.attendance-page .attendance-content .right-sidebar .trainers-widget .btn-assign {
   width: 100%;
   padding: 12px;
   background-color: #263832;
@@ -567,7 +567,7 @@
   transition: background-color 0.2s;
 }
 
-.attendance-page .btn-assign:hover {
+.attendance-page .attendance-content .right-sidebar .trainers-widget .btn-assign:hover {
   background-color: #314a42;
 }
 

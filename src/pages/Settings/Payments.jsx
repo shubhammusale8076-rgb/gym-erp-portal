@@ -19,7 +19,7 @@ const Payments = () => {
     };
 
     return (
-        <div className="page-container payments-settings">
+        <div className=" payments-settings">
             <header className="mb-8 flex justify-between items-end">
                 <div>
                     <h1 className="heading-1">Payments & Billing</h1>

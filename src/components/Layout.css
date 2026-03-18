@@ -29,7 +29,8 @@
   width: 80%;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .sidebar-header {
@@ -150,6 +151,23 @@
   z-index: 40;
   padding: 10px 0;
   margin-bottom: 10px;
+  background: transparent;
+  border-radius: 0 0 16px 16px;
+  transition:
+    background 0.35s ease,
+    backdrop-filter 0.35s ease,
+    -webkit-backdrop-filter 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+/* Glass effect — only active after page is scrolled */
+.header.scrolled {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12), 0 1px 0 rgba(255, 255, 255, 0.08) inset;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header .header-wrapper{

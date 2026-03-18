@@ -1,5 +1,5 @@
-import React from 'react';
-import { Outlet, NavLink, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Outlet, NavLink } from 'react-router-dom';
 import { 
   Home, 
   User, 
@@ -13,7 +13,8 @@ import {
   LogOut, 
   Bell, 
   Search,
-  ArrowUpRight
+  ArrowUpRight,
+  CreditCard
 } from 'lucide-react';
 import './Layout.css';
 
@@ -30,6 +31,7 @@ const Sidebar = () => {
       items: [
         { name: 'Members List', path: '/members', icon: <User size={20} /> },
         { name: 'Attendance', path: '/attendance', icon: <Calendar size={20} /> },
+        { name: 'Payments', path: '/payments', icon: <CreditCard size={20} /> },
         { name: 'Membership Plans', path: '/plans', icon: <Layers size={20} /> },
         { name: 'CRM / Leads', path: '/crm', icon: <Target size={20} /> },
         { name: 'Trainers', path: '/trainer', icon: <Dumbbell size={20} /> },
@@ -51,6 +53,10 @@ const Sidebar = () => {
       items: [
         { name: 'Users', path: '/settings/users', icon: <ShieldCheck size={20} /> },
         { name: 'Settings', path: '/settings', icon: <Settings size={20} /> },
+        { name: 'Intergration Settings', path: '/settings/integrations', icon: <Settings size={20} /> },
+        { name: 'Notification Settings', path: '/settings/notifications', icon: <Settings size={20} /> },
+        { name: 'Payment Settings', path: '/settings/payments', icon: <Settings size={20} /> },
+        { name: 'Security Settings', path: '/settings/security', icon: <Settings size={20} /> },
       ]
     }
   ];
@@ -112,22 +118,24 @@ const Sidebar = () => {
 };
 
 const Header = () => {
-  const location = useLocation();
-  
-  // const getPageHeading = () => {
-  //   const path = location.pathname;
-  //   if (path === '/') return <h1 className="header-title">Welcome back Taylor 👋</h1>;
-    
-  //   // Capitalize first letter and handle sub-routes
-  //   const pageName = path.split('/')[1];
-  //   if (!pageName) return <h1 className="header-title">Dashboard</h1>;
-    
-  //   const formattedName = pageName.toUpperCase();
-  //   return <h1 className="header-title">{formattedName}</h1>;
-  // };
+  const [scrolled, setScrolled] = useState(false);
+  const mainContentRef = useRef(null);
+
+  useEffect(() => {
+    // Find the scrollable main-content container
+    const scrollContainer = document.querySelector('.main-content');
+    if (!scrollContainer) return;
+
+    const handleScroll = () => {
+      setScrolled(scrollContainer.scrollTop > 10);
+    };
+
+    scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+    return () => scrollContainer.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="header">
+    <header className={`header${scrolled ? ' scrolled' : ''}`}>
       <div className="header-wrapper">
         <div className="header-left">
           <h1 className="header-title">Welcome back Shubham 👋</h1>

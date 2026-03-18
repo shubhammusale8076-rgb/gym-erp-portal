@@ -22,6 +22,8 @@ import GalleryManager from './pages/WebsiteManager/GalleryManager/GalleryManager
 import TrainersPageManager from './pages/WebsiteManager/TrainersPageManager/TrainersPageManager';
 import TestimonialsManager from './pages/WebsiteManager/TestimonialsManager/TestimonialsManager';
 import ContactManager from './pages/WebsiteManager/ContactManager/ContactManager';
+import PaymentRecords from './pages/Payments/PaymentRecords';
+import PaymentDetail from './pages/Payments/PaymentDetail';
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path="crm" element={<CRM />} />
           <Route path="trainer" element={<Trainer />} />
           <Route path="attendance" element={<Attendance />} />
+          <Route path="payments" element={<PaymentRecords />} />
+          <Route path="payments/:id" element={<PaymentDetail />} />
           <Route path="website-manager" element={<WebsiteManager />} />
           <Route path="website-manager/hero-banner" element={<HeroBannerManager />} />
           <Route path="website-manager/gallery" element={<GalleryManager />} />

@@ -24,16 +24,168 @@
     justify-content: center;
 }
 
-.bg-blue-soft {
-    background-color: #e0f2fe;
+/* Custom CSS replacements for Tailwind classes used in Payments.jsx */
+
+.payments-header {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
-.bg-green-soft {
-    background-color: #dcfce7;
+.payments-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-.gateway-config {
-    padding: 0;
+.payments-card {
+    padding: 1.5rem;
+}
+
+.payments-mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.payments-theme-icon {
+    background-color: var(--bg-dark);
+    color: var(--primary);
+}
+
+.payments-text-sm {
+    font-size: 0.875rem;
+}
+
+.payments-text-xs {
+    font-size: 0.75rem;
+}
+
+.payments-text-muted {
+    color: var(--text-muted);
+}
+
+.payments-form-group {
+    margin-bottom: 1rem;
+}
+
+.payments-form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.payments-form-col {
+    flex: 1;
+}
+
+.payments-mt-4 {
+    margin-top: 1rem;
+}
+
+.payments-mt-6 {
+    margin-top: 1.5rem;
+}
+
+.payments-gateway-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-light);
+}
+
+.payments-mb-4 {
+    margin-bottom: 1rem;
+}
+
+.payments-gateway-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.payments-gateway-title {
+    font-weight: 600;
+    display: block;
+    font-size: 0.875rem;
+}
+
+.payments-gateway-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.payments-bg-white {
+    background-color: #ffffff;
+}
+
+.payments-auto-billing-box {
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.payments-auto-billing-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.payments-compliance-banner {
+    background-color: var(--bg-sidebar);
+    color: var(--text-on-dark);
+    border: none;
+}
+
+.payments-banner-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.payments-banner-icon {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--primary);
+    color: var(--text-on-primary);
+}
+
+.payments-banner-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.payments-banner-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.payments-banner-text {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    color: var(--text-muted);
+}
+
+.payments-banner-btn {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    opacity: 0.8;
+    color: var(--primary);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.payments-banner-btn:hover {
+    opacity: 1;
 }
 
 /* Custom toggle switch for Apple aesthetic */

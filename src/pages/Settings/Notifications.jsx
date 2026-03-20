@@ -18,12 +18,12 @@ const NotificationRule = ({ title, description, icon: Icon, channels, enabled, t
             </div>
             <div className="rule-text">
                 <h3 className="heading-3">{title}</h3>
-                <p className="text-muted text-sm">{description}</p>
+                <p className="notifications-desc">{description}</p>
             </div>
         </div>
         <div className="rule-channels">
             <label className="channel-toggle">
-                <Mail size={16} className={channels.email ? 'text-primary' : 'text-muted'} />
+                <Mail size={16} className={channels.email ? 'notifications-icon-active' : 'notifications-icon-muted'} />
                 <input
                     type="checkbox"
                     checked={channels.email}
@@ -32,7 +32,7 @@ const NotificationRule = ({ title, description, icon: Icon, channels, enabled, t
                 <span className="toggle-slider"></span>
             </label>
             <label className="channel-toggle">
-                <MessageSquare size={16} className={channels.whatsapp ? 'text-primary' : 'text-muted'} />
+                <MessageSquare size={16} className={channels.whatsapp ? 'notifications-icon-active' : 'notifications-icon-muted'} />
                 <input
                     type="checkbox"
                     checked={channels.whatsapp}
@@ -41,7 +41,7 @@ const NotificationRule = ({ title, description, icon: Icon, channels, enabled, t
                 <span className="toggle-slider"></span>
             </label>
             <label className="channel-toggle">
-                <Bell size={16} className={channels.push ? 'text-primary' : 'text-muted'} />
+                <Bell size={16} className={channels.push ? 'notifications-icon-active' : 'notifications-icon-muted'} />
                 <input
                     type="checkbox"
                     checked={channels.push}
@@ -95,7 +95,7 @@ const Notifications = () => {
 
     return (
         <div className="page-container notifications-page">
-            <header className="mb-8 flex justify-between items-end">
+            <header className="notifications-header">
                 <div>
                     <h1 className="heading-1">Notification Rules</h1>
                     <p className="subtitle">Configure how and when your members and staff stay informed.</p>
@@ -106,7 +106,7 @@ const Notifications = () => {
             </header>
 
             <div className="notifications-list">
-                <div className="list-header glass-panel mb-4">
+                <div className="list-header glass-panel notifications-list-header">
                     <div className="header-label">Event / Trigger</div>
                     <div className="header-channels">
                         <span>Email</span>

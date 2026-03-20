@@ -83,3 +83,40 @@
         flex-direction: column;
     }
 }
+
+.integrations-header {
+    margin-bottom: 2rem;
+}
+
+.integrations-webhook-panel {
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.integrations-webhook-title {
+    margin-bottom: 1rem;
+}
+
+.integrations-webhook-desc {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.integration-desc {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.integration-toggle-active {
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.integration-toggle-inactive {
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.integration-input-full {
+    width: 100%;
+}

@@ -28,22 +28,22 @@ const WebsiteManager = () => {
         <div className="glass-card stat-card">
           <div className="stat-label">TOTAL SECTIONS</div>
           <div className="stat-value">6</div>
-          <div className="stat-subtext text-danger">All live</div>
+          <div className="stat-subtext">All live</div>
         </div>
         <div className="glass-card stat-card">
           <div className="stat-label">SITE SCORE</div>
           <div className="stat-value">94</div>
-          <div className="stat-subtext text-danger">+2 this week</div>
+          <div className="stat-subtext">+2 this week</div>
         </div>
         <div className="glass-card stat-card">
           <div className="stat-label">ACTIVE TRAINERS</div>
           <div className="stat-value">5</div>
-          <div className="stat-subtext text-danger">Profiles complete</div>
+          <div className="stat-subtext">Profiles complete</div>
         </div>
         <div className="glass-card stat-card">
           <div className="stat-label">LAST UPDATED</div>
           <div className="stat-value">2D</div>
-          <div className="stat-subtext text-danger">Hero Banner</div>
+          <div className="stat-subtext">Hero Banner</div>
         </div>
       </div>
 

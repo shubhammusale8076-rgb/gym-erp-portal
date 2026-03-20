@@ -1,40 +1,44 @@
 :root {
   /* Core Colors - New Design (Lime & Dark) */
-  --bg-dark: #f7f7f5; 
-  --bg-sidebar: #1d1d2b; /* Dark Navy/Slate */
+  --bg-dark: #f7f7f5;
+  --bg-sidebar: #1d1d2b;
+  /* Dark Navy/Slate */
   --bg-card: #ffffff;
   --bg-glass: rgba(255, 255, 255, 0.8);
-  
-  --primary: #d4ff3d; /* Lime Green */
+
+  --primary: #d4ff3d;
+  /* Lime Green */
   --primary-hover: #bde635;
   --primary-glow: rgba(212, 255, 61, 0.2);
-  
-  --secondary: #86868b; 
-  --accent: #d4ff3d; /* Accent matches primary lime */
-  --danger: #ff3b30; 
+
+  --secondary: #86868b;
+  --accent: #d4ff3d;
+  /* Accent matches primary lime */
+  --danger: #ff3b30;
   --danger-hover: #d70015;
   --success: #34c759;
   --warning: #ff9500;
-  --badge-peach: #ffd7b5; /* Notification badge color from image */
-  
+  --badge-peach: #ffd7b5;
+  /* Notification badge color from image */
+
   /* Text Colors */
   --text-primary: #1d1d1f;
   --text-secondary: #86868b;
   --text-muted: #afafb6;
   --text-on-primary: #000000;
   --text-on-dark: #ffffff;
-  
+
   /* Borders */
-  --border-light: #e6e6e9; 
+  --border-light: #e6e6e9;
   --border-focus: var(--primary);
-  
+
   /* Layout constraints */
   --sidebar-width: 18%;
   --header-height: 80px;
 
-  --card-radius:12px;
-  --section-radius:14px;
-  
+  --card-radius: 12px;
+  --section-radius: 14px;
+
   /* Transitions */
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -47,7 +51,8 @@
 }
 
 html {
-  font-size: 15px; /* Scales entire project down slightly for a tighter, premium dashboard density */
+  font-size: 15px;
+  /* Scales entire project down slightly for a tighter, premium dashboard density */
 }
 
 body {
@@ -85,4 +90,17 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.04), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
   border-color: var(--border-focus);
+}
+
+.coming-soon-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 1rem;
+}
+
+.header-btn-relative {
+  position: relative;
 }

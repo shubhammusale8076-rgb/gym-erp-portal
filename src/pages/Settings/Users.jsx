@@ -136,10 +136,10 @@ export default function Users() {
   return (
     <div className="page-container users-page">
       {/* Page Header */}
-      <div className="flex justify-between items-center mb-8">
+      <div className="users-header">
         <div>
           <h1 className="heading-1">User Management</h1>
-          <p className="subtitle mt-1">Manage system users, roles, and access permissions.</p>
+          <p className="subtitle users-subtitle">Manage system users, roles, and access permissions.</p>
         </div>
         <button className="btn btn-primary" onClick={openCreate}>
           <Plus size={18} /> Add User
@@ -176,9 +176,9 @@ export default function Users() {
       </div>
 
       {/* Table Card */}
-      <div className="glass-panel p-6">
+      <div className="glass-panel users-panel">
         {/* Filters */}
-        <div className="flex justify-between items-center mb-6 gap-4 flex-wrap">
+        <div className="users-filter-bar">
           <div className="header-search" style={{ margin: 0, width: '100%', maxWidth: '380px' }}>
             <Search size={18} className="search-icon" />
             <input
@@ -189,7 +189,7 @@ export default function Users() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <div className="flex gap-3 flex-wrap">
+          <div className="users-filter-buttons">
             {['All', ...ROLES].map((r) => (
               <button
                 key={r}
@@ -212,7 +212,7 @@ export default function Users() {
                 <th>Status</th>
                 <th>Created</th>
                 <th>Last Login</th>
-                <th className="text-right">Actions</th>
+                <th className="users-col-right">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -221,13 +221,13 @@ export default function Users() {
                 return (
                   <tr key={user.id} className="users-table-row">
                     <td>
-                      <div className="flex items-center gap-3">
+                      <div className="users-name-col">
                         <div className="user-avatar" style={{ background: rs.bg, color: rs.color }}>
                           {user.name.charAt(0)}
                         </div>
                         <div>
-                          <p className="font-medium" style={{ color: 'var(--text-primary)' }}>{user.name}</p>
-                          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>{user.email}</p>
+                          <p className="users-font-medium" style={{ color: 'var(--text-primary)' }}>{user.name}</p>
+                          <p className="users-text-sm" style={{ color: 'var(--text-muted)' }}>{user.email}</p>
                         </div>
                       </div>
                     </td>
@@ -245,7 +245,7 @@ export default function Users() {
                     <td style={{ color: 'var(--text-secondary)' }}>{user.createdAt}</td>
                     <td style={{ color: 'var(--text-secondary)' }}>{user.lastLogin}</td>
                     <td>
-                      <div className="flex justify-end gap-2">
+                      <div className="users-actions-col">
                         <button
                           className="icon-btn"
                           title="Edit user"
@@ -271,15 +271,15 @@ export default function Users() {
           </table>
 
           {filteredUsers.length === 0 && (
-            <div className="text-center py-8">
+            <div className="users-empty-state">
               <User size={36} style={{ color: 'var(--text-muted)', margin: '0 auto 0.75rem' }} />
               <p style={{ color: 'var(--text-muted)' }}>No users found{searchTerm ? ` for "${searchTerm}"` : ''}.</p>
             </div>
           )}
         </div>
 
-        <div className="flex justify-between items-center mt-6 pt-4 border-t border-border-light">
-          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+        <div className="users-footer">
+          <p className="users-text-sm" style={{ color: 'var(--text-muted)' }}>
             Showing {filteredUsers.length} of {users.length} users
           </p>
         </div>

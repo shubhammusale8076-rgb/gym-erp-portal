@@ -128,7 +128,7 @@ const Plans = () => {
                 Most Popular
               </div>
             )}
-            
+
             <div className="plan-header">
               <h3 className="plan-name">{plan.name}</h3>
               <div className="plan-price-wrapper">
@@ -163,9 +163,9 @@ const Plans = () => {
 
         {/* Add Plan Placeholder */}
         <div className="plan-card" style={{ borderStyle: 'dashed', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', opacity: 0.6 }} onClick={openCreate}>
-          <div className="text-center">
+          <div className="plans-text-center">
             <PlusCircle size={40} style={{ color: 'var(--text-muted)', marginBottom: '1rem' }} />
-            <p className="font-bold" style={{ color: 'var(--text-muted)' }}>ADD NEW TIER</p>
+            <p className="plans-font-bold" style={{ color: 'var(--text-muted)' }}>ADD NEW TIER</p>
           </div>
         </div>
       </div>
@@ -188,57 +188,57 @@ const Plans = () => {
               <button className="icon-btn" onClick={() => setModalMode(null)}><X size={18} /></button>
             </div>
             <div className="modal-body">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="plans-form-grid">
                 <div className="input-group">
                   <label className="input-label">Plan Name</label>
-                  <input 
-                    type="text" 
-                    className="input-field" 
-                    value={form.name} 
-                    onChange={e => setForm({...form, name: e.target.value})} 
+                  <input
+                    type="text"
+                    className="input-field"
+                    value={form.name}
+                    onChange={e => setForm({ ...form, name: e.target.value })}
                     placeholder="e.g. Pro Plus"
                   />
                 </div>
                 <div className="input-group">
                   <label className="input-label">Price ($)</label>
-                  <input 
-                    type="number" 
-                    className="input-field" 
-                    value={form.price} 
-                    onChange={e => setForm({...form, price: e.target.value})} 
+                  <input
+                    type="number"
+                    className="input-field"
+                    value={form.price}
+                    onChange={e => setForm({ ...form, price: e.target.value })}
                     placeholder="99"
                   />
                 </div>
               </div>
-              
+
               <div className="input-group">
                 <label className="input-label">Description</label>
-                <textarea 
-                  className="input-field" 
-                  rows="2" 
-                  value={form.description} 
-                    onChange={e => setForm({...form, description: e.target.value})}
+                <textarea
+                  className="input-field"
+                  rows="2"
+                  value={form.description}
+                  onChange={e => setForm({ ...form, description: e.target.value })}
                   placeholder="Short summary of the value proposition"
                 ></textarea>
               </div>
 
-              <div className="flex items-center gap-2 mb-4">
-                <input 
-                  type="checkbox" 
-                  id="pop" 
-                  checked={form.isPopular} 
-                  onChange={e => setForm({...form, isPopular: e.target.checked})}
+              <div className="plans-checkbox-wrapper">
+                <input
+                  type="checkbox"
+                  id="pop"
+                  checked={form.isPopular}
+                  onChange={e => setForm({ ...form, isPopular: e.target.checked })}
                 />
-                <label htmlFor="pop" className="input-label mb-0">Highlight as "Most Popular"</label>
+                <label htmlFor="pop" className="plans-label-mb-0">Highlight as "Most Popular"</label>
               </div>
 
               <div className="input-group">
                 <label className="input-label">Include Features</label>
                 <div className="feature-input-row">
-                  <input 
-                    type="text" 
-                    className="input-field" 
-                    style={{ flex: 1 }} 
+                  <input
+                    type="text"
+                    className="input-field"
+                    style={{ flex: 1 }}
                     placeholder="e.g. Personal Training Sessions"
                     value={newFeature}
                     onChange={e => setNewFeature(e.target.value)}
@@ -248,7 +248,7 @@ const Plans = () => {
                     <Plus size={20} />
                   </button>
                 </div>
-                
+
                 <div className="feature-list-preview">
                   {form.features.map((f, i) => (
                     <div key={i} className="preview-feature-item">
@@ -258,7 +258,7 @@ const Plans = () => {
                       </button>
                     </div>
                   ))}
-                  {form.features.length === 0 && <p className="text-center text-sm text-text-muted py-2">No features added yet.</p>}
+                  {form.features.length === 0 && <p className="plans-empty-features">No features added yet.</p>}
                 </div>
               </div>
             </div>

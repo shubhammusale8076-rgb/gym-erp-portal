@@ -9,8 +9,174 @@
     align-items: start;
 }
 
+.security-header {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.security-card {
+    padding: 2rem;
+}
+
+.security-mb {
+    margin-bottom: 2rem;
+}
+
+.security-section-title {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.security-icon-primary {
+    color: var(--primary);
+}
+
+.security-form-grid {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.security-2fa-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.security-text-sm {
+    font-size: 0.875rem;
+}
+
+.security-text-xs {
+    font-size: 0.75rem;
+}
+
+.security-text-muted {
+    color: var(--text-muted);
+}
+
+.security-2fa-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-radius: 1rem;
+}
+
+.security-2fa-icon-wrapper {
+    background-color: #ffffff;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.security-icon-success {
+    color: var(--success);
+}
+
+.security-2fa-title {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.security-btn-ml-auto {
+    margin-left: auto;
+    font-size: 0.75rem;
+}
+
+.security-history-title {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.security-log-icon {
+    margin-top: 0.25rem;
+}
+
+.security-icon-danger {
+    color: var(--danger);
+}
+
+.security-log-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.security-log-mt {
+    margin-top: 0.25rem;
+}
+
+.security-btn-full {
+    width: 100%;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    padding: 0.75rem;
+}
+
+.security-session-card {
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    border: 1px solid rgba(212, 255, 61, 0.2);
+    background-color: rgba(212, 255, 61, 0.05);
+}
+
+.security-session-title {
+    margin-bottom: 1rem;
+}
+
+.security-session-subtitle {
+    margin-bottom: 1rem;
+}
+
+.security-session-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.security-session-name {
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.security-badge-active {
+    font-size: 10px;
+    background-color: rgba(212, 255, 61, 0.2);
+    color: var(--accent);
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.security-logout-btn {
+    color: var(--danger);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.security-logout-btn:hover {
+    text-decoration: underline;
+}
+
 .password-strength {
     max-width: 300px;
+    margin-top: 1rem;
 }
 
 .strength-bars {
@@ -29,6 +195,15 @@
     background: var(--success);
 }
 
+.security-text-success-bold {
+    color: var(--success);
+    font-weight: 600;
+}
+
+.security-mt-2 {
+    margin-top: 0.5rem;
+}
+
 .audit-logs {
     display: flex;
     flex-direction: column;
@@ -43,6 +218,12 @@
 .log-item:last-child {
     border-bottom: none;
     padding-bottom: 0;
+}
+
+.security-log-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
 }
 
 @media (max-width: 1024px) {

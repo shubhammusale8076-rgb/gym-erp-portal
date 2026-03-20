@@ -57,3 +57,17 @@
         grid-template-columns: 1fr;
     }
 }
+
+.settings-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.settings-icon-muted {
+    color: var(--text-muted);
+}
+
+.settings-header {
+    margin-bottom: 2rem;
+}

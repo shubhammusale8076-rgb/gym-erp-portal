@@ -113,3 +113,27 @@ input:checked+.toggle-slider::before {
         padding: 0;
     }
 }
+
+.notifications-header {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.notifications-list-header {
+    margin-bottom: 1rem;
+}
+
+.notifications-desc {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.notifications-icon-active {
+    color: var(--primary);
+}
+
+.notifications-icon-muted {
+    color: var(--text-muted);
+}

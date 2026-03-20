@@ -13,7 +13,8 @@
 
 .testi-badge {
   background-color: #fdf4ff;
-  color: #a21caf; /* Fuchsia tone for distinction */
+  color: #a21caf;
+  /* Fuchsia tone for distinction */
   border-color: rgba(162, 28, 175, 0.1);
 }
 
@@ -65,9 +66,17 @@
   margin-top: 1rem;
 }
 
-.testi-ai-label { color: #a21caf; }
-.testi-ai-btn { background-color: #a21caf; }
-.testi-ai-btn:hover { background-color: #86198f; }
+.testi-ai-label {
+  color: #a21caf;
+}
+
+.testi-ai-btn {
+  background-color: #a21caf;
+}
+
+.testi-ai-btn:hover {
+  background-color: #86198f;
+}
 
 /* Grid & Cards */
 .testi-grid {
@@ -77,11 +86,15 @@
 }
 
 @media (min-width: 768px) {
-  .testi-grid { grid-template-columns: repeat(2, 1fr); }
+  .testi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (min-width: 1200px) {
-  .testi-grid { grid-template-columns: repeat(3, 1fr); }
+  .testi-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .testi-card {
@@ -170,7 +183,8 @@
   color: #475569;
   line-height: 1.5;
   font-style: italic;
-  flex-grow: 1; /* Pushes footer to bottom */
+  flex-grow: 1;
+  /* Pushes footer to bottom */
   margin: 0 0 1.5rem 0;
 }
 
@@ -180,7 +194,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 1rem;
-  border-top: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .testi-visibility-toggle {
@@ -201,7 +215,8 @@
 }
 
 .testi-toggle-btn.active {
-  background-color: var(--primary); /* Theme green */
+  background-color: var(--primary);
+  /* Theme green */
 }
 
 .testi-toggle-slider {
@@ -213,7 +228,7 @@
   background-color: white;
   border-radius: 50%;
   transition: transform 0.3s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .testi-toggle-btn.active .testi-toggle-slider {
@@ -227,8 +242,19 @@
   align-items: center;
 }
 
-.text-success { color: var(--primary); display: flex; align-items: center; gap: 0.25rem; }
-.text-muted { color: #94a3b8; display: flex; align-items: center; gap: 0.25rem; }
+.testi-text-success {
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.testi-text-muted {
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
 
 .testi-actions {
   display: flex;
@@ -335,14 +361,17 @@
 .testi-modal-body::-webkit-scrollbar {
   width: 6px;
 }
+
 .testi-modal-body::-webkit-scrollbar-track {
   background: transparent;
   margin: 0.5rem 0;
 }
+
 .testi-modal-body::-webkit-scrollbar-thumb {
   background: #e2e8f0;
   border-radius: 10px;
 }
+
 .testi-modal-body:hover::-webkit-scrollbar-thumb {
   background: #cbd5e1;
 }
@@ -377,7 +406,8 @@
 
 .testi-input:focus {
   outline: none;
-  border-color: #a21caf; /* matches badge color */
+  border-color: #a21caf;
+  /* matches badge color */
   background-color: white;
 }
 
@@ -466,7 +496,7 @@
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .testi-btn-save:hover {

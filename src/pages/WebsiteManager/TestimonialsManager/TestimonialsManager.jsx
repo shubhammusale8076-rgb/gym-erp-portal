@@ -84,11 +84,11 @@ const TestimonialsManager = () => {
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }).map((_, i) => (
-      <Star 
-        key={i} 
-        size={14} 
-        fill={i < rating ? '#f6934c' : 'transparent'} 
-        color={i < rating ? '#f6934c' : '#cbd5e1'} 
+      <Star
+        key={i}
+        size={14}
+        fill={i < rating ? '#f6934c' : 'transparent'}
+        color={i < rating ? '#f6934c' : '#cbd5e1'}
         className="testi-star"
       />
     ));
@@ -96,7 +96,7 @@ const TestimonialsManager = () => {
 
   return (
     <div className={`testi-container page-container ${isModalOpen ? 'modal-open' : ''}`}>
-      
+
       <div className="wm-header">
         <div className="badge wm-badge testi-badge">
           <span className="badge-dot testi-dot"></span> TESTIMONIALS
@@ -119,7 +119,7 @@ const TestimonialsManager = () => {
       <div className="testi-grid">
         {testimonials.map((review) => (
           <div key={review.id} className={`testi-card glass-panel ${!review.isVisible ? 'testi-hidden' : ''}`}>
-            
+
             <div className="testi-card-header">
               <div className="testi-avatar-box">
                 {review.imageUrl ? (
@@ -144,17 +144,17 @@ const TestimonialsManager = () => {
 
             <div className="testi-card-footer">
               <div className="testi-visibility-toggle">
-                <button 
+                <button
                   className={`testi-toggle-btn ${review.isVisible ? 'active' : ''}`}
                   onClick={() => toggleVisibility(review.id)}
                 >
                   <div className="testi-toggle-slider"></div>
                 </button>
                 <span className="testi-toggle-label">
-                  {review.isVisible ? <span className="text-success"><Eye size={14} /> Visible</span> : <span className="text-muted"><EyeOff size={14} /> Hidden</span>}
+                  {review.isVisible ? <span className="testi-text-success"><Eye size={14} /> Visible</span> : <span className="testi-text-muted"><EyeOff size={14} /> Hidden</span>}
                 </span>
               </div>
-              
+
               <div className="testi-actions">
                 <button className="testi-icon-btn" onClick={() => openEditModal(review)}>
                   <Edit2 size={16} />
@@ -190,7 +190,7 @@ const TestimonialsManager = () => {
       {isModalOpen && activeReview && (
         <div className="testi-modal-overlay">
           <div className="testi-modal glass-panel">
-            
+
             <div className="testi-modal-header">
               <div>
                 <h2 className="testi-modal-title">{testimonials.some(t => t.id === activeReview.id) ? 'Edit Testimonial' : 'New Testimonial'}</h2>
@@ -202,13 +202,13 @@ const TestimonialsManager = () => {
             </div>
 
             <div className="testi-modal-body">
-              
+
               <div className="testi-form-row">
                 <div className="testi-form-group">
                   <label>Client Name</label>
-                  <input 
-                    type="text" 
-                    className="testi-input" 
+                  <input
+                    type="text"
+                    className="testi-input"
                     value={activeReview.clientName}
                     onChange={(e) => handleActiveChange('clientName', e.target.value)}
                     placeholder="e.g. Emily Chen"
@@ -216,9 +216,9 @@ const TestimonialsManager = () => {
                 </div>
                 <div className="testi-form-group">
                   <label>Role / Membership</label>
-                  <input 
-                    type="text" 
-                    className="testi-input" 
+                  <input
+                    type="text"
+                    className="testi-input"
                     value={activeReview.role}
                     onChange={(e) => handleActiveChange('role', e.target.value)}
                     placeholder="e.g. Premium Member"
@@ -228,9 +228,9 @@ const TestimonialsManager = () => {
 
               <div className="testi-form-group">
                 <label>Profile Image URL</label>
-                <input 
-                  type="text" 
-                  className="testi-input" 
+                <input
+                  type="text"
+                  className="testi-input"
                   value={activeReview.imageUrl}
                   onChange={(e) => handleActiveChange('imageUrl', e.target.value)}
                   placeholder="Paste a photo URL..."
@@ -240,16 +240,16 @@ const TestimonialsManager = () => {
               <div className="testi-form-group">
                 <label>Star Rating</label>
                 <div className="testi-rating-selector">
-                  {[1,2,3,4,5].map(num => (
-                    <button 
+                  {[1, 2, 3, 4, 5].map(num => (
+                    <button
                       key={num}
                       className="testi-star-btn"
                       onClick={() => handleActiveChange('rating', num)}
                     >
-                      <Star 
-                        size={24} 
-                        fill={num <= activeReview.rating ? '#f6934c' : 'transparent'} 
-                        color={num <= activeReview.rating ? '#f6934c' : '#cbd5e1'} 
+                      <Star
+                        size={24}
+                        fill={num <= activeReview.rating ? '#f6934c' : 'transparent'}
+                        color={num <= activeReview.rating ? '#f6934c' : '#cbd5e1'}
                       />
                     </button>
                   ))}
@@ -258,8 +258,8 @@ const TestimonialsManager = () => {
 
               <div className="testi-form-group">
                 <label>Review Content</label>
-                <textarea 
-                  className="testi-textarea" 
+                <textarea
+                  className="testi-textarea"
                   rows="4"
                   value={activeReview.content}
                   onChange={(e) => handleActiveChange('content', e.target.value)}
@@ -270,7 +270,7 @@ const TestimonialsManager = () => {
               <div className="testi-form-group testi-modal-visibility">
                 <label>Visibility Status</label>
                 <div className="testi-visibility-toggle large">
-                  <button 
+                  <button
                     className={`testi-toggle-btn ${activeReview.isVisible ? 'active' : ''}`}
                     onClick={() => handleActiveChange('isVisible', !activeReview.isVisible)}
                   >

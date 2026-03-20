@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
-import { 
-  Home, 
-  User, 
-  Calendar, 
-  Layers, 
-  Target, 
-  Dumbbell, 
-  Globe, 
-  ShieldCheck, 
-  Settings, 
-  LogOut, 
-  Bell, 
+import {
+  Home,
+  User,
+  Calendar,
+  Layers,
+  Target,
+  Dumbbell,
+  Globe,
+  ShieldCheck,
+  Settings,
+  LogOut,
+  Bell,
   Search,
   ArrowUpRight,
   CreditCard
@@ -63,34 +63,34 @@ const Sidebar = () => {
 
   return (
     <aside className="sidebar">
-    {/* <div className="sidebar-wrapper"> */}
-      
-        <div className="sidebar-header">
-          <div className="logo">
-            <div className="logo-icon"></div>
-            <h2>GymSync</h2>
-          </div>
+      {/* <div className="sidebar-wrapper"> */}
+
+      <div className="sidebar-header">
+        <div className="logo">
+          <div className="logo-icon"></div>
+          <h2>GymSync</h2>
         </div>
-        <nav className="sidebar-nav">
-          {navItems.map((group, idx) => (
-            <div key={idx} className="sidebar-group">
-              <h3 className="sidebar-section-title">{group.category}</h3>
-              {group.items.map((item) => (
-                <NavLink
-                  key={item.name}
-                  to={item.path}
-                  end={item.path === '/'}
-                  className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
-                >
-                  {item.icon}
-                  <span>{item.name}</span>
-                </NavLink>
-              ))}
-            </div>
-          ))}
-        </nav>
-        <div className="sidebar-footer">
-          {/* <div className="sidebar-app-banner">
+      </div>
+      <nav className="sidebar-nav">
+        {navItems.map((group, idx) => (
+          <div key={idx} className="sidebar-group">
+            <h3 className="sidebar-section-title">{group.category}</h3>
+            {group.items.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.path}
+                end={item.path === '/'}
+                className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+              >
+                {item.icon}
+                <span>{item.name}</span>
+              </NavLink>
+            ))}
+          </div>
+        ))}
+      </nav>
+      <div className="sidebar-footer">
+        {/* <div className="sidebar-app-banner">
             <div className="banner-icon-bg">
               <ArrowUpRight size={20} />
             </div>
@@ -106,13 +106,13 @@ const Sidebar = () => {
               </div>
             </div>
           </div> */}
-          <button className="nav-item logout-btn">
-            <LogOut size={20} />
-            <span>Log Out</span>
-          </button>
-        </div>
-        
-    {/* </div> */}
+        <button className="nav-item logout-btn">
+          <LogOut size={20} />
+          <span>Log Out</span>
+        </button>
+      </div>
+
+      {/* </div> */}
     </aside>
   );
 };
@@ -145,9 +145,9 @@ const Header = () => {
             <Search size={18} className="search-icon" />
             <input type="text" placeholder="Search courses" className="search-input" />
           </div>
-        
+
           <div className="header-actions">
-            <button className="icon-btn position-relative">
+            <button className="icon-btn header-btn-relative">
               <Bell size={20} />
               <span className="notification-badge">3</span>
             </button>

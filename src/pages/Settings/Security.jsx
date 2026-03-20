@@ -27,7 +27,7 @@ const Security = () => {
 
     return (
         <div className="page-container security-settings">
-            <header className="mb-8 flex justify-between items-end">
+            <header className="security-header">
                 <div>
                     <h1 className="heading-1">Security & Access</h1>
                     <p className="subtitle">Protect your account and monitor system access.</p>
@@ -40,9 +40,9 @@ const Security = () => {
             <div className="security-layout">
                 <div className="security-main">
                     {/* Change Password */}
-                    <div className="glass-panel p-8 mb-8">
-                        <h3 className="heading-2 mb-6 flex items-center gap-2">
-                            <Key size={24} className="text-primary" /> Change Password
+                    <div className="glass-panel security-card security-mb">
+                        <h3 className="heading-2 security-section-title">
+                            <Key size={24} className="security-icon-primary" /> Change Password
                         </h3>
 
                         <div className="input-group">
@@ -59,7 +59,7 @@ const Security = () => {
                             </div>
                         </div>
 
-                        <div className="form-grid mt-4">
+                        <div className="security-form-grid">
                             <div className="input-group">
                                 <label className="input-label">New Password</label>
                                 <div className="password-field-wrapper">
@@ -79,80 +79,80 @@ const Security = () => {
                             </div>
                         </div>
 
-                        <div className="password-strength mt-4">
+                        <div className="password-strength">
                             <div className="strength-bars">
                                 <div className="bar filled"></div>
                                 <div className="bar filled"></div>
                                 <div className="bar filled"></div>
                                 <div className="bar"></div>
                             </div>
-                            <p className="text-xs text-muted mt-2">Password strength: <span className="text-success font-semibold">Strong</span></p>
+                            <p className="security-text-xs security-text-muted security-mt-2">Password strength: <span className="security-text-success-bold">Strong</span></p>
                         </div>
                     </div>
 
                     {/* 2FA Section */}
-                    <div className="glass-panel p-8">
-                        <div className="flex justify-between items-start mb-6">
+                    <div className="glass-panel security-card">
+                        <div className="security-2fa-header">
                             <div>
-                                <h3 className="heading-2 flex items-center gap-2">
-                                    <Smartphone size={24} className="text-primary" /> Two-Factor Authentication
+                                <h3 className="heading-2 security-section-title" style={{ marginBottom: 0 }}>
+                                    <Smartphone size={24} className="security-icon-primary" /> Two-Factor Authentication
                                 </h3>
-                                <p className="text-sm text-muted mt-1">Add an extra layer of security to your account.</p>
+                                <p className="security-text-sm security-text-muted">Add an extra layer of security to your account.</p>
                             </div>
                             <span className="badge badge-success">Enabled</span>
                         </div>
 
-                        <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl">
-                            <div className="bg-white p-3 rounded-xl shadow-sm">
-                                <CheckCircle2 className="text-success" size={24} />
+                        <div className="security-2fa-box">
+                            <div className="security-2fa-icon-wrapper">
+                                <CheckCircle2 className="security-icon-success" size={24} />
                             </div>
                             <div>
-                                <p className="font-semibold text-sm">Authenticator App Linked</p>
-                                <p className="text-xs text-muted">Google Authenticator / Authy is active.</p>
+                                <p className="security-2fa-title">Authenticator App Linked</p>
+                                <p className="security-text-xs security-text-muted">Google Authenticator / Authy is active.</p>
                             </div>
-                            <button className="btn btn-secondary text-xs ml-auto">Reset 2FA</button>
+                            <button className="btn btn-secondary security-btn-ml-auto">Reset 2FA</button>
                         </div>
                     </div>
                 </div>
 
                 <div className="security-sidebar">
                     {/* Audit Logs */}
-                    <div className="glass-panel p-6">
-                        <h3 className="heading-3 mb-6 flex items-center gap-2">
-                            <History size={18} className="text-muted" /> Login History
+                    <div className="glass-panel security-card">
+                        <h3 className="heading-3 security-history-title">
+                            <History size={18} className="security-text-muted" /> Login History
                         </h3>
                         <div className="audit-logs">
                             {auditLogs.map(log => (
                                 <div key={log.id} className="log-item">
-                                    <div className="flex items-start gap-3">
+                                    <div className="security-log-row">
                                         {log.action.includes('Failed') ?
-                                            <AlertCircle size={16} className="text-danger mt-1" /> :
-                                            <Shield size={16} className="text-primary mt-1" />
+                                            <AlertCircle size={16} className="security-icon-danger security-log-icon" /> :
+                                            <Shield size={16} className="security-icon-primary security-log-icon" />
                                         }
                                         <div>
-                                            <p className="text-sm font-semibold">{log.action}</p>
-                                            <p className="text-xs text-muted">{log.time}</p>
-                                            <p className="text-xs text-muted mt-1">{log.location}</p>
+                                            <p className="security-log-title">{log.action}</p>
+                                            <p className="security-text-xs security-text-muted">{log.time}</p>
+                                            <p className="security-text-xs security-text-muted security-log-mt">{log.location}</p>
                                         </div>
                                     </div>
                                 </div>
                             ))}
                         </div>
-                        <button className="btn btn-secondary w-full mt-6 text-sm">View Full Audit Log</button>
+                        <button className="btn btn-secondary security-btn-full">View Full Audit Log</button>
                     </div>
 
                     {/* Sessions */}
-                    <div className="glass-card p-6 mt-6 border-accent/20 bg-accent/5">
-                        <h3 className="heading-3 mb-4">Active Sessions</h3>
-                        <p className="text-xs text-muted mb-4">You are currently logged in on these devices.</p>
-                        <div className="session-item flex items-center justify-between">
+                    <div className="glass-card security-session-card">
+                        <h3 className="heading-3 security-session-title">Active Sessions</h3>
+                        <p className="security-text-xs security-text-muted security-session-subtitle">You are currently logged in on these devices.</p>
+                        <div className="security-session-item">
                             <div>
-                                <p className="text-sm font-bold">This Device</p>
-                                <p className="text-xs text-muted">Chrome on Windows</p>
+                                <p className="security-session-name">This Device</p>
+                                <p className="security-text-xs security-text-muted">Chrome on Windows</p>
                             </div>
-                            <span className="text-[10px] bg-accent/20 text-accent font-bold px-2 py-1 rounded">ACTIVE</span>
+                            <span className="security-badge-active">ACTIVE</span>
                         </div>
-                        <button className="text-danger text-sm font-semibold mt-6 flex items-center gap-2 hover:underline">
+                        <button className="security-logout-btn">
                             Logout all other sessions
                         </button>
                     </div>

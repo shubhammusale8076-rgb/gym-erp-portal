@@ -31,8 +31,8 @@ const Members = () => {
     setIsAddingMember(false);
   };
 
-  const filteredMembers = members.filter(member => 
-    member.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+  const filteredMembers = members.filter(member =>
+    member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     member.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -53,15 +53,15 @@ const Members = () => {
         <div className="members-filters-bar">
           <div className="members-search-wrapper">
             <Search size={18} className="search-icon" />
-            <input 
-              type="text" 
-              placeholder="Search members by name or email..." 
+            <input
+              type="text"
+              placeholder="Search members by name or email..."
               className="members-search-input"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          
+
           <div className="members-actions-group">
             <button className="btn btn-secondary">
               <Filter size={18} />
@@ -90,13 +90,13 @@ const Members = () => {
             <tbody>
               {filteredMembers.map((member) => (
                 <tr key={member.id}
-                    onClick={() => navigate(`/members/${member.id}`)}>
+                  onClick={() => navigate(`/members/${member.id}`)}>
                   <td>
                     <div className="member-profile-info">
-                      <img 
-                        src={`https://ui-avatars.com/api/?name=${member.name.replace(' ', '+')}&background=random`} 
-                        alt={member.name} 
-                        className="member-profile-image" 
+                      <img
+                        src={`https://ui-avatars.com/api/?name=${member.name.replace(' ', '+')}&background=random`}
+                        alt={member.name}
+                        className="member-profile-image"
                       />
                       <div>
                         <p className="member-name-text">{member.name}</p>
@@ -105,11 +105,10 @@ const Members = () => {
                     </div>
                   </td>
                   <td>
-                    <span className={`badge ${
-                      member.plan === 'VIP' ? 'badge-warning' : 
-                      member.plan === 'Pro' ? 'badge-success' : 
-                      'badge-plan-basic'
-                    }`}>
+                    <span className={`badge ${member.plan === 'VIP' ? 'badge-warning' :
+                        member.plan === 'Pro' ? 'badge-success' :
+                          'badge-plan-basic'
+                      }`}>
                       {member.plan}
                     </span>
                   </td>
@@ -124,7 +123,7 @@ const Members = () => {
                       <button className="icon-btn member-action-btn" title="Edit">
                         <Edit2 size={14} />
                       </button>
-                      <button className="icon-btn member-action-btn hover:text-danger hover:bg-danger/10" title="Delete">
+                      <button className="icon-btn member-action-btn member-delete-btn" title="Delete">
                         <Trash2 size={14} />
                       </button>
                     </div>
@@ -133,16 +132,16 @@ const Members = () => {
               ))}
             </tbody>
           </table>
-          
+
           {filteredMembers.length === 0 && (
             <div className="members-empty-state">
-              <p className="text-text-muted">No members found matching "{searchTerm}"</p>
+              <p className="member-muted-text">No members found matching "{searchTerm}"</p>
             </div>
           )}
         </div>
-        
+
         <footer className="members-pagination-footer">
-          <p className="text-sm text-text-muted">Showing {filteredMembers.length} of {members.length} members</p>
+          <p className="member-muted-text-sm">Showing {filteredMembers.length} of {members.length} members</p>
           <div className="pagination-controls">
             <button className="btn btn-secondary" disabled>Previous</button>
             <button className="btn btn-secondary">Next</button>
@@ -150,9 +149,9 @@ const Members = () => {
         </footer>
       </section>
       {isAddingMember && (
-        <AddMember 
-          onClose={() => setIsAddingMember(false)} 
-          onAdd={handleAddMember} 
+        <AddMember
+          onClose={() => setIsAddingMember(false)}
+          onAdd={handleAddMember}
         />
       )}
     </div>

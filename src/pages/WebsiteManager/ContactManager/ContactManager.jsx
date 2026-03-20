@@ -15,13 +15,13 @@ const ContactManager = () => {
       youtube: 'https://youtube.com/c/gymsync'
     },
     hours: [
-      { day: 'Monday',  isOpen: true,  openTime: '06:00', closeTime: '22:00' },
-      { day: 'Tuesday', isOpen: true,  openTime: '06:00', closeTime: '22:00' },
-      { day: 'Wednesday', isOpen: true,  openTime: '06:00', closeTime: '22:00' },
-      { day: 'Thursday', isOpen: true,  openTime: '06:00', closeTime: '22:00' },
-      { day: 'Friday',  isOpen: true,  openTime: '06:00', closeTime: '22:00' },
-      { day: 'Saturday', isOpen: true,  openTime: '08:00', closeTime: '20:00' },
-      { day: 'Sunday',  isOpen: false, openTime: '08:00', closeTime: '20:00' },
+      { day: 'Monday', isOpen: true, openTime: '06:00', closeTime: '22:00' },
+      { day: 'Tuesday', isOpen: true, openTime: '06:00', closeTime: '22:00' },
+      { day: 'Wednesday', isOpen: true, openTime: '06:00', closeTime: '22:00' },
+      { day: 'Thursday', isOpen: true, openTime: '06:00', closeTime: '22:00' },
+      { day: 'Friday', isOpen: true, openTime: '06:00', closeTime: '22:00' },
+      { day: 'Saturday', isOpen: true, openTime: '08:00', closeTime: '20:00' },
+      { day: 'Sunday', isOpen: false, openTime: '08:00', closeTime: '20:00' },
     ]
   });
 
@@ -79,7 +79,7 @@ const ContactManager = () => {
 
   return (
     <div className="contact-cx-container page-container">
-      
+
       {/* Header */}
       <div className="wm-header contact-header">
         <div>
@@ -91,10 +91,10 @@ const ContactManager = () => {
             Manage your physical address, operating hours, and social media presence used across the site.
           </p>
         </div>
-        
+
         <div className="contact-cx-actions">
-          {hasChanges && <span className="text-secondary text-sm font-medium">Unsaved changes!</span>}
-          <button 
+          {hasChanges && <span className="contact-unsaved-text">Unsaved changes!</span>}
+          <button
             className={`btn ${hasChanges ? 'btn-primary' : 'contact-btn-disabled'}`}
             onClick={saveChanges}
             disabled={!hasChanges}
@@ -105,24 +105,24 @@ const ContactManager = () => {
       </div>
 
       <div className="contact-cx-grid">
-        
+
         {/* Left Column: Contact & Social */}
         <div className="contact-cx-col">
-          
+
           {/* Card 1: Core Info */}
           <div className="glass-card contact-cx-card">
             <div className="contact-card-header">
-              <Building className="text-primary" size={20} />
+              <Building className="contact-text-primary" size={20} />
               <h3 className="heading-3">Primary Contact</h3>
             </div>
-            
+
             <div className="form-group contact-fg">
               <label>Support Email</label>
               <div className="contact-input-wrap">
-                <Mail className="contact-icon text-muted" size={18} />
-                <input 
-                  type="email" 
-                  className="input-field contact-input-pl" 
+                <Mail className="contact-icon contact-icon-muted" size={18} />
+                <input
+                  type="email"
+                  className="input-field contact-input-pl"
                   value={contactData.email}
                   onChange={(e) => handleTextChange('email', e.target.value)}
                 />
@@ -132,10 +132,10 @@ const ContactManager = () => {
             <div className="form-group contact-fg">
               <label>Phone Number</label>
               <div className="contact-input-wrap">
-                <Phone className="contact-icon text-muted" size={18} />
-                <input 
-                  type="tel" 
-                  className="input-field contact-input-pl" 
+                <Phone className="contact-icon contact-icon-muted" size={18} />
+                <input
+                  type="tel"
+                  className="input-field contact-input-pl"
                   value={contactData.phone}
                   onChange={(e) => handleTextChange('phone', e.target.value)}
                 />
@@ -145,9 +145,9 @@ const ContactManager = () => {
             <div className="form-group contact-fg">
               <label>Physical Address</label>
               <div className="contact-input-wrap align-top">
-                <MapPin className="contact-icon text-muted top-icon" size={18} />
-                <textarea 
-                  className="input-field contact-textarea-pl" 
+                <MapPin className="contact-icon contact-icon-muted top-icon" size={18} />
+                <textarea
+                  className="input-field contact-textarea-pl"
                   rows="3"
                   value={contactData.address}
                   onChange={(e) => handleTextChange('address', e.target.value)}
@@ -159,16 +159,16 @@ const ContactManager = () => {
           {/* Card 4: Social Links */}
           <div className="glass-card contact-cx-card">
             <div className="contact-card-header">
-              <Instagram className="text-primary" size={20} />
+              <Instagram className="contact-text-primary" size={20} />
               <h3 className="heading-3">Social Profiles</h3>
             </div>
 
             <div className="contact-social-forms">
               <div className="contact-input-wrap">
                 <div className="social-icon-box ig"><Instagram size={16} /></div>
-                <input 
-                  type="text" 
-                  className="input-field social-input" 
+                <input
+                  type="text"
+                  className="input-field social-input"
                   placeholder="Instagram URL"
                   value={contactData.socials.instagram}
                   onChange={(e) => handleSocialChange('instagram', e.target.value)}
@@ -176,9 +176,9 @@ const ContactManager = () => {
               </div>
               <div className="contact-input-wrap">
                 <div className="social-icon-box fb"><Facebook size={16} /></div>
-                <input 
-                  type="text" 
-                  className="input-field social-input" 
+                <input
+                  type="text"
+                  className="input-field social-input"
                   placeholder="Facebook URL"
                   value={contactData.socials.facebook}
                   onChange={(e) => handleSocialChange('facebook', e.target.value)}
@@ -186,9 +186,9 @@ const ContactManager = () => {
               </div>
               <div className="contact-input-wrap">
                 <div className="social-icon-box tw"><Twitter size={16} /></div>
-                <input 
-                  type="text" 
-                  className="input-field social-input" 
+                <input
+                  type="text"
+                  className="input-field social-input"
                   placeholder="X (Twitter) URL"
                   value={contactData.socials.twitter}
                   onChange={(e) => handleSocialChange('twitter', e.target.value)}
@@ -196,9 +196,9 @@ const ContactManager = () => {
               </div>
               <div className="contact-input-wrap">
                 <div className="social-icon-box yt"><Youtube size={16} /></div>
-                <input 
-                  type="text" 
-                  className="input-field social-input" 
+                <input
+                  type="text"
+                  className="input-field social-input"
                   placeholder="YouTube URL"
                   value={contactData.socials.youtube}
                   onChange={(e) => handleSocialChange('youtube', e.target.value)}
@@ -211,22 +211,22 @@ const ContactManager = () => {
 
         {/* Right Column: Maps & Hours */}
         <div className="contact-cx-col">
-          
+
           {/* Card 2: Google Maps */}
           <div className="glass-card contact-cx-card">
             <div className="contact-card-header">
-              <MapPin className="text-primary" size={20} />
+              <MapPin className="contact-text-primary" size={20} />
               <h3 className="heading-3">Map Location</h3>
             </div>
-            
-            <p className="text-sm text-secondary mb-4">
+
+            <p className="contact-map-hint">
               Paste the "Embed a map" iframe snippet or URL from Google Maps to display it on your website footer.
             </p>
 
-            <div className="form-group mb-4">
-              <input 
-                type="text" 
-                className="input-field w-full" 
+            <div className="form-group contact-mb-4">
+              <input
+                type="text"
+                className="input-field contact-w-full"
                 placeholder="Paste <iframe src='...'> or raw URL"
                 value={contactData.mapEmbedUrl}
                 onChange={handleMapUrlChange}
@@ -235,19 +235,19 @@ const ContactManager = () => {
 
             <div className="contact-map-preview">
               {contactData.mapEmbedUrl ? (
-                <iframe 
-                  src={contactData.mapEmbedUrl} 
-                  width="100%" 
-                  height="100%" 
-                  style={{border:0}} 
-                  allowFullScreen="" 
-                  loading="lazy" 
+                <iframe
+                  src={contactData.mapEmbedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Google Maps Preview"
                 ></iframe>
               ) : (
                 <div className="contact-map-empty">
-                  <MapPin size={32} className="text-muted mb-2" />
+                  <MapPin size={32} className="contact-map-icon-empty" />
                   <span>No map URL provided</span>
                 </div>
               )}
@@ -256,17 +256,17 @@ const ContactManager = () => {
 
           {/* Card 3: Operating Hours */}
           <div className="glass-card contact-cx-card">
-            <div className="contact-card-header mb-4">
-              <Clock className="text-primary" size={20} />
+            <div className="contact-card-header contact-mb-4">
+              <Clock className="contact-text-primary" size={20} />
               <h3 className="heading-3">Operating Hours</h3>
             </div>
 
             <div className="contact-hours-list">
               {contactData.hours.map((dayObj, i) => (
                 <div key={dayObj.day} className={`contact-hour-row ${!dayObj.isOpen ? 'closed' : ''}`}>
-                  
+
                   <div className="contact-day-toggle">
-                    <button 
+                    <button
                       className={`testi-toggle-btn ${dayObj.isOpen ? 'active' : ''}`}
                       onClick={() => handleHourToggle(i)}
                     >
@@ -277,20 +277,20 @@ const ContactManager = () => {
 
                   {dayObj.isOpen ? (
                     <div className="contact-time-inputs">
-                      <input 
-                        type="time" 
+                      <input
+                        type="time"
                         value={dayObj.openTime}
                         onChange={(e) => handleTimeChange(i, 'openTime', e.target.value)}
                       />
-                      <span className="text-muted text-sm">to</span>
-                      <input 
-                        type="time" 
+                      <span className="contact-time-to">to</span>
+                      <input
+                        type="time"
                         value={dayObj.closeTime}
                         onChange={(e) => handleTimeChange(i, 'closeTime', e.target.value)}
                       />
                     </div>
                   ) : (
-                    <div className="contact-closed-label text-sm text-danger font-medium">Closed</div>
+                    <div className="contact-closed-label-text">Closed</div>
                   )}
 
                 </div>

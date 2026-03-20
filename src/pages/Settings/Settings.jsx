@@ -13,11 +13,11 @@ import './Settings.css';
 
 const SettingsCard = ({ title, description, icon: Icon, to, badge }) => (
     <Link to={to} className="glass-card settings-card">
-        <div className="flex justify-between items-start">
+        <div className="settings-card-header">
             <div className="settings-card-icon">
                 <Icon size={24} />
             </div>
-            <ChevronRight size={18} className="text-muted" />
+            <ChevronRight size={18} className="settings-icon-muted" />
         </div>
         <div className="settings-card-content">
             <h3 className="heading-3">{title}</h3>
@@ -70,7 +70,7 @@ const Settings = () => {
 
     return (
         <div className="page-container settings-dashboard">
-            <header className="mb-8">
+            <header className="settings-header">
                 <h1 className="heading-1">System Settings</h1>
                 <p className="subtitle">Configure and manage your GymSync ERP platform preferences.</p>
             </header>

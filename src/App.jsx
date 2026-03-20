@@ -54,7 +54,7 @@ function App() {
           <Route path="settings/payments" element={<Payments />} />
           <Route path="settings/security" element={<Security />} />
           <Route path="*" element={
-            <div className="flex justify-center flex-col items-center h-full gap-4">
+            <div className="coming-soon-container">
               <h2 className="heading-2 text-gradient">Coming Soon</h2>
               <p className="subtitle">This page is under construction.</p>
             </div>

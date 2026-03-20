@@ -92,3 +92,56 @@
         grid-template-columns: 1fr;
     }
 }
+
+.profile-header {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.profile-card-mt {
+    margin-top: 1.5rem;
+}
+
+.profile-title-mb {
+    margin-bottom: 1rem;
+}
+
+.profile-title-lg-mb {
+    margin-bottom: 1.5rem;
+}
+
+.profile-title-mt-mb {
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-muted-text {
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+.profile-panel-p {
+    padding: 2rem;
+}
+
+.profile-group-mt {
+    margin-top: 1rem;
+}
+
+.profile-textarea {
+    min-height: 100px;
+}
+
+.profile-label-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-icon-muted {
+    color: var(--text-muted);
+}

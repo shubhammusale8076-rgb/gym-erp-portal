@@ -4,7 +4,7 @@
     animation: fadeIn 0.4s ease-out;
 }
 
-.plans-page .plans-page-header{
+.plans-page .plans-page-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -192,7 +192,7 @@
     opacity: 1;
 }
 
-.promo-code{
+.promo-code {
     padding: 10px 18px;
     display: flex;
     justify-content: space-between;
@@ -237,3 +237,44 @@
     display: flex;
 }
 
+.plans-text-center {
+    text-align: center;
+}
+
+.plans-font-bold {
+    font-weight: 700;
+}
+
+.plans-form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .plans-form-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.plans-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.plans-label-mb-0 {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0;
+}
+
+.plans-empty-features {
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    padding: 0.5rem 0;
+}

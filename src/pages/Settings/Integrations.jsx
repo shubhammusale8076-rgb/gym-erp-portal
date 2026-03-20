@@ -19,15 +19,15 @@ const IntegrationItem = ({ title, description, icon: Icon, connected, status }) 
             </div>
             <div className="integration-toggle">
                 {connected ? (
-                    <ToggleRight className="text-primary cursor-pointer" size={32} />
+                    <ToggleRight className="integration-toggle-active" size={32} />
                 ) : (
-                    <ToggleLeft className="text-muted cursor-pointer" size={32} />
+                    <ToggleLeft className="integration-toggle-inactive" size={32} />
                 )}
             </div>
         </div>
         <div className="integration-body">
             <h3 className="heading-3">{title}</h3>
-            <p className="text-muted text-sm">{description}</p>
+            <p className="integration-desc">{description}</p>
         </div>
         <div className="integration-footer">
             {connected ? (
@@ -80,7 +80,7 @@ const Integrations = () => {
 
     return (
         <div className="page-container integrations-page">
-            <header className="mb-8">
+            <header className="integrations-header">
                 <h1 className="heading-1">Integrations</h1>
                 <p className="subtitle">Connect your favorite tools to automate your gym operations.</p>
             </header>
@@ -91,15 +91,15 @@ const Integrations = () => {
                 ))}
             </div>
 
-            <div className="glass-panel p-8 mt-12">
-                <h3 className="heading-2 mb-4">Webhooks</h3>
-                <p className="text-muted mb-6">
+            <div className="glass-panel integrations-webhook-panel">
+                <h3 className="heading-2 integrations-webhook-title">Webhooks</h3>
+                <p className="integrations-webhook-desc">
                     Receive real-time notifications about events in your system by configuring webhook URLs.
                 </p>
                 <div className="webhook-field">
                     <input
                         type="text"
-                        className="input-field w-full"
+                        className="input-field integration-input-full"
                         value="https://api.gymsync.com/v1/webhook/events"
                         readOnly
                     />

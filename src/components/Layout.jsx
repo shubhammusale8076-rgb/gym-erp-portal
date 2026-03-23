@@ -63,12 +63,10 @@ const Sidebar = () => {
 
   return (
     <aside className="sidebar">
-      {/* <div className="sidebar-wrapper"> */}
-
       <div className="sidebar-header">
         <div className="logo">
           <div className="logo-icon"></div>
-          <h2>GymSync</h2>
+          <h2>Elite Club</h2>
         </div>
       </div>
       <nav className="sidebar-nav">
@@ -90,22 +88,7 @@ const Sidebar = () => {
         ))}
       </nav>
       <div className="sidebar-footer">
-        {/* <div className="sidebar-app-banner">
-            <div className="banner-icon-bg">
-              <ArrowUpRight size={20} />
-            </div>
-            <div className="banner-content">
-              <p className="banner-title">Download our mobile app</p>
-            </div>
-            <div className="banner-decoration">
-              <div className="decoration-dots">
-                <div className="dot-line long"></div>
-                <div className="dot-line"></div>
-                <div className="dot-line long"></div>
-                <div className="dot-line"></div>
-              </div>
-            </div>
-          </div> */}
+       
         <button className="nav-item logout-btn">
           <LogOut size={20} />
           <span>Log Out</span>

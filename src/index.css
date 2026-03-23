@@ -1,10 +1,10 @@
 :root {
   --bg-dark: #fff7fc;
-  --bg-sidebar: #8130b0;
+  --bg-sidebar: #7427a1;
   --bg-card: #ffffff;
   --bg-glass: rgba(255, 255, 255, 0.8);
 
-  --primary: #8130b0;
+  --primary: #7427a1;
   --primary-hover: #f6e6ff;
   --primary-glow: rgba(212, 255, 61, 0.2);
 
@@ -193,3 +193,14 @@ body {
   font-weight: var(--font-weight-h4);
   line-height: var(--line-height-h4);
 }
+.heading-7 {
+  font-size: var(--font-h7);
+  font-weight: var(--font-weight-h7);
+  line-height: var(--line-height-h7);
+  color: var(--text-secondary);
+  margin-top: 0.35rem;
+
+
+}
+
+

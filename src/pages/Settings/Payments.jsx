@@ -63,7 +63,7 @@ const Payments = () => {
             <div className="settings-section-grid">
 
                 {/* Column 1: Business Profile & Payout Account */}
-                <div className="payments-col">
+                <div className="flex flex-col gap-6">
                     {/* Business Profile */}
                     <div className="glass-panel section-card payments-card">
                         <div className="section-header payments-mb-6">

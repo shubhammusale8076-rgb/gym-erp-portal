@@ -1,0 +1,160 @@
+.kpi-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  padding: 15px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 110px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+}
+
+.kpi-card-content {
+  position: relative;
+  z-index: 2; /* Put above the wave background */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.kpi-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.kpi-card-title {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+  margin-top: 4px; /* Align slightly with top of button */
+}
+
+.kpi-card-action {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.kpi-card-action:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.kpi-action-icon {
+  color: #ffffff;
+}
+
+.kpi-card-value {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+
+/* Background Wave graphic */
+.kpi-wave-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.kpi-wave-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* =========================================
+   THEMES (Colors matching the provided design)
+========================================= */
+
+/* Teal Theme */
+.kpi-theme-teal {
+  background-color: #d1f7ef;
+}
+.kpi-theme-teal .kpi-card-title {
+  color: #222222;
+}
+.kpi-theme-teal .kpi-card-value {
+  color: #27b19e; 
+}
+.kpi-theme-teal .kpi-card-action {
+  background-color: #27b19e;
+}
+.kpi-theme-teal .kpi-wave-svg {
+  color: #27b19e;
+}
+
+/* Blue Theme */
+.kpi-theme-blue {
+  background-color: #d9e5ff;
+}
+.kpi-theme-blue .kpi-card-title {
+  color: #222222;
+}
+.kpi-theme-blue .kpi-card-value {
+  color: #2e6bd7;
+}
+.kpi-theme-blue .kpi-card-action {
+  background-color: #2e6bd7;
+}
+.kpi-theme-blue .kpi-wave-svg {
+  color: #2e6bd7;
+}
+
+/* Purple Theme */
+.kpi-theme-purple {
+  background-color: #f1e4fa;
+}
+.kpi-theme-purple .kpi-card-title {
+  color: #222222;
+}
+.kpi-theme-purple .kpi-card-value {
+  color: #8a34b8;
+}
+.kpi-theme-purple .kpi-card-action {
+  background-color: #8a34b8;
+}
+.kpi-theme-purple .kpi-wave-svg {
+  color: #8a34b8;
+}
+
+/* Orange Theme */
+.kpi-theme-orange {
+  background-color: #ffe8d3;
+}
+.kpi-theme-orange .kpi-card-title {
+  color: #222222;
+}
+.kpi-theme-orange .kpi-card-value {
+  color: #e57d24;
+}
+.kpi-theme-orange .kpi-card-action {
+  background-color: #e57d24;
+}
+.kpi-theme-orange .kpi-wave-svg {
+  color: #e57d24;
+}

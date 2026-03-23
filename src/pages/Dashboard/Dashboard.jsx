@@ -1,6 +1,7 @@
 import React from 'react';
 import { Users, TrendingUp, CalendarCheck, Activity } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import KpiCard from '../../components/KpiCard';
 import './Dashboard.css';
 
 const data = [
@@ -12,21 +13,6 @@ const data = [
   { name: 'Jun', members: 580, revenue: 4200 },
 ];
 
-const StatCard = ({ title, value, trend, icon: Icon, colorClass }) => (
-  <div className="stat-card">
-    <div className="stat-card-content">
-      <p className="stat-card-title">{title}</p>
-      <h3 className="stat-card-value">{value}</h3>
-      <p className={`stat-card-trend ${trend.startsWith('+') ? 'trend-up' : 'trend-down'}`}>
-        {trend} from last month
-      </p>
-    </div>
-    <div className={`stat-card-icon-wrapper ${colorClass}`}>
-      <Icon size={24} />
-    </div>
-  </div>
-);
-
 const Dashboard = () => {
   return (
     <div className="dashboard-container">
@@ -37,35 +23,12 @@ const Dashboard = () => {
         <button className="dashboard-action-btn">Download Report</button>
       </header>
 
-      <section className="dashboard-stats-grid">
-        <StatCard 
-          title="Total Members" 
-          value="1,248" 
-          trend="+12%" 
-          icon={Users} 
-          colorClass="icon-primary" 
-        />
-        <StatCard 
-          title="Monthly Revenue" 
-          value="$42,500" 
-          trend="+8.5%" 
-          icon={TrendingUp} 
-          colorClass="icon-secondary" 
-        />
-        <StatCard 
-          title="Today's Check-ins" 
-          value="342" 
-          trend="+5%" 
-          icon={CalendarCheck} 
-          colorClass="icon-accent" 
-        />
-        <StatCard 
-          title="Active Classes" 
-          value="24" 
-          trend="-2%" 
-          icon={Activity} 
-          colorClass="icon-danger" 
-        />
+      {/* New KPI Cards Demonstration */}
+      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', margin: '24px 0' }}>
+        <KpiCard title="Total Members" value="1,534" theme="teal" Icon={Users}  />
+        <KpiCard title="Monthly Revenue" value="42,500" theme="blue"  Icon={TrendingUp}  />
+        <KpiCard title="Today's Check-ins" value="342" theme="purple" Icon={CalendarCheck} />
+        <KpiCard title="Active Classes" value="24" theme="orange" Icon={Activity} />
       </section>
 
       {/* Charts Area */}

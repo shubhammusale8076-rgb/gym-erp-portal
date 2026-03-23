@@ -1,25 +1,20 @@
 :root {
-  /* Core Colors - New Design (Lime & Dark) */
-  --bg-dark: #f7f7f5;
-  --bg-sidebar: #1d1d2b;
-  /* Dark Navy/Slate */
+  --bg-dark: #fff7fc;
+  --bg-sidebar: #8130b0;
   --bg-card: #ffffff;
   --bg-glass: rgba(255, 255, 255, 0.8);
 
-  --primary: #d4ff3d;
-  /* Lime Green */
-  --primary-hover: #bde635;
+  --primary: #8130b0;
+  --primary-hover: #f6e6ff;
   --primary-glow: rgba(212, 255, 61, 0.2);
 
   --secondary: #86868b;
   --accent: #d4ff3d;
-  /* Accent matches primary lime */
   --danger: #ff3b30;
   --danger-hover: #d70015;
   --success: #34c759;
   --warning: #ff9500;
   --badge-peach: #ffd7b5;
-  /* Notification badge color from image */
 
   /* Text Colors */
   --text-primary: #1d1d1f;
@@ -27,6 +22,39 @@
   --text-muted: #afafb6;
   --text-on-primary: #000000;
   --text-on-dark: #ffffff;
+
+  /* Heading Font Sizes */
+  --font-h1: 40px;
+  --font-h2: 32px;
+  --font-h3: 28px;
+  --font-h4: 24px;
+  --font-h5: 18px;
+  --font-h6: 16px;
+  --font-h7: 14px;
+  --font-h8: 12px;
+  --font-h9: 8px;
+
+  /* Heading Font Weights */
+  --font-weight-h1: 800;
+  --font-weight-h2: 700;
+  --font-weight-h3: 600;
+  --font-weight-h4: 600;
+  --font-weight-h5: 500;
+  --font-weight-h6: 500;
+  --font-weight-h7: 400;
+  --font-weight-h8: 400;
+  --font-weight-h9: 400;
+
+  /* Line Heights (optimized for readability) */
+  --line-height-h1: 1.2;
+  --line-height-h2: 1.25;
+  --line-height-h3: 1.3;
+  --line-height-h4: 1.35;
+  --line-height-h5: 1.4;
+  --line-height-h6: 1.45;
+  --line-height-h7: 1.5;
+  --line-height-h8: 1.5;
+  --line-height-h9: 1.5;
 
   /* Borders */
   --border-light: #e6e6e9;
@@ -56,7 +84,13 @@ html {
 }
 
 body {
-  font-family: 'Inter', 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Inter",
+    "Outfit",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-primary);
   line-height: 1.5;
@@ -75,20 +109,28 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: 20px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.03), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.03),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
 }
 
 .glass-card {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
-  border-radius: 16px;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.02),
+    0 2px 4px -1px rgba(0, 0, 0, 0.01);
 }
 
 .glass-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.04), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.04),
+    0 10px 10px -5px rgba(0, 0, 0, 0.02);
   border-color: var(--border-focus);
 }
 
@@ -101,6 +143,53 @@ body {
   gap: 1rem;
 }
 
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 24px;
+  border: 1px solid var(--primary);
+  cursor: pointer;
+  background-color: var(--primary);
+  color: var(--text-on-dark);
+  box-shadow: 0 4px 12px var(--primary-glow);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  color: var(--primary);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--primary);
+}
+
 .header-btn-relative {
   position: relative;
+}
+
+.heading-1 {
+  font-size: var(--font-h1);
+  font-weight: var(--font-weight-h1);
+  line-height: var(--line-height-h1);
+}
+
+.heading-2 {
+  font-size: var(--font-h2);
+  font-weight: var(--font-weight-h2);
+  line-height: var(--line-height-h2);
+}
+
+.heading-3 {
+  font-size: var(--font-h3);
+  font-weight: var(--font-weight-h3);
+  line-height: var(--line-height-h3);
+}
+.heading-4 {
+  font-size: var(--font-h4);
+  font-weight: var(--font-weight-h4);
+  line-height: var(--line-height-h4);
 }

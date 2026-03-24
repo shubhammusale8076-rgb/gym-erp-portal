@@ -1,19 +1,21 @@
 import React from 'react';
 import './Attendance.css';
-import { 
-  Filter, 
-  PlusCircle, 
-  LogOut, 
-  LogOut as SignIn, 
-  Clock, 
-  BarChart2, 
-  UserCheck, 
-  MoreVertical 
+import {
+  Filter,
+  PlusCircle,
+  LogOut,
+  LogOut as SignIn,
+  Clock,
+  BarChart2,
+  UserCheck,
+  MoreVertical,
+  Search
 } from 'lucide-react';
 import KpiCard from '../../components/KpiCard';
+import PageHeader from '../../components/PageHeader/PageHeader';
 
 const Attendance = () => {
-    
+
   // Mock Data
   const recentActivity = [
     {
@@ -46,6 +48,14 @@ const Attendance = () => {
       memberId: "#1290",
       avatar: "https://randomuser.me/api/portraits/men/32.jpg",
       checkIn: "09:12 AM",
+      plan: "Platinum",
+    },
+    {
+      id: 5,
+      name: "David Chen",
+      memberId: "#1290",
+      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      checkIn: "09:30 AM",
       plan: "Platinum",
     }
   ];
@@ -80,48 +90,57 @@ const Attendance = () => {
   return (
     <div className="attendance-page">
       {/* HEADER - Kept as requested */}
-        <div className="attendance-header">
-          <div>
-            <h1 className='heading-4'>Attendance Management</h1>
-            <p>Real-time tracking of gym floor activity and active sessions.</p>
-          </div>
-          <div className="header-actions">
-            <button className="btn-filter">
-              <Filter size={16} /> Filter Results
-            </button>
-            <button className="btn-primary">
-              <SignIn size={16} /> Manual Check-In
-            </button>
-          </div>
-      </div>
+      <PageHeader
+        title="Attendance Management"
+        subtitle="Real-time tracking of gym floor activity and active sessions."
+        actions={[
+          {
+            label: "Filter Results",
+            icon: <Filter size={16} />,
+            onClick: () => { },
+            className: "btn-filter"
+          },
+          {
+            label: "Manual Check-In",
+            icon: <SignIn size={16} />,
+            onClick: () => { },
+            className: "btn-primary"
+          }
+        ]}
+      />
+
 
       {/* STAT CARDS - Kept as requested */}
       <div className="stats-grid">
-        <KpiCard title="Total Check-Ins Today" value="142" theme="blue" Icon={SignIn}  />
-        <KpiCard title="Peak Hour" value="06:00 PM" theme="purple" Icon={Clock}  />
-        <KpiCard title="Avg. Daily Attendance" value="118" theme="orange" Icon={BarChart2}  />
-        <KpiCard title="Active Members Now" value="24" theme="teal" Icon={UserCheck}  />
+        <KpiCard title="Total Check-Ins Today" value="142" theme="blue" Icon={SignIn} />
+        <KpiCard title="Peak Hour" value="06:00 PM" theme="purple" Icon={Clock} />
+        <KpiCard title="Avg. Daily Attendance" value="118" theme="orange" Icon={BarChart2} />
+        <KpiCard title="Active Members Now" value="24" theme="teal" Icon={UserCheck} />
       </div>
 
       {/* MAIN CONTENT SPLIT - UPDATED */}
       <div className="attendance-content">
-        
+
         {/* LEFT COMPONENT: ACTIVE MEMBERS LIST */}
-        <div className="active-members-section">
+        <div className="active-members-section card">
           <div className="members-section-header">
             <h2 className="heading-5">Active Members</h2>
             <div className="search-filter-group">
-                <div className="mini-search">
-                    <SignIn size={14} style={{ transform: 'rotate(90deg)', opacity: 0.4 }} className="search-icon-placeholder" /> {/* Using SignIn as a placeholder for Search if generic is preferred, or just a dot */}
-                    <input type="text" placeholder="Search members..." />
-                </div>
-                <button className="icon-control-btn">
-                    <Filter size={14} />
-                    <span>Filters</span>
-                </button>
+              <div className="search-bar-wrapper">
+                <Search size={16} className="search-icon-inline" />
+                <input
+                  type="text"
+                  placeholder="Search members by name or email..."
+                  className="search-input-pill"
+                />
+              </div>
+              <button className="btn-filter">
+                <Filter size={14} />
+                <span>Filters Result</span>
+              </button>
             </div>
           </div>
-          
+
           <div className="members-card-list">
             {recentActivity.map((member) => (
               <div key={member.id} className="member-status-card">
@@ -136,15 +155,15 @@ const Attendance = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="member-checkin-info">
-                   <div className="checkin-time-block">
-                        <span className="info-label">CHECKED IN</span>
-                        <span className="info-value-time">{member.checkIn}</span>
-                   </div>
-                   <button className="more-btn-circular">
-                        <MoreVertical size={16} />
-                   </button>
+                  <div className="checkin-time-block">
+                    <span className="info-label">CHECKED IN</span>
+                    <span className="info-value-time">{member.checkIn}</span>
+                  </div>
+                  <button className="more-btn-circular">
+                    <MoreVertical size={16} />
+                  </button>
                 </div>
               </div>
             ))}
@@ -157,30 +176,30 @@ const Attendance = () => {
             <Clock size={20} className="header-icon-purple" />
             <h3 className="heading-6">Today's Schedule</h3>
           </div>
-          
+
           <div className="schedule-items-list">
             {todaySchedule.map((item) => (
               <div key={item.id} className="schedule-item-card">
                 <div className="item-left-status">
-                    <div className="activity-main">
-                        <h4 className="activity-title">{item.name}</h4>
-                        <p className="activity-meta">{item.time}</p>
+                  <div className="activity-main">
+                    <h4 className="activity-title">{item.name}</h4>
+                    <p className="activity-meta">{item.time}</p>
+                  </div>
+                  <div className="join-rate-section">
+                    <div className="join-rate-header">
+                      <span className="join-label">JOIN RATE</span>
+                      <span className="join-percent">{item.joinRate}%</span>
                     </div>
-                    <div className="join-rate-section">
-                        <div className="join-rate-header">
-                            <span className="join-label">JOIN RATE</span>
-                            <span className="join-percent">{item.joinRate}%</span>
-                        </div>
-                        <div className="progress-bar-container">
-                            <div 
-                                className="progress-bar-fill" 
-                                style={{ width: `${item.joinRate}%` }}
-                            ></div>
-                        </div>
+                    <div className="progress-bar-container">
+                      <div
+                        className="progress-bar-fill"
+                        style={{ width: `${item.joinRate}%` }}
+                      ></div>
                     </div>
+                  </div>
                 </div>
                 <div className={`status-pill-badge ${item.badgeType}`}>
-                    {item.badge}
+                  {item.badge}
                 </div>
               </div>
             ))}

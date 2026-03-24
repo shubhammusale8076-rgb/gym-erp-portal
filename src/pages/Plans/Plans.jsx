@@ -1,53 +1,68 @@
 import React, { useState } from 'react';
-import { Check, Plus, Star, Edit2, Trash2, X, PlusCircle, AlertTriangle } from 'lucide-react';
+import { 
+  Check, 
+  Plus, 
+  Edit2, 
+  X, 
+  AlertTriangle,
+  Archive,
+  BarChart3,
+  Download
+} from 'lucide-react';
 import './Plans.css';
+import PageHeader from '../../components/PageHeader/PageHeader';
 
 const initialPlans = [
   {
     id: 1,
-    name: 'Basic',
-    price: '29',
-    period: 'monthly',
-    description: 'Perfect for beginners just starting out.',
+    name: 'Standard',
+    badge: 'ESSENTIAL',
+    price: '99',
+    period: 'month',
+    isPopular: false,
     features: [
-      'Access to gym equipment',
-      'Locker room access',
-      '1 Intro session with trainer',
-      'Free Wi-Fi'
-    ],
-    isPopular: false
+      '24/7 Gym Floor Access',
+      'Locker & Shower Access',
+      'Standard Group Classes'
+    ]
   },
   {
     id: 2,
-    name: 'Pro',
-    price: '49',
-    period: 'monthly',
-    description: 'Our most popular plan for dedicated lifters.',
+    name: 'Elite',
+    badge: 'MOST POPULAR',
+    price: '149',
+    period: 'month',
+    isPopular: true,
     features: [
-      'Everything in Basic',
-      'Access to all group classes',
-      'Guest passes (2/month)',
-      '10% off supplements',
-      'Advanced app features'
-    ],
-    isPopular: true
+      'All Standard Benefits',
+      'Sauna & Spa Access',
+      '2 Guest Passes/Month',
+      'Priority Booking'
+    ]
   },
   {
     id: 3,
-    name: 'VIP',
-    price: '99',
-    period: 'monthly',
-    description: 'The ultimate experience with coaching.',
+    name: 'Platinum',
+    badge: 'ALL-INCLUSIVE',
+    price: '249',
+    period: 'month',
+    isPopular: false,
     features: [
-      'Everything in Pro',
-      'Unlimited group classes',
-      '4 Personal training sessions',
-      'Free monthly massage',
-      'Priority locker selection',
-      'Smoothie bar credit'
-    ],
-    isPopular: false
+      'All Elite Benefits',
+      'Personal Training (4/mo)',
+      'VIP Lounge Access',
+      'Nutrition Coaching'
+    ]
   }
+];
+
+const COMPARISON_FEATURES = [
+  { name: '24/7 Facility Access',    std: true,   elite: true,      plat: true },
+  { name: 'Pool & Sauna Access',     std: false,  elite: true,      plat: true },
+  { name: 'Personal Training Sess.', std: 'None', elite: '1/month', plat: '4/month' },
+  { name: 'Guest Passes',            std: '0',    elite: '2/month', plat: 'Unlimited' },
+  { name: 'Complimentary Towels',    std: false,  elite: true,      plat: true },
+  { name: 'Priority Class Booking',  std: false,  elite: '24h Early',plat: '48h Early' }
 ];
 
 const Plans = () => {
@@ -56,16 +71,16 @@ const Plans = () => {
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [form, setForm] = useState({
     name: '',
+    badge: '',
     price: '',
-    period: 'monthly',
-    description: '',
+    period: 'month',
     features: [],
     isPopular: false
   });
   const [newFeature, setNewFeature] = useState('');
 
   const openCreate = () => {
-    setForm({ name: '', price: '', period: 'monthly', description: '', features: [], isPopular: false });
+    setForm({ name: '', badge: '', price: '', period: 'month', features: [], isPopular: false });
     setModalMode('create');
   };
 
@@ -107,79 +122,194 @@ const Plans = () => {
   };
 
   return (
-    <div className="plans-page">
-      <div className="plans-page-header">
-        <div>
-          <h1 className="heading">Membership Plans</h1>
-          <p className="subtitle">Design and manage subscription tiers for your members.</p>
-        </div>
-        <button className="btn btn-primary" onClick={openCreate}>
-          <Plus size={18} />
-          Create New Plan
-        </button>
-      </div>
+    <div className="plans-page page-container">
+        <PageHeader
+        title="Subscription Tiers"
+        subtitle="Manage pricing, exclusive benefits, and global access levels for the Elite Club community."
+        actions={[
+          {
+            label: " Add New Plan",
+            icon: <Plus size={16} />,
+            onClick: () => { },
+            className: "btn-primary"
+          },
+          {
+            label: " Archive All",
+            icon: <Archive size={16} />,
+            onClick: () => { },
+            className: "btn-primary"
+          }
+        ]}
+      />
+      {/* ── Page Header ── */}
+      
 
-      <div className="plans-grid">
+      {/* ── Top Section: Tier Cards ── */}
+      <div className="plans-cards-grid">
         {plans.map((plan) => (
           <div key={plan.id} className={`plan-card ${plan.isPopular ? 'popular' : ''}`}>
-            {plan.isPopular && (
-              <div className="popular-tag">
-                <Star size={12} fill="white" />
-                Most Popular
-              </div>
-            )}
+            
+            <div className="plan-badge-wrapper">
+              {plan.badge && (
+                <div className="plan-badge">
+                  {plan.badge}
+                </div>
+              )}
+            </div>
 
-            <div className="plan-header">
-              <h3 className="plan-name">{plan.name}</h3>
-              <div className="plan-price-wrapper">
-                <span className="plan-currency">$</span>
-                <span className="plan-price">{plan.price}</span>
-                <span className="plan-period">/{plan.period === 'monthly' ? 'mo' : 'yr'}</span>
-              </div>
-              <p className="plan-desc">{plan.description}</p>
+            <h3 className="plan-name">{plan.name}</h3>
+            
+            <div className="plan-price-wrapper">
+              <span className="plan-currency">₹</span>
+              <span className="plan-price">{plan.price}</span>
+              <span className="plan-period">/ {plan.period}</span>
             </div>
 
             <ul className="plan-features">
               {plan.features.map((feature, idx) => (
                 <li key={idx} className="feature-item">
-                  <div className="feature-icon-box">
-                    <Check size={12} />
+                  <div className="feature-check">
+                    <Check size={12} strokeWidth={3.5} />
                   </div>
                   <span>{feature}</span>
                 </li>
               ))}
             </ul>
 
-            <div className="plan-actions">
-              <button className="btn plan-btn-edit" onClick={() => openEdit(plan)}>
-                Edit Details
+            <div className="plan-footer-actions">
+              <button className="plan-edit-btn" onClick={() => openEdit(plan)}>
+                <Edit2 size={13} strokeWidth={2.5}/> {plan.isPopular ? 'EDIT PLAN' : 'EDIT'}
               </button>
-              <button className="plan-btn-delete" onClick={() => openDelete(plan)}>
-                Remove Plan
+              <button className="plan-archive-icon-btn" onClick={() => openDelete(plan)}>
+                <Archive size={16} />
               </button>
             </div>
           </div>
         ))}
+      </div>
 
-        {/* Add Plan Placeholder */}
-        <div className="plan-card" style={{ borderStyle: 'dashed', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', opacity: 0.6 }} onClick={openCreate}>
-          <div className="plans-text-center">
-            <PlusCircle size={40} style={{ color: 'var(--text-muted)', marginBottom: '1rem' }} />
-            <p className="plans-font-bold" style={{ color: 'var(--text-muted)' }}>ADD NEW TIER</p>
+      {/* ── Middle Section: Split View ── */}
+      <div className="plans-middle-grid">
+        
+        {/* Left: Insights & Forecast */}
+        <div className="plans-sidebar-col">
+          <div className="plans-insight-card">
+            <h4 className="insight-card-title">Subscription Insights</h4>
+            
+            <div className="insight-bars">
+              <div className="insight-bar-row">
+                <div className="insight-label-row">
+                  <span>Standard</span>
+                  <span>24%</span>
+                </div>
+                <div className="insight-progress-bg">
+                  <div className="insight-progress-fill lavender" style={{width: '24%'}}></div>
+                </div>
+              </div>
+
+              <div className="insight-bar-row">
+                <div className="insight-label-row">
+                  <span className="text-purple-bold">Elite</span>
+                  <span className="text-purple-bold">58%</span>
+                </div>
+                <div className="insight-progress-bg">
+                  <div className="insight-progress-fill purple" style={{width: '58%'}}></div>
+                </div>
+              </div>
+
+              <div className="insight-bar-row">
+                <div className="insight-label-row">
+                  <span>Platinum</span>
+                  <span>18%</span>
+                </div>
+                <div className="insight-progress-bg">
+                  <div className="insight-progress-fill dark" style={{width: '18%'}}></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="insight-total-box">
+              <p className="insight-total-label">TOTAL ACTIVE MEMBERS</p>
+              <h2 className="insight-total-val">1,482</h2>
+            </div>
+          </div>
+
+          <div className="plans-forecast-card">
+            <div className="forecast-icon">
+               <div className="f-icon-inner"><BarChart3 size={16} /></div>
+            </div>
+            <div className="forecast-text">
+              <h4 className="forecast-title">Forecast Report</h4>
+              <p className="forecast-sub">Analyze quarterly growth trends and member retention by plan tier.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Feature Comparison */}
+        <div className="plans-table-card">
+          <div className="table-header-row">
+            <h3 className="table-title">Feature Comparison</h3>
+            <button className="table-export-btn">
+               <Download size={16} />
+            </button>
+          </div>
+
+          <div className="table-container">
+            <table className="feature-table">
+              <thead>
+                <tr>
+                  <th>BENEFITS & ACCESS</th>
+                  <th>STANDARD</th>
+                  <th className="th-elite">ELITE</th>
+                  <th>PLATINUM</th>
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARISON_FEATURES.map((item, i) => (
+                  <tr key={i}>
+                    <td className="td-feature">{item.name}</td>
+                    <td>
+                      {typeof item.std === 'boolean' 
+                        ? (item.std ? <Check size={16} strokeWidth={2.5} className="table-check" /> : <span className="table-dash">—</span>) 
+                        : <span className="table-text-val">{item.std}</span>}
+                    </td>
+                    <td>
+                      {typeof item.elite === 'boolean' 
+                        ? (item.elite ? <Check size={16} strokeWidth={2.5} className="table-check" /> : <span className="table-dash">—</span>) 
+                        : <span className="table-text-val active">{item.elite}</span>}
+                    </td>
+                    <td>
+                      {typeof item.plat === 'boolean' 
+                        ? (item.plat ? <Check size={16} strokeWidth={2.5} className="table-check" /> : <span className="table-dash">—</span>) 
+                        : <span className="table-text-val active">{item.plat}</span>}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
 
-      {/* Promotional Codes Section */}
-      <div className="promo-code glass-panel">
-        <div>
-          <h2 className="heading-2">Promotional Codes</h2>
-          <p className="subtitle">Manage active campaign discounts and seasonal offers.</p>
+      {/* ── Bottom Section: Promotional Cards ── */}
+      <div className="plans-promo-grid">
+        <div className="promo-image-card boutique-bg">
+           <div className="promo-overlay"></div>
+           <div className="promo-content">
+              <h3>Boutique Experience</h3>
+              <p>Manage the visual identity of each membership tier.</p>
+           </div>
         </div>
-        <button className="btn btn-secondary">View Codes</button>
+        <div className="promo-image-card wellness-bg">
+           <div className="promo-overlay"></div>
+           <div className="promo-content">
+              <h3>Wellness Integration</h3>
+              <p>Elite and Platinum tiers feature integrated spa services.</p>
+           </div>
+        </div>
       </div>
 
-      {/* CRUD Modals */}
+      {/* CRUD Modals (Retained and styled) */}
       {(modalMode === 'create' || modalMode === 'edit') && (
         <div className="modal-overlay" onClick={() => setModalMode(null)}>
           <div className="modal-dialog plan-modal-dialog" onClick={e => e.stopPropagation()}>
@@ -200,6 +330,19 @@ const Plans = () => {
                   />
                 </div>
                 <div className="input-group">
+                  <label className="input-label">Badge Text</label>
+                  <input
+                    type="text"
+                    className="input-field"
+                    value={form.badge}
+                    onChange={e => setForm({ ...form, badge: e.target.value })}
+                    placeholder="e.g. MOST POPULAR"
+                  />
+                </div>
+              </div>
+
+              <div className="plans-form-grid">
+                <div className="input-group">
                   <label className="input-label">Price ($)</label>
                   <input
                     type="number"
@@ -209,27 +352,15 @@ const Plans = () => {
                     placeholder="99"
                   />
                 </div>
-              </div>
-
-              <div className="input-group">
-                <label className="input-label">Description</label>
-                <textarea
-                  className="input-field"
-                  rows="2"
-                  value={form.description}
-                  onChange={e => setForm({ ...form, description: e.target.value })}
-                  placeholder="Short summary of the value proposition"
-                ></textarea>
-              </div>
-
-              <div className="plans-checkbox-wrapper">
-                <input
-                  type="checkbox"
-                  id="pop"
-                  checked={form.isPopular}
-                  onChange={e => setForm({ ...form, isPopular: e.target.checked })}
-                />
-                <label htmlFor="pop" className="plans-label-mb-0">Highlight as "Most Popular"</label>
+                <div className="plans-checkbox-wrapper" style={{alignSelf: 'flex-end', paddingBottom: '0.8rem'}}>
+                  <input
+                    type="checkbox"
+                    id="pop"
+                    checked={form.isPopular}
+                    onChange={e => setForm({ ...form, isPopular: e.target.checked })}
+                  />
+                  <label htmlFor="pop" className="plans-label-mb-0">Highlight as Elite/Popular layout</label>
+                </div>
               </div>
 
               <div className="input-group">
@@ -277,7 +408,7 @@ const Plans = () => {
         <div className="modal-overlay" onClick={() => setModalMode(null)}>
           <div className="modal-dialog modal-dialog-sm" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
-              <h2 className="heading-3">Delete Plan</h2>
+              <h2 className="heading-3">Archive Plan</h2>
               <button className="icon-btn" onClick={() => setModalMode(null)}><X size={18} /></button>
             </div>
             <div className="modal-body">
@@ -285,12 +416,12 @@ const Plans = () => {
                 <div className="delete-icon-wrapper">
                   <AlertTriangle size={28} color="var(--danger)" />
                 </div>
-                <p>Are you sure you want to delete the <strong>{selectedPlan?.name}</strong> plan? This might affect existing subscribers.</p>
+                <p>Are you sure you want to archive the <strong>{selectedPlan?.name}</strong> plan?</p>
               </div>
             </div>
             <div className="modal-footer">
               <button className="btn btn-secondary" onClick={() => setModalMode(null)}>Cancel</button>
-              <button className="btn btn-danger" onClick={handleDelete}>Delete Permanently</button>
+              <button className="btn btn-danger" onClick={handleDelete}>Archive Plan</button>
             </div>
           </div>
         </div>

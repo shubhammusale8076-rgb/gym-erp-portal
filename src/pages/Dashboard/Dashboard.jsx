@@ -1,8 +1,9 @@
 import React from 'react';
-import { Users, TrendingUp, CalendarCheck, Activity, PlusCircle } from 'lucide-react';
+import { Users, TrendingUp, CalendarCheck, Activity, PlusCircle, Download } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import KpiCard from '../../components/KpiCard';
 import './Dashboard.css';
+import PageHeader from '../../components/PageHeader/PageHeader';
 
 const chartData = [
   { name: 'JAN', value: 10 },
@@ -16,25 +17,30 @@ const chartData = [
 const Dashboard = () => {
   return (
     <div className="dashboard-container">
-      <header className="dashboard-header">
-        <div className="dashboard-header-text">
-          <h1 className="dashboard-title">Dashboard Overview</h1>
-          <p className='heading-7'>Curating the peak performance of Elite Club</p>
-        </div>
-        <button className="dashboard-action-btn">Download Report</button>
-      </header>
+      <PageHeader
+        title="Dashboard Overview"
+        subtitle="Curating the peak performance of Elite Club"
+        actions={[
+          {
+            label: "Download Report",
+            icon: <Download size={16} />,
+            onClick: () => { },
+            className: "btn-primary"
+          }
+        ]}
+      />
 
       {/* KPI Cards section kept as is */}
       <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', margin: '24px 0' }}>
-        <KpiCard title="Total Members" value="1,534" theme="teal" Icon={Users}  />
-        <KpiCard title="Monthly Revenue" value="42,500" theme="blue"  Icon={TrendingUp}  />
+        <KpiCard title="Total Members" value="1,534" theme="teal" Icon={Users} />
+        <KpiCard title="Monthly Revenue" value="42,500" theme="blue" Icon={TrendingUp} />
         <KpiCard title="Today's Check-ins" value="342" theme="purple" Icon={CalendarCheck} />
         <KpiCard title="Active Classes" value="24" theme="orange" Icon={Activity} />
       </section>
 
       {/* New Charts Layout Section */}
       <div className="dashboard-grid">
-        
+
         {/* 1. Membership Growth */}
         <div className="card growth-card">
           <div className="card-header-flex">
@@ -52,25 +58,25 @@ const Dashboard = () => {
               <AreaChart data={chartData}>
                 <defs>
                   <linearGradient id="growthGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#8130b0" stopOpacity={0.2}/>
-                    <stop offset="95%" stopColor="#8130b0" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#8130b0" stopOpacity={0.2} />
+                    <stop offset="95%" stopColor="#8130b0" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <Tooltip />
-                <Area 
-                  type="monotone" 
-                  dataKey="value" 
-                  stroke="#8130b0" 
+                <Area
+                  type="monotone"
+                  dataKey="value"
+                  stroke="#8130b0"
                   strokeWidth={3}
-                  fillOpacity={1} 
-                  fill="url(#growthGradient)" 
+                  fillOpacity={1}
+                  fill="url(#growthGradient)"
                 />
-                <XAxis 
-                  dataKey="name" 
-                  axisLine={false} 
-                  tickLine={false} 
+                <XAxis
+                  dataKey="name"
+                  axisLine={false}
+                  tickLine={false}
                   tick={{ fontSize: 10, fill: '#afafb6' }}
-                  dy={10} 
+                  dy={10}
                 />
               </AreaChart>
             </ResponsiveContainer>
@@ -211,25 +217,25 @@ const Dashboard = () => {
         {/* 7. Capacity Cards */}
         <div className="capacity-group">
           <div className="card capacity-small-card">
-              <div className="capacity-icon-wrap"><Activity size={16} /></div>
-              <div className="capacity-text">
-                  <p className="cap-title">HIIT</p>
-                  <p className="cap-percent">98% CAPACITY</p>
-              </div>
+            <div className="capacity-icon-wrap"><Activity size={16} /></div>
+            <div className="capacity-text">
+              <p className="cap-title">HIIT</p>
+              <p className="cap-percent">98% CAPACITY</p>
+            </div>
           </div>
           <div className="card capacity-small-card">
-              <div className="capacity-icon-wrap"><Users size={16} /></div>
-              <div className="capacity-text">
-                  <p className="cap-title">Yoga</p>
-                  <p className="cap-percent">84% CAPACITY</p>
-              </div>
+            <div className="capacity-icon-wrap"><Users size={16} /></div>
+            <div className="capacity-text">
+              <p className="cap-title">Yoga</p>
+              <p className="cap-percent">84% CAPACITY</p>
+            </div>
           </div>
         </div>
 
         {/* Floating Action Buttons */}
         <div className="floating-actions">
-           <button className="fab fab-secondary"><Activity size={24} /></button>
-           <button className="fab fab-primary"><PlusCircle size={28} /></button>
+          <button className="fab fab-secondary"><Activity size={24} /></button>
+          <button className="fab fab-primary"><PlusCircle size={28} /></button>
         </div>
 
       </div>

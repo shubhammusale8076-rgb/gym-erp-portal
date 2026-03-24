@@ -34,6 +34,7 @@
 
 .kpi-card-title {
   font-size: 15px;
+  color: var(--text-secondary);
   font-weight: 500;
   margin: 0;
   margin-top: 4px; /* Align slightly with top of button */
@@ -63,7 +64,7 @@
 }
 
 .kpi-card-value {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
   margin: 0;
   line-height: 1.1;

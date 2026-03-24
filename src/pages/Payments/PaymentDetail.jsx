@@ -1,238 +1,225 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
-  ArrowLeft, Download, Mail, CheckCircle2, Clock,
-  AlertCircle, RefreshCw, X, Send, Printer, Dumbbell
+  ArrowLeft, Download, Mail, CheckCircle2, 
+  RotateCcw, CreditCard, User, History, 
+  Trophy, HelpCircle, Dumbbell, Eye
 } from 'lucide-react';
 import './PaymentDetail.css';
+import PageHeader from '../../components/PageHeader/PageHeader';
 
-const PAYMENTS_DATA = [
-  { id: 'INV-2026-001', member: 'Sarah Connor',   email: 'sarah@example.com',  plan: 'Pro',   amount: 2499, tax: 449,  date: '2026-03-15', dueDate: '2026-04-15', method: 'UPI',         status: 'Paid',    txnId: 'TXN8823411' },
-  { id: 'INV-2026-002', member: 'John Smith',     email: 'john@example.com',   plan: 'Basic', amount: 999,  tax: 179,  date: '2026-03-14', dueDate: '2026-04-14', method: 'Card',        status: 'Paid',    txnId: 'TXN8823402' },
-  { id: 'INV-2026-003', member: 'Emma Wilson',    email: 'emma@example.com',   plan: 'VIP',   amount: 4999, tax: 899,  date: '2026-03-13', dueDate: '2026-04-13', method: 'Net Banking', status: 'Pending', txnId: 'TXN8823399' },
-  { id: 'INV-2026-004', member: 'Michael Brown',  email: 'mike@example.com',   plan: 'Pro',   amount: 2499, tax: 449,  date: '2026-03-10', dueDate: '2026-04-10', method: 'Card',        status: 'Paid',    txnId: 'TXN8823381' },
-  { id: 'INV-2026-005', member: 'Jessica Davis',  email: 'jess@example.com',   plan: 'Basic', amount: 999,  tax: 179,  date: '2026-03-08', dueDate: '2026-03-22', method: 'UPI',         status: 'Overdue', txnId: 'TXN8823370' },
-  { id: 'INV-2026-006', member: 'Robert Taylor',  email: 'robert@example.com', plan: 'VIP',   amount: 4999, tax: 899,  date: '2026-03-07', dueDate: '2026-04-07', method: 'Card',        status: 'Paid',    txnId: 'TXN8823360' },
-  { id: 'INV-2026-007', member: 'Laura Martinez', email: 'laura@example.com',  plan: 'Pro',   amount: 2499, tax: 449,  date: '2026-03-05', dueDate: '2026-04-05', method: 'Net Banking', status: 'Refunded',txnId: 'TXN8823349' },
-  { id: 'INV-2026-008', member: 'Chris Johnson',  email: 'chris@example.com',  plan: 'Basic', amount: 999,  tax: 179,  date: '2026-03-03', dueDate: '2026-04-03', method: 'UPI',         status: 'Paid',    txnId: 'TXN8823340' },
-  { id: 'INV-2026-009', member: 'Anna Garcia',    email: 'anna@example.com',   plan: 'VIP',   amount: 4999, tax: 899,  date: '2026-03-01', dueDate: '2026-04-01', method: 'Card',        status: 'Pending', txnId: 'TXN8823321' },
-  { id: 'INV-2026-010', member: 'David Lee',      email: 'david@example.com',  plan: 'Pro',   amount: 2499, tax: 449,  date: '2026-02-28', dueDate: '2026-03-15', method: 'UPI',         status: 'Overdue', txnId: 'TXN8823310' },
+const BILLING_HISTORY = [
+  { id: 'TRX-88291', date: 'OCT 24, 2023', amount: 199.00, status: 'CURRENT' },
+  { id: 'TRX-77412', date: 'SEP 24, 2023', amount: 149.00, status: 'PAID' },
+  { id: 'TRX-66109', date: 'AUG 24, 2023', amount: 149.00, status: 'PAID' },
 ];
 
-const STATUS_META = {
-  Paid:     { cls: 'badge-paid',     icon: CheckCircle2, label: 'Payment Confirmed' },
-  Pending:  { cls: 'badge-pending',  icon: Clock,        label: 'Awaiting Payment'  },
-  Overdue:  { cls: 'badge-overdue',  icon: AlertCircle,  label: 'Payment Overdue'   },
-  Refunded: { cls: 'badge-refunded', icon: RefreshCw,    label: 'Amount Refunded'   },
-};
-
-const fmt  = (n) => `₹${n.toLocaleString('en-IN')}`;
-
 const PaymentDetail = () => {
-  const { id }       = useParams();
-  const navigate     = useNavigate();
-  const [showEmail, setShowEmail]   = useState(false);
-  const [emailTo, setEmailTo]       = useState('');
-  const [sent, setSent]             = useState(false);
-  const [sending, setSending]       = useState(false);
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-  const payment = PAYMENTS_DATA.find(p => p.id === id);
-
-  if (!payment) {
-    return (
-      <div className="pd-not-found">
-        <AlertCircle size={48} />
-        <h2>Invoice not found</h2>
-        <button className="btn btn-primary" onClick={() => navigate('/payments')}>Back to Payments</button>
-      </div>
-    );
-  }
-
-  const { cls, icon: StatusIcon, label } = STATUS_META[payment.status];
-  const subtotal = payment.amount;
-  const tax      = payment.tax;
-  const total    = subtotal + tax;
-
-  const handlePrint = () => window.print();
-
-  const handleSendEmail = () => {
-    setSending(true);
-    setTimeout(() => {
-      setSending(false);
-      setSent(true);
-      setTimeout(() => { setSent(false); setShowEmail(false); }, 2500);
-    }, 1500);
-  };
+  const fmt = (n) => `$${n.toFixed(2)}`;
 
   return (
     <div className="pd-page page-container">
+      {/* ── Page Header ── */}
+      <PageHeader
+        title="Payment Details"
+        actions={[
+          {
+            label: "Resend Receipt",
+            icon: <Mail size={16} />,
+            onClick: () => { },
+            className: "btn-secondary"
+          },
+          {
+            label: "Download PDF",
+            icon: <Download size={16} />,
+            onClick: () => { },
+            className: "btn-secondary"
+          },
+          {
+            label: "Refund Transaction",
+            icon: <RotateCcw size={16} />,
+            onClick: () => { },
+            className: "btn-refund"
+          }
+        ]}
+      />
 
-      {/* ── Top Bar ── */}
-      <div className="pd-topbar no-print">
-        <button className="pd-back-btn" onClick={() => navigate('/payments')}>
-          <ArrowLeft size={18} /> Back to Payments
-        </button>
-        <div className="pd-topbar-actions">
-          <button className="btn btn-secondary" onClick={() => { setEmailTo(payment.email); setShowEmail(true); }}>
-            <Mail size={16} /> Send Receipt
-          </button>
-          <button className="btn btn-primary" onClick={handlePrint}>
-            <Printer size={16} /> Download Receipt
-          </button>
-        </div>
-      </div>
-
-      {/* ── Receipt Card ── */}
-      <div className="pd-receipt-wrapper">
-        <div className="pd-receipt" id="receipt-print">
-
-          {/* Receipt Header */}
-          <div className="pd-receipt-head">
-            <div className="pd-brand">
-              <div className="pd-brand-icon"><Dumbbell size={20}/></div>
-              <div>
-                <h2 className="pd-brand-name">GymSync</h2>
-                <p className="pd-brand-sub">Professional Fitness Center</p>
+      <main className="pd-main-grid">
+        {/* ── Left Content: Transaction Details ── */}
+        <div className="pd-left-column">
+          <section className="pd-card section-card">
+            {/* Reference & Status */}
+            <div className="pd-ref-header">
+              <div className="pd-ref-text">
+                <span className="pd-ref-label">TRANSACTION REFERENCE</span>
+                <h2 className="pd-ref-id">{id || 'TRX-88291'}</h2>
+                <p className="pd-ref-date">Processed on Oct 24, 2023 • 14:32 PM</p>
               </div>
-            </div>
-            <div className="pd-receipt-meta">
-              <h3 className="pd-receipt-title">RECEIPT</h3>
-              <p className="pd-invoice-id">{payment.id}</p>
-              <span className={`badge pr-status-badge ${cls} pd-status-badge`}>
-                <StatusIcon size={12} /> {payment.status}
-              </span>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="pd-divider"/>
-
-          {/* Member + Payment Info */}
-          <div className="pd-info-grid">
-            <div className="pd-info-col">
-              <p className="pd-info-label">Billed To</p>
-              <div className="pd-member-row">
-                <img
-                  src={`https://ui-avatars.com/api/?name=${payment.member.replace(' ','+')}&background=1d1d2b&color=d4ff3d&size=48`}
-                  alt={payment.member}
-                  className="pd-member-avatar"
-                />
-                <div>
-                  <p className="pd-member-name">{payment.member}</p>
-                  <p className="pd-member-email">{payment.email}</p>
+              <div className="pd-ref-badges">
+                <span className="pd-status-pill paid">PAID</span>
+                <div className="pd-stripe-tag">
+                   <CheckCircle2 size={12} />
+                   <span>Secured via Stripe</span>
                 </div>
               </div>
             </div>
-            <div className="pd-info-col pd-info-right">
-              <div className="pd-detail-row">
-                <span className="pd-detail-key">Issue Date</span>
-                <span className="pd-detail-val">{payment.date}</span>
-              </div>
-              <div className="pd-detail-row">
-                <span className="pd-detail-key">Due Date</span>
-                <span className="pd-detail-val">{payment.dueDate}</span>
-              </div>
-              <div className="pd-detail-row">
-                <span className="pd-detail-key">Payment Method</span>
-                <span className="pd-detail-val pd-method">{payment.method}</span>
-              </div>
-              <div className="pd-detail-row">
-                <span className="pd-detail-key">Transaction ID</span>
-                <span className="pd-detail-val pd-txn">{payment.txnId}</span>
-              </div>
-            </div>
-          </div>
 
-          {/* Line Items */}
-          <div className="pd-line-items">
-            <div className="pd-line-header">
-              <span>Description</span>
-              <span>Plan</span>
-              <span>Amount</span>
-            </div>
-            <div className="pd-line-row">
-              <span>Gym Membership Subscription</span>
-              <span>{payment.plan}</span>
-              <span>{fmt(subtotal)}</span>
-            </div>
-            <div className="pd-line-row pd-line-dimmed">
-              <span>GST / Tax (18%)</span>
-              <span>—</span>
-              <span>{fmt(tax)}</span>
-            </div>
-          </div>
+            {/* Profile & Payment Cards */}
+            <div className="pd-info-cards">
+              <div className="pd-info-card-box">
+                <div className="pd-member-display">
+                  <img src="https://i.pravatar.cc/150?u=elena" alt="Elena" className="pd-display-avatar" />
+                  <div className="pd-display-info">
+                    <h3 className="pd-display-name">Elena Rodriguez</h3>
+                    <p className="pd-display-plan">Pro Plan Member</p>
+                    <p className="pd-display-email">elena.rod@example.com</p>
+                  </div>
+                </div>
+              </div>
 
-          {/* Total */}
-          <div className="pd-total-row">
-            <span className="pd-total-label">Total Amount</span>
-            <span className="pd-total-value">{fmt(total)}</span>
-          </div>
+              <div className="pd-info-card-box">
+                <div className="pd-method-display">
+                  <span className="pd-method-label">PAYMENT METHOD</span>
+                  <div className="pd-card-row">
+                    <div className="pd-card-icon-box">
+                      <CreditCard size={20} />
+                    </div>
+                    <div className="pd-card-details">
+                      <p className="pd-card-number">Visa ending in 4242</p>
+                      <p className="pd-card-expiry">Expires 08/26</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          {/* Perforated bottom + footer */}
-          <div className="pd-perf-line"/>
-          <div className="pd-receipt-foot">
-            <p className="pd-foot-status">{label}</p>
-            <p className="pd-foot-note">Thank you for being a GymSync member. Keep pushing your limits! 💪</p>
-          </div>
+            {/* Statement Items */}
+            <div className="pd-statement">
+              <h4 className="pd-section-title">STATEMENT ITEMS</h4>
+              <div className="pd-items-list">
+                <div className="pd-item-row">
+                  <div className="pd-item-icon-box purple">
+                     <Mail size={18} />
+                  </div>
+                  <div className="pd-item-info">
+                    <p className="pd-item-name">Monthly Membership</p>
+                    <p className="pd-item-desc">Billing cycle: Oct 2023</p>
+                  </div>
+                  <span className="pd-item-price">$149.00</span>
+                </div>
+
+                <div className="pd-item-row">
+                  <div className="pd-item-icon-box lavender">
+                     <Dumbbell size={18} />
+                  </div>
+                  <div className="pd-item-info">
+                    <p className="pd-item-name">Personal Training (1hr)</p>
+                    <p className="pd-item-desc">Instructor: Marcus V.</p>
+                  </div>
+                  <span className="pd-item-price">$50.00</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Price Breakdown */}
+            <div className="pd-breakdown">
+              <div className="pd-price-row">
+                <span>Subtotal</span>
+                <span>$199.00</span>
+              </div>
+              <div className="pd-price-row text-muted">
+                <span>Tax (7%)</span>
+                <span>$13.93</span>
+              </div>
+              <div className="pd-price-row text-purple">
+                <span>Discounts</span>
+                <span>-$13.93</span>
+              </div>
+              <div className="pd-total-row-main">
+                <div className="pd-total-label-box">
+                  <h2 className="pd-total-label">Total Paid</h2>
+                </div>
+                <div className="pd-total-value-box">
+                  <h2 className="pd-total-amount">$199.00</h2>
+                  <span className="pd-currency">CURRENCY: USD</span>
+                </div>
+              </div>
+            </div>
+
+            <p className="pd-footer-thank">Thank you for being part of the Elite Community.</p>
+          </section>
         </div>
 
-        {/* Side summary (no-print) */}
-        <div className="pd-side-panel no-print">
-          <div className="pd-side-card glass-card">
-            <h4 className="pd-side-title">Payment Summary</h4>
-            <div className="pd-side-row"><span>Subtotal</span><span>{fmt(subtotal)}</span></div>
-            <div className="pd-side-row"><span>GST (18%)</span><span>{fmt(tax)}</span></div>
-            <div className="pd-side-total"><span>Total</span><span>{fmt(total)}</span></div>
-          </div>
-          <div className="pd-side-card glass-card pd-side-actions-card">
-            <h4 className="pd-side-title">Actions</h4>
-            <button className="btn btn-primary pd-action-btn" onClick={handlePrint}>
-              <Download size={16}/> Download Receipt
-            </button>
-            <button className="btn btn-secondary pd-action-btn" onClick={() => { setEmailTo(payment.email); setShowEmail(true); }}>
-              <Mail size={16}/> Send via Email
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Email Modal ── */}
-      {showEmail && (
-        <div className="pd-modal-overlay" onClick={() => setShowEmail(false)}>
-          <div className="pd-modal" onClick={e => e.stopPropagation()}>
-            <div className="pd-modal-header">
-              <h3>Send Receipt by Email</h3>
-              <button className="pd-modal-close" onClick={() => setShowEmail(false)}><X size={18}/></button>
+        {/* ── Right Content: Sidebar ── */}
+        <aside className="pd-right-column">
+          {/* Recent Billing History */}
+          <section className="pd-card sidebar-card history-card">
+            <div className="pd-card-header">
+               <History size={18} />
+               <h3 className="pd-card-title">Recent Billing History</h3>
             </div>
-            <p className="pd-modal-sub">A copy of <strong>{payment.id}</strong> will be sent to:</p>
-            <div className="input-group">
-              <label className="input-label">Recipient Email</label>
-              <input
-                className="input-field"
-                type="email"
-                value={emailTo}
-                onChange={e => setEmailTo(e.target.value)}
-                placeholder="email@example.com"
-              />
+            <div className="pd-timeline">
+              {BILLING_HISTORY.map((item, idx) => (
+                <div key={idx} className="pd-timeline-item">
+                  <div className="pd-timeline-dot-connector">
+                    <div className={`pd-timeline-dot ${item.status === 'CURRENT' ? 'active' : ''}`} />
+                    {idx !== BILLING_HISTORY.length - 1 && <div className="pd-timeline-line" />}
+                  </div>
+                  <div className="pd-timeline-content">
+                    <div className="pd-timeline-header-row">
+                      <span className="pd-timeline-id">{item.id}</span>
+                      <span className={`pd-timeline-status ${item.status.toLowerCase()}`}>{item.status}</span>
+                    </div>
+                    <p className="pd-timeline-date">{item.date}</p>
+                    <p className="pd-timeline-amount">{fmt(item.amount)}</p>
+                  </div>
+                </div>
+              ))}
             </div>
+            <button className="pd-btn-full-history">View Full History</button>
+          </section>
 
-            {sent ? (
-              <div className="pd-toast-success">
-                <CheckCircle2 size={18}/> Receipt sent successfully!
-              </div>
-            ) : (
-              <button
-                className="btn btn-primary pd-modal-send-btn"
-                onClick={handleSendEmail}
-                disabled={!emailTo || sending}
-              >
-                {sending ? <span className="pd-spinner"/> : <Send size={15}/>}
-                {sending ? 'Sending…' : 'Send Receipt'}
-              </button>
-            )}
-          </div>
-        </div>
-      )}
+          {/* Account Standing */}
+          <section className="pd-card standing-card">
+             <div className="pd-standing-header">
+                <p className="pd-standing-label">ACCOUNT STANDING</p>
+                <h2 className="pd-standing-tier">Elite Tier</h2>
+             </div>
+             <div className="pd-standing-stats">
+                <div className="pd-standing-item">
+                   <span className="pd-standing-key">LTV (Lifetime Value)</span>
+                   <span className="pd-standing-val">$2,840.00</span>
+                </div>
+                <div className="pd-standing-item">
+                   <span className="pd-standing-key">Member Since</span>
+                   <span className="pd-standing-val">Jan 2022</span>
+                </div>
+             </div>
+             <div className="pd-progress-box">
+                <div className="pd-progress-bar">
+                   <div className="pd-progress-fill" style={{ width: '75%' }} />
+                </div>
+                <p className="pd-progress-text">75% Renewal Likelihood Score</p>
+             </div>
+          </section>
+
+          {/* Help Box */}
+          <section className="pd-card help-card">
+             <div className="pd-help-content">
+                <div className="pd-help-text-box">
+                   <h4 className="pd-help-title">Need help with this?</h4>
+                   <p className="pd-help-sub">Flag billing discrepancy</p>
+                </div>
+                <div className="pd-help-icon-box">
+                   <HelpCircle size={20} />
+                </div>
+             </div>
+          </section>
+        </aside>
+      </main>
     </div>
   );
 };

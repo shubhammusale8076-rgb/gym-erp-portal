@@ -69,11 +69,7 @@ grid-template-columns:1fr 1fr 1fr;
 gap:20px;
 }
 
-.card{
-background:white;
-padding:20px;
-border-radius:12px;
-}
+
 
 .info-box{
 background:#f7f7f7;

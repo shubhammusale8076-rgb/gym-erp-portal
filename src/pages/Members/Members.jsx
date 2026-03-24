@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Search, Plus, Filter, MoreVertical, Edit2, Trash2 } from 'lucide-react';
+import { Search, Plus, Filter, Edit2, Trash2, UserPlus } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import AddMember from './AddMember';
 import './Members.css';
+import PageHeader from '../../components/PageHeader/PageHeader';
 
 const initialMembers = [
   { id: 1, name: 'Alexandra Sterling', email: 'alex.sterling@curator.com', plan: 'Black Diamond Elite', status: 'Active', joinDate: 'Oct 12, 2023' },
@@ -16,7 +17,6 @@ const Members = () => {
   const [members, setMembers] = useState(initialMembers);
   const [searchTerm, setSearchTerm] = useState('');
   const [isAddingMember, setIsAddingMember] = useState(false);
-  const [viewMode, setViewMode] = useState('list'); // 'list' or 'grid'
   const navigate = useNavigate();
 
   const handleAddMember = (newMemberData) => {
@@ -40,16 +40,18 @@ const Members = () => {
   return (
     <div className="members-container">
 
-      <header className="members-header">
-        <div>
-          <h1 className="heading-4">Members Directory</h1>
-          <p className="members-subtitle">Manage your gym members and their subscriptions.</p>
-        </div>
-        <button className="btn btn-primary" onClick={() => setIsAddingMember(true)}>
-          <Plus size={18} />
-          Add Member
-        </button>
-      </header>
+      <PageHeader
+        title="Members Directory"
+        subtitle="Track all members and their subscriptions."
+        actions={[
+          {
+            label: " Add Member",
+            icon: <UserPlus size={16} />,
+            onClick: () => { },
+            className: "btn-primary"
+          }
+        ]}
+      />
       <div className="members-controls">
         <div className="search-bar-wrapper">
           <Search size={18} className="search-icon-inline" />
@@ -63,9 +65,9 @@ const Members = () => {
         </div>
 
         <div className="action-buttons-group">
-          <button className="control-btn filter-btn">
+          <button className="btn-filter">
             <Filter size={18} />
-            <span>Filters</span>
+            <span>Filters Result</span>
           </button>
 
         </div>
@@ -75,7 +77,7 @@ const Members = () => {
         <table className="members-table">
           <thead>
             <tr>
-              <th>MEMBER</th>
+              <th className="member-column">MEMBER</th>
               <th>PLAN TYPE</th>
               <th>STATUS</th>
               <th>JOIN DATE</th>

@@ -35,6 +35,7 @@ const Sidebar = () => {
         { name: 'Membership Plans', path: '/plans', icon: <Layers size={20} /> },
         { name: 'CRM / Leads', path: '/crm', icon: <Target size={20} /> },
         { name: 'Trainers', path: '/trainer', icon: <Dumbbell size={20} /> },
+             { name: 'Users', path: '/settings/users', icon: <ShieldCheck size={20} /> },
       ]
     },
     {
@@ -51,12 +52,8 @@ const Sidebar = () => {
     {
       category: 'SETTINGS',
       items: [
-        { name: 'Users', path: '/settings/users', icon: <ShieldCheck size={20} /> },
+   
         { name: 'Settings', path: '/settings', icon: <Settings size={20} /> },
-        { name: 'Intergration Settings', path: '/settings/integrations', icon: <Settings size={20} /> },
-        { name: 'Notification Settings', path: '/settings/notifications', icon: <Settings size={20} /> },
-        { name: 'Payment Settings', path: '/settings/payments', icon: <Settings size={20} /> },
-        { name: 'Security Settings', path: '/settings/security', icon: <Settings size={20} /> },
       ]
     }
   ];

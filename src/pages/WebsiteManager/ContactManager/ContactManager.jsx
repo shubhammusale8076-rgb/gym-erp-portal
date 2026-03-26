@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Youtube, Clock, Save, Building } from 'lucide-react';
 import './ContactManager.css';
+import PageHeader from '../../../components/PageHeader/PageHeader';
 
 const ContactManager = () => {
   const [contactData, setContactData] = useState({
@@ -80,29 +81,16 @@ const ContactManager = () => {
   return (
     <div className="contact-cx-container page-container">
 
-      {/* Header */}
-      <div className="wm-header contact-header">
-        <div>
-          <div className="badge wm-badge contact-badge">
-            <span className="badge-dot contact-dot"></span> CONTACT & LOCATION
-          </div>
-          <h1 className="heading-1 wm-title">Gym Details</h1>
-          <p className="subtitle">
-            Manage your physical address, operating hours, and social media presence used across the site.
-          </p>
-        </div>
-
-        <div className="contact-cx-actions">
-          {hasChanges && <span className="contact-unsaved-text">Unsaved changes!</span>}
-          <button
-            className={`btn ${hasChanges ? 'btn-primary' : 'contact-btn-disabled'}`}
-            onClick={saveChanges}
-            disabled={!hasChanges}
-          >
-            <Save size={16} /> Save Information
-          </button>
-        </div>
-      </div>
+      <PageHeader
+        title="Contact & Location"
+        subtitle="Manage your physical address, operating hours, and social media presence used across the site."
+        actions={[{
+          label: " Save Information",
+          icon: <Save size={16} />,
+          onClick: () => { },
+          className: "btn-primary"
+        }]}
+      />
 
       <div className="contact-cx-grid">
 

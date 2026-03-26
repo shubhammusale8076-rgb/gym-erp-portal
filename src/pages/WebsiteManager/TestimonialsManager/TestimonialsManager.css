@@ -2,8 +2,7 @@
 .testi-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  background-color: var(--bg-dark);
+  gap: 1rem;
 }
 
 .testi-container.modal-open {
@@ -11,22 +10,6 @@
   overflow: hidden;
 }
 
-.testi-badge {
-  background-color: #fdf4ff;
-  color: #a21caf;
-  /* Fuchsia tone for distinction */
-  border-color: rgba(162, 28, 175, 0.1);
-}
-
-.testi-dot {
-  background-color: #a21caf;
-}
-
-.testi-subtitle {
-  color: #64748b;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
 
 /* Actions Row */
 .testi-actions-row {
@@ -44,41 +27,7 @@
   color: #64748b;
 }
 
-.testi-btn-add {
-  background-color: #0f172a;
-  color: white;
-  border-radius: 8px;
-  padding: 0.6rem 1.25rem;
-  font-weight: 600;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-}
 
-.testi-btn-add:hover {
-  background-color: #1e293b;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 10px -1px rgba(0, 0, 0, 0.3);
-}
-
-/* AI Audit Banner overrides */
-.testi-ai-audit {
-  background: linear-gradient(135deg, #fdf4ff 0%, #fce7f3 100%);
-  border-color: rgba(162, 28, 175, 0.1);
-  margin-top: 1rem;
-}
-
-.testi-ai-label {
-  color: #a21caf;
-}
-
-.testi-ai-btn {
-  background-color: #a21caf;
-}
-
-.testi-ai-btn:hover {
-  background-color: #86198f;
-}
-
-/* Grid & Cards */
 .testi-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -324,7 +273,7 @@
 .testi-modal-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--primary);
   margin: 0 0 0.25rem 0;
 }
 
@@ -471,34 +420,6 @@
   flex-shrink: 0;
 }
 
-.testi-btn-cancel {
-  background: transparent;
-  border: 1px solid #e2e8f0;
-  color: #475569;
-  padding: 0.6rem 1.25rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.testi-btn-cancel:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
-}
-
-.testi-btn-save {
-  background-color: #0f172a;
-  color: white;
-  border: none;
-  padding: 0.6rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.testi-btn-save:hover {
-  background-color: #1e293b;
+.testi-modal-footer .btn-sm {
+  padding: 0.7rem 1.5rem;
 }

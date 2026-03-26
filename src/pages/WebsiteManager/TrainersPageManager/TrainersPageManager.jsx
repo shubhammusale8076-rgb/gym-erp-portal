@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Sparkles, Plus, Edit2, Trash2, Camera, X, Users, Link as LinkIcon, Sun, Moon } from 'lucide-react';
 import './TrainersPageManager.css';
+import PageHeader from '../../../components/PageHeader/PageHeader';
 
 const TrainersPageManager = () => {
   const [trainers, setTrainers] = useState([
@@ -70,7 +71,7 @@ const TrainersPageManager = () => {
 
   const handleSaveProfile = () => {
     if (!activeTrainer) return;
-    
+
     // Check if updating existing or adding new
     const exists = trainers.some(t => t.id === activeTrainer.id);
     if (exists) {
@@ -85,7 +86,7 @@ const TrainersPageManager = () => {
   const handleActiveChange = (field, value) => {
     setActiveTrainer({ ...activeTrainer, [field]: value });
   };
-  
+
   const handleSocialChange = (network, value) => {
     setActiveTrainer({
       ...activeTrainer,
@@ -130,20 +131,17 @@ const TrainersPageManager = () => {
   };
 
   return (
-    <div className={`tm-container page-container ${isModalOpen ? 'modal-open' : ''}`}>
-      <div className="wm-header">
-        <div className="badge wm-badge tm-badge">
-          <span className="badge-dot tm-dot"></span> TRAINERS
-        </div>
-        <h1 className="heading-1 wm-title">TRAINERS PAGE MANAGER</h1>
-        <p className="subtitle tm-subtitle">
-          Manage your elite coaching staff profiles displayed on the website.
-        </p>
-      </div>
+    <div className={`tm-container  ${isModalOpen ? 'modal-open' : ''}`}>
+
+      <PageHeader
+        title="Trainer Page Manager"
+        subtitle="Manage your elite coaching staff profiles displayed on the website."
+        actions={[]}
+      />
 
       <div className="tm-actions-row">
         <span className="tm-count">{trainers.length} active trainers</span>
-        <button className="btn tm-btn-add" onClick={openAddModal}>
+        <button className="btn-primary tm-btn-add" onClick={openAddModal}>
           <Plus size={16} /> Add Trainer
         </button>
       </div>
@@ -160,15 +158,15 @@ const TrainersPageManager = () => {
                 </div>
               )}
               <div className="tm-card-overlay">
-                <button 
-                  className="tm-icon-btn edit-btn" 
+                <button
+                  className="tm-icon-btn edit-btn"
                   aria-label="Edit Trainer"
                   onClick={() => openEditModal(trainer)}
                 >
                   <Edit2 size={16} />
                 </button>
-                <button 
-                  className="tm-icon-btn delete-btn" 
+                <button
+                  className="tm-icon-btn delete-btn"
                   aria-label="Delete Trainer"
                   onClick={() => handleDelete(trainer.id)}
                 >
@@ -176,12 +174,12 @@ const TrainersPageManager = () => {
                 </button>
               </div>
             </div>
-            
+
             <div className="tm-card-content">
               <h3 className="tm-display-name">{trainer.name}</h3>
               <p className="tm-display-specialty">{trainer.certifications || 'No Certs Listed'}</p>
               <p className="tm-display-bio">{trainer.bio}</p>
-              
+
               <div className="tm-display-skills">
                 {trainer.skills.slice(0, 3).map(skill => (
                   <span key={skill} className="tm-display-skill">{skill}</span>
@@ -193,27 +191,13 @@ const TrainersPageManager = () => {
         ))}
       </div>
 
-      <div className="glass-card wm-ai-audit tm-ai-audit">
-        <div className="ai-audit-content">
-          <div className="ai-audit-header">
-            <div className="ai-badge tm-ai-label">
-              <Sparkles size={16} /> TRAINER BIO GENERATOR
-            </div>
-            <button className="btn wm-btn-ai tm-ai-btn">
-              <Sparkles size={16} /> Generate bios with AI
-            </button>
-          </div>
-          <p className="ai-audit-desc">
-            Provide a few keywords about a trainer's experience, and let AI write a compelling, premium bio perfectly matching your brand voice.
-          </p>
-        </div>
-      </div>
+
 
       {/* --- Profile Settings Modal --- */}
       {isModalOpen && activeTrainer && (
         <div className="tm-modal-overlay">
           <div className="tm-modal glass-panel">
-            
+
             <div className="tm-modal-header">
               <div>
                 <h2 className="tm-modal-title">Trainer Profile Settings</h2>
@@ -228,7 +212,7 @@ const TrainersPageManager = () => {
               {/* Left Column */}
               <div className="tm-modal-col-left">
                 <div className="tm-photo-section">
-                  <span className="tm-section-label">PROFILE PHOTO</span>
+                  <span className="tm-section-label tm-photo-label">PROFILE PHOTO</span>
                   <div className="tm-avatar-wrapper">
                     {activeTrainer.imageUrl ? (
                       <img src={activeTrainer.imageUrl} alt="Profile" className="tm-avatar" />
@@ -247,9 +231,9 @@ const TrainersPageManager = () => {
                   <span className="tm-section-label">COMMUNITY LINKS</span>
                   <div className="tm-input-group-icon">
                     <span className="tm-input-icon"><Users size={16} /></span>
-                    <input 
-                      type="text" 
-                      className="tm-modal-input" 
+                    <input
+                      type="text"
+                      className="tm-modal-input"
                       placeholder="@username"
                       value={activeTrainer.social.community}
                       onChange={(e) => handleSocialChange('community', e.target.value)}
@@ -257,9 +241,9 @@ const TrainersPageManager = () => {
                   </div>
                   <div className="tm-input-group-icon">
                     <span className="tm-input-icon"><LinkIcon size={16} /></span>
-                    <input 
-                      type="text" 
-                      className="tm-modal-input" 
+                    <input
+                      type="text"
+                      className="tm-modal-input"
                       placeholder="linkedin.com/in/..."
                       value={activeTrainer.social.linkedin}
                       onChange={(e) => handleSocialChange('linkedin', e.target.value)}
@@ -270,22 +254,22 @@ const TrainersPageManager = () => {
 
               {/* Right Column */}
               <div className="tm-modal-col-right">
-                
+
                 <div className="tm-form-row">
                   <div className="tm-form-group">
                     <label className="tm-section-label">Trainer Name</label>
-                    <input 
-                      type="text" 
-                      className="tm-modal-input tm-input-large" 
+                    <input
+                      type="text"
+                      className="tm-modal-input tm-input-large"
                       value={activeTrainer.name}
                       onChange={(e) => handleActiveChange('name', e.target.value)}
                     />
                   </div>
                   <div className="tm-form-group">
                     <label className="tm-section-label">Certifications</label>
-                    <input 
-                      type="text" 
-                      className="tm-modal-input tm-input-large" 
+                    <input
+                      type="text"
+                      className="tm-modal-input tm-input-large"
                       value={activeTrainer.certifications}
                       onChange={(e) => handleActiveChange('certifications', e.target.value)}
                     />
@@ -301,8 +285,8 @@ const TrainersPageManager = () => {
                       </span>
                     ))}
                     <div className="tm-skill-add-wrapper">
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         placeholder="Type and press Enter"
                         className="tm-skill-input"
                         value={newSkillText}
@@ -318,8 +302,8 @@ const TrainersPageManager = () => {
 
                 <div className="tm-form-group">
                   <label className="tm-section-label">My Journey (Bio)</label>
-                  <textarea 
-                    className="tm-modal-textarea" 
+                  <textarea
+                    className="tm-modal-textarea"
                     rows="4"
                     value={activeTrainer.bio}
                     onChange={(e) => handleActiveChange('bio', e.target.value)}
@@ -328,13 +312,13 @@ const TrainersPageManager = () => {
 
                 <div className="tm-form-group">
                   <label className="tm-section-label tm-section-label-spaced">AVAILABILITY SCHEDULE</label>
-                  
+
                   <div className="tm-days-row">
                     {daysOfWeek.map(day => {
                       const isActive = activeTrainer.availability.includes(day);
                       return (
-                        <button 
-                          key={day} 
+                        <button
+                          key={day}
                           className={`tm-day-circle ${isActive ? 'active' : ''}`}
                           onClick={() => toggleDay(day)}
                           type="button"
@@ -347,7 +331,7 @@ const TrainersPageManager = () => {
                   </div>
 
                   <div className="tm-shifts-row">
-                    <button 
+                    <button
                       className={`tm-shift-card ${activeTrainer.shifts.includes('morning') ? 'active' : ''}`}
                       onClick={() => toggleShift('morning')}
                       type="button"
@@ -359,7 +343,7 @@ const TrainersPageManager = () => {
                       </div>
                     </button>
                     <div className="tm-shift-divider"></div>
-                    <button 
+                    <button
                       className={`tm-shift-card ${activeTrainer.shifts.includes('evening') ? 'active' : ''}`}
                       onClick={() => toggleShift('evening')}
                       type="button"
@@ -378,8 +362,8 @@ const TrainersPageManager = () => {
             </div>
 
             <div className="tm-modal-footer">
-              <button className="tm-btn-cancel" onClick={closeModal}>Cancel Changes</button>
-              <button className="tm-btn-save" onClick={handleSaveProfile}>Save Profile</button>
+              <button className="btn-secondary" onClick={closeModal}>Cancel Changes</button>
+              <button className="btn-primary" onClick={handleSaveProfile}>Save Profile</button>
             </div>
 
           </div>

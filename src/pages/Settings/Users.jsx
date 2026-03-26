@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Search, Plus, Edit2, Trash2, X, Shield, User, Eye, EyeOff, AlertTriangle } from 'lucide-react';
+import { Search, Plus, Edit2, Trash2, X, Shield, User, Eye, EyeOff, AlertTriangle, UserPlus, TrendingUp, CalendarCheck, Activity, Users2 } from 'lucide-react';
 import './Users.css';
+import PageHeader from '../../components/PageHeader/PageHeader';
+import KpiCard from '../../components/KpiCard';
 
 const ROLES = ['Admin', 'Manager', 'Staff', 'Trainer', 'Receptionist'];
 const STATUS_OPTIONS = ['Active', 'Inactive'];
@@ -135,44 +137,23 @@ export default function Users() {
 
   return (
     <div className="page-container users-page">
-      {/* Page Header */}
-      <div className="users-header">
-        <div>
-          <h1 className="heading-1">User Management</h1>
-          <p className="subtitle users-subtitle">Manage system users, roles, and access permissions.</p>
-        </div>
-        <button className="btn btn-primary" onClick={openCreate}>
-          <Plus size={18} /> Add User
-        </button>
-      </div>
-
-      {/* Stats Strip */}
-      <div className="users-stats-strip glass-card mb-6">
-        <div className="stat-chip">
-          <span className="stat-chip-value">{users.length}</span>
-          <span className="stat-chip-label">Total Users</span>
-        </div>
-        <div className="stat-chip-divider" />
-        <div className="stat-chip">
-          <span className="stat-chip-value" style={{ color: 'var(--success)' }}>
-            {users.filter((u) => u.status === 'Active').length}
-          </span>
-          <span className="stat-chip-label">Active</span>
-        </div>
-        <div className="stat-chip-divider" />
-        <div className="stat-chip">
-          <span className="stat-chip-value" style={{ color: 'var(--danger)' }}>
-            {users.filter((u) => u.status === 'Inactive').length}
-          </span>
-          <span className="stat-chip-label">Inactive</span>
-        </div>
-        <div className="stat-chip-divider" />
-        <div className="stat-chip">
-          <span className="stat-chip-value" style={{ color: '#7c3aed' }}>
-            {users.filter((u) => u.role === 'Admin').length}
-          </span>
-          <span className="stat-chip-label">Admins</span>
-        </div>
+      <PageHeader
+        title="User Management"
+        subtitle="Manage system users, roles, and access permissions."
+        actions={[
+          {
+            label: " Add User",
+            icon: <UserPlus size={16} />,
+            onClick: openCreate,
+            className: "btn-primary"
+          }
+        ]}
+      />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', margin: '24px 0' }}>
+        <KpiCard title="Total Users" value={users.length} theme="teal" Icon={Users2} />
+        <KpiCard title="Active Users" value="42,500" theme="blue" Icon={TrendingUp} />
+        <KpiCard title="Inactive Users" value="342" theme="purple" Icon={CalendarCheck} />
+        <KpiCard title="Admins" value="24" theme="orange" Icon={Activity} />
       </div>
 
       {/* Table Card */}

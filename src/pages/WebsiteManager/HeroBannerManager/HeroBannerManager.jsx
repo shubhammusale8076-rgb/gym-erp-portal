@@ -39,6 +39,7 @@ const HeroBannerManager = () => {
                 ))}
               </h2>
               <p className="preview-subheadline">{subheadline}</p>
+              <button className="btn-primary cta-btn">{ctaText}</button>
             </div>
           </div>
 
@@ -99,7 +100,7 @@ const HeroBannerManager = () => {
 
             <div className="status-indicator">
               <div className="status-icon-bg">
-                <CheckCircle2 size={16} className="status-icon" color="#475569" />
+                <CheckCircle2 size={20} className="status-icon" color="#475569" />
               </div>
               <div className="status-text">
                 <span className="status-main">Auto-saved</span>
@@ -108,10 +109,10 @@ const HeroBannerManager = () => {
               <div className="badge draft-badge">DRAFT</div>
             </div>
 
-            <button className="btn wm-btn-primary full-width mt-3">
+            <button className="btn-primary ">
               PUBLISH TO LIVE
             </button>
-            <button className="btn wm-btn-secondary full-width mt-2">
+            <button className="btn-secondary">
               SAVE AS DRAFT
             </button>
           </div>
@@ -140,7 +141,7 @@ const HeroBannerManager = () => {
               </div>
             </div>
 
-            <button className="btn wm-btn-light full-width mt-3 with-icon">
+            <button className="btn-secondary">
               <ImageIcon size={16} /> BROWSE LIBRARY
             </button>
           </div>
@@ -151,7 +152,7 @@ const HeroBannerManager = () => {
             <p className="tip-text">
               High-contrast imagery with deep shadows performs 40% better for luxury conversion. Aim for photos with a "Museum" lighting quality.
             </p>
-            <Sparkles className="bg-sparkle spark-1" size={48} />
+            <Sparkles className="bg-sparkle spark-1" size={65} />
             <Sparkles className="bg-sparkle spark-2" size={32} />
           </div>
 

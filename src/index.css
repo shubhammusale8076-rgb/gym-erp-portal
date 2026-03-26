@@ -177,6 +177,24 @@ body {
   border: 1px solid var(--primary);
 }
 
+
+.btn-secondary {
+  background-color:var(--bg-dark);
+  color: var(--primary);
+  border: 1px solid #e9d5ff;
+  padding: 1rem;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.btn-secondary:hover {
+  background-color: #f3e8ff;
+}
+
 .header-btn-relative {
   position: relative;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Sparkles, Plus, Edit2, Trash2, Camera, X, Star, Eye, EyeOff } from 'lucide-react';
 import './TestimonialsManager.css';
+import PageHeader from '../../../components/PageHeader/PageHeader';
 
 const TestimonialsManager = () => {
   const [testimonials, setTestimonials] = useState([
@@ -95,23 +96,19 @@ const TestimonialsManager = () => {
   };
 
   return (
-    <div className={`testi-container page-container ${isModalOpen ? 'modal-open' : ''}`}>
+    <div className={`testi-container ${isModalOpen ? 'modal-open' : ''}`}>
 
-      <div className="wm-header">
-        <div className="badge wm-badge testi-badge">
-          <span className="badge-dot testi-dot"></span> TESTIMONIALS
-        </div>
-        <h1 className="heading-1 wm-title">CLIENT SUCCESS STORIES</h1>
-        <p className="subtitle testi-subtitle">
-          Manage and curate the reviews displayed on your main website.
-        </p>
-      </div>
+      <PageHeader
+        title="Testimonials Manager"
+        subtitle="Manage and curate the reviews displayed on your main website."
+        actions={[]}
+      />
 
       <div className="testi-actions-row">
         <span className="testi-count">
           {testimonials.filter(t => t.isVisible).length} published • {testimonials.length} total
         </span>
-        <button className="btn testi-btn-add" onClick={openAddModal}>
+        <button className="btn-primary" onClick={openAddModal}>
           <Plus size={16} /> Add Testimonial
         </button>
       </div>
@@ -169,22 +166,6 @@ const TestimonialsManager = () => {
         ))}
       </div>
 
-      {/* AI Writer Banner */}
-      <div className="glass-card wm-ai-audit testi-ai-audit">
-        <div className="ai-audit-content">
-          <div className="ai-audit-header">
-            <div className="ai-badge testi-ai-label">
-              <Sparkles size={16} /> COPYWRITING ASSISTANT
-            </div>
-            <button className="btn wm-btn-ai testi-ai-btn">
-              <Sparkles size={16} /> Polish Client Reviews
-            </button>
-          </div>
-          <p className="ai-audit-desc">
-            Convert informal or rough client feedback messages into punchy, professional success stories perfectly formatted for your website.
-          </p>
-        </div>
-      </div>
 
       {/* --- ADD/EDIT MODAL --- */}
       {isModalOpen && activeReview && (
@@ -285,8 +266,8 @@ const TestimonialsManager = () => {
             </div>
 
             <div className="testi-modal-footer">
-              <button className="testi-btn-cancel" onClick={closeModal}>Cancel</button>
-              <button className="testi-btn-save" onClick={handleSaveReview}>Save Testimonial</button>
+              <button className="btn-secondary btn-sm" onClick={closeModal}>Cancel</button>
+              <button className="btn-primary btn-sm" onClick={handleSaveReview}>Save Testimonial</button>
             </div>
 
           </div>

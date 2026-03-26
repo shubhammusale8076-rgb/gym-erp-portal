@@ -1,15 +1,13 @@
 .hbm-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding: 1rem 0 2rem 0;
-  background-color: transparent;
+  gap: 1rem;
 }
 
 .hbm-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1rem;
   align-items: start;
 }
 
@@ -24,12 +22,12 @@
 .hbm-left-col {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .hbm-hero-preview {
-  border-radius: 24px;
-  height: 380px;
+  border-radius: var(--section-radius);
+  height: 400px;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -67,13 +65,17 @@
   margin: 0;
 }
 
+.cta-btn{
+  margin-top: 1rem;
+}
+
 .hbm-form-panel {
   padding: 2.25rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   background-color: #ffffff;
-  border-radius: 24px;
+  border-radius:var(--section-radius);
 }
 
 .form-panel-header {
@@ -97,18 +99,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.mt-3 {
-  margin-top: 1rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
-.mb-0 {
-  margin-bottom: 0;
 }
 
 .form-label {
@@ -159,10 +149,15 @@
 
 .hbm-utility-card {
   background: var(--bg-card-secondary);
-  border-radius: 24px;
+  border-radius: var(--section-radius);
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
+}
+
+.hbm-utility-card .btn-primary,
+.hbm-utility-card .btn-secondary{
+  margin-top: 1rem ;
 }
 
 
@@ -183,11 +178,11 @@
 /* Publishing Status */
 .status-indicator {
   width: 100%;
-  height: 50px;
+  height: 70px;
   display: flex;
   align-items: center;
-  background:red;
-  padding: 1rem;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 1.2rem 1rem;
   border-radius: 16px;
   gap: 0.75rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
@@ -216,7 +211,7 @@
 }
 
 .draft-badge {
-  background-color: #f1f5f9;
+  background: var(--bg-card-secondary);
   color: #64748b;
   font-size: 0.65rem;
   padding: 0.25rem 0.6rem;
@@ -225,64 +220,6 @@
   letter-spacing: 0.5px;
 }
 
-/* Buttons */
-.full-width {
-  width: 100%;
-}
-
-.wm-btn-primary {
-  background-color: var(--primary);
-  color: #ffffff;
-  border: none;
-  padding: 1.1rem;
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  letter-spacing: 0.5px;
-}
-
-.wm-btn-primary:hover {
-  background-color: #6b21a8;
-}
-
-.wm-btn-secondary {
-  background-color: transparent;
-  color: var(--primary);
-  border: 1px solid #e9d5ff;
-  padding: 1rem;
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  letter-spacing: 0.5px;
-}
-
-.wm-btn-secondary:hover {
-  background-color: #f3e8ff;
-}
-
-.wm-btn-light {
-  background-color: #fcf8ff;
-  color: #334155;
-  border: none;
-  padding: 1rem;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  transition: background-color 0.2s;
-}
-
-.wm-btn-light:hover {
-  background-color: #f3e8ff;
-}
 
 /* Background Asset Card */
 .asset-header {

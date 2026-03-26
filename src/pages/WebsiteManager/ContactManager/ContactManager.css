@@ -2,38 +2,9 @@
 .contact-cx-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  background-color: var(--bg-dark);
-}
-
-.contact-badge {
-  background-color: #e0f2fe;
-  color: #0369a1;
-  border-color: rgba(3, 105, 161, 0.1);
-}
-
-.contact-dot {
-  background-color: #0369a1;
-}
-
-.contact-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  /* Align actions with the bottom of the title block */
-}
-
-.contact-cx-actions {
-  display: flex;
-  align-items: center;
   gap: 1rem;
 }
 
-.contact-btn-disabled {
-  background-color: #e2e8f0;
-  color: #94a3b8;
-  cursor: not-allowed;
-}
 
 /* Grid Layout */
 .contact-cx-grid {

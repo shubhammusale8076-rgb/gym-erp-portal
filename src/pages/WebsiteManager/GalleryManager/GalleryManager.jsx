@@ -1,109 +1,119 @@
 import React, { useState } from 'react';
-import { Sparkles, Image as ImageIcon, X, Plus } from 'lucide-react';
+import { UploadCloud, ChevronDown, Check, Image as LucideImage } from 'lucide-react';
 import './GalleryManager.css';
 
 const GalleryManager = () => {
-  const [images, setImages] = useState([
-    { id: 1, url: '', caption: 'Training Floor' },
-    { id: 2, url: '', caption: 'Cardio Zone' },
-    { id: 3, url: '', caption: 'Free Weights' },
-    { id: 4, url: '', caption: 'Group Classes' },
-    { id: 5, url: '', caption: 'Recovery Area' },
-    { id: 6, url: '', caption: 'Amenities' },
-  ]);
+  const [activeTab, setActiveTab] = useState('All');
+  const tabs = ['All', 'Interiors', 'Equipment', 'Staff'];
 
-  const handleUrlChange = (id, newUrl) => {
-    setImages(images.map(img => img.id === id ? { ...img, url: newUrl } : img));
-  };
-
-  const handleCaptionChange = (id, newCaption) => {
-    setImages(images.map(img => img.id === id ? { ...img, caption: newCaption } : img));
-  };
-
-  const handleDelete = (id) => {
-    setImages(images.filter(img => img.id !== id));
-  };
-
-  const handleAddImage = () => {
-    const newId = images.length > 0 ? Math.max(...images.map(i => i.id)) + 1 : 1;
-    setImages([...images, { id: newId, url: '', caption: '' }]);
-  };
+  const images = [
+    { id: 1, url: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&q=80', selected: true },
+    { id: 2, url: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80', selected: false },
+    { id: 3, url: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80', selected: false },
+    { id: 4, url: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&q=80', selected: false },
+    { id: 5, url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80', selected: false },
+  ];
 
   return (
-    <div className="gm-container page-container">
-      <div className="wm-header">
-        <div className="badge wm-badge">
-          <span className="badge-dot"></span> GALLERY
-        </div>
-        <h1 className="heading-1 wm-title">GALLERY MANAGER</h1>
-        <p className="subtitle gm-subtitle">
-          Showcase your facilities, equipment, atmosphere, and results.
-        </p>
+    <div className="gm-page">
+      <div className="gm-header">
+        <h1 className="heading-1 gm-title">Website Gallery Manager</h1>
+        <p className="gm-subtitle">Curate your brand's visual narrative.</p>
       </div>
 
-      <div className="gm-actions-row">
-        <span className="gm-image-count">{images.length} images in gallery</span>
-        <button className="btn gm-btn-add" onClick={handleAddImage}>
-          <Plus size={16} /> Add Image
-        </button>
-      </div>
-
-      <div className="gm-grid">
-        {images.map((image) => (
-          <div key={image.id} className="glass-card gm-card">
+      <div className="gm-toolbar">
+        <div className="gm-tabs">
+          {tabs.map(tab => (
             <button 
-              className="gm-delete-btn" 
-              onClick={() => handleDelete(image.id)}
-              aria-label="Remove image"
+              key={tab} 
+              className={`gm-tab ${activeTab === tab ? 'active' : ''}`}
+              onClick={() => setActiveTab(tab)}
             >
-              <X size={14} />
+              {tab}
             </button>
-            
-            <div 
-              className="gm-image-placeholder"
-              style={image.url ? { backgroundImage: `url(${image.url})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
-            >
-              {!image.url && <ImageIcon size={32} strokeWidth={1.5} />}
-            </div>
-
-            <div className="gm-input-group">
-              <label className="gm-label">IMAGE URL</label>
-              <input 
-                type="text"
-                className="form-control gm-input"
-                placeholder="https://..."
-                value={image.url}
-                onChange={(e) => handleUrlChange(image.id, e.target.value)}
-              />
-            </div>
-
-            <div className="gm-input-group">
-              <label className="gm-label">CAPTION</label>
-              <input 
-                type="text"
-                className="form-control gm-input"
-                placeholder="Image caption"
-                value={image.caption}
-                onChange={(e) => handleCaptionChange(image.id, e.target.value)}
-              />
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <div className="gm-actions">
+          <button className="gm-btn-outline">
+            Bulk Actions <ChevronDown size={14} />
+          </button>
+          <button className="gm-btn-primary">
+            <UploadCloud size={16} /> Upload New Asset
+          </button>
+        </div>
       </div>
 
-      <div className="glass-card wm-ai-audit">
-        <div className="ai-audit-content">
-          <div className="ai-audit-header">
-            <div className="ai-badge">
-              <Sparkles size={16} /> GALLERY CONTENT WRITER
+      <div className="gm-content">
+        <div className="gm-grid">
+          {images.map((img) => (
+            <div key={img.id} className={`gm-card ${img.selected ? 'selected' : ''}`}>
+              <div className={`gm-checkbox ${img.selected ? 'checked' : ''}`}>
+                {img.selected && <Check size={12} strokeWidth={3} />}
+              </div>
+              <img src={img.url} alt="Gallery item" className="gm-card-img" />
             </div>
-            <button className="btn wm-btn-ai">
-              <Sparkles size={16} /> Generate with AI
-            </button>
+          ))}
+          <div className="gm-upload-card">
+            <LucideImage className="gm-upload-icon" size={24} />
+            <p>Drop files to curate</p>
           </div>
-          <p className="ai-audit-desc">
-            Generate a gallery section headline, intro copy, and professional captions for each image area.
-          </p>
+        </div>
+
+        <div className="gm-sidebar">
+          <div className="gm-sidebar-header">
+            <h2 className="gm-sidebar-title">Asset Details</h2>
+            <span className="gm-badge-purple">EDITING</span>
+          </div>
+
+          <div className="gm-preview-container">
+            <div className="gm-preview">
+              <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&q=80" alt="Current Selection" className="gm-preview-img" />
+              <div className="gm-preview-overlay">
+                 <h3 className="gm-preview-text">CURRENT<br/>SELECTION</h3>
+              </div>
+            </div>
+          </div>
+
+          <div className="gm-form">
+            <div className="gm-form-group">
+              <label>ASSET NAME</label>
+              <input type="text" value="Obsidian Gym Floor" readOnly className="gm-input" />
+            </div>
+
+            <div className="gm-form-group">
+              <label>ALT TEXT (SEO)</label>
+              <div className="gm-textarea-wrapper">
+                <textarea 
+                  className="gm-textarea"
+                  readOnly
+                  value="Atmospheric view of the Obsidian performance area featuring bespoke dark matte tiling and integrated neon light tracks."
+                />
+              </div>
+            </div>
+
+            <div className="gm-form-row">
+              <div className="gm-form-group w-50">
+                <label>CATEGORY</label>
+                <div className="gm-select-wrapper">
+                  <select className="gm-select" defaultValue="Interiors">
+                    <option value="Interiors">Interiors</option>
+                  </select>
+                  <ChevronDown className="gm-select-icon" size={14} />
+                </div>
+              </div>
+              <div className="gm-form-group w-50">
+                <label>DISPLAY STATUS</label>
+                <div className="gm-status-display">
+                  <span className="gm-status-dot"></span> <span className="gm-status-text">Live</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="gm-sidebar-actions">
+            <button className="gm-btn-discard">Discard</button>
+            <button className="gm-btn-update">Update Asset</button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,110 +1,118 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     MessageSquare,
-    Mail,
     CreditCard,
+    AtSign,
+    Landmark,
     ExternalLink,
-    CheckCircle2,
-    AlertCircle,
     ToggleLeft,
-    ToggleRight
+    ToggleRight,
+    Link2
 } from 'lucide-react';
 import './Integrations.css';
 
-const IntegrationItem = ({ title, description, icon: Icon, connected, status }) => (
-    <div className="glass-card integration-item">
-        <div className="integration-header">
-            <div className="integration-icon-wrapper">
-                <Icon size={24} />
+const IntegrationItem = ({ title, description, badge, active, actionText, icon: Icon, iconColor, iconBg, cardStyle }) => (
+    <div className={`integ-card ${cardStyle}`}>
+        <div className="integ-header">
+            <div className="integ-icon-box" style={{ background: iconBg, color: iconColor }}>
+                <Icon size={24} strokeWidth={2.5} />
             </div>
-            <div className="integration-toggle">
-                {connected ? (
-                    <ToggleRight className="integration-toggle-active" size={32} />
+            <div className={`integ-badge ${active ? 'badge-connected' : 'badge-disconnected'}`}>
+                {badge}
+            </div>
+        </div>
+        
+        <div className="integ-body">
+            <h3 className="integ-title">{title}</h3>
+            <p className="integ-desc">{description}</p>
+        </div>
+        
+        <div className="integ-footer">
+            <div className="integ-status-block">
+                {active ? (
+                    <ToggleRight className="integ-toggle active" size={32} />
                 ) : (
-                    <ToggleLeft className="integration-toggle-inactive" size={32} />
+                    <ToggleLeft className="integ-toggle inactive" size={32} />
                 )}
+                <span className="integ-status-text">
+                    {active ? 'ACTIVE' : 'INACTIVE'}
+                </span>
             </div>
-        </div>
-        <div className="integration-body">
-            <h3 className="heading-3">{title}</h3>
-            <p className="integration-desc">{description}</p>
-        </div>
-        <div className="integration-footer">
-            {connected ? (
-                <span className="integration-status status-online">
-                    <CheckCircle2 size={14} /> Connected
-                </span>
-            ) : (
-                <span className="integration-status status-offline">
-                    <AlertCircle size={14} /> Disconnected
-                </span>
-            )}
-            <button className="btn-link">
-                Configure <ExternalLink size={14} />
+            <button className={`integ-action-btn ${active ? 'active' : ''}`}>
+                {actionText} {active ? <ExternalLink size={14} /> : <Link2 size={16} />}
             </button>
         </div>
     </div>
 );
 
 const Integrations = () => {
-    const [integrations] = useState([
+    const integrationsList = [
         {
             title: 'WhatsApp Business',
-            description: 'Send automated membership reminders and promotional messages directly to members.',
+            description: 'Automate member updates, renewal reminders, and personalized workout plans directly through the world\'s most popular messaging app.',
             icon: MessageSquare,
-            connected: true,
-            status: 'Online'
-        },
-        {
-            title: 'SendGrid (Email)',
-            description: 'Reliable email delivery for invoices, welcome kits, and monthly reports.',
-            icon: Mail,
-            connected: false,
-            status: 'Offline'
+            iconColor: '#168a3b',
+            iconBg: '#e2f4e8',
+            badge: 'CONNECTED',
+            active: true,
+            actionText: 'Configure',
+            cardStyle: 'integ-card-white'
         },
         {
             title: 'Stripe Payments',
-            description: 'Secure online payment processing for membership renewals and merchandise.',
+            description: 'Secure, high-end payment processing for memberships, personal training, and retail. Handle recurring billing with editorial grace.',
             icon: CreditCard,
-            connected: true,
-            status: 'Online'
+            iconColor: '#345dc7',
+            iconBg: '#e9eefb',
+            badge: 'CONNECTED',
+            active: true,
+            actionText: 'Configure',
+            cardStyle: 'integ-card-white'
+        },
+        {
+            title: 'SendGrid',
+            description: 'Design and deploy high-conversion email newsletters and automated lifecycle campaigns for your member base.',
+            icon: AtSign,
+            iconColor: '#4f4f5f',
+            iconBg: '#e5e2e8',
+            badge: 'DISCONNECTED',
+            active: false,
+            actionText: 'Connect',
+            cardStyle: 'integ-card-tinted'
         },
         {
             title: 'Razorpay',
-            description: 'Local payment gateway integration for UPI, Cards, and Net Banking in India.',
-            icon: CreditCard,
-            connected: false,
-            status: 'Offline'
+            description: 'A powerful payments solution for scaling your presence in the Indian market. Full support for UPI and local banking.',
+            icon: Landmark,
+            iconColor: '#4f4f5f',
+            iconBg: '#e5e2e8',
+            badge: 'DISCONNECTED',
+            active: false,
+            actionText: 'Connect',
+            cardStyle: 'integ-card-tinted'
         }
-    ]);
+    ];
 
     return (
         <div className="page-container integrations-page">
-            <header className="integrations-header">
-                <h1 className="heading-1">Integrations</h1>
-                <p className="subtitle">Connect your favorite tools to automate your gym operations.</p>
-            </header>
-
-            <div className="integrations-grid">
-                {integrations.map((item, index) => (
+            <div className="integ-main-grid">
+                
+                {integrationsList.map((item, index) => (
                     <IntegrationItem key={index} {...item} />
                 ))}
-            </div>
 
-            <div className="glass-panel integrations-webhook-panel">
-                <h3 className="heading-2 integrations-webhook-title">Webhooks</h3>
-                <p className="integrations-webhook-desc">
-                    Receive real-time notifications about events in your system by configuring webhook URLs.
-                </p>
-                <div className="webhook-field">
-                    <input
-                        type="text"
-                        className="input-field integration-input-full"
-                        value="https://api.gymsync.com/v1/webhook/events"
-                        readOnly
-                    />
-                    <button className="btn btn-secondary">Copy URL</button>
+                <div className="integ-promo-card">
+                    <div className="promo-overlay"></div>
+                    <div className="promo-card-content">
+                        <span className="promo-badge">ELITE PARTNERSHIP</span>
+                        <h2 className="promo-title">Elevate Your<br/>Operational<br/>IQ</h2>
+                        <p className="promo-desc">
+                            Our API-first approach ensures that your gym stays ahead of the curve with bespoke tool integrations.
+                        </p>
+                        <button className="promo-btn">Request Custom Integration</button>
+                    </div>
                 </div>
+
             </div>
         </div>
     );

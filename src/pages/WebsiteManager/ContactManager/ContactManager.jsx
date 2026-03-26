@@ -1,289 +1,172 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Youtube, Clock, Save, Building } from 'lucide-react';
+import { MapPin, Target, Copy, Instagram, Facebook, Twitter, Youtube, Clock, ToggleLeft, ToggleRight, MessageCircleQuestion } from 'lucide-react';
 import './ContactManager.css';
-import PageHeader from '../../../components/PageHeader/PageHeader';
 
 const ContactManager = () => {
-  const [contactData, setContactData] = useState({
-    email: 'support@gymsync.com',
-    phone: '+1 (555) 123-4567',
-    address: '123 Fitness Blvd, Suite 100\nMetropolis, NY 10001',
-    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus',
-    socials: {
-      instagram: 'https://instagram.com/gymsync',
-      facebook: 'https://facebook.com/gymsync',
-      twitter: 'https://twitter.com/gymsync',
-      youtube: 'https://youtube.com/c/gymsync'
-    },
-    hours: [
-      { day: 'Monday', isOpen: true, openTime: '06:00', closeTime: '22:00' },
-      { day: 'Tuesday', isOpen: true, openTime: '06:00', closeTime: '22:00' },
-      { day: 'Wednesday', isOpen: true, openTime: '06:00', closeTime: '22:00' },
-      { day: 'Thursday', isOpen: true, openTime: '06:00', closeTime: '22:00' },
-      { day: 'Friday', isOpen: true, openTime: '06:00', closeTime: '22:00' },
-      { day: 'Saturday', isOpen: true, openTime: '08:00', closeTime: '20:00' },
-      { day: 'Sunday', isOpen: false, openTime: '08:00', closeTime: '20:00' },
-    ]
-  });
-
-  const [hasChanges, setHasChanges] = useState(false);
-
-  const handleTextChange = (field, value) => {
-    setContactData({ ...contactData, [field]: value });
-    setHasChanges(true);
-  };
-
-  const handleSocialChange = (platform, value) => {
-    setContactData({
-      ...contactData,
-      socials: { ...contactData.socials, [platform]: value }
-    });
-    setHasChanges(true);
-  };
-
-  const handleHourToggle = (index) => {
-    const newHours = [...contactData.hours];
-    newHours[index].isOpen = !newHours[index].isOpen;
-    setContactData({ ...contactData, hours: newHours });
-    setHasChanges(true);
-  };
-
-  const handleTimeChange = (index, field, value) => {
-    const newHours = [...contactData.hours];
-    newHours[index][field] = value;
-    setContactData({ ...contactData, hours: newHours });
-    setHasChanges(true);
-  };
-
-  const extractIframeSrc = (input) => {
-    if (!input) return '';
-    // If they paste the whole <iframe src="..."> snippet, extract just the URL
-    if (input.includes('<iframe')) {
-      const match = input.match(/src="([^"]+)"/);
-      return match ? match[1] : input;
-    }
-    // If it's just a raw URL, return it
-    return input;
-  };
-
-  const handleMapUrlChange = (e) => {
-    const rawInput = e.target.value;
-    const cleanUrl = extractIframeSrc(rawInput);
-    handleTextChange('mapEmbedUrl', cleanUrl);
-  };
-
-  const saveChanges = () => {
-    // API Call logic would go here
-    console.log('Saving contact data:', contactData);
-    setHasChanges(false);
-  };
+  const [hours] = useState([
+    { day: 'Monday', isOpen: true, openTime: '05:00 AM', closeTime: '11:00 PM' },
+    { day: 'Wednesday', isOpen: true, openTime: '05:00 AM', closeTime: '11:00 PM' },
+    { day: 'Sunday', isOpen: false, openTime: '08:00 AM', closeTime: '08:00 PM' },
+  ]);
 
   return (
-    <div className="contact-cx-container page-container">
-
-      <PageHeader
-        title="Contact & Location"
-        subtitle="Manage your physical address, operating hours, and social media presence used across the site."
-        actions={[{
-          label: " Save Information",
-          icon: <Save size={16} />,
-          onClick: () => { },
-          className: "btn-primary"
-        }]}
-      />
-
+    <div className="contact-cx-page">
       <div className="contact-cx-grid">
-
-        {/* Left Column: Contact & Social */}
+        
+        {/* Left Column */}
         <div className="contact-cx-col">
-
-          {/* Card 1: Core Info */}
-          <div className="glass-card contact-cx-card">
+          
+          {/* Card 1: Public Presence */}
+          <div className="contact-card card-white">
             <div className="contact-card-header">
-              <Building className="contact-text-primary" size={20} />
-              <h3 className="heading-3">Primary Contact</h3>
+              <div className="card-icon-box purple-bg">
+                <MessageCircleQuestion size={18} className="text-white" strokeWidth={2.5} />
+              </div>
+              <div className="card-title-stack">
+                <h3 className="cc-title">Public Presence</h3>
+                <span className="cc-subtitle">CORE INFORMATION</span>
+              </div>
+            </div>
+            
+            <div className="cc-form-section cc-mb">
+              <label className="cc-label">SUPPORT EMAIL ADDRESS</label>
+              <div className="cc-read-value">concierge@aurapremium.fit</div>
             </div>
 
-            <div className="form-group contact-fg">
-              <label>Support Email</label>
-              <div className="contact-input-wrap">
-                <Mail className="contact-icon contact-icon-muted" size={18} />
-                <input
-                  type="email"
-                  className="input-field contact-input-pl"
-                  value={contactData.email}
-                  onChange={(e) => handleTextChange('email', e.target.value)}
-                />
+            <div className="cc-form-row cc-mb">
+              <div className="cc-form-section">
+                <label className="cc-label">PHONE NUMBER</label>
+                <div className="cc-read-value">+1 (555) 890-2100</div>
+              </div>
+              <div className="cc-form-section">
+                <label className="cc-label">EMERGENCY CONTACT</label>
+                <div className="cc-read-value">+1 (555) 890-2199</div>
               </div>
             </div>
 
-            <div className="form-group contact-fg">
-              <label>Phone Number</label>
-              <div className="contact-input-wrap">
-                <Phone className="contact-icon contact-icon-muted" size={18} />
-                <input
-                  type="tel"
-                  className="input-field contact-input-pl"
-                  value={contactData.phone}
-                  onChange={(e) => handleTextChange('phone', e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="form-group contact-fg">
-              <label>Physical Address</label>
-              <div className="contact-input-wrap align-top">
-                <MapPin className="contact-icon contact-icon-muted top-icon" size={18} />
-                <textarea
-                  className="input-field contact-textarea-pl"
-                  rows="3"
-                  value={contactData.address}
-                  onChange={(e) => handleTextChange('address', e.target.value)}
-                />
+            <div className="cc-form-section">
+              <label className="cc-label">PHYSICAL ADDRESS</label>
+              <div className="cc-read-value">
+                882 Skyline Boulevard, Penthouse Level<br/>
+                Manhattan, NY 10013
               </div>
             </div>
           </div>
 
-          {/* Card 4: Social Links */}
-          <div className="glass-card contact-cx-card">
-            <div className="contact-card-header">
-              <Instagram className="contact-text-primary" size={20} />
-              <h3 className="heading-3">Social Profiles</h3>
+          {/* Card 2: Operating Hours */}
+          <div className="contact-card card-tinted">
+            <div className="contact-hours-header">
+              <div className="card-icon-box gold-bg">
+                <Clock size={18} className="text-white" strokeWidth={2.5}/>
+              </div>
+              <div className="card-title-stack flex-grow">
+                <h3 className="cc-title">Operating Hours</h3>
+                <span className="cc-subtitle">WEEKLY AVAILABILITY</span>
+              </div>
+              <button className="text-btn-purple">Apply to all</button>
             </div>
 
-            <div className="contact-social-forms">
-              <div className="contact-input-wrap">
-                <div className="social-icon-box ig"><Instagram size={16} /></div>
-                <input
-                  type="text"
-                  className="input-field social-input"
-                  placeholder="Instagram URL"
-                  value={contactData.socials.instagram}
-                  onChange={(e) => handleSocialChange('instagram', e.target.value)}
-                />
-              </div>
-              <div className="contact-input-wrap">
-                <div className="social-icon-box fb"><Facebook size={16} /></div>
-                <input
-                  type="text"
-                  className="input-field social-input"
-                  placeholder="Facebook URL"
-                  value={contactData.socials.facebook}
-                  onChange={(e) => handleSocialChange('facebook', e.target.value)}
-                />
-              </div>
-              <div className="contact-input-wrap">
-                <div className="social-icon-box tw"><Twitter size={16} /></div>
-                <input
-                  type="text"
-                  className="input-field social-input"
-                  placeholder="X (Twitter) URL"
-                  value={contactData.socials.twitter}
-                  onChange={(e) => handleSocialChange('twitter', e.target.value)}
-                />
-              </div>
-              <div className="contact-input-wrap">
-                <div className="social-icon-box yt"><Youtube size={16} /></div>
-                <input
-                  type="text"
-                  className="input-field social-input"
-                  placeholder="YouTube URL"
-                  value={contactData.socials.youtube}
-                  onChange={(e) => handleSocialChange('youtube', e.target.value)}
-                />
-              </div>
+            <div className="hours-list">
+              {hours.map((day, idx) => (
+                <div key={idx} className="hour-row">
+                  <span className="day-name">{day.day}</span>
+                  {day.isOpen ? (
+                    <div className="time-range active-range">
+                      <div className="time-pill">
+                        {day.openTime} <Clock size={12} className="time-icon"/>
+                      </div>
+                      <span className="time-sep">to</span>
+                      <div className="time-pill">
+                        {day.closeTime} <Clock size={12} className="time-icon"/>
+                      </div>
+                      <ToggleRight size={26} className="toggle-active" />
+                    </div>
+                  ) : (
+                    <div className="time-range closed-range">
+                      <span className="closed-msg">Facility is closed for maintenance</span>
+                      <ToggleLeft size={26} className="toggle-inactive" />
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
 
         </div>
 
-        {/* Right Column: Maps & Hours */}
+        {/* Right Column */}
         <div className="contact-cx-col">
 
-          {/* Card 2: Google Maps */}
-          <div className="glass-card contact-cx-card">
-            <div className="contact-card-header">
-              <MapPin className="contact-text-primary" size={20} />
-              <h3 className="heading-3">Map Location</h3>
-            </div>
-
-            <p className="contact-map-hint">
-              Paste the "Embed a map" iframe snippet or URL from Google Maps to display it on your website footer.
-            </p>
-
-            <div className="form-group contact-mb-4">
-              <input
-                type="text"
-                className="input-field contact-w-full"
-                placeholder="Paste <iframe src='...'> or raw URL"
-                value={contactData.mapEmbedUrl}
-                onChange={handleMapUrlChange}
-              />
-            </div>
-
-            <div className="contact-map-preview">
-              {contactData.mapEmbedUrl ? (
-                <iframe
-                  src={contactData.mapEmbedUrl}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Google Maps Preview"
-                ></iframe>
-              ) : (
-                <div className="contact-map-empty">
-                  <MapPin size={32} className="contact-map-icon-empty" />
-                  <span>No map URL provided</span>
+          {/* Card 3: Map UI */}
+          <div className="contact-card card-white card-no-pad-top overflow-hidden">
+            <div className="map-image-area">
+              <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80" alt="Map" className="map-bg-img" />
+              <div className="map-overlay"></div>
+              
+              <div className="map-badges-container">
+                <div className="map-badge-pill">
+                  <MapPin size={14} className="purple-text" />
+                  <span>Live Location Sync</span>
                 </div>
-              )}
+                <button className="target-btn">
+                  <Target size={18} color="white" />
+                </button>
+              </div>
+            </div>
+
+            <div className="embed-section">
+              <label className="cc-label">WEBSITE EMBED SNIPPET</label>
+              <div className="embed-box">
+                <code className="embed-code">
+                  &lt;iframe src="https://maps.google.com/embed?pb=!1m...<br/>
+                  ..." width="100%" height="400"&gt;
+                </code>
+                <button className="copy-btn">
+                  <Copy size={16} />
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Card 3: Operating Hours */}
-          <div className="glass-card contact-cx-card">
-            <div className="contact-card-header contact-mb-4">
-              <Clock className="contact-text-primary" size={20} />
-              <h3 className="heading-3">Operating Hours</h3>
-            </div>
-
-            <div className="contact-hours-list">
-              {contactData.hours.map((dayObj, i) => (
-                <div key={dayObj.day} className={`contact-hour-row ${!dayObj.isOpen ? 'closed' : ''}`}>
-
-                  <div className="contact-day-toggle">
-                    <button
-                      className={`testi-toggle-btn ${dayObj.isOpen ? 'active' : ''}`}
-                      onClick={() => handleHourToggle(i)}
-                    >
-                      <div className="testi-toggle-slider"></div>
-                    </button>
-                    <span className="contact-day-name">{dayObj.day}</span>
-                  </div>
-
-                  {dayObj.isOpen ? (
-                    <div className="contact-time-inputs">
-                      <input
-                        type="time"
-                        value={dayObj.openTime}
-                        onChange={(e) => handleTimeChange(i, 'openTime', e.target.value)}
-                      />
-                      <span className="contact-time-to">to</span>
-                      <input
-                        type="time"
-                        value={dayObj.closeTime}
-                        onChange={(e) => handleTimeChange(i, 'closeTime', e.target.value)}
-                      />
-                    </div>
-                  ) : (
-                    <div className="contact-closed-label-text">Closed</div>
-                  )}
-
+          {/* Card 4: Socials */}
+          <div className="contact-card card-white">
+            <h3 className="social-title">Social Ecosystem</h3>
+            
+            <div className="social-list">
+              <div className="social-item">
+                <div className="social-icon ig"><Instagram size={18} color="white" /></div>
+                <div className="social-text">
+                  <label>INSTAGRAM</label>
+                  <span>@aura_premium_nyc</span>
                 </div>
-              ))}
+              </div>
+              <div className="social-item">
+                <div className="social-icon fb"><Facebook size={18} color="white" /></div>
+                <div className="social-text">
+                  <label>FACEBOOK</label>
+                  <span>fb.com/aurapremium</span>
+                </div>
+              </div>
+              <div className="social-item">
+                <div className="social-icon tw"><Twitter size={18} color="white" /></div>
+                <div className="social-text">
+                  <label>X / TWITTER</label>
+                  <span>@aura_elite</span>
+                </div>
+              </div>
+              <div className="social-item">
+                <div className="social-icon yt"><Youtube size={18} color="white" /></div>
+                <div className="social-text">
+                  <label>YOUTUBE</label>
+                  <span>youtube.com/c/AuraPremium</span>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div className="contact-page-actions">
+            <button className="btn-discard">Discard<br/>Changes</button>
+            <button className="btn-publish">Publish<br/>Contact<br/>Profile</button>
           </div>
 
         </div>

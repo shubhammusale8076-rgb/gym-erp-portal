@@ -16,10 +16,10 @@ const GalleryManager = () => {
 
   return (
     <div className="gm-page">
-      <div className="gm-header">
-        <h1 className="heading-1 gm-title">Website Gallery Manager</h1>
-        <p className="gm-subtitle">Curate your brand's visual narrative.</p>
-      </div>
+        <div className="gm-header">
+          <h1 className="heading-1 gm-title">Website Gallery Manager</h1>
+          <p className="gm-subtitle">Curate your brand's visual narrative.</p>
+        </div>
 
       <div className="gm-toolbar">
         <div className="gm-tabs">

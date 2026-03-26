@@ -65,14 +65,14 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  margin: 3rem 0;
+  margin: 4rem 0 3rem;
   align-items: center; /* Center the taller card */
 }
 
 .plan-card {
+  position: relative;
   background: #fff;
-  border: 1px solid var(--border-light);
-  border-radius:var(--section-radius);
+  border-radius: 32px;
   padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
@@ -81,54 +81,106 @@
   height: 100%;
 }
 
-/* Elite / Popular Card specific */
-.plan-card.popular {
-  background: #6b21a8;
-  background: linear-gradient(145deg, var(--primary), #8a41b4);
+.plan-card.theme-standard {
+  background-color: #fcf6fc;
+  color: #1a1a2e;
+}
+
+.plan-card.theme-elite {
+  background-color: #6b1b9a;
   color: #fff;
-  border: none;
-  box-shadow: 0 20px 40px rgba(91, 33, 182, 0.25);
-  transform: scale(1.05); /* Elevate */
   padding: 3.5rem 2.5rem; /* Taller */
+  transform: scale(1.05); /* Elevate */
+  box-shadow: 0 20px 40px rgba(107, 27, 154, 0.25);
   z-index: 2;
 }
 
-/* Badges */
-.plan-badge-wrapper {
-  height: 28px;
-  margin-bottom: 1.5rem;
+.plan-card.theme-platinum {
+  background-color: #f1f8fc;
+  color: #1a1a2e;
 }
 
-.plan-badge {
-  display: inline-block;
-  background: #f1f5f9;
-  color: var(--text-muted);
-  font-size: 0.65rem;
+/* Badges */
+.plan-badge-top {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #6b1b9a;
+  font-size: 0.75rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  padding: 0.4rem 0.8rem;
+  letter-spacing: 0.15em;
+  padding: 0.6rem 1.4rem;
   border-radius: 99px;
   text-transform: uppercase;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  white-space: nowrap;
 }
 
-.plan-card.popular .plan-badge {
-  background: rgba(255, 255, 255, 0.2);
+/* Header actions & icon */
+.plan-card-header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.plan-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-standard .plan-icon-wrapper {
+  background: #f1e4f4;
+  color: #6b1b9a;
+}
+
+.theme-elite .plan-icon-wrapper {
+  background: rgba(255, 255, 255, 0.15);
   color: #fff;
 }
 
-.plan-name {
-  font-size: 1.4rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
+.theme-platinum .plan-icon-wrapper {
+  background: #fff;
+  color: #0d47a1;
 }
-.plan-card.popular .plan-name { color: #fff; }
+
+.plan-top-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.plan-action-icon {
+  background: transparent;
+  color: currentColor;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  padding: 4px;
+}
+
+.plan-action-icon:hover {
+  opacity: 1;
+}
+
+.plan-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: currentColor;
+}
 
 /* Pricing */
 .plan-price-wrapper {
   display: flex;
-  align-items:baseline;
-  margin-bottom: 2rem;
+  align-items: baseline;
+  margin-bottom: 2.5rem;
 }
 
 .plan-currency {
@@ -139,120 +191,124 @@
 
 .plan-price {
   font-size: 3rem;
-  font-weight: 900;
-  letter-spacing: -0.03em;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   line-height: 1;
 }
 
 .plan-period {
   font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-left: 0.2rem;
+  opacity: 0.7;
+  margin-left: 0.4rem;
+  font-weight: 600;
+  text-transform: uppercase;
 }
-.plan-card.popular .plan-period { color: rgba(255,255,255,0.7); }
 
 /* Features List */
 .plan-features {
   list-style: none;
   padding: 0;
   margin: 0 0 2.5rem 0;
-  flex: 1; /* Pushes buttons to bottom */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .feature-item {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-primary);
+  gap: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: currentColor;
 }
-.plan-card.popular .feature-item { color: #fff; }
+
+.feature-item.disabled {
+  opacity: 0.4;
+}
 
 .feature-check {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: var(--primary);
-  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-.plan-card.popular .feature-check {
+
+.theme-standard .feature-check {
+  background: #6b1b9a;
+  color: #fff;
+}
+.theme-standard .feature-check.disabled {
+  background: #c3b5c7;
+  color: #fff;
+  opacity: 0.6;
+}
+
+.theme-elite .feature-check {
   background: #fff;
-  color: var(--primary);
+  color: #6b1b9a;
+}
+.theme-elite .feature-check.disabled {
+  background: rgba(255,255,255,0.3);
+  color: #fff;
+}
+
+.theme-platinum .feature-check {
+  background: #2563eb;
+  color: #fff;
+}
+.theme-platinum .feature-check.disabled {
+  background: rgba(37, 99, 235, 0.4);
+  color: #fff;
 }
 
 /* Footer Actions */
 .plan-footer-actions {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
 }
 
-.plan-edit-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  background: transparent;
-  color: var(--text-primary);
-  border: 1px solid var(--border-light);
-  font-size: 0.75rem;
+.plan-manage-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 99px;
+  font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.05em;
-  padding: 0.85rem;
-  border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s;
+  background: transparent;
 }
 
-.plan-edit-btn:hover {
-  background: #f8fafc;
+.theme-standard .plan-manage-btn {
+  border: 1px solid #d4bcdb;
+  color: #6b1b9a;
+}
+.theme-standard .plan-manage-btn:hover {
+  background: #f1e4f4;
 }
 
-.plan-card.popular .plan-edit-btn {
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-.plan-card.popular .plan-edit-btn:hover {
-  background: rgba(255,255,255,0.25);
-}
-
-.plan-archive-icon-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: #f1f5f9;
-  color: var(--text-muted);
+.theme-elite .plan-manage-btn {
+  background: #fff;
+  color: #6b1b9a;
   border: none;
-  cursor: pointer;
-  transition: all 0.2s;
-  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.theme-elite .plan-manage-btn:hover {
+  background: #fafdff;
+  transform: translateY(-2px);
 }
 
-.plan-archive-icon-btn:hover {
-  color: var(--danger);
-  background: #fee2e2;
+.theme-platinum .plan-manage-btn {
+  border: 1px solid #b6d4f7;
+  color: #0d47a1;
 }
-
-.plan-card.popular .plan-archive-icon-btn {
-  background: rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7);
-}
-.plan-card.popular .plan-archive-icon-btn:hover {
-  background: rgba(255,255,255,0.2);
-  color: #fff;
+.theme-platinum .plan-manage-btn:hover {
+  background: #e6f0fa;
 }
 
 

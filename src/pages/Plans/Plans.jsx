@@ -7,7 +7,11 @@ import {
   AlertTriangle,
   Archive,
   BarChart3,
-  Download
+  Download,
+  Trash2,
+  Dumbbell,
+  Award,
+  Gem
 } from 'lucide-react';
 import './Plans.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
@@ -16,42 +20,49 @@ const initialPlans = [
   {
     id: 1,
     name: 'Standard',
-    badge: 'ESSENTIAL',
+    badge: '',
     price: '999',
-    period: 'month',
+    period: 'MONTH',
     isPopular: false,
+    theme: 'standard',
+    icon: 'Dumbbell',
     features: [
-      '24/7 Gym Floor Access',
-      'Locker & Shower Access',
-      'Standard Group Classes'
+      { text: 'Full gym floor access', included: true },
+      { text: 'Standard locker room access', included: true },
+      { text: '1 Guest pass per month', included: true },
+      { text: 'Personal training sessions', included: false }
     ]
   },
   {
     id: 2,
     name: 'Elite',
     badge: 'MOST POPULAR',
-    price: '2999',
-    period: 'month',
+    price: '2,999',
+    period: 'MONTH',
     isPopular: true,
+    theme: 'elite',
+    icon: 'Award',
     features: [
-      'All Standard Benefits',
-      'Sauna & Spa Access',
-      '2 Guest Passes/Month',
-      'Priority Booking'
+      { text: 'All Standard features', included: true },
+      { text: 'Access to recovery suite', included: true },
+      { text: 'Group fitness classes', included: true },
+      { text: 'Nutritional consultation', included: true }
     ]
   },
   {
     id: 3,
     name: 'Platinum',
-    badge: 'ALL-INCLUSIVE',
-    price: '3999',
-    period: 'month',
+    badge: '',
+    price: '3,999',
+    period: 'MONTH',
     isPopular: false,
+    theme: 'platinum',
+    icon: 'Gem',
     features: [
-      'All Elite Benefits',
-      'Personal Training (4/mo)',
-      'VIP Lounge Access',
-      'Nutrition Coaching'
+      { text: '24/7 VIP Priority access', included: true },
+      { text: 'Personal coach allocation', included: true },
+      { text: 'Lounge & Spa access', included: true },
+      { text: 'Complimentary workout gear', included: true }
     ]
   }
 ];
@@ -112,7 +123,7 @@ const Plans = () => {
 
   const addFeature = () => {
     if (newFeature.trim()) {
-      setForm({ ...form, features: [...form.features, newFeature.trim()] });
+      setForm({ ...form, features: [...form.features, { text: newFeature.trim(), included: true }] });
       setNewFeature('');
     }
   };
@@ -146,46 +157,65 @@ const Plans = () => {
 
       {/* ── Top Section: Tier Cards ── */}
       <div className="plans-cards-grid">
-        {plans.map((plan) => (
-          <div key={plan.id} className={`plan-card ${plan.isPopular ? 'popular' : ''}`}>
-            
-            <div className="plan-badge-wrapper">
+        {plans.map((plan) => {
+          let IconComp = Dumbbell;
+          if (plan.icon === 'Award') IconComp = Award;
+          if (plan.icon === 'Diamond' || plan.icon === 'Gem') IconComp = Gem;
+          
+          return (
+            <div key={plan.id} className={`plan-card theme-${plan.theme || (plan.isPopular ? 'elite' : 'standard')}`}>
+              
               {plan.badge && (
-                <div className="plan-badge">
+                <div className="plan-badge-top">
                   {plan.badge}
                 </div>
               )}
-            </div>
 
-            <h3 className="plan-name">{plan.name}</h3>
-            
-            <div className="plan-price-wrapper">
-              <span className="plan-currency">₹</span>
-              <span className="plan-price">{plan.price}</span>
-              <span className="plan-period">/ {plan.period}</span>
-            </div>
+              <div className="plan-card-header-actions">
+                <div className="plan-icon-wrapper">
+                  <IconComp size={24} />
+                </div>
+                <div className="plan-top-actions">
+                  <button className="plan-action-icon" onClick={() => openEdit(plan)}>
+                    <Edit2 size={14} />
+                  </button>
+                  <button className="plan-action-icon" onClick={() => openDelete(plan)}>
+                    <Trash2 size={14} />
+                  </button>
+                </div>
+              </div>
 
-            <ul className="plan-features">
-              {plan.features.map((feature, idx) => (
-                <li key={idx} className="feature-item">
-                  <div className="feature-check">
-                    <Check size={12} strokeWidth={3.5} />
-                  </div>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
+              <h3 className="plan-name">{plan.name}</h3>
+              
+              <div className="plan-price-wrapper">
+                <span className="plan-currency">₹</span>
+                <span className="plan-price">{plan.price}</span>
+                <span className="plan-period">/ {plan.period}</span>
+              </div>
 
-            <div className="plan-footer-actions">
-              <button className="plan-edit-btn" onClick={() => openEdit(plan)}>
-                <Edit2 size={13} strokeWidth={2.5}/> {plan.isPopular ? 'EDIT PLAN' : 'EDIT'}
-              </button>
-              <button className="plan-archive-icon-btn" onClick={() => openDelete(plan)}>
-                <Archive size={16} />
-              </button>
+              <ul className="plan-features">
+                {plan.features.map((feature, idx) => {
+                  const isIncluded = typeof feature === 'string' ? true : feature.included;
+                  const text = typeof feature === 'string' ? feature : feature.text;
+                  return (
+                    <li key={idx} className={`feature-item ${!isIncluded ? 'disabled' : ''}`}>
+                      <div className={`feature-check ${!isIncluded ? 'disabled' : ''}`}>
+                        {isIncluded ? <Check size={14} strokeWidth={3} /> : <X size={14} strokeWidth={3} />}
+                      </div>
+                      <span>{text}</span>
+                    </li>
+                  )
+                })}
+              </ul>
+
+              <div className="plan-footer-actions">
+                <button className="plan-manage-btn" onClick={() => openEdit(plan)}>
+                  MANAGE {plan.name.toUpperCase()}
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* ── Middle Section: Split View ── */}
@@ -381,14 +411,16 @@ const Plans = () => {
                 </div>
 
                 <div className="feature-list-preview">
-                  {form.features.map((f, i) => (
+                  {form.features.map((f, i) => {
+                    const text = typeof f === 'string' ? f : f.text;
+                    return (
                     <div key={i} className="preview-feature-item">
-                      <span>{f}</span>
+                      <span>{text}</span>
                       <button className="remove-feature-btn" onClick={() => removeFeature(i)}>
                         <X size={14} />
                       </button>
                     </div>
-                  ))}
+                  )})}
                   {form.features.length === 0 && <p className="plans-empty-features">No features added yet.</p>}
                 </div>
               </div>

@@ -18,11 +18,11 @@ const Settings = () => {
                     actions={[]}
                 />
                 <div className="settings-nav-links">
-                    <a href="/settings/profile">Profile</a>
-                    <a href="/settings/security">Security</a>
-                    <a href="/settings/integrations">integrations</a>
-                    <a href="/settings/notifications">Notifications</a>
-                    <a href="/settings/payment">Payment</a>
+                    <Link to="/settings/profile">Profile</Link>
+                    <Link to="/settings/security">Security</Link>
+                    <Link to="/settings/integrations">integrations</Link>
+                    <Link to="/settings/notifications">Notifications</Link>
+                    <Link to="/settings/payments">Payment</Link>
                 </div>
             </div>
             <div className="set-grid">

@@ -47,7 +47,7 @@ const Members = () => {
           {
             label: " Add Member",
             icon: <UserPlus size={16} />,
-            onClick: () => { },
+            onClick: () => { setIsAddingMember(true) },
             className: "btn-primary"
           }
         ]}

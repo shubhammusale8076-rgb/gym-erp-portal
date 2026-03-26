@@ -141,7 +141,7 @@ const Plans = () => {
           {
             label: " Add New Plan",
             icon: <Plus size={16} />,
-            onClick: () => { },
+            onClick: () => {setModalMode('create') },
             className: "btn-primary"
           },
           {
@@ -405,9 +405,7 @@ const Plans = () => {
                     onChange={e => setNewFeature(e.target.value)}
                     onKeyPress={e => e.key === 'Enter' && addFeature()}
                   />
-                  <button className="btn btn-primary" style={{ padding: '0.75rem' }} onClick={addFeature}>
-                    <Plus size={20} />
-                  </button>
+
                 </div>
 
                 <div className="feature-list-preview">

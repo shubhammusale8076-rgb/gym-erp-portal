@@ -17,7 +17,7 @@ const initialPlans = [
     id: 1,
     name: 'Standard',
     badge: 'ESSENTIAL',
-    price: '99',
+    price: '999',
     period: 'month',
     isPopular: false,
     features: [
@@ -30,7 +30,7 @@ const initialPlans = [
     id: 2,
     name: 'Elite',
     badge: 'MOST POPULAR',
-    price: '149',
+    price: '2999',
     period: 'month',
     isPopular: true,
     features: [
@@ -44,7 +44,7 @@ const initialPlans = [
     id: 3,
     name: 'Platinum',
     badge: 'ALL-INCLUSIVE',
-    price: '249',
+    price: '3999',
     period: 'month',
     isPopular: false,
     features: [

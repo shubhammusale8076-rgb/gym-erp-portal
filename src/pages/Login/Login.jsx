@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Dumbbell, User, Lock, EyeOff, Eye, Apple } from 'lucide-react';
+import { Mail, Lock, ArrowRight, Fingerprint, Key, Diamond } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -14,132 +13,114 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <div className="login-container">
-        
-        {/* Left Side */}
-        <div className="login-left">
-          <div className="login-glow-1"></div>
-          <div className="login-glow-2"></div>
+      {/* Left Side */}
+      <div className="login-left">
+        <div className="login-left-overlay"></div>
+        <div className="login-left-content">
+          <div className="aura-brand-top">
+            <span className="aura-brand-line"></span>
+            AURA PREMIUM
+          </div>
           
-          <div className="login-left-content">
-            <div className="login-logo">
-              <Dumbbell className="login-logo-icon" />
-            </div>
+          <h1 className="login-title">
+            The sanctuary<br />
+            of<br />
+            <span className="purple-italic">elite</span><br />
+            <span className="purple-italic">performance.</span>
+          </h1>
+          
+          <p className="login-subtitle">
+            Curating the world's most exclusive fitness<br />
+            experiences through sophisticated data and<br />
+            intuitive management.
+          </p>
+        </div>
 
-            <h1 className="login-title">
-              Empower<br />Your Gym
-            </h1>
-            <p className="login-subtitle">
-              The complete modern management SaaS platform designed for fitness centers.
-            </p>
+        <div className="login-director-badge">
+          <img className="director-avatar" src="https://i.pravatar.cc/150?u=a04258114e29026702d" alt="Elena Valerius" />
+          <div className="director-info">
+            <span className="director-role">DIRECTOR OF OPERATIONS</span>
+            <span className="director-name">Elena Valerius</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Side */}
+      <div className="login-right">
+        {/* Top Right Logo */}
+        <div className="right-top-logo">
+          <div className="diamond-icon-wrapper">
+            <Diamond className="diamond-icon" size={16} />
+          </div>
+          <span className="right-logo-text">Aura Premium</span>
+        </div>
+
+        {/* Center Card */}
+        <div className="login-form-card">
+          <div className="form-card-header">
+            <h2 className="form-card-title">Welcome Back</h2>
+            <p className="form-card-subtitle">Access the Elite Club management portal.</p>
           </div>
 
-          <div className="login-stats">
-            <div className="avatar-group">
-              <img className="avatar" src="https://i.pravatar.cc/100?img=1" alt="Avatar 1" />
-              <img className="avatar" src="https://i.pravatar.cc/100?img=2" alt="Avatar 2" />
-              <img className="avatar" src="https://i.pravatar.cc/100?img=3" alt="Avatar 3" />
-              <div className="avatar-count">
-                +2k
+          <form onSubmit={handleLogin} className="aura-login-form">
+            <div className="aura-form-group">
+              <label className="aura-form-label">WORK EMAIL</label>
+              <div className="aura-input-wrapper">
+                <Mail className="aura-input-icon" size={18} />
+                <input
+                  type="email"
+                  className="aura-input"
+                  placeholder="name@aurapremium.com"
+                  required
+                />
               </div>
             </div>
-            <span className="stats-text">Gyms already joined</span>
+
+            <div className="aura-form-group">
+              <div className="aura-password-header">
+                <label className="aura-form-label">PASSWORD</label>
+                <Link to="#" className="aura-forgot-password">FORGOT?</Link>
+              </div>
+              <div className="aura-input-wrapper">
+                <Lock className="aura-input-icon" size={18} />
+                <input
+                  type="password"
+                  className="aura-input"
+                  placeholder="••••••••••••"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" className="aura-btn-submit">
+              ENTER THE PORTAL <ArrowRight size={18} />
+            </button>
+          </form>
+
+          <div className="aura-divider">
+            <span className="aura-divider-text">ALTERNATIVE LOGIN</span>
+          </div>
+
+          <div className="aura-social-logins">
+            <button type="button" className="aura-btn-social">
+              <Fingerprint size={18} className="aura-social-icon" />
+              BIOMETRIC
+            </button>
+            <button type="button" className="aura-btn-social">
+              <Key size={18} className="aura-social-icon" />
+              SSO
+            </button>
           </div>
         </div>
 
-        {/* Right Side */}
-        <div className="login-right">
-          <div className="login-form-container">
-            <div className="login-header">
-              <h2 className="login-header-title">Welcome back</h2>
-              <p className="login-header-subtitle">Please enter your details to sign in.</p>
-            </div>
-
-            <form onSubmit={handleLogin} className="login-form">
-              <div className="form-group">
-                <label className="form-label">Email or Username</label>
-                <div className="input-wrapper">
-                  <div className="input-icon">
-                    <User />
-                  </div>
-                  <input
-                    type="email"
-                    className="form-input"
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label className="form-label">Password</label>
-                <div className="input-wrapper">
-                  <div className="input-icon">
-                    <Lock />
-                  </div>
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    className="form-input"
-                    placeholder="••••••••"
-                    required
-                  />
-                  <button
-                    type="button"
-                    className="password-toggle"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? <Eye /> : <EyeOff />}
-                  </button>
-                </div>
-              </div>
-
-              <div className="login-options">
-                <label className="remember-me">
-                  <input 
-                    type="checkbox" 
-                    className="remember-checkbox" 
-                  />
-                  <span className="remember-text">Remember me</span>
-                </label>
-                <Link to="#" className="forgot-password">
-                  Forgot password?
-                </Link>
-              </div>
-
-              <button type="submit" className="btn-submit">
-                Sign In
-              </button>
-            </form>
-
-            <div className="divider-container">
-              <div className="divider-line"></div>
-              <div className="divider-text-container">
-                <span className="divider-text">OR CONTINUE WITH</span>
-              </div>
-            </div>
-
-            <div className="social-logins">
-              <button className="btn-social">
-                <svg viewBox="0 0 24 24">
-                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                </svg>
-                Google
-              </button>
-              <button className="btn-social">
-                <Apple />
-                Apple
-              </button>
-            </div>
-
-            <p className="signup-text">
-              Don't have an account? <Link to="#" className="signup-link">Sign up for free</Link>
-            </p>
+        {/* Footer */}
+        <div className="login-footer">
+          <span className="footer-copyright">© 2024 AURA PREMIUM GYM MANAGEMENT.</span>
+          <div className="footer-links">
+            <Link to="#">SUPPORT</Link>
+             <Link to="#">PRIVACY POLICY</Link>
           </div>
         </div>
-        
       </div>
     </div>
   );

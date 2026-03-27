@@ -11,7 +11,6 @@ import MemberDetail from './pages/Members/Member Detail/MemberDetail';
 import Attendance from './pages/Attendance/Attendance';
 import WebsiteManager from './pages/WebsiteManager/WebsiteManager';
 import Users from './pages/Settings/Users';
-import Settings from './pages/Settings/Settings';
 import GymProfile from './pages/Settings/GymProfile';
 import Integrations from './pages/Settings/Integrations';
 import Notifications from './pages/Settings/Notifications';
@@ -24,6 +23,8 @@ import TestimonialsManager from './pages/WebsiteManager/TestimonialsManager/Test
 import ContactManager from './pages/WebsiteManager/ContactManager/ContactManager';
 import PaymentRecords from './pages/Payments/PaymentRecords';
 import PaymentDetail from './pages/Payments/PaymentDetail';
+import SettingWrapper from './pages/Settings/SettingWrapper';
+import Settings from './pages/Settings/Settings' 
 
 function App() {
   return (
@@ -46,13 +47,17 @@ function App() {
           <Route path="website-manager/trainers" element={<TrainersPageManager />} />
           <Route path="website-manager/testimonials" element={<TestimonialsManager />} />
           <Route path="website-manager/contact" element={<ContactManager />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="settings/users" element={<Users />} />
-          <Route path="settings/profile" element={<GymProfile />} />
-          <Route path="settings/integrations" element={<Integrations />} />
-          <Route path="settings/notifications" element={<Notifications />} />
-          <Route path="settings/payments" element={<Payments />} />
-          <Route path="settings/security" element={<Security />} />
+          <Route path="settings" element={<SettingWrapper />} >
+            <Route index element={<Settings />} />
+            <Route path="users" element={<Users />} />
+            <Route path="profile" element={<GymProfile />} />
+            <Route path="integrations" element={<Integrations />} />
+            <Route path="notifications" element={<Notifications />} />
+            <Route path="payments" element={<Payments />} />
+            <Route path="security" element={<Security />} />
+          </Route>
+
+
           <Route path="*" element={
             <div className="coming-soon-container">
               <h2 className="heading-2 text-gradient">Coming Soon</h2>

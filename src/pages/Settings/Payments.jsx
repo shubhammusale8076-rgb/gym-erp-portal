@@ -51,10 +51,7 @@ const Payments = () => {
     return (
         <div className="payments-settings">
             <header className="payments-header">
-                <div>
-                    <h1 className="heading-1">Payments & Billing</h1>
-                    <p className="subtitle">Configure your payout accounts, payment methods, and billing preferences.</p>
-                </div>
+
                 <button className="btn btn-primary" onClick={handleSave} disabled={isSaving}>
                     <Save size={18} /> {isSaving ? 'Saving...' : 'Save Configuration'}
                 </button>

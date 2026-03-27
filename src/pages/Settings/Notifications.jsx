@@ -6,84 +6,63 @@ import {
     Clock,
     UserCheck,
     CreditCard,
-    Save
+    Save,
+    Megaphone,
+    Calendar,
+    Users,
+    Wallet,
+    DoorOpen,
+    Cake,
+    MoreVertical,
+    Info,
+    Check
 } from 'lucide-react';
 import './Notifications.css';
-
-const NotificationRule = ({ title, description, icon: Icon, channels, enabled, toggleChannel }) => (
-    <div className="glass-card notification-rule">
-        <div className="rule-info">
-            <div className="rule-icon">
-                <Icon size={20} />
-            </div>
-            <div className="rule-text">
-                <h3 className="heading-3">{title}</h3>
-                <p className="notifications-desc">{description}</p>
-            </div>
-        </div>
-        <div className="rule-channels">
-            <label className="channel-toggle">
-                <Mail size={16} className={channels.email ? 'notifications-icon-active' : 'notifications-icon-muted'} />
-                <input
-                    type="checkbox"
-                    checked={channels.email}
-                    onChange={() => toggleChannel('email')}
-                />
-                <span className="toggle-slider"></span>
-            </label>
-            <label className="channel-toggle">
-                <MessageSquare size={16} className={channels.whatsapp ? 'notifications-icon-active' : 'notifications-icon-muted'} />
-                <input
-                    type="checkbox"
-                    checked={channels.whatsapp}
-                    onChange={() => toggleChannel('whatsapp')}
-                />
-                <span className="toggle-slider"></span>
-            </label>
-            <label className="channel-toggle">
-                <Bell size={16} className={channels.push ? 'notifications-icon-active' : 'notifications-icon-muted'} />
-                <input
-                    type="checkbox"
-                    checked={channels.push}
-                    onChange={() => toggleChannel('push')}
-                />
-                <span className="toggle-slider"></span>
-            </label>
-        </div>
-    </div>
-);
 
 const Notifications = () => {
     const [rules, setRules] = useState([
         {
             id: 1,
             title: 'Membership Expiry',
-            description: 'Send a reminder when a members plan is about to expire (3 days before).',
-            icon: Clock,
+            description: 'Triggered 7 days before end',
+            icon: Calendar,
             channels: { email: true, whatsapp: true, push: false }
         },
         {
             id: 2,
             title: 'New Lead Alert',
-            description: 'Notify staff when a new lead is captured from the website contact form.',
-            icon: UserCheck,
+            description: 'Immediate staff routing',
+            icon: Users,
             channels: { email: true, whatsapp: false, push: true }
         },
         {
             id: 3,
             title: 'Payment Confirmation',
-            description: 'Send a digital receipt after a successful membership payment.',
-            icon: CreditCard,
-            channels: { email: true, whatsapp: true, push: false }
+            description: 'Sent upon ledger sync',
+            icon: Wallet,
+            channels: { email: true, whatsapp: true, push: true }
         },
         {
             id: 4,
             title: 'Check-in Notification',
-            description: 'Alert trainers when their assigned members check into the gym.',
-            icon: UserCheck,
+            description: 'Arrival logging confirmation',
+            icon: DoorOpen,
             channels: { email: false, whatsapp: false, push: true }
+        },
+        {
+            id: 5,
+            title: 'Member Anniversary',
+            description: 'Loyalty engagement pulse',
+            icon: Cake,
+            channels: { email: true, whatsapp: true, push: false }
         }
     ]);
+
+    const [preferences, setPreferences] = useState({
+        silentMode: true,
+        batchReports: false,
+        rsvpAlerts: true
+    });
 
     const toggleChannel = (ruleId, channel) => {
         setRules(prev => prev.map(rule =>
@@ -93,35 +72,142 @@ const Notifications = () => {
         ));
     };
 
-    return (
-        <div className="page-container notifications-page">
-            <header className="notifications-header">
-                <div>
-                    <h1 className="heading-1">Notification Rules</h1>
-                    <p className="subtitle">Configure how and when your members and staff stay informed.</p>
-                </div>
-                <button className="btn btn-primary">
-                    <Save size={18} /> Save Settings
-                </button>
-            </header>
+    const togglePreference = (pref) => {
+        setPreferences(prev => ({ ...prev, [pref]: !prev[pref] }));
+    };
 
-            <div className="notifications-list">
-                <div className="list-header glass-panel notifications-list-header">
-                    <div className="header-label">Event / Trigger</div>
-                    <div className="header-channels">
-                        <span>Email</span>
-                        <span>WhatsApp</span>
-                        <span>Push</span>
+    return (
+        <div className="notifications-page">
+            <div className="notifications-layout">
+                {/* Left Sidebar */}
+                <div className="notif-sidebar">
+                    {/* Channel Efficiency Card */}
+                    <div className="efficiency-card">
+                        <div className="notif-icon-box">
+                            <Megaphone size={24} />
+                        </div>
+                        <h2 className="efficiency-title">Channel Efficiency</h2>
+                        <p className="efficiency-desc">
+                            Currently delivering 84% of automated communications via WhatsApp.
+                        </p>
+                        <div className="reach-box">
+                            <span className="reach-label">Reach Score</span>
+                            <span className="reach-score">EXCELLENT</span>
+                            <div className="reach-progress-bg">
+                                <div className="reach-progress-bar" style={{ width: '84%' }}></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Quick Preferences */}
+                    <div className="pref-card">
+                        <h3 className="pref-title">
+                            <span style={{ color: '#7e22ce' }}>●</span> Quick Preferences
+                        </h3>
+                        
+                        <div className="pref-item">
+                            <span className="pref-label">Silent Mode (10PM - 6AM)</span>
+                            <div 
+                                className={`notif-toggle ${preferences.silentMode ? 'active' : ''}`}
+                                onClick={() => togglePreference('silentMode')}
+                            >
+                                <div className="notif-toggle-circle"></div>
+                            </div>
+                        </div>
+
+                        <div className="pref-item">
+                            <span className="pref-label">Daily Batch Reports</span>
+                            <div 
+                                className={`notif-toggle ${preferences.batchReports ? 'active' : ''}`}
+                                onClick={() => togglePreference('batchReports')}
+                            >
+                                <div className="notif-toggle-circle"></div>
+                            </div>
+                        </div>
+
+                        <div className="pref-item">
+                            <span className="pref-label">Member RSVP Alerts</span>
+                            <div 
+                                className={`notif-toggle ${preferences.rsvpAlerts ? 'active' : ''}`}
+                                onClick={() => togglePreference('rsvpAlerts')}
+                            >
+                                <div className="notif-toggle-circle"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                {rules.map(rule => (
-                    <NotificationRule
-                        key={rule.id}
-                        {...rule}
-                        toggleChannel={(channel) => toggleChannel(rule.id, channel)}
-                    />
-                ))}
+                {/* Main Content Area */}
+                <div className="notif-main">
+                    <div className="notif-table-header">
+                        <div className="th-label">Automated Trigger</div>
+                        <div className="th-label">Email</div>
+                        <div className="th-label">WhatsApp</div>
+                        <div className="th-label">Push</div>
+                        <div className="th-label">Action</div>
+                    </div>
+
+                    <div className="notif-rows">
+                        {rules.map(rule => (
+                            <div key={rule.id} className="notif-row">
+                                <div className="trigger-info">
+                                    <div className="trigger-icon">
+                                        <rule.icon size={20} />
+                                    </div>
+                                    <div className="trigger-text">
+                                        <h4 className="trigger-title">{rule.title}</h4>
+                                        <p className="trigger-desc">{rule.description}</p>
+                                    </div>
+                                </div>
+                                
+                                <div className="channel-status">
+                                    <div 
+                                        className={`status-circle ${rule.channels.email ? 'active' : ''}`}
+                                        onClick={() => toggleChannel(rule.id, 'email')}
+                                    >
+                                        <Check size={14} />
+                                    </div>
+                                </div>
+
+                                <div className="channel-status">
+                                    <div 
+                                        className={`status-circle ${rule.channels.whatsapp ? 'active' : ''}`}
+                                        onClick={() => toggleChannel(rule.id, 'whatsapp')}
+                                    >
+                                        <Check size={14} />
+                                    </div>
+                                </div>
+
+                                <div className="channel-status">
+                                    <div 
+                                        className={`status-circle ${rule.channels.push ? 'active' : ''}`}
+                                        onClick={() => toggleChannel(rule.id, 'push')}
+                                    >
+                                        <Check size={14} />
+                                    </div>
+                                </div>
+
+                                <div className="channel-status">
+                                    <button className="action-btn">
+                                        <MoreVertical size={20} />
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Bottom Banner */}
+                    <div className="notif-banner">
+                        <div className="banner-content">
+                            <Info size={20} />
+                            <span>Changes to WhatsApp templates require 24h approval from Meta.</span>
+                        </div>
+                        <div className="banner-actions">
+                            <button className="text-btn">View Logs</button>
+                            <button className="dark-btn">Test Sandbox</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

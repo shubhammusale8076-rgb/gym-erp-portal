@@ -28,10 +28,7 @@ const Security = () => {
     return (
         <div className="page-container security-settings">
             <header className="security-header">
-                <div>
-                    <h1 className="heading-1">Security & Access</h1>
-                    <p className="subtitle">Protect your account and monitor system access.</p>
-                </div>
+
                 <button className="btn btn-primary" onClick={handleSave} disabled={isSaving}>
                     <Save size={18} /> {isSaving ? 'Saving...' : 'Update Security'}
                 </button>

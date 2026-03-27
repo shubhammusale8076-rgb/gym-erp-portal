@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Camera, MapPin, Phone, Mail, Globe, Save } from 'lucide-react';
+import { Camera, MapPin, Phone, Mail, Globe, Save, Info, Sparkles, Lightbulb, Users, Dumbbell } from 'lucide-react';
 import './GymProfile.css';
 
 const GymProfile = () => {
@@ -7,11 +7,11 @@ const GymProfile = () => {
         name: 'GymSync Fitness Club',
         tagline: 'Precision in Performance, Excellence in Execution',
         phone: '+91 98765 43210',
-        email: 'contact@gymsync.com',
-        website: 'www.gymsync.com',
-        address: '123 Iron Street, Sector 15, Gurgaon, Haryana - 122001',
-        description: 'We are a premium fitness facility dedicated to providing the best training experience with state-of-the-art equipment and elite trainers.',
-        logo: 'https://ui-avatars.com/api/?name=GS&background=0d9488&color=fff&size=128'
+        email: 'concierge@gymsync.fit',
+        website: 'www.gymsync.fitness',
+        address: 'Level 5, Signature Towers',
+        description: 'Elite boutique fitness facility focusing on personalized training protocols and state-of-the-art performance metrics for the dedicated athlete.',
+        logo: null // Set to null to show initials placeholder
     });
 
     const [isSaving, setIsSaving] = useState(false);
@@ -26,151 +26,184 @@ const GymProfile = () => {
         // Mock API call
         setTimeout(() => {
             setIsSaving(false);
-            alert('Profile updated successfully!');
+            // alert('Profile updated successfully!');
         }, 1000);
     };
 
     return (
-        <div className="page-container gym-profile-page">
-            <header className="profile-header">
-                <div>
-                    <h1 className="heading-1">Gym Profile</h1>
-                    <p className="subtitle">Update your gym's public information and branding.</p>
-                </div>
-                <button
-                    className="btn btn-primary"
-                    onClick={handleSave}
-                    disabled={isSaving}
-                >
-                    <Save size={18} /> {isSaving ? 'Saving...' : 'Save Profile'}
-                </button>
-            </header>
-
+        <div className="gym-profile-page">
             <div className="profile-layout">
-                <div className="profile-sidebar">
-                    <div className="glass-card logo-card">
-                        <h3 className="heading-3 profile-title-mb">Gym Logo</h3>
-                        <div className="logo-upload">
-                            <img src={profile.logo} alt="Gym Logo" className="profile-logo-preview" />
-                            <button className="logo-edit-btn">
-                                <Camera size={16} />
-                            </button>
-                        </div>
-                        <p className="profile-muted-text">
-                            Recommended size: 512x512px. <br /> PNG or JPG format.
-                        </p>
-                    </div>
-
-                    <div className="glass-card profile-card-mt">
-                        <h3 className="heading-3 profile-title-mb">Quick Stats</h3>
-                        <div className="quick-stat-item">
-                            <span className="text-secondary">Members</span>
-                            <span className="font-bold">1,248</span>
-                        </div>
-                        <div className="quick-stat-item">
-                            <span className="text-secondary">Trainers</span>
-                            <span className="font-bold">24</span>
-                        </div>
-                        <div className="quick-stat-item">
-                            <span className="text-secondary">Location</span>
-                            <span className="font-bold text-sm">Gurgaon, IN</span>
-                        </div>
-                    </div>
-                </div>
-
+                {/* Left Column */}
                 <div className="profile-main">
-                    <div className="glass-panel profile-panel-p">
-                        <h3 className="heading-2 profile-title-lg-mb">General Information</h3>
-
-                        <div className="form-grid">
-                            <div className="input-group">
-                                <label className="input-label">Gym Name</label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    className="input-field"
-                                    value={profile.name}
-                                    onChange={handleChange}
-                                />
+                    {/* General Information */}
+                    <div className="profile-card">
+                        <div className="section-header">
+                            <div className="section-icon-wrap">
+                                <Info size={20} />
                             </div>
-                            <div className="input-group">
-                                <label className="input-label">Tagline</label>
-                                <input
-                                    type="text"
-                                    name="tagline"
-                                    className="input-field"
-                                    value={profile.tagline}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                            <h2 className="section-title">General Information</h2>
                         </div>
 
-                        <div className="input-group profile-group-mt">
-                            <label className="input-label">Description</label>
+                        <div className="profile-input-group">
+                            <label className="profile-label">Gym Name</label>
+                            <input
+                                type="text"
+                                name="name"
+                                className="profile-input"
+                                value={profile.name}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <div className="profile-input-group">
+                            <label className="profile-label">Tagline</label>
+                            <input
+                                type="text"
+                                name="tagline"
+                                className="profile-input"
+                                value={profile.tagline}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <div className="profile-input-group" style={{ marginBottom: 0 }}>
+                            <label className="profile-label">Description</label>
                             <textarea
                                 name="description"
-                                className="input-field profile-textarea"
-                                rows="4"
+                                className="profile-input profile-textarea"
                                 value={profile.description}
                                 onChange={handleChange}
+                                rows="4"
                             ></textarea>
                         </div>
+                    </div>
 
-                        <h3 className="heading-2 profile-title-mt-mb">Contact & Location</h3>
+                    {/* Contact & Location */}
+                    <div className="profile-card">
+                        <div className="section-header">
+                            <div className="section-icon-wrap">
+                                <MapPin size={20} />
+                            </div>
+                            <h2 className="section-title">Contact & Location</h2>
+                        </div>
 
-                        <div className="form-grid">
-                            <div className="input-group">
-                                <label className="input-label profile-label-icon">
-                                    <Phone size={14} className="profile-icon-muted" /> Phone Number
-                                </label>
+                        <div className="profile-form-grid">
+                            <div className="profile-input-group">
+                                <label className="profile-label">Phone Number</label>
                                 <input
                                     type="text"
                                     name="phone"
-                                    className="input-field"
+                                    className="profile-input"
                                     value={profile.phone}
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="input-group">
-                                <label className="input-label profile-label-icon">
-                                    <Mail size={14} className="profile-icon-muted" /> Email Address
-                                </label>
+                            <div className="profile-input-group">
+                                <label className="profile-label">Email Address</label>
                                 <input
                                     type="email"
                                     name="email"
-                                    className="input-field"
+                                    className="profile-input"
                                     value={profile.email}
                                     onChange={handleChange}
                                 />
                             </div>
                         </div>
 
-                        <div className="form-grid profile-group-mt">
-                            <div className="input-group">
-                                <label className="input-label profile-label-icon">
-                                    <Globe size={14} className="profile-icon-muted" /> Website
-                                </label>
+                        <div className="profile-form-grid" style={{ marginBottom: 0 }}>
+                            <div className="profile-input-group" style={{ marginBottom: 0 }}>
+                                <label className="profile-label">Website</label>
                                 <input
                                     type="text"
                                     name="website"
-                                    className="input-field"
+                                    className="profile-input"
                                     value={profile.website}
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="input-group">
-                                <label className="input-label profile-label-icon">
-                                    <MapPin size={14} className="profile-icon-muted" /> Office Address
-                                </label>
+                            <div className="profile-input-group" style={{ marginBottom: 0 }}>
+                                <label className="profile-label">Office Address</label>
                                 <input
                                     type="text"
                                     name="address"
-                                    className="input-field"
+                                    className="profile-input"
                                     value={profile.address}
                                     onChange={handleChange}
                                 />
                             </div>
                         </div>
+                    </div>
+
+                    <div className="save-btn-container">
+                        <button
+                            className="save-profile-btn btn-primary"
+                            onClick={handleSave}
+                            disabled={isSaving}
+                        >
+                            {isSaving ? 'Saving...' : 'Save Profile'} <Sparkles size={18} />
+                        </button>
+                    </div>
+                </div>
+
+                {/* Right Column */}
+                <div className="profile-sidebar">
+                    {/* Brand Insignia */}
+                    <div className="profile-card brand-insignia-card">
+                        <h3 className="profile-label" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Brand Insignia</h3>
+                        <div className="logo-container">
+                            <div className="logo-initials">GS</div>
+                            <button className="logo-edit-btn">
+                                <Camera size={16} />
+                            </button>
+                        </div>
+                        <p className="recommended-text">
+                            Recommended: 1024x1024<br />SVG/PNG
+                        </p>
+                    </div>
+
+                    {/* Facility Overview */}
+                    <div className="profile-card-dark">
+                        <h3 className="facility-overview-title">Facility Overview</h3>
+
+                        <div className="stat-item">
+                            <div className="stat-icon"><Users size={20} /></div>
+                            <div className="stat-label">Members</div>
+                            <div className="stat-value">1,248</div>
+                        </div>
+
+                        <div className="stat-item">
+                            <div className="stat-icon"><Dumbbell size={20} /></div>
+                            <div className="stat-label">Trainers</div>
+                            <div className="stat-value">24</div>
+                        </div>
+
+                        <div className="stat-item">
+                            <div className="stat-icon">
+                                <MapPin size={20} />
+                            </div>
+                            <div className="stat-label">Location</div>
+                            <div className="location-text">
+                                <div className="location-city">Gurgaon</div>
+                                <div className="location-country">INDIA, IN</div>
+                            </div>
+                        </div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=500&auto=format&fit=crop"
+                            alt="Facility"
+                            className="facility-preview-img"
+                        />
+                    </div>
+
+                    {/* Pro Tip */}
+                    <div className="profile-card-yellow">
+                        <div className="tip-header">
+                            <Lightbulb size={20} fill="currentColor" />
+                            <h3 className="tip-title">Pro Tip</h3>
+                        </div>
+                        <p className="tip-content">
+                            Consistent branding increases member retention by 23%. Ensure your logo and tagline match your physical interior.
+                        </p>
                     </div>
                 </div>
             </div>

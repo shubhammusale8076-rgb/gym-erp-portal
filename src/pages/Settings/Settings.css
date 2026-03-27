@@ -8,16 +8,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
-.settings-dashboard .setting-header a{
+.settings-dashboard .setting-header .tab-link{
     text-decoration: none;
     margin: 0 8px;
     color: var(--text-primary);
     font-weight: 600;
 }
 
-.settings-dashboard .setting-header a.active{
+.settings-dashboard .setting-header .tab-link.active{
     color: var(--primary);
     border-bottom: 1px solid var(--primary);
 }
@@ -202,8 +203,8 @@
 .set-footer-integrations {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-top: auto;
+    justify-content: space-between;
 }
 
 .footer-icon-wrapper {

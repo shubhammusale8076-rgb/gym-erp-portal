@@ -105,7 +105,7 @@ const Integrations = () => {
                     <div className="promo-overlay"></div>
                     <div className="promo-card-content">
                         <span className="promo-badge">ELITE PARTNERSHIP</span>
-                        <h2 className="promo-title">Elevate Your<br/>Operational<br/>IQ</h2>
+                        <h2 className="promo-title">Elevate Your<br/>Operational IQ</h2>
                         <p className="promo-desc">
                             Our API-first approach ensures that your gym stays ahead of the curve with bespoke tool integrations.
                         </p>

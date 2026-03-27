@@ -11,6 +11,7 @@ import PageHeader from '../../components/PageHeader/PageHeader';
 const SettingWrapper = () => {
 
     const location = useLocation();
+    
     const tabs = [
         { name: "Settings", path: "/settings" },
         { name: "Profile", path: "/settings/profile" },
@@ -53,7 +54,6 @@ const SettingWrapper = () => {
         }
     };
 
-    console.log(location.pathname)
 
     const currentHeader =
         headerConfig[location.pathname] || {

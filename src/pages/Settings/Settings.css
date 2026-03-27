@@ -15,7 +15,8 @@
     text-decoration: none;
     margin: 0 8px;
     color: var(--text-primary);
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 1.05rem;
 }
 
 .settings-dashboard .setting-header .tab-link.active {
@@ -61,7 +62,7 @@
 
 .set-overlay-icon {
     color: var(--primary);
-    opacity: 0.1;
+    opacity: 0.075;
 }
 
 .set-icon-box {

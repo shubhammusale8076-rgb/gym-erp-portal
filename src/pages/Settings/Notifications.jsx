@@ -79,9 +79,7 @@ const Notifications = () => {
     return (
         <div className="notifications-page">
             <div className="notifications-layout">
-                {/* Left Sidebar */}
                 <div className="notif-sidebar">
-                    {/* Channel Efficiency Card */}
                     <div className="efficiency-card">
                         <div className="notif-icon-box">
                             <Megaphone size={24} />
@@ -99,8 +97,7 @@ const Notifications = () => {
                         </div>
                     </div>
 
-                    {/* Quick Preferences */}
-                    <div className="pref-card">
+                    <div className="pref-card card">
                         <h3 className="pref-title">
                             <span style={{ color: '#7e22ce' }}>●</span> Quick Preferences
                         </h3>
@@ -138,7 +135,7 @@ const Notifications = () => {
                 </div>
 
                 {/* Main Content Area */}
-                <div className="notif-main">
+                <div className="notif-main card">
                     <div className="notif-table-header">
                         <div className="th-label">Automated Trigger</div>
                         <div className="th-label">Email</div>

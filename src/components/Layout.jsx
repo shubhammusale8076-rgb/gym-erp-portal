@@ -35,7 +35,7 @@ const Sidebar = () => {
         { name: 'Membership Plans', path: '/plans', icon: <Layers size={20} /> },
         { name: 'CRM / Leads', path: '/crm', icon: <Target size={20} /> },
         { name: 'Trainers', path: '/trainer', icon: <Dumbbell size={20} /> },
-             { name: 'Users', path: '/settings/users', icon: <ShieldCheck size={20} /> },
+        { name: 'Users', path: '/users', icon: <ShieldCheck size={20} /> },
       ]
     },
     {
@@ -52,7 +52,7 @@ const Sidebar = () => {
     {
       category: 'SETTINGS',
       items: [
-   
+
         { name: 'Settings', path: '/settings', icon: <Settings size={20} /> },
       ]
     }
@@ -85,7 +85,7 @@ const Sidebar = () => {
         ))}
       </nav>
       <div className="sidebar-footer">
-       
+
         <button className="nav-item logout-btn">
           <LogOut size={20} />
           <span>Log Out</span>

@@ -24,7 +24,7 @@ import ContactManager from './pages/WebsiteManager/ContactManager/ContactManager
 import PaymentRecords from './pages/Payments/PaymentRecords';
 import PaymentDetail from './pages/Payments/PaymentDetail';
 import SettingWrapper from './pages/Settings/SettingWrapper';
-import Settings from './pages/Settings/Settings' 
+import Settings from './pages/Settings/Settings'
 
 function App() {
   return (
@@ -47,9 +47,9 @@ function App() {
           <Route path="website-manager/trainers" element={<TrainersPageManager />} />
           <Route path="website-manager/testimonials" element={<TestimonialsManager />} />
           <Route path="website-manager/contact" element={<ContactManager />} />
+          <Route path="users" element={<Users />} />
           <Route path="settings" element={<SettingWrapper />} >
             <Route index element={<Settings />} />
-            <Route path="users" element={<Users />} />
             <Route path="profile" element={<GymProfile />} />
             <Route path="integrations" element={<Integrations />} />
             <Route path="notifications" element={<Notifications />} />

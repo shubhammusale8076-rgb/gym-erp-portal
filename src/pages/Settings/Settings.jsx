@@ -13,6 +13,9 @@ function Settings() {
                 <div className="set-icon-box">
                     <UserCog size={22} className="set-icon-svg" />
                 </div>
+                <div className="overlay-icon">
+                    <UserCog size={180} className="set-overlay-icon" />
+                </div>
                 <div className="set-content">
                     <h2 className="set-title">User Management</h2>
                     <p className="set-desc">
@@ -33,19 +36,22 @@ function Settings() {
                 <div className="set-icon-box">
                     <Store size={22} className="set-icon-svg" />
                 </div>
+                <div className="overlay-icon">
+                    <Store size={180} className="set-overlay-icon" />
+                </div>
                 <div className="set-content">
                     <h2 className="set-title">Gym Profile</h2>
-                    <div className="set-gym-pill">
+                    {/* <div className="set-gym-pill">
                         <Building2 size={16} className="set-gym-pill-icon" />
                         <span className="set-gym-pill-text">Aura Premium Downtown</span>
-                    </div>
+                    </div> */}
                     <p className="set-desc">
                         Update your public identity. Manage brand logos, contact details,
                         and physical studio locations.
                     </p>
                 </div>
                 <div className="set-footer-gym">
-                    <Link to="/settings/profile" className="btn-secondary">
+                    <Link to="/settings/profile" className="btn-secondary btn-profile">
                         Edit Identity
                     </Link>
                 </div>
@@ -58,6 +64,10 @@ function Settings() {
                         <Network size={22} className="set-icon-svg" />
                     </div>
                     <span className="set-api-badge">API CONNECTED</span>
+                </div>
+
+                <div className="overlay-icon-integrations">
+                    <Network size={180} className="set-overlay-icon" />
                 </div>
                 <div className="set-content">
                     <h2 className="set-title">Integrations</h2>

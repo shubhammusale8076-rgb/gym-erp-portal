@@ -157,15 +157,16 @@ export default function Users() {
       </div>
 
       {/* Table Card */}
-      <div className="glass-panel users-panel">
+      <div className=" users-panel">
         {/* Filters */}
         <div className="users-filter-bar">
-          <div className="header-search" style={{ margin: 0, width: '100%', maxWidth: '380px' }}>
-            <Search size={18} className="search-icon" />
+          <div className="search-bar-wrapper">
+            <Search size={18} className="search-icon-inline" />
+
             <input
               type="text"
               placeholder="Search users by name or email…"
-              className="search-input"
+              className="search-input-pill"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -184,8 +185,8 @@ export default function Users() {
         </div>
 
         {/* Table */}
-        <div className="table-container">
-          <table className="data-table">
+        <div className="table-container-wrapper">
+          <table className="table-container">
             <thead>
               <tr>
                 <th>User</th>
@@ -228,7 +229,7 @@ export default function Users() {
                     <td>
                       <div className="users-actions-col">
                         <button
-                          className="icon-btn"
+                          className="action-icon-btn edit-btn"
                           title="Edit user"
                           onClick={(e) => openEdit(user, e)}
                           style={{ width: '32px', height: '32px' }}
@@ -236,7 +237,7 @@ export default function Users() {
                           <Edit2 size={14} />
                         </button>
                         <button
-                          className="icon-btn icon-btn-danger"
+                          className="action-icon-btn delete-btn"
                           title="Delete user"
                           onClick={(e) => openDelete(user, e)}
                           style={{ width: '32px', height: '32px' }}

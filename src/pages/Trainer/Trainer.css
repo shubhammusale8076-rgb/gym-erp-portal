@@ -100,7 +100,7 @@
   color: var(--text-secondary);
   border-radius: 9999px;
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: all var(--transition-fast);
 }
@@ -112,7 +112,7 @@
 
 .tags .active {
   background: var(--primary);
-  color: var(--text-on-primary);
+  color: var(--text-on-dark);
   border-color: var(--primary);
 }
 
@@ -122,16 +122,18 @@
 }
 
 .filter-icons button {
-  border: 1px solid var(--border-light);
-  padding: 0.625rem;
-  border-radius: 12px;
-  background: #ffffff;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all var(--transition-fast);
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 0.625rem 1.25rem;
+  border-radius: 12px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+
 }
 
 .filter-icons button:hover {
@@ -218,6 +220,7 @@
 .members {
   font-weight: 700;
   color: var(--text-primary);
+  text-align: center;
 }
 
 .status {

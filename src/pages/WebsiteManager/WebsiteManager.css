@@ -1,248 +1,490 @@
+/* Website Manager Premium Styles */
+
 .website-manager-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  background-color: var(--bg-dark); /* match the overall cream background */
+  padding-bottom: 3rem;
 }
 
-.wm-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
 
-.wm-badge {
-  background-color: #fceceb;
-  color: #8b3a32;
-  border-radius: 99px;
-  padding: 0.35rem 0.8rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 0.5rem;
-  border: 1px solid rgba(139, 58, 50, 0.1);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.badge-dot {
-  width: 6px;
-  height: 6px;
-  background-color: #8b3a32;
-  border-radius: 50%;
-}
-
-.wm-title {
-  text-transform: uppercase;
-  font-family: 'Oswald', 'Inter', sans-serif; /* assuming a condensed bold font like Oswald or similar, keeping generic fallback */
-  font-size: 2.5rem;
-  letter-spacing: -0.5px;
-  margin: 0;
-  line-height: 1.1;
-  color: #1a1a1a;
-}
-
-.wm-subtitle {
-  color: #64748b;
-  font-size: 1rem;
-}
-
-.wm-stats-grid {
+/* Row 1: Preview & SEO */
+.website-manager-container .wm-top-row {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: 1fr 340px;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
-@media (min-width: 768px) {
-  .wm-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .wm-stats-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.wm-stats-grid .stat-card {
-  padding: 1.5rem;
+.website-manager-container .wm-top-row .live-preview-card {
+  height: 280px;
+  border-radius:var(--section-radius);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  border-radius: 12px;
-  background-color: #ffffff;
+  justify-content: flex-end;
+  padding: 2.5rem;
+  color: white;
 }
 
-.stat-label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #64748b;
+.website-manager-container .wm-top-row .live-preview-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
 }
 
-.stat-value {
-  font-size: 3rem;
+.website-manager-container .wm-top-row .live-preview-card .live-badge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background:var(--primary);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.65rem;
   font-weight: 800;
-  font-family: 'Oswald', 'Inter', sans-serif;
-  line-height: 1;
-  color: #1a1a1a;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(4px);
 }
 
-.stat-subtext {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #c96e62 !important; /* overriden danger color specifically for the design */
-}
-
-/* SECTION STATUS */
-.wm-section-status {
-  padding: 2rem;
-  border-radius: 12px;
-  background-color: #ffffff;
-}
-
-.section-title {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #64748b;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-}
-
- .status-list {
+.website-manager-container .wm-top-row .live-preview-card .preview-info {
+  position: relative;
   display: flex;
-  flex-direction: column;
-}
-
-.status-item {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 0;
-  border-bottom: 1px solid #f1f5f9;
+  align-items: flex-end;
 }
 
-.status-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.website-manager-container .wm-top-row .live-preview-card .preview-info .preview-title {
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
-.status-item:first-child {
-  padding-top: 0;
+.website-manager-container .wm-top-row .live-preview-card .preview-info .preview-meta {
+  font-size: 0.85rem;
+  opacity: 0.8;
 }
 
-.status-name {
+.website-manager-container .wm-top-row .live-preview-card .preview-info .edit-site-btn {
+  background: var(--bg-card);
+  color: var(--primary);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #334155;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 }
 
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.website-manager-container .wm-top-row .live-preview-card .preview-info .edit-site-btn:hover {
+  transform: scale(1.05);
 }
 
-.dot-live {
-  background-color: #10b981;
-}
-
-.dot-update {
-  background-color: #d97706;
-}
-
-.status-meta {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.last-updated {
-  font-size: 0.85rem;
-  color: #94a3b8;
-}
-
-.status-pill {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  padding: 0.35rem 0.75rem;
-  border-radius: 99px;
-  text-transform: uppercase;
-}
-
-.pill-live {
-  background-color: #ecfdf5;
-  color: #059669;
-  border: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-.pill-update {
-  background-color: #fffbeb;
-  color: #b45309;
-  border: 1px solid rgba(217, 119, 6, 0.2);
-}
-
-/* AI AUDIT BANNER */
-.wm-ai-audit {
-  background: linear-gradient(135deg, #fceceb 0%, #f6e6e4 100%);
-  border: 1px solid rgba(139, 58, 50, 0.1);
-  border-radius: 12px;
-  padding: 1.5rem;
-}
-
-.ai-audit-content {
+/* SEO Health Card */
+.website-manager-container .wm-top-row .seo-health-card {
+  background: var(--primary-hover);
+  border-radius: var(--section-radius);
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-.ai-audit-header {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 
-.ai-badge {
+.website-manager-container .wm-top-row .seo-health-card .seo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.website-manager-container .wm-top-row .seo-health-card .seo-header .seo-icon-box {
+  width: 44px;
+  height: 44px;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.website-manager-container .wm-top-row .seo-health-card .seo-header .score-display {
+  text-align: right;
+}
+
+.website-manager-container .wm-top-row .seo-health-card .seo-header .score-display .score-main {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.website-manager-container .wm-top-row .seo-health-card .seo-header .score-display .score-total {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.website-manager-container .wm-top-row .seo-health-card .seo-header .score-display .score-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.website-manager-container .wm-top-row .seo-health-card .seo-body {
+  margin-top: 1.5rem;
+}
+
+.website-manager-container .wm-top-row .seo-health-card .seo-body .seo-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.website-manager-container .wm-top-row .seo-health-card .seo-body .seo-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.website-manager-container .wm-top-row .seo-health-card .seo-body .seo-progress-container .seo-progress-bg {
+  flex-grow: 1;
+  height: 6px;
+  background: rgba(126, 34, 206, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.website-manager-container .wm-top-row .seo-health-card .seo-body .seo-progress-container .seo-progress-bar {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 3px;
+}
+
+.website-manager-container .wm-top-row .seo-health-card .seo-body .seo-progress-container .seo-percent {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.website-manager-container .wm-top-row .seo-health-card .seo-body .seo-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Engagement Analytics */
+.website-manager-container .engagement-card {
+  background: var(--bg-card);
+  border-radius: var(--section-radius);
+  margin-bottom: 2rem;
+  padding: 2rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+}
+
+.website-manager-container .engagement-card .card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.website-manager-container .engagement-card .card-header-flex .analytics-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.website-manager-container .engagement-card .card-header-flex .download-link {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+  padding-bottom: 2px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1.5px solid rgba(126, 34, 206, 0.3);
+  outline: none;
+}
+
+.website-manager-container .engagement-card .card-header-flex .download-link:hover {
+  border-bottom: 1.5px solid var(--primary);
+}
+
+.website-manager-container .engagement-card .analytics-grid {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.website-manager-container .engagement-card .analytics-grid .stat-item {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  border-right: 1px solid var(--border-light);
+}
+
+.engagement-card .analytics-grid .stat-item:last-child {
+  border-right: none;
+}
+
+.website-manager-container .engagement-card .analytics-grid .stat-item .stat-label-caps {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.website-manager-container .engagement-card .analytics-grid .stat-item .stat-main-flex {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.website-manager-container .engagement-card .analytics-grid .stat-item .stat-main-flex .stat-val-large {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.website-manager-container .engagement-card .analytics-grid .stat-item .stat-main-flex .stat-trend {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+/* Mini Bar Chart */
+.website-manager-container .engagement-card .analytics-grid .stat-item .mini-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 40px;
+}
+
+.website-manager-container .engagement-card .analytics-grid .stat-item .mini-chart .chart-bar {
+  width: 50px;
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+.website-manager-container .engagement-card .analytics-grid .stat-item .mini-chart .chart-bar.active {
+  background: var(--primary);
+}
+
+.website-manager-container .engagement-card .analytics-grid .stat-item .ref-info {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #8b3a32;
-  font-weight: 700;
   font-size: 0.85rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  color: #64748b;
 }
 
-.wm-btn-ai {
-  background-color: #8b3a32;
-  color: white;
-  border-radius: 8px;
-  padding: 0.6rem 1.25rem;
-  font-weight: 600;
-  font-size: 0.9rem;
-  border: none;
+.website-manager-container .engagement-card .analytics-grid .stat-item .purple-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+}
+
+/* Bottom Row: Content & Activity */
+.website-manager-container .wm-bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 2rem;
+}
+
+.website-manager-container .wm-bottom-row .wm-content-slots {
+  background: var(--bg-card);
+}
+
+.website-manager-container .wm-bottom-row .wm-content-slots .content-slots-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.website-manager-container .wm-bottom-row .wm-content-slots .slots-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.website-manager-container .wm-bottom-row .wm-content-slots .slots-list .slot-item {
+  background: var(--primary-hover);
+  border-radius: var(--section-radius);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
   cursor: pointer;
-  box-shadow: 0 4px 6px -1px rgba(139, 58, 50, 0.2);
   transition: all 0.2s;
 }
 
-.wm-btn-ai:hover {
-  background-color: #7a332c;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 8px -1px rgba(139, 58, 50, 0.25);
+
+.website-manager-container .wm-bottom-row .wm-content-slots .slots-list .slot-item .slot-image {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--section-radius);
+  background: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.ai-audit-desc {
-  color: #94a3b8;
+.website-manager-container .wm-bottom-row .wm-content-slots .slots-list .slot-item .slot-icon-box {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--section-radius);
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.website-manager-container .wm-bottom-row .wm-content-slots .slots-list .slot-item .slot-content {
+  flex-grow: 1;
+}
+
+.website-manager-container .wm-bottom-row .wm-content-slots .slots-list .slot-item .slot-label-mini {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+}
+
+.website-manager-container .wm-bottom-row .wm-content-slots .slots-list .slot-item .slot-content .slot-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.website-manager-container .wm-bottom-row .wm-content-slots .slots-list .slot-item .slot-content .slot-meta {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.website-manager-container .wm-bottom-row .wm-content-slots .slots-list .slot-item .slot-arrow {
+  color: var(--primary);
+}
+
+.website-manager-container .wm-bottom-row .activity-card {
+  background: var(--primary-hover);
+  border-radius: var(--section-radius);
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.website-manager-container .wm-bottom-row .activity-card .activity-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+}
+
+.website-manager-container .wm-bottom-row .activity-card .timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex-grow: 1;
+  position: relative;
+}
+
+.website-manager-container .wm-bottom-row .activity-card .timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: rgba(87, 32, 141, 0.1);
+}
+
+.website-manager-container .wm-bottom-row .activity-card .timeline .timeline-item {
+  display: flex;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.website-manager-container .wm-bottom-row .activity-card .timeline .timeline-item .timeline-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.website-manager-container .wm-bottom-row .activity-card .timeline .timeline-item .timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.website-manager-container .wm-bottom-row .activity-card .timeline .timeline-item .timeline-content .activity-name {
   font-size: 0.9rem;
-  margin: 0;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.website-manager-container .wm-bottom-row .activity-card .timeline .timeline-item .timeline-content .activity-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.website-manager-container .wm-bottom-row .activity-card .timeline .timeline-item .timeline-content .activity-time {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+.website-manager-container .wm-bottom-row .activity-card .view-audit-link {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .wm-top-row, .wm-bottom-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .analytics-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }

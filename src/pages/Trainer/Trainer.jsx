@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./Trainer.css";
-import { Plus, Filter, Download } from "lucide-react";
+import { Plus, Filter, Download, Users, Users2, UserX, UserPlus, Edit2, Trash2 } from "lucide-react";
 import TrainerDetail from "../TrainerDetail/TrainerDetail";
+import PageHeader from "../../components/PageHeader/PageHeader";
+import KpiCard from "../../components/KpiCard";
 
 const trainers = [
   {
@@ -52,42 +54,26 @@ const Trainer = () => {
   return (
     <div className="trainer-page">
 
-      {/* HEADER */}
-      <div className="trainer-header">
-        <div>
-          <h1>Trainer Management</h1>
-          <p>Manage your gym's professional coaching staff and their schedules.</p>
-        </div>
+      <PageHeader
+        title="Trainer Management"
+        subtitle="Manage your gym's professional coaching staff and their schedules."
+        actions={[
+          {
+            label: "Add New Trainer",
+            icon: <Plus size={18} />,
+            onClick: () => { },
+            className: "btn-primary"
+          }
+        ]}
+      />
 
-        <button className="add-btn">
-          <Plus size={18}/> Add New Trainer
-        </button>
-      </div>
 
-      {/* STATS */}
-      <div className="trainer-stats">
-
-        <div className="stat-card">
-          <h4>Total Trainers</h4>
-          <h2>24</h2>
-        </div>
-
-        <div className="stat-card">
-          <h4>Active Now</h4>
-          <h2>18</h2>
-        </div>
-
-        <div className="stat-card">
-          <h4>On Leave</h4>
-          <h2>4</h2>
-        </div>
-
-        <div className="stat-card">
-          <h4>Top Rated</h4>
-          <h2>9</h2>
-        </div>
-
-      </div>
+      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', margin: '24px 0' }}>
+        <KpiCard title="Total Trainers" value="1,534" theme="teal" Icon={Users} />
+        <KpiCard title="Active Trainers" value="15" theme="blue" Icon={UserPlus} />
+        <KpiCard title="On Leave" value="3" theme="purple" Icon={UserX} />
+        <KpiCard title="Top Rated" value="9" theme="orange" />
+      </section>
 
       {/* FILTER */}
       <div className="trainer-filter">
@@ -102,15 +88,15 @@ const Trainer = () => {
         </div>
 
         <div className="filter-icons">
-          <button><Filter size={18}/></button>
-          <button><Download size={18}/></button>
+          <button><Filter size={18} /> Filter</button>
+          <button><Download size={18} /> Export</button>
         </div>
 
       </div>
 
       {/* TABLE */}
-      <div className="trainer-table">
-        <table>
+      <div className="table-container-wrapper">
+        <table className="table-container">
           <thead>
             <tr>
               <th>Name</th>
@@ -118,12 +104,13 @@ const Trainer = () => {
               <th>Assigned Members</th>
               <th>Schedule</th>
               <th>Status</th>
+              <th className="actions-column">ACTIONS</th>
             </tr>
           </thead>
 
           <tbody>
-            {trainers.map((trainer)=>(
-              <tr key={trainer.id} onClick={() => setSelectedTrainer(trainer)} style={{cursor: 'pointer'}}>
+            {trainers.map((trainer) => (
+              <tr key={trainer.id} onClick={() => setSelectedTrainer(trainer)} style={{ cursor: 'pointer' }}>
 
                 <td>
                   <div className="trainer-info">
@@ -152,6 +139,16 @@ const Trainer = () => {
                     {trainer.status}
                   </span>
                 </td>
+                <td className="actions-cell">
+                  <div className="row-actions">
+                    <button className="action-icon-btn edit-btn" title="Edit">
+                      <Edit2 size={16} />
+                    </button>
+                    <button className="action-icon-btn delete-btn" title="Delete">
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                </td>
 
               </tr>
             ))}
@@ -160,9 +157,9 @@ const Trainer = () => {
       </div>
 
       {selectedTrainer && (
-        <TrainerDetail 
-          trainer={selectedTrainer} 
-          onClose={() => setSelectedTrainer(null)} 
+        <TrainerDetail
+          trainer={selectedTrainer}
+          onClose={() => setSelectedTrainer(null)}
         />
       )}
 

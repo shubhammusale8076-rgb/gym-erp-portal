@@ -106,11 +106,15 @@ body {
 }
 
 .card {
-  background: white;
+  background: var(--bg-card);
   padding: 20px;
   border-radius: var(--section-radius);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
 
+}
+
+.box-shadow{
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
 
 }
 
@@ -306,6 +310,8 @@ body {
     border-radius: var(--section-radius);
     overflow: hidden;
     margin-bottom: 1.5rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+
 }
 .table-container-wrapper .table-container {
     width: 100%;

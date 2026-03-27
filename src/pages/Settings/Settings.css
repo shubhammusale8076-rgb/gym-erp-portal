@@ -56,15 +56,19 @@
     width: 48px;
     height: 48px;
     border-radius: 14px;
-    background-color: #f3ebf5;
+    background-color: var(--primary);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 24px;
 }
 
+.set-card-integrations .set-icon-svg {
+    color: var(--primary);
+}
+
 .set-icon-svg {
-    color: #57208d;
+    color: var(--bg-card);
 }
 
 .set-title {
@@ -192,7 +196,7 @@
 }
 
 .set-card-integrations .set-desc {
-    color: #555; /* slightly darker for the pink bg */
+    color: var(--text-secondary); /* slightly darker for the pink bg */
 }
 
 .set-footer-integrations {

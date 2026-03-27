@@ -30,7 +30,6 @@ const initialPlans = [
       { text: 'Full gym floor access', included: true },
       { text: 'Standard locker room access', included: true },
       { text: '1 Guest pass per month', included: true },
-      { text: 'Personal training sessions', included: false }
     ]
   },
   {
@@ -171,6 +170,10 @@ const Plans = () => {
                 </div>
               )}
 
+              <div className='icon-overlay'>
+                <IconComp size={250} strokeWidth={1.5} />
+              </div>
+
               <div className="plan-card-header-actions">
                 <div className="plan-icon-wrapper">
                   <IconComp size={24} />
@@ -209,7 +212,7 @@ const Plans = () => {
               </ul>
 
               <div className="plan-footer-actions">
-                <button className="plan-manage-btn" onClick={() => openEdit(plan)}>
+                <button className="btn-primary" onClick={() => openEdit(plan)}>
                   MANAGE {plan.name.toUpperCase()}
                 </button>
               </div>

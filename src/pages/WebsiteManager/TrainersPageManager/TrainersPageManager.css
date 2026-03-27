@@ -187,7 +187,7 @@
 }
 
 .tm-display-skill-more {
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-size: 0.75rem;
   font-weight: 600;
   align-self: center;
@@ -258,14 +258,14 @@
 
 .tm-modal-subtitle {
   font-size: 0.9rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   margin: 0;
 }
 
 .tm-modal-close {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 50%;
@@ -301,7 +301,7 @@
   display: block;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #94a3b8;
+  color: var(--text-secondary);
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-bottom: 0.75rem;
@@ -340,7 +340,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 .tm-badge-btn-photo {
@@ -349,7 +349,7 @@
   right: 15px;
   width: 36px;
   height: 36px;
-  background-color: #f6934c; /* Orange badge */
+  background-color: var(--primary); /* Orange badge */
   color: white;
   border: 3px solid white;
   border-radius: 50%;
@@ -363,7 +363,6 @@
 
 .tm-badge-btn-photo:hover {
   transform: scale(1.05);
-  background-color: #e5823c;
 }
 
 .tm-btn-upload {
@@ -387,8 +386,8 @@
 .tm-photo-hint {
   display: block;
   text-align: center;
-  font-size: 0.7rem;
-  color: #94a3b8;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
   font-style: italic;
 }
 
@@ -405,12 +404,12 @@
 }
 
 .tm-input-group-icon:focus-within {
-  border-color: #28848a;
+  border-color: var(--primary);
   background-color: #ffffff;
 }
 
 .tm-input-icon {
-  color: #94a3b8;
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   padding-right: 0.75rem;
@@ -458,7 +457,7 @@
 }
 
 .tm-input-large:focus {
-  border-color: #28848a;
+  border-color: var(--primary);
   background-color: #ffffff;
 }
 
@@ -581,7 +580,7 @@
 
 .tm-day-circle:hover {
   border-color: #cbd5e1;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 .tm-day-dot {
@@ -669,7 +668,7 @@
 .tm-shift-title {
   font-size: 0.7rem;
   font-weight: 700;
-  color: #94a3b8;
+  color: var(--text-secondary);
   letter-spacing: 1px;
   margin-bottom: 0.15rem;
 }

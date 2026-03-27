@@ -24,7 +24,7 @@
 .testi-count {
   font-size: 0.95rem;
   font-weight: 500;
-  color: #64748b;
+  color: var(--text-secondary);
 }
 
 
@@ -64,7 +64,6 @@
 }
 
 .testi-card.testi-hidden {
-  opacity: 0.6;
   background: rgba(248, 250, 252, 0.8);
   filter: grayscale(0.5);
 }
@@ -111,13 +110,13 @@
 .testi-client-name {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-primary);
   margin: 0 0 0.15rem 0;
 }
 
 .testi-client-role {
   font-size: 0.8rem;
-  color: #64748b;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
@@ -165,7 +164,6 @@
 
 .testi-toggle-btn.active {
   background-color: var(--primary);
-  /* Theme green */
 }
 
 .testi-toggle-slider {
@@ -213,7 +211,7 @@
 .testi-icon-btn {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 8px;
@@ -223,13 +221,7 @@
   transition: all 0.2s;
 }
 
-.testi-icon-btn:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
-}
-
-.testi-icon-btn.delete:hover {
-  background-color: #fef2f2;
+.testi-icon-btn.delete {
   color: #ef4444;
 }
 
@@ -279,7 +271,7 @@
 
 .testi-modal-subtitle {
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--text-secondary);
   margin: 0;
 }
 

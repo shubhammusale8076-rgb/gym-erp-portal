@@ -109,7 +109,7 @@ const Integrations = () => {
                         <p className="promo-desc">
                             Our API-first approach ensures that your gym stays ahead of the curve with bespoke tool integrations.
                         </p>
-                        <button className="promo-btn">Request Custom Integration</button>
+                        <button className="btn-primary">Request Custom Integration</button>
                     </div>
                 </div>
 

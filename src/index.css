@@ -7,7 +7,7 @@
 
   --primary: #7427a1;
   --primary-hover: #f6e6ff;
-  --primary-glow: rgba(212, 255, 61, 0.2);
+  --primary-glow: rgba(255, 61, 236, 0.2);
 
   --secondary: #86868b;
   --accent: #d4ff3d;
@@ -19,7 +19,7 @@
 
   /* Text Colors */
   --text-primary: #1d1d1f;
-  --text-secondary: #86868b;
+  --text-secondary: #6e6e72;
   --text-muted: #afafb6;
   --text-on-primary: #000000;
   --text-on-dark: #ffffff;

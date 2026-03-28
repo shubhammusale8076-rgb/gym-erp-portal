@@ -89,7 +89,7 @@ const Members = () => {
           <thead>
             <tr>
               <th className="member-column">MEMBER</th>
-              <th>PLAN TYPE</th>
+              <th>MEMBERSHIP PLAN</th>
               <th>STATUS</th>
               <th>JOIN DATE</th>
               <th className="actions-column">ACTIONS</th>

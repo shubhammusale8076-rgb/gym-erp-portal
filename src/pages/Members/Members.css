@@ -1,7 +1,6 @@
 /* Members Directory - Refined UI according to image */
 
 .members-container {
-    color: #1d1d1f;
     animation: fadeInMembers 0.4s ease-out;
 }
 

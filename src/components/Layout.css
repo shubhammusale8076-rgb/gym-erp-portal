@@ -243,8 +243,8 @@
   background: transparent;
   border: 1px solid var(--border-light);
   color: var(--text-secondary);
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -255,50 +255,69 @@
 }
 
 .icon-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: #fdf6fd;
   color: var(--text-primary);
 }
 
-.notification-badge {
+.header-btn-relative {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-bell {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid #e2d9ea;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.01);
+}
+
+.header-badge {
   position: absolute;
-  top: -2px;
+  top: 0px;
   right: -2px;
-  background: var(--badge-peach);
-  color: #000000;
-  font-size: 0.65rem;
-  font-weight: 700;
-  height: 18px;
-  width: 18px;
+  width: 22px;
+  height: 22px;
+  background-color: #ffd8b1; /* custom peach/orange */
+  border: 2px solid #5a189a; /* deep purple boundary */
+  color: #1a1a2e;
+  font-size: 0.70rem;
+  font-weight: 800;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--bg-sidebar);
 }
 
-.sidebar-nav-badge {
-  background: var(--badge-peach);
-  color: #000000;
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 0.1rem 0.5rem;
-  border-radius: 10px;
-  margin-left: auto;
-}
-
-.user-profile-simple {
+.header-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: #ffb7b7; /* solid pinkish background */
+  border: 3px solid #ffffff;
   display: flex;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* slight drop shadow */
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.avatar-small {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.header-avatar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+.header-avatar-initials {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000000;
+  letter-spacing: -0.02em;
 }
 
 /* Page Content */

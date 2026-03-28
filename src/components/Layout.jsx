@@ -16,6 +16,8 @@ import {
   ArrowUpRight,
   CreditCard
 } from 'lucide-react';
+import ProfileModal from './ProfileModal/ProfileModal';
+import NotificationModal from './NotificationModal/NotificationModal';
 import './Layout.css';
 
 const Sidebar = () => {
@@ -99,6 +101,8 @@ const Sidebar = () => {
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isNotifOpen, setIsNotifOpen] = useState(false);
   const mainContentRef = useRef(null);
 
   useEffect(() => {
@@ -127,16 +131,24 @@ const Header = () => {
           </div>
 
           <div className="header-actions">
-            <button className="icon-btn header-btn-relative">
-              <Bell size={20} />
-              <span className="notification-badge">3</span>
+            <button className="icon-btn header-btn-relative header-bell" onClick={() => setIsNotifOpen(true)}>
+              <Bell size={20} strokeWidth={2} color="#5d5d6c" />
+              <span className="header-badge">3</span>
             </button>
-            <div className="user-profile-simple">
-              <img src="https://ui-avatars.com/api/?name=Taylor&background=ffb7b7&color=000" alt="Profile" className="avatar-small" />
-            </div>
+            <button className="header-avatar" onClick={() => setIsProfileOpen(true)}>
+              <span className="header-avatar-initials">TA</span>
+            </button>
           </div>
         </div>
       </div>
+
+      {isProfileOpen && (
+        <ProfileModal onClose={() => setIsProfileOpen(false)} />
+      )}
+
+      {isNotifOpen && (
+        <NotificationModal onClose={() => setIsNotifOpen(false)} />
+      )}
     </header>
   );
 };

@@ -25,10 +25,12 @@ import PaymentRecords from './pages/Payments/PaymentRecords';
 import PaymentDetail from './pages/Payments/PaymentDetail';
 import SettingWrapper from './pages/Settings/SettingWrapper';
 import Settings from './pages/Settings/Settings'
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Layout />}>

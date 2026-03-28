@@ -17,19 +17,30 @@ const Members = () => {
   const [members, setMembers] = useState(initialMembers);
   const [searchTerm, setSearchTerm] = useState('');
   const [isAddingMember, setIsAddingMember] = useState(false);
+  const [editingMember, setEditingMember] = useState(null);
   const navigate = useNavigate();
 
-  const handleAddMember = (newMemberData) => {
-    const newMember = {
-      id: members.length + 1,
-      name: newMemberData.fullName,
-      email: newMemberData.email,
-      plan: newMemberData.membershipPlan,
-      status: 'Active',
-      joinDate: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' })
-    };
-    setMembers([...members, newMember]);
+  const handleSaveMember = (newMemberData) => {
+    if (editingMember) {
+      setMembers(members.map(m => m.id === editingMember.id ? { 
+        ...m, 
+        name: newMemberData.fullName, 
+        email: newMemberData.email, 
+        plan: newMemberData.membershipPlan 
+      } : m));
+    } else {
+      const newMember = {
+        id: members.length + 1,
+        name: newMemberData.fullName,
+        email: newMemberData.email,
+        plan: newMemberData.membershipPlan,
+        status: 'Active',
+        joinDate: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' })
+      };
+      setMembers([...members, newMember]);
+    }
     setIsAddingMember(false);
+    setEditingMember(null);
   };
 
   const filteredMembers = members.filter(member =>
@@ -47,7 +58,7 @@ const Members = () => {
           {
             label: " Add Member",
             icon: <UserPlus size={16} />,
-            onClick: () => { setIsAddingMember(true) },
+            onClick: () => { setEditingMember(null); setIsAddingMember(true) },
             className: "btn-primary"
           }
         ]}
@@ -110,7 +121,7 @@ const Members = () => {
                 <td className="date-cell">{member.joinDate}</td>
                 <td className="actions-cell">
                   <div className="row-actions">
-                    <button className="action-icon-btn edit-btn" title="Edit">
+                    <button className="action-icon-btn edit-btn" title="Edit" onClick={() => { setEditingMember(member); setIsAddingMember(true); }}>
                       <Edit2 size={16} />
                     </button>
                     <button className="action-icon-btn delete-btn" title="Delete">
@@ -153,8 +164,9 @@ const Members = () => {
 
       {isAddingMember && (
         <AddMember
-          onClose={() => setIsAddingMember(false)}
-          onAdd={handleAddMember}
+          onClose={() => { setIsAddingMember(false); setEditingMember(null); }}
+          onAdd={handleSaveMember}
+          initialData={editingMember}
         />
       )}
     </div>

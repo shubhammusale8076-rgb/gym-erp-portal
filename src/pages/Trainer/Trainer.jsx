@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Trainer.css";
 import { Plus, Filter, Download, Users, Users2, UserX, UserPlus, Edit2, Trash2 } from "lucide-react";
 import TrainerDetail from "../TrainerDetail/TrainerDetail";
+import AddTrainer from "./AddTrainer";
 import PageHeader from "../../components/PageHeader/PageHeader";
 import KpiCard from "../../components/KpiCard";
 
@@ -50,6 +51,35 @@ const trainers = [
 
 const Trainer = () => {
   const [selectedTrainer, setSelectedTrainer] = useState(null);
+  const [trainersList, setTrainersList] = useState(trainers);
+  const [isAddingTrainer, setIsAddingTrainer] = useState(false);
+  const [editingTrainer, setEditingTrainer] = useState(null);
+
+  const handleSaveTrainer = (newTrainerData) => {
+    if (editingTrainer) {
+      setTrainersList(trainersList.map(t => t.id === editingTrainer.id ? { 
+        ...t, 
+        name: newTrainerData.fullName, 
+        email: newTrainerData.email, 
+        specialty: newTrainerData.specialization 
+      } : t));
+    } else {
+      const newTrainer = {
+        id: trainersList.length + 1,
+        name: newTrainerData.fullName,
+        email: newTrainerData.email,
+        specialty: newTrainerData.specialization,
+        members: 0,
+        schedule: "TBD",
+        status: "Active",
+        img: "https://randomuser.me/api/portraits/lego/1.jpg"
+      };
+      setTrainersList([...trainersList, newTrainer]);
+    }
+    setIsAddingTrainer(false);
+    setEditingTrainer(null);
+  };
+
 
   return (
     <div className="trainer-page">
@@ -61,7 +91,7 @@ const Trainer = () => {
           {
             label: "Add New Trainer",
             icon: <Plus size={18} />,
-            onClick: () => { },
+            onClick: () => { setEditingTrainer(null); setIsAddingTrainer(true); },
             className: "btn-primary"
           }
         ]}
@@ -109,7 +139,7 @@ const Trainer = () => {
           </thead>
 
           <tbody>
-            {trainers.map((trainer) => (
+            {trainersList.map((trainer) => (
               <tr key={trainer.id} onClick={() => setSelectedTrainer(trainer)} style={{ cursor: 'pointer' }}>
 
                 <td>
@@ -141,7 +171,7 @@ const Trainer = () => {
                 </td>
                 <td className="actions-cell">
                   <div className="row-actions">
-                    <button className="action-icon-btn edit-btn" title="Edit">
+                    <button className="action-icon-btn edit-btn" title="Edit" onClick={(e) => { e.stopPropagation(); setEditingTrainer(trainer); setIsAddingTrainer(true); }}>
                       <Edit2 size={16} />
                     </button>
                     <button className="action-icon-btn delete-btn" title="Delete">
@@ -160,6 +190,14 @@ const Trainer = () => {
         <TrainerDetail
           trainer={selectedTrainer}
           onClose={() => setSelectedTrainer(null)}
+        />
+      )}
+
+      {isAddingTrainer && (
+        <AddTrainer
+          onClose={() => { setIsAddingTrainer(false); setEditingTrainer(null); }}
+          onAdd={handleSaveTrainer}
+          initialData={editingTrainer}
         />
       )}
 

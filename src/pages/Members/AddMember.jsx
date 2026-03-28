@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
-import { ArrowLeft, User, Calendar, UserPlus, X, Camera } from 'lucide-react';
+import { User, Check, Upload, Tag, Asterisk, PlusCircle, ArrowRight, Camera } from 'lucide-react';
 import './AddMember.css';
 
-const AddMember = ({ onClose, onAdd }) => {
+const AddMember = ({ onClose, onAdd, initialData }) => {
     const [formData, setFormData] = useState({
-        fullName: '',
-        email: '',
+        fullName: initialData?.name || '',
+        email: initialData?.email || '',
         phoneNumber: '',
         dateOfBirth: '',
-        gender: '',
-        membershipPlan: 'PRO',
-        joinDate: new Date().toISOString().split('T')[0],
-        billingCycle: 'Monthly',
-        trainer: 'None (General Access)',
+        membershipPlan: initialData?.plan || 'Elite',
         emergencyContactName: '',
-        emergencyContactPhone: ''
+        emergencyContactPhone: '',
+        trainer: ''
     });
+
+    const isEdit = !!initialData;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,220 +26,211 @@ const AddMember = ({ onClose, onAdd }) => {
     };
 
     return (
-        <div className="add-member-overlay">
-            <div className="add-member-modal">
-                <header className="add-member-header">
-                    <div>
-                        <div className="breadcrumb">
-                            <span>Dashboard</span>
-                            <span className="separator">&gt;</span>
-                            <span>Members</span>
-                            <span className="separator">&gt;</span>
-                            <span className="current">Add New Member</span>
-                        </div>
-                        <h1 className="heading-1">Add New Member</h1>
-                        <p className="subtitle">Register a new client and assign them to a membership plan.</p>
-                    </div>
-                    <button className="btn btn-secondary back-btn" onClick={onClose}>
-                        <ArrowLeft size={18} />
-                        Back to Directory
-                    </button>
+        <div className="am-overlay">
+            <div className="am-modal">
+                <header className="am-header">
+                    <span className="am-subtitle">MEMBER CURATOR</span>
+                    <h1 className="am-title">{isEdit ? 'Edit Member Profile' : 'Add New Member'}</h1>
+                    <p className="am-desc">
+                        {isEdit ? 'Update the details and membership tier for the existing athlete in the Elite Club ecosystem.' : 'Onboard a new athlete into the Elite Club ecosystem. Precision and clarity ensure a seamless transition into their new lifestyle.'}
+                    </p>
                 </header>
 
-                <form className="add-member-grid" onSubmit={handleSubmit}>
-                    <div className="main-content-form">
-                        <section className="section-card">
-                            <div className="section-header">
-                                <User className="section-icon" size={20} />
-                                <h3>Personal Information</h3>
+                <form className="am-grid" onSubmit={handleSubmit}>
+                    {/* Left Column */}
+                    <div className="am-col">
+                        
+                        {/* Personal Information */}
+                        <div className="am-card card-white">
+                            <div className="am-card-header mb-8">
+                                <h3 className="am-card-title">Personal Information</h3>
+                                <User size={16} className="icon-purple" />
                             </div>
-                            <div className="form-grid">
-                                <div className="form-group full-width">
-                                    <label>Full Name</label>
-                                    <input
-                                        type="text"
-                                        placeholder="e.g. John Doe"
-                                        className="input-field"
+                            
+                            <div className="am-form-grid">
+                                <div className="am-form-group">
+                                    <label>FULL NAME</label>
+                                    <input 
+                                        type="text" 
+                                        placeholder="e.g. Julian Sterling" 
                                         value={formData.fullName}
-                                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                                        onChange={(e) => setFormData({...formData, fullName: e.target.value})}
                                         required
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label>Email Address</label>
-                                    <input
-                                        type="email"
-                                        placeholder="john@example.com"
-                                        className="input-field"
+                                <div className="am-form-group">
+                                    <label>EMAIL ADDRESS</label>
+                                    <input 
+                                        type="email" 
+                                        placeholder="julian.s@auraelite.com"
                                         value={formData.email}
-                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        required
+                                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                                        required 
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label>Phone Number</label>
-                                    <input
-                                        type="text"
-                                        placeholder="+1 (555) 000-0000"
-                                        className="input-field"
+                                <div className="am-form-group">
+                                    <label>PHONE NUMBER</label>
+                                    <input 
+                                        type="tel" 
+                                        placeholder="+1 (555) 000-0000" 
                                         value={formData.phoneNumber}
-                                        onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+                                        onChange={(e) => setFormData({...formData, phoneNumber: e.target.value})}
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label>Date of Birth</label>
-                                    <input
-                                        type="date"
-                                        className="input-field"
+                                <div className="am-form-group am-relative">
+                                    <label>DATE OF BIRTH</label>
+                                    <input 
+                                        type="text" 
+                                        placeholder="mm/dd/yyyy"
                                         value={formData.dateOfBirth}
-                                        onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
+                                        onChange={(e) => setFormData({...formData, dateOfBirth: e.target.value})} 
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label>Gender</label>
-                                    <select
-                                        className="input-field"
-                                        value={formData.gender}
-                                        onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-                                    >
-                                        <option value="">Select gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
                             </div>
-                        </section>
+                        </div>
 
-                        <section className="section-card">
-                            <div className="section-header">
-                                {/* <Layers className="section-icon" size={20} /> */}
-                                <h3>Membership Details</h3>
+                        {/* Membership Tier */}
+                        <div className="am-card card-tinted">
+                            <div className="am-card-header mb-8">
+                                <div className="am-title-stack">
+                                    <h3 className="am-card-title">Membership Tier</h3>
+                                    <span className="am-card-subtitle">Select the curated experience for the member.</span>
+                                </div>
+                                <Tag size={16} className="icon-purple" />
                             </div>
-                            <div className="plan-selection">
-                                <div
-                                    className={`plan-card ${formData.membershipPlan === 'BASIC' ? 'active' : ''}`}
-                                    onClick={() => handlePlanSelect('BASIC')}
-                                >
-                                    <span className="plan-name">BASIC</span>
-                                    <span className="plan-price">$29</span>
-                                </div>
-                                <div
-                                    className={`plan-card ${formData.membershipPlan === 'PRO' ? 'active' : ''}`}
-                                    onClick={() => handlePlanSelect('PRO')}
-                                >
-                                    <span className="plan-name">PRO</span>
-                                    <span className="plan-price">$59</span>
-                                    <span className="most-popular">IDEAL</span>
-                                </div>
-                                <div
-                                    className={`plan-card ${formData.membershipPlan === 'ELITE' ? 'active' : ''}`}
-                                    onClick={() => handlePlanSelect('ELITE')}
-                                >
-                                    <span className="plan-name">ELITE</span>
-                                    <span className="plan-price">$99</span>
-                                </div>
-                            </div>
-                            <div className="form-grid">
-                                <div className="form-group">
-                                    <label>Join Date</label>
-                                    <input
-                                        type="date"
-                                        className="input-field"
-                                        value={formData.joinDate}
-                                        onChange={(e) => setFormData({ ...formData, joinDate: e.target.value })}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label>Billing Cycle</label>
-                                    <select
-                                        className="input-field"
-                                        value={formData.billingCycle}
-                                        onChange={(e) => setFormData({ ...formData, billingCycle: e.target.value })}
-                                    >
-                                        <option value="Monthly">Monthly</option>
-                                        <option value="Quarterly">Quarterly</option>
-                                        <option value="Yearly">Yearly</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </section>
 
-                        <section className="section-card">
-                            <div className="section-header">
-                                <UserPlus className="section-icon" size={20} />
-                                <h3>Assignment & Emergency</h3>
+                            <div className="am-tier-grid">
+                                {/* Standard */}
+                                <div 
+                                    className={`am-tier-card ${formData.membershipPlan === 'Standard' ? 'selected' : ''}`}
+                                    onClick={() => handlePlanSelect('Standard')}
+                                >
+                                    <div className="tier-card-top">
+                                        <span className="tier-badge-outline">STANDARD</span>
+                                        <div className={`radio-circle ${formData.membershipPlan === 'Standard' ? 'active' : ''}`}></div>
+                                    </div>
+                                    <div className="tier-price">
+                                        <h2>$99</h2><span>/mo</span>
+                                    </div>
+                                    <ul className="tier-features">
+                                        <li><Check size={12} className="feature-check"/> Gym Access</li>
+                                        <li><Check size={12} className="feature-check"/> Locker Room</li>
+                                    </ul>
+                                </div>
+                                {/* Elite */}
+                                <div 
+                                    className={`am-tier-card ${formData.membershipPlan === 'Elite' ? 'selected border-purple shadow-purple' : ''}`}
+                                    onClick={() => handlePlanSelect('Elite')}
+                                >
+                                    <div className="tier-card-top">
+                                        <span className="tier-badge-solid">ELITE</span>
+                                        <div className="badge-star-icon">★</div>
+                                    </div>
+                                    <div className="tier-price">
+                                        <h2>$189</h2><span>/mo</span>
+                                    </div>
+                                    <ul className="tier-features">
+                                        <li className="purple-text"><Check size={12} className="feature-check purple"/> All Standard Perks</li>
+                                        <li className="purple-text"><Check size={12} className="feature-check purple"/> Pool & Sauna</li>
+                                        <li className="purple-text"><Check size={12} className="feature-check purple"/> 2 Guest Passes</li>
+                                    </ul>
+                                </div>
+                                {/* Platinum */}
+                                <div 
+                                    className={`am-tier-card ${formData.membershipPlan === 'Platinum' ? 'selected' : ''}`}
+                                    onClick={() => handlePlanSelect('Platinum')}
+                                >
+                                    <div className="tier-card-top">
+                                        <span className="tier-badge-outline">PLATINUM</span>
+                                        <div className={`radio-circle ${formData.membershipPlan === 'Platinum' ? 'active' : ''}`}></div>
+                                    </div>
+                                    <div className="tier-price">
+                                        <h2>$299</h2><span>/mo</span>
+                                    </div>
+                                    <ul className="tier-features">
+                                        <li><Check size={12} className="feature-check"/> All Elite Perks</li>
+                                        <li><Check size={12} className="feature-check"/> Private Training</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div className="form-grid">
-                                <div className="form-group full-width">
-                                    <label>Assign Personal Trainer</label>
-                                    <select
-                                        className="input-field"
-                                        value={formData.trainer}
-                                        onChange={(e) => setFormData({ ...formData, trainer: e.target.value })}
-                                    >
-                                        <option value="None (General Access)">None (General Access)</option>
-                                        <option value="John Smith">John Smith</option>
-                                        <option value="Jane Doe">Jane Doe</option>
-                                    </select>
-                                </div>
-                                <div className="form-group">
-                                    <label>Emergency Contact Name</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Contact person name"
-                                        className="input-field"
-                                        value={formData.emergencyContactName}
-                                        onChange={(e) => setFormData({ ...formData, emergencyContactName: e.target.value })}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label>Emergency Contact Phone</label>
-                                    <input
-                                        type="text"
-                                        placeholder="+1 (555) 000-0000"
-                                        className="input-field"
-                                        value={formData.emergencyContactPhone}
-                                        onChange={(e) => setFormData({ ...formData, emergencyContactPhone: e.target.value })}
-                                    />
-                                </div>
-                            </div>
-                        </section>
+                        </div>
                     </div>
 
-                    <div className="member-sidebar">
-                        <section className="section-card">
-                            <div className="section-header">
-                                <Camera className="section-icon" size={18} />
-                                <h3>Profile Picture</h3>
-                            </div>
-                            <div className="profile-upload-container">
-                                <div className="avatar-preview">
-                                    <User size={48} className="placeholder-user" />
-                                    <div className="camera-icon-bg">
-                                        <Camera size={14} color="white" />
-                                    </div>
+                    {/* Right Column */}
+                    <div className="am-col">
+                        
+                        {/* Profile Portrait */}
+                        <div className="am-card card-white text-center">
+                            <h3 className="am-card-title mb-6 mx-auto">Profile Portrait</h3>
+                            
+                            <div className="avatar-upload-area">
+                                <div className="avatar-circle">
+                                    <Camera size={48} className="avatar-placeholder-icon" strokeWidth={1.5} />
+                                    <button className="upload-btn-circle" type="button">
+                                        <Upload size={16} strokeWidth={3} />
+                                    </button>
                                 </div>
-                                <p className="upload-tip">JPG/PNG, max 5MB.</p>
-                                <button type="button" className="btn btn-secondary upload-btn">Upload Photo</button>
                             </div>
-                        </section>
-                        
-                        <div className="sidebar-divider"></div>
+                            
+                            <p className="am-upload-hint">
+                                High-resolution portraits<br/>(JPEG, PNG) elevate the<br/>member directory<br/>experience.
+                            </p>
+                        </div>
 
-                        <div className="actions-stack">
-                            <button type="submit" className="btn btn-primary create-btn">
-                                Create Member
+                        {/* Emergency Contact & Trainer */}
+                        <div className="am-card card-white">
+                            {/* Emergency Contact */}
+                            <div className="am-card-header mb-8 justify-start gap-2">
+                                <Asterisk size={16} className="icon-red" />
+                                <h3 className="am-card-title">Emergency Contact</h3>
+                            </div>
+                            
+                            <div className="am-form-stack mb-8">
+                                <input 
+                                    type="text" 
+                                    placeholder="Contact Name" 
+                                    className="pink-input"
+                                    value={formData.emergencyContactName}
+                                    onChange={(e) => setFormData({...formData, emergencyContactName: e.target.value})}
+                                />
+                                <input 
+                                    type="tel" 
+                                    placeholder="Phone Number" 
+                                    className="pink-input"
+                                    value={formData.emergencyContactPhone}
+                                    onChange={(e) => setFormData({...formData, emergencyContactPhone: e.target.value})}
+                                />
+                            </div>
+                            
+                            <div className="am-divider"></div>
+
+                            {/* Assign Trainer */}
+                            <div className="am-card-header mb-8 justify-start gap-2">
+                                <PlusCircle size={16} className="icon-purple" />
+                                <h3 className="am-card-title">Assign Trainer</h3>
+                            </div>
+
+                            <select 
+                                className="pink-input"
+                                value={formData.trainer}
+                                onChange={(e) => setFormData({...formData, trainer: e.target.value})}
+                            >
+                                <option value="">No Trainer Assigned</option>
+                                <option value="trainer1">John Smith</option>
+                                <option value="trainer2">Jane Doe</option>
+                            </select>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="am-actions">
+                            <button type="submit" className="am-btn-submit">
+                                {isEdit ? 'Save Profile Changes' : 'Create Member Account'} <ArrowRight size={16} />
                             </button>
-                            <button type="button" className="btn btn-secondary cancel-btn" onClick={onClose}>
-                                Cancel
+                            <button type="button" className="am-btn-cancel" onClick={onClose}>
+                                Discard and Return
                             </button>
                         </div>
-                        
-                        <div className="invoice-info-card">
-                            <div className="info-icon">i</div>
-                            <p>An invoice will be generated automatically for the first cycle.</p>
-                        </div>
+
                     </div>
                 </form>
             </div>

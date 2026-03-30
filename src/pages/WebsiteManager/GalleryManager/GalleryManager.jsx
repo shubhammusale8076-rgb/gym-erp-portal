@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { UploadCloud, ChevronDown, Check, Image as LucideImage } from 'lucide-react';
 import './GalleryManager.css';
+import PageHeader from '../../../components/PageHeader/PageHeader';
 
 const GalleryManager = () => {
   const [activeTab, setActiveTab] = useState('All');
@@ -12,20 +13,22 @@ const GalleryManager = () => {
     { id: 3, url: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80', selected: false },
     { id: 4, url: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&q=80', selected: false },
     { id: 5, url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80', selected: false },
+    { id: 6, url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80', selected: false },
   ];
 
   return (
     <div className="gm-page">
-        <div className="gm-header">
-          <h1 className="heading-1 gm-title">Website Gallery Manager</h1>
-          <p className="gm-subtitle">Curate your brand's visual narrative.</p>
-        </div>
+      <PageHeader
+        title="Website Gallery Manager"
+        subtitle="Curate your brand's visual narrative."
+        actions={[]}
+      />
 
       <div className="gm-toolbar">
         <div className="gm-tabs">
           {tabs.map(tab => (
-            <button 
-              key={tab} 
+            <button
+              key={tab}
               className={`gm-tab ${activeTab === tab ? 'active' : ''}`}
               onClick={() => setActiveTab(tab)}
             >
@@ -37,7 +40,7 @@ const GalleryManager = () => {
           <button className="gm-btn-outline">
             Bulk Actions <ChevronDown size={14} />
           </button>
-          <button className="gm-btn-primary">
+          <button className="btn-primary">
             <UploadCloud size={16} /> Upload New Asset
           </button>
         </div>
@@ -69,21 +72,21 @@ const GalleryManager = () => {
             <div className="gm-preview">
               <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&q=80" alt="Current Selection" className="gm-preview-img" />
               <div className="gm-preview-overlay">
-                 <h3 className="gm-preview-text">CURRENT<br/>SELECTION</h3>
+                <h3 className="gm-preview-text">CURRENT<br />SELECTION</h3>
               </div>
             </div>
           </div>
 
           <div className="gm-form">
             <div className="gm-form-group">
-              <label>ASSET NAME</label>
+              <label>Asset Name</label>
               <input type="text" value="Obsidian Gym Floor" readOnly className="gm-input" />
             </div>
 
             <div className="gm-form-group">
-              <label>ALT TEXT (SEO)</label>
+              <label>Alt Text (SEO)</label>
               <div className="gm-textarea-wrapper">
-                <textarea 
+                <textarea
                   className="gm-textarea"
                   readOnly
                   value="Atmospheric view of the Obsidian performance area featuring bespoke dark matte tiling and integrated neon light tracks."
@@ -92,8 +95,8 @@ const GalleryManager = () => {
             </div>
 
             <div className="gm-form-row">
-              <div className="gm-form-group w-50">
-                <label>CATEGORY</label>
+              <div className="gm-form-group">
+                <label>Category</label>
                 <div className="gm-select-wrapper">
                   <select className="gm-select" defaultValue="Interiors">
                     <option value="Interiors">Interiors</option>
@@ -101,8 +104,8 @@ const GalleryManager = () => {
                   <ChevronDown className="gm-select-icon" size={14} />
                 </div>
               </div>
-              <div className="gm-form-group w-50">
-                <label>DISPLAY STATUS</label>
+              <div className="gm-form-group">
+                <label>Display Status</label>
                 <div className="gm-status-display">
                   <span className="gm-status-dot"></span> <span className="gm-status-text">Live</span>
                 </div>
@@ -111,8 +114,8 @@ const GalleryManager = () => {
           </div>
 
           <div className="gm-sidebar-actions">
-            <button className="gm-btn-discard">Discard</button>
-            <button className="gm-btn-update">Update Asset</button>
+            <button className="gm-btn btn-secondary">Discard</button>
+            <button className="gm-btn btn-primary">Update Asset</button>
           </div>
         </div>
       </div>

@@ -3,100 +3,23 @@
   font-family: inherit;
 }
 
-.trainer-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
 
-.trainer-header h1 {
-  font-size: 2.25rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--text-primary);
-  margin-bottom: 0.25rem;
-}
-
-.trainer-header p {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-}
-
-.add-btn {
-  background: var(--primary);
-  color: var(--text-on-primary);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 24px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  box-shadow: 0 4px 10px var(--primary-glow);
-}
-
-.add-btn:hover {
-  background: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 15px var(--primary-glow);
-}
-
-.trainer-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.trainer-stats .stat-card {
-  background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 16px;
-  border: 1px solid var(--border-light);
-  transition: all var(--transition-fast);
-}
-
-.trainer-stats .stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.04);
-  border-color: var(--primary);
-}
-
-.trainer-stats .stat-card h4 {
-  color: var(--text-secondary);
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.trainer-stats .stat-card h2 {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  margin: 0;
-}
-
-.trainer-filter {
+.trainer-page .trainer-filter {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
 }
 
-.tags {
+.trainer-page .trainer-filter .tags {
   display: flex;
   gap: 0.75rem;
 }
 
-.tags button {
+.trainer-page .trainer-filter .tags button {
   padding: 0.5rem 1.25rem;
   border: 1px solid var(--border-light);
-  background: #ffffff;
+  background: var(--bg-card);
   color: var(--text-secondary);
   border-radius: 9999px;
   font-weight: 600;
@@ -105,27 +28,27 @@
   transition: all var(--transition-fast);
 }
 
-.tags button:hover {
+.trainer-page .trainer-filter .tags button:hover {
   background: #f8fafc;
   color: var(--text-primary);
 }
 
-.tags .active {
+.trainer-page .trainer-filter .tags .active {
   background: var(--primary);
   color: var(--text-on-dark);
   border-color: var(--primary);
 }
 
-.filter-icons {
+.trainer-page .trainer-filter .filter-icons {
   display: flex;
   gap: 0.75rem;
 }
 
-.filter-icons button {
+.trainer-page .trainer-filter .filter-icons button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #ffffff;
+  background-color: var(--bg-card);
   border: 1px solid var(--border-light);
   padding: 0.625rem 1.25rem;
   border-radius: 12px;
@@ -136,106 +59,72 @@
 
 }
 
-.filter-icons button:hover {
+.trainer-page .trainer-filter .filter-icons button:hover {
   background: #f8fafc;
   color: var(--text-primary);
   border-color: #cbd5e1;
 }
 
-.trainer-table {
-  background: white;
-  border-radius: 20px;
-  border: 1px solid var(--border-light);
-  overflow: hidden;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.03);
-}
 
-.trainer-table table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.trainer-table th {
-  background: #f8fafc;
-  border-bottom: 1px solid var(--border-light);
-  padding: 1rem 1.5rem;
-  text-align: left;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--text-muted);
-}
-
-.trainer-table td {
-  padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid var(--border-light);
-  color: var(--text-primary);
-  font-size: 0.95rem;
-}
-
-.trainer-table tbody tr {
-  transition: background-color var(--transition-fast);
-}
-
-.trainer-table tbody tr:hover {
-  background-color: #fbfbfd;
-}
-
-.trainer-info {
+.trainer-page .table-container-wrapper .table-container .trainer-info {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.trainer-info img {
+.trainer-page .table-container-wrapper .table-container .trainer-info img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #ffffff;
+  border: 2px solid var(--primary-glow);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.trainer-name {
-  font-weight: 700;
+.trainer-page .table-container-wrapper .table-container .trainer-name {
+  font-weight: 500;
   color: var(--text-primary);
   font-size: 1rem;
 }
 
-.trainer-info span {
+.trainer-page .table-container-wrapper .table-container .trainer-info span {
   font-size: 0.8125rem;
   color: var(--text-secondary);
 }
 
-.specialty {
-  background: rgba(212, 255, 61, 0.15);
-  color: var(--text-primary);
+.trainer-page .table-container-wrapper .table-container .specialty {
+  background: var(--bg-card-secondary);
+  color: var(--primary);
   padding: 0.375rem 0.875rem;
   border-radius: 20px;
   font-size: 0.8125rem;
   font-weight: 600;
 }
 
-.members {
-  font-weight: 700;
+.trainer-page .table-container-wrapper .table-container .members {
+  font-weight: 500;
   color: var(--text-primary);
   text-align: center;
 }
 
-.status {
-  padding: 0.375rem 0.875rem;
-  border-radius: 20px;
-  font-size: 0.8125rem;
-  font-weight: 700;
+.trainer-page .table-container-wrapper .table-container .schedule{
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
-.status.active {
+.trainer-page .table-container-wrapper .table-container .status {
+  padding: 0.375rem 0.875rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.trainer-page .table-container-wrapper .table-container .status.active {
   background: #e6f4ea;
   color: var(--success);
 }
 
-.status.leave {
+.trainer-page .table-container-wrapper .table-container .status.leave {
   background: #f1f5f9;
   color: var(--text-secondary);
 }

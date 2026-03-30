@@ -136,7 +136,7 @@ export default function Users() {
   };
 
   return (
-    <div className="page-container users-page">
+    <div className="users-page">
       <PageHeader
         title="User Management"
         subtitle="Manage system users, roles, and access permissions."
@@ -156,9 +156,7 @@ export default function Users() {
         <KpiCard title="Admins" value="24" theme="orange" Icon={Activity} />
       </div>
 
-      {/* Table Card */}
-      <div className=" users-panel">
-        {/* Filters */}
+      <div className="users-panel">
         <div className="users-filter-bar">
           <div className="search-bar-wrapper">
             <Search size={18} className="search-icon-inline" />
@@ -208,14 +206,13 @@ export default function Users() {
                           {user.name.charAt(0)}
                         </div>
                         <div>
-                          <p className="users-font-medium" style={{ color: 'var(--text-primary)' }}>{user.name}</p>
-                          <p className="users-text-sm" style={{ color: 'var(--text-muted)' }}>{user.email}</p>
+                          <p className="users-font-medium" >{user.name}</p>
+                          <p className="users-text-sm" >{user.email}</p>
                         </div>
                       </div>
                     </td>
                     <td>
                       <span className="role-badge" style={{ background: rs.bg, color: rs.color }}>
-                        <Shield size={11} />
                         {user.role}
                       </span>
                     </td>
@@ -224,8 +221,8 @@ export default function Users() {
                         {user.status}
                       </span>
                     </td>
-                    <td style={{ color: 'var(--text-secondary)' }}>{user.createdAt}</td>
-                    <td style={{ color: 'var(--text-secondary)' }}>{user.lastLogin}</td>
+                    <td >{user.createdAt}</td>
+                    <td >{user.lastLogin}</td>
                     <td>
                       <div className="users-actions-col">
                         <button

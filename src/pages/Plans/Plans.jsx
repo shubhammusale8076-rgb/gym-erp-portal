@@ -135,7 +135,8 @@ const Plans = () => {
   };
 
   return (
-    <div className="plans-page page-container">
+    <div className="plans-page">
+
         <PageHeader
         title="Subscription Tiers"
         subtitle="Manage pricing, exclusive benefits, and global access levels for the Elite Club community."
@@ -154,10 +155,7 @@ const Plans = () => {
           }
         ]}
       />
-      {/* ── Page Header ── */}
-      
 
-      {/* ── Top Section: Tier Cards ── */}
       <div className="plans-cards-grid">
         {plans.map((plan) => {
           let IconComp = Dumbbell;
@@ -168,7 +166,7 @@ const Plans = () => {
             <div key={plan.id} className={`plan-card theme-${plan.theme || (plan.isPopular ? 'elite' : 'standard')}`}>
               
               {plan.badge && (
-                <div className="plan-badge-top">
+                <div className="plan-badge-top ">
                   {plan.badge}
                 </div>
               )}
@@ -224,12 +222,10 @@ const Plans = () => {
         })}
       </div>
 
-      {/* ── Middle Section: Split View ── */}
       <div className="plans-middle-grid">
         
-        {/* Left: Insights & Forecast */}
         <div className="plans-sidebar-col">
-          <div className="plans-insight-card">
+          <div className="plans-insight-card box-shadow">
             <h4 className="insight-card-title">Subscription Insights</h4>
             
             <div className="insight-bars">
@@ -265,7 +261,7 @@ const Plans = () => {
             </div>
 
             <div className="insight-total-box">
-              <p className="insight-total-label">TOTAL ACTIVE MEMBERS</p>
+              <p className="insight-total-label">Total Active Members</p>
               <h2 className="insight-total-val">1,482</h2>
             </div>
           </div>
@@ -281,8 +277,7 @@ const Plans = () => {
           </div>
         </div>
 
-        {/* Right: Feature Comparison */}
-        <div className="plans-table-card">
+        <div className="plans-table-card box-shadow">
           <div className="table-header-row">
             <h3 className="table-title">Feature Comparison</h3>
             <button className="table-export-btn">
@@ -327,7 +322,6 @@ const Plans = () => {
         </div>
       </div>
 
-      {/* ── Bottom Section: Promotional Cards ── */}
       <div className="plans-promo-grid">
         <div className="promo-image-card boutique-bg">
            <div className="promo-overlay"></div>
@@ -345,7 +339,6 @@ const Plans = () => {
         </div>
       </div>
 
-      {/* ── New Custom Modal: Create / Edit Plan ── */}
       {(modalMode === 'create' || modalMode === 'edit') && (
         <div className="cp-overlay" onClick={() => setModalMode(null)}>
           <div className="cp-modal" onClick={e => e.stopPropagation()}>

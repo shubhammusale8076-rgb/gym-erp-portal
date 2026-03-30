@@ -6,8 +6,9 @@
   --bg-glass: rgba(255, 255, 255, 0.8);
 
   --primary: #7427a1;
+  --primary-light:#8034AD;
   --primary-hover: #f6e6ff;
-  --primary-glow: rgba(255, 61, 236, 0.2);
+  --primary-glow: #d8b4fe;
 
   --secondary: #86868b;
   --accent: #ffdf99;
@@ -177,7 +178,7 @@ body {
 .btn-primary:hover {
   background-color: var(--primary-hover);
   color: var(--primary);
-  border: none;
+  box-shadow: 0 4px 12px var(--primary-glow);
 }
 
 

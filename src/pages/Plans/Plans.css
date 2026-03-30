@@ -6,7 +6,7 @@
 }
 
 /* ── Top Bar ── */
-.plans-topbar {
+.plans-page .plans-topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,12 +17,12 @@
 
 
 
-.plans-actions {
+.plans-page .plans-actions {
   display: flex;
   gap: 1rem;
 }
 
-.plans-btn-archive {
+.plans-page .plans-btn-archive {
   border: 1px solid var(--border-light);
   color: var(--text-secondary);
   background: transparent;
@@ -34,12 +34,12 @@
   cursor: pointer;
 }
 
-.plans-btn-archive:hover {
+.plans-page .plans-btn-archive:hover {
   background: #f8fafc;
   color: var(--text-primary);
 }
 
-.plans-btn-add {
+.plans-page .plans-btn-add {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -55,13 +55,13 @@
   cursor: pointer;
 }
 
-.plans-btn-add:hover {
+.plans-page .plans-btn-add:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
 }
 
 /* ── Top Section: Tier Cards ── */
-.plans-cards-grid {
+.plans-page .plans-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
@@ -70,7 +70,7 @@
   /* Center the taller card */
 }
 
-.plan-card {
+.plans-page .plans-cards-grid .plan-card {
   position: relative;
   border-radius: var(--section-radius);
   padding: 2.5rem 2rem;
@@ -81,14 +81,14 @@
   height: 100%;
 }
 
-.plan-card.theme-standard,
-.plan-card.theme-platinum {
+.plans-page .plans-cards-grid .plan-card.theme-standard,
+.plans-page .plans-cards-grid .plan-card.theme-platinum {
   background-color: #f4eafa;
   color: var(--text-primary);
   border: 1px solid var(--primary-hover);
 }
 
-.plan-card.theme-elite {
+.plans-page .plans-cards-grid .plan-card.theme-elite {
   background-color: var(--primary);
   color: var(--bg-card);
   border: 1px solid var(--primary);
@@ -102,7 +102,7 @@
 
 
 /* Badges */
-.plan-badge-top {
+.plans-page .plans-cards-grid .plan-card .plan-badge-top {
   position: absolute;
   top: -16px;
   left: 50%;
@@ -120,7 +120,7 @@
 }
 
 /* Header actions & icon */
-.plan-card-header-actions {
+.plans-page .plans-cards-grid .plan-card .plan-card-header-actions {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;

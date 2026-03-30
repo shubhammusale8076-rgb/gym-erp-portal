@@ -1,0 +1,441 @@
+/* ====== Create Plan Custom Modal (CP) ====== */
+.cp-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.cp-overlay .cp-modal {
+  background: var(--bg-dark); /* VERY light soft pink tint */
+  width: 95%;
+  max-width: 1050px;
+  max-height: 90vh;
+  border-radius: var(--section-radius);
+  padding: 3rem;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease-out;
+  position: relative;
+}
+
+/* Header */
+.cp-overlay .cp-modal .cp-header {
+  margin-bottom: 1.5rem;
+}
+
+.cp-overlay .cp-modal .cp-header .cp-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.cp-overlay .cp-modal .cp-header .cp-subtitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.cp-overlay .cp-modal .cp-header .cp-close-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s;
+}
+
+.cp-overlay .cp-modal .cp-header .cp-close-btn:hover {
+  color: var(--text-primary);
+}
+
+/* Grid Layout */
+.cp-overlay .cp-modal .cp-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2rem;
+  flex: 1;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Cards */
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-card {
+  background: var(--bg-card);
+  border-radius: 24px;
+  padding: 2.5rem;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-card-white {
+  background: #ffffff;
+  border-radius: 32px;
+ box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-full-height {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-card-compact {
+  padding: 1.5rem 2.5rem;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-row-between {
+  background-color: var(--bg-card);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-card-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+/* Inputs */
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-form-group {
+  margin-bottom: 2rem;
+}
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-form-group:last-child {
+  margin-bottom: 0;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-form-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-form-group input {
+  width: 100%;
+ background-color: var(bg-card-secondary);
+  border: none;
+  border-bottom: 1px solid var(--primary-hover);
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  padding: 0.5rem 0;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-form-group input::placeholder {
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-form-group input:focus {
+  border-bottom-color: var(--primary);
+}
+
+/* Monetization layout */
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-price-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-currency {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-price-input {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 180px;
+  letter-spacing: -0.02em;
+}
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-price-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-money-icon-box {
+  background: var(--primary-hover);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-money-icon {
+  color: var(--primary);
+}
+
+/* Elite Distinction */
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-elite-left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-star-circle {
+  width: 44px;
+  height: 44px;
+  background: var(--primary-hover);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-star {
+  color: var(--primary);
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-elite-text h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-elite-text p {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Toggle Switch */
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-toggle {
+  display: none;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-toggle-label {
+  display: block;
+  width: 60px;
+  height: 32px;
+  background: var(--primary-hover);
+  border-radius: 99px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-toggle-label::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-toggle:checked + .cp-toggle-label {
+  background: var(--primary);
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-toggle:checked + .cp-toggle-label::after {
+  transform: translateX(28px);
+}
+
+/* Features Side */
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-features-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-features-header .cp-card-label {
+  margin-bottom: 0;
+  color: var(--text-secondary);
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-btn-text {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-add-feature-row {
+  margin-bottom: 1.5rem;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-feature-input {
+  font-size: 1rem;
+  padding: 0.5rem 0.2rem;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: auto; /* Pushes empty bundle downwards */
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-feature-pill {
+  background: var(--primary-hover);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-feature-pill:hover {
+  transform: scale(1.02);
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-check-circle {
+  width: 24px;
+  height: 24px;
+  background: var(--primary);
+  color: var(--text-on-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-feature-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-feature-remove {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-feature-pill:hover .cp-feature-remove {
+  opacity: 1;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-empty-bundles {
+  margin-top: 3rem;
+  border: 2px dashed var(--primary-hover);
+  border-radius: 20px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-empty-icon {
+  color: var(--text-secondary);
+}
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-empty-bundles span {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+}
+
+/* Footer Section */
+.cp-overlay .cp-modal .cp-footer {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+}
+
+.cp-overlay .cp-modal .cp-btn-cancel {
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.cp-overlay .cp-modal .cp-btn-cancel:hover {
+  text-decoration: underline;
+}
+
+.cp-overlay .cp-modal .cp-btn-primary {
+  background: var(--primary);
+  color: var(--text-on-dark);
+  border: none;
+  border-radius: 99px;
+  padding: 1.25rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  box-shadow: 0 10px 25px v ar(--primary-glow);
+  transition: all 0.2s;
+}
+
+.cp-overlay .cp-modal .cp-btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px var(--primary-glow);
+}
+
+/* Media Queries for New Modal layout */
+@media (max-width: 900px) {
+  .cp-overlay .cp-modal  .cp-grid {
+    grid-template-columns: 1fr;
+  }
+  .cp-overlay .cp-modal .cp-modal {
+    padding: 2.5rem;
+  }
+  .cp-overlay .cp-modal  .cp-footer {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 600px) {
+  .cp-overlay .cp-modal .cp-price-input {
+    width: 100px;
+  }
+  .cp-overlay .cp-modal  {
+    padding: 1.5rem;
+  }
+  .cp-overlay .cp-modal .cp-title {
+    font-size: 2rem;
+  }
+  .cp-overlay .cp-modal .cp-elite-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

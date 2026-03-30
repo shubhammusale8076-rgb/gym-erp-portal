@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import './Plans.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
+import AddPlan from './AddPlan';
 
 const initialPlans = [
   {
@@ -82,24 +83,14 @@ const Plans = () => {
   const [plans, setPlans] = useState(initialPlans);
   const [modalMode, setModalMode] = useState(null); // 'create' | 'edit' | 'delete'
   const [selectedPlan, setSelectedPlan] = useState(null);
-  const [form, setForm] = useState({
-    name: '',
-    badge: '',
-    price: '',
-    period: 'month',
-    features: [],
-    isPopular: false
-  });
-  const [newFeature, setNewFeature] = useState('');
 
   const openCreate = () => {
-    setForm({ name: '', badge: '', price: '', period: 'month', features: [], isPopular: false });
+    setSelectedPlan(null);
     setModalMode('create');
   };
 
   const openEdit = (plan) => {
     setSelectedPlan(plan);
-    setForm({ ...plan });
     setModalMode('edit');
   };
 
@@ -108,12 +99,12 @@ const Plans = () => {
     setModalMode('delete');
   };
 
-  const handleSave = () => {
+  const handleSave = (formData) => {
     if (modalMode === 'create') {
-      const newPlan = { ...form, id: Date.now() };
+      const newPlan = { ...formData, id: Date.now() };
       setPlans([...plans, newPlan]);
     } else {
-      setPlans(plans.map(p => p.id === selectedPlan.id ? form : p));
+      setPlans(plans.map(p => p.id === selectedPlan.id ? { ...p, ...formData } : p));
     }
     setModalMode(null);
   };
@@ -121,17 +112,6 @@ const Plans = () => {
   const handleDelete = () => {
     setPlans(plans.filter(p => p.id !== selectedPlan.id));
     setModalMode(null);
-  };
-
-  const addFeature = () => {
-    if (newFeature.trim()) {
-      setForm({ ...form, features: [...form.features, { text: newFeature.trim(), included: true }] });
-      setNewFeature('');
-    }
-  };
-
-  const removeFeature = (index) => {
-    setForm({ ...form, features: form.features.filter((_, i) => i !== index) });
   };
 
   return (
@@ -143,7 +123,7 @@ const Plans = () => {
           {
             label: " Add New Plan",
             icon: <Plus size={16} />,
-            onClick: () => {setModalMode('create') },
+            onClick: openCreate,
             className: "btn-primary"
           },
           {
@@ -347,154 +327,11 @@ const Plans = () => {
 
       {/* ── New Custom Modal: Create / Edit Plan ── */}
       {(modalMode === 'create' || modalMode === 'edit') && (
-        <div className="cp-overlay" onClick={() => setModalMode(null)}>
-          <div className="cp-modal" onClick={e => e.stopPropagation()}>
-            <div className="cp-header">
-              <div className="cp-header-text">
-                <h1 className="cp-title">{modalMode === 'create' ? 'Create New Plan' : 'Edit Plan'}</h1>
-                <span className="cp-subtitle">TIER ARCHITECTURE & REVENUE DESIGN</span>
-              </div>
-              <button className="cp-close-btn" onClick={() => setModalMode(null)}>
-                <X size={20} strokeWidth={2} />
-              </button>
-            </div>
-
-            <div className="cp-grid">
-              {/* Left Column */}
-              <div className="cp-col">
-                
-                {/* Plan Identity Card */}
-                <div className="cp-card">
-                  <span className="cp-card-label">PLAN IDENTITY</span>
-                  
-                  <div className="cp-form-group">
-                    <label>Plan Name</label>
-                    <input 
-                      type="text" 
-                      className="cp-line-input" 
-                      placeholder="e.g., Pro Plus"
-                      value={form.name}
-                      onChange={e => setForm({ ...form, name: e.target.value })}
-                    />
-                  </div>
-                  
-                  <div className="cp-form-group">
-                    <label>Badge Text</label>
-                    <input 
-                      type="text" 
-                      className="cp-line-input" 
-                      placeholder="e.g., MOST POPULAR"
-                      value={form.badge}
-                      onChange={e => setForm({ ...form, badge: e.target.value })}
-                    />
-                  </div>
-                </div>
-
-                {/* Monetization Card */}
-                <div className="cp-card cp-row-between">
-                  <div className="cp-price-section">
-                    <span className="cp-card-label">MONETIZATION</span>
-                    <div className="cp-price-input-wrapper">
-                      <span className="cp-currency">$</span>
-                      <input 
-                        type="number" 
-                        className="cp-price-input" 
-                        placeholder="0.00"
-                        value={form.price}
-                        onChange={e => setForm({ ...form, price: e.target.value })}
-                      />
-                    </div>
-                  </div>
-                  <div className="cp-money-icon-box">
-                    <Wallet size={20} strokeWidth={2.5} className="cp-money-icon" />
-                  </div>
-                </div>
-
-                {/* Elite Distinction Card */}
-                <div className="cp-card cp-card-compact cp-row-between">
-                  <div className="cp-elite-left">
-                    <div className="cp-star-circle">
-                      <Star size={16} className="cp-star"  />
-                    </div>
-                    <div className="cp-elite-text">
-                      <h4>Elite Distinction</h4>
-                      <p>Highlight as Elite/Popular layout in member portal</p>
-                    </div>
-                  </div>
-                  <div className="cp-toggle-wrapper">
-                      <input 
-                        type="checkbox" 
-                        id="elite-toggle" 
-                        className="cp-toggle"
-                        checked={form.isPopular}
-                        onChange={e => setForm({ ...form, isPopular: e.target.checked })}
-                      />
-                      <label htmlFor="elite-toggle" className="cp-toggle-label"></label>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column */}
-              <div className="cp-col">
-                {/* Include Features Card */}
-                <div className="cp-card cp-card-white cp-full-height">
-                  <div className="cp-features-header">
-                    <span className="cp-card-label">INCLUDE FEATURES</span>
-                    <button className="cp-btn-text" onClick={addFeature}>
-                      <Plus size={14} /> ADD
-                    </button>
-                  </div>
-
-                  {/* Add Feature Inline Input */}
-                  <div className="cp-add-feature-row">
-                     <input 
-                        type="text" 
-                        className="cp-line-input cp-feature-input"
-                        placeholder="Type a benefit..."
-                        value={newFeature}
-                        onChange={e => setNewFeature(e.target.value)}
-                        onKeyDown={e => {
-                           if (e.key === 'Enter') {
-                               e.preventDefault();
-                               addFeature();
-                           }
-                        }}
-                      />
-                  </div>
-
-                  <div className="cp-features-list">
-                    {form.features.map((f, i) => {
-                      const text = typeof f === 'string' ? f : f.text;
-                      return (
-                        <div key={i} className="cp-feature-pill">
-                          <div className="cp-check-circle">
-                            <Check size={12} strokeWidth={4} />
-                          </div>
-                          <span className="cp-feature-text">{text}</span>
-                          <button type="button" className="cp-feature-remove" onClick={() => removeFeature(i)}>
-                            <X size={14} />
-                          </button>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  <div className="cp-empty-bundles">
-                    <Archive size={20} className="cp-empty-icon" />
-                    <span>NEW SERVICE BUNDLES APPEAR HERE</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="cp-footer">
-              <button className="cp-btn-cancel" onClick={() => setModalMode(null)}>Cancel</button>
-              <button className="cp-btn-primary" onClick={handleSave}>
-                {modalMode === 'create' ? 'Create Plan' : 'Update Plan'} <ArrowRight size={16} />
-              </button>
-            </div>
-          </div>
-        </div>
+        <AddPlan 
+          onClose={() => setModalMode(null)} 
+          onSave={(formData) => handleSave(formData)} 
+          initialData={modalMode === 'edit' ? selectedPlan : null}
+        />
       )}
 
       {/* Delete Confirmation */}

@@ -11,115 +11,116 @@
     z-index: 2000;
 }
 
-.nm-modal {
-    background: #fffbfd;
-    border-radius: 32px;
+.nm-overlay .nm-modal {
+    background: var(--bg-dark);
+    border-radius:var(--section-radius);
     width: 95%;
     max-width: 1050px;
     max-height: 95vh;
     overflow-y: auto;
-    padding: 3rem 4rem;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    padding: 3rem;
     animation: slideUp 0.3s ease-out;
+    position: relative;
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0;
+        transform: translateY(20px); }
+    to { opacity: 1;
+        transform: translateY(0); }
 }
 
-.nm-header {
-    margin-bottom: 3rem;
-    max-width: 600px;
+.nm-overlay .nm-modal .nm-header {
+     margin-bottom: 1.5rem;
 }
 
-.nm-subtitle {
+.nm-overlay .nm-modal .nm-header .nm-subtitle {
     font-size: 0.7rem;
     font-weight: 800;
-    color: #6a1b9a;
+    color: var(--primary);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     display: block;
     margin-bottom: 0.5rem;
 }
 
-.nm-title {
+.nm-overlay .nm-modal .nm-header .nm-title {
     font-size: 2.25rem;
     font-weight: 800;
-    color: #1a1a2e;
+    color: var(--text-primary);
     margin-bottom: 0.75rem;
     letter-spacing: -0.02em;
 }
 
-.nm-desc {
+.nm-overlay .nm-modal .nm-header .nm-desc {
     font-size: 0.95rem;
-    color: #6b6b78;
+    color: var(--text-secondary);
     line-height: 1.5;
 }
 
-.nm-grid {
+.nm-overlay .nm-modal .nm-grid {
     display: grid;
     grid-template-columns: 1.25fr 0.75fr;
     gap: 2rem;
     align-items: start;
 }
 
-.nm-col {
+.nm-overlay .nm-modal .nm-col {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
 
-.nm-card {
-    border-radius: 24px;
+.nm-overlay .nm-modal .nm-card {
+    border-radius: var(--section-radius);
     padding: 2.5rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    background: var(--bg-card);
 }
 
-.card-white { background-color: #ffffff; }
-.card-tinted { background-color: #f6eef6; }
+.nm-overlay .nm-modal .nm-card.card-white { background-color: var(--bg-dark); }
+.nm-overlay .nm-modal .nm-card.card-tinted { background-color: var(--bg-card-secondary); }
 
-.nm-card-header {
+.nm-overlay .nm-modal .nm-card-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 
-.nm-card-header.justify-start {
+.nm-overlay .nm-modal .nm-card-header.justify-start {
     justify-content: flex-start;
     align-items: center;
     gap: 0.5rem;
 }
 
-.mb-8 { margin-bottom: 2rem; }
-.mb-6 { margin-bottom: 1.5rem; }
+.nm-overlay .nm-modal .mb-8 { margin-bottom: 2rem; }
+.nm-overlay .nm-modal .mb-6 { margin-bottom: 1.5rem; }
 
-.nm-card-title {
+.nm-overlay .nm-modal .nm-card-title {
     font-size: 1.15rem;
     font-weight: 700;
-    color: #1a1a2e;
+    color: var(--text-primary);
 }
 
-.nm-card-subtitle {
+.nm-overlay .nm-modal .nm-card-subtitle {
     font-size: 0.8rem;
-    color: #8c7b9e;
+    color: var(--text-secondary);
     font-weight: 500;
     margin-top: 0.25rem;
     display: block;
 }
 
-.icon-purple { color: #b08bc8; }
+.nm-overlay .nm-modal .icon-purple { color: var(--primary); }
 
 /* Notification List Items */
-.nm-list {
+.nm-overlay .nm-modal .nm-list {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.nm-alert-pill {
-    background-color: #fdf6fd;
-    border-radius: 16px;
+.nm-overlay .nm-modal .nm-alert-pill {
+    background-color: var(--primary-hover);
+    border-radius: var(--section-radius);
     padding: 1.25rem 1.5rem;
     display: flex;
     align-items: center;
@@ -127,11 +128,11 @@
     transition: transform 0.2s;
 }
 
-.nm-alert-pill:hover {
+.nm-overlay .nm-modal .nm-alert-pill:hover {
     transform: scale(1.02);
 }
 
-.nm-circle-icon {
+.nm-overlay .nm-modal .nm-circle-icon {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -141,82 +142,82 @@
     flex-shrink: 0;
 }
 
-.bg-purple-light { background: #ebd5f5; color: #6a1b9a; }
-.bg-orange-light { background: #ffe0b2; color: #d84315; }
-.bg-blue-light { background: #d0e8ff; color: #0d47a1; }
+.nm-overlay .nm-modal .bg-purple-light { background: var(--primary-hover); color: var(--primary); }
+.nm-overlay .nm-modal .bg-orange-light { background: var(--primary-hover); color: var(--primary); }
+.nm-overlay .nm-modal .bg-blue-light { background: var(--primary-hover); color: var(--primary); }
 
-.nm-alert-content {
+.nm-overlay .nm-modal .nm-alert-content {
     flex: 1;
 }
 
-.nm-alert-text {
+.nm-overlay .nm-modal .nm-alert-text {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #1a1a2e;
+    color: var(--text-primary);
     display: block;
     margin-bottom: 0.2rem;
 }
 
-.nm-alert-time {
+.nm-overlay .nm-modal .nm-alert-time {
     font-size: 0.75rem;
-    color: #8c7b9e;
+    color: var(--text-secondary);
     font-weight: 500;
 }
 
 /* Quick Settings Switch */
-.nm-setting-row {
+.nm-overlay .nm-modal .nm-setting-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
-    border-bottom: 1px solid #e9d9e9;
+    border-bottom: 1px solid var(--primary-hover);
 }
-.nm-setting-row:last-child {
+.nm-overlay .nm-modal .nm-setting-row:last-child {
     border-bottom: none;
     padding-bottom: 0;
 }
 
-.nm-setting-info h4 {
+.nm-overlay .nm-modal .nm-setting-info h4 {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #1a1a2e;
+    color: var(--text-primary);
     margin-bottom: 0.2rem;
 }
 
-.nm-setting-info p {
+.nm-overlay .nm-modal .nm-setting-info p {
     font-size: 0.75rem;
-    color: #8c7b9e;
+    color: var(--text-secondary);
 }
 
-.nm-toggle { display: none; }
-.nm-toggle-label {
+.nm-overlay .nm-modal .nm-toggle { display: none; }
+.nm-overlay .nm-modal .nm-toggle-label {
     display: block;
     width: 50px;
     height: 28px;
-    background: #d1bdd1;
+    background: var(--primary-hover);
     border-radius: 99px;
     position: relative;
     cursor: pointer;
     transition: background 0.3s;
 }
 
-.nm-toggle-label::after {
+.nm-overlay .nm-modal .nm-toggle-label::after {
     content: "";
     position: absolute;
     top: 4px;
     left: 4px;
     width: 20px;
     height: 20px;
-    background: #fff;
+    background: var(--bg-dark);
     border-radius: 50%;
     transition: transform 0.3s;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);  
 }
 
-.nm-toggle:checked + .nm-toggle-label { background: #6a1b9a; }
-.nm-toggle:checked + .nm-toggle-label::after { transform: translateX(22px); }
+.nm-overlay .nm-modal .nm-toggle:checked + .nm-toggle-label { background: var(--primary); }
+.nm-overlay .nm-modal .nm-toggle:checked + .nm-toggle-label::after { transform: translateX(22px); }
 
-.nm-actions {
+.nm-overlay .nm-modal .nm-actions {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -224,9 +225,9 @@
     margin-top: 2rem;
 }
 
-.nm-btn-submit {
-    background-color: #6a1b9a;
-    color: #ffffff;
+.nm-overlay .nm-modal .nm-btn-submit {
+    background-color: var(--primary);
+    color: var(--text-on-dark);
     border: none;
     border-radius: 99px;
     padding: 1.25rem 2rem;
@@ -238,26 +239,26 @@
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(106, 27, 154, 0.3);
+    box-shadow: 0 8px 20px var(--primary-hover);
     transition: all 0.2s;
 }
 
-.nm-btn-submit:hover {
-    background-color: #4b1562;
+.nm-overlay .nm-modal .nm-btn-submit:hover {
+    background-color: var(--primary-hover);
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(106, 27, 154, 0.4);
+    box-shadow: 0 10px 25px var(--primary-hover);
 }
 
-.nm-btn-cancel {
+.nm-overlay .nm-modal .nm-btn-cancel {
     background: transparent;
     border: none;
-    color: #5d5d6c;
+    color: var(--text-secondary);
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
 }
 
-.nm-btn-cancel:hover { text-decoration: underline; color: #1a1a2e; }
+.nm-overlay .nm-modal .nm-btn-cancel:hover { text-decoration: underline; color: var(--text-primary); }
 
 @media (max-width: 1024px) { .nm-grid { grid-template-columns: 1fr; } .nm-modal { padding: 3rem; } }
 @media (max-width: 600px) { .nm-modal { padding: 1.5rem; } .nm-title { font-size: 1.75rem; } }

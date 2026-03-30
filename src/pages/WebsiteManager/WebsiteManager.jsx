@@ -27,7 +27,6 @@ const WebsiteManager = () => {
         actions={[]}
       />
 
-      {/* Top Row: Preview & SEO */}
       <div className="wm-top-row">
         <div
           className="live-preview-card box-shadow"
@@ -70,7 +69,6 @@ const WebsiteManager = () => {
         </div>
       </div>
 
-      {/* Middle Row: Engagement Analytics */}
       <div className="engagement-card">
         <div className="card-header-flex">
           <h3 className="analytics-title">Engagement Analytics</h3>
@@ -120,7 +118,6 @@ const WebsiteManager = () => {
         </div>
       </div>
 
-      {/* Bottom Row: Content & Activity */}
       <div className="wm-bottom-row">
         <div className="wm-content-slots card">
           <h3 className="content-slots-title">Content Slots</h3>

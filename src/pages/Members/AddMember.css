@@ -73,12 +73,10 @@
     position: absolute;
     top: 3rem;
     right: 3rem;
+    background: none;
+
 }
 
-.am-overlay .am-modal .am-header .btn-secondary:hover{
-    padding: 0;
-    background: none;
-}
 
 /* Grid Layout */
 .am-overlay .am-modal .am-grid {

@@ -183,7 +183,7 @@ body {
 
 
 .btn-secondary {
-  background-color:var(--bg-dark);
+  background: var(--bg-card);
   color: var(--primary);
   border: 1px solid #e9d5ff;
   padding: 1rem;

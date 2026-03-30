@@ -21,8 +21,7 @@ const PaymentDetail = () => {
   const fmt = (n) => `$${n.toFixed(2)}`;
 
   return (
-    <div className="pd-page page-container">
-      {/* ── Page Header ── */}
+    <div className="pd-page">
       <PageHeader
         title="Payment Details"
         actions={[
@@ -30,28 +29,26 @@ const PaymentDetail = () => {
             label: "Resend Receipt",
             icon: <Mail size={16} />,
             onClick: () => { },
-            className: "btn-secondary"
+            className: "btn-secondary box-shadow"
           },
           {
             label: "Download PDF",
             icon: <Download size={16} />,
             onClick: () => { },
-            className: "btn-secondary"
+            className: "btn-secondary box-shadow"
           },
           {
             label: "Refund Transaction",
             icon: <RotateCcw size={16} />,
             onClick: () => { },
-            className: "btn-refund"
+            className: "btn-secondary box-shadow"
           }
         ]}
       />
 
       <main className="pd-main-grid">
-        {/* ── Left Content: Transaction Details ── */}
         <div className="pd-left-column">
-          <section className="pd-card section-card">
-            {/* Reference & Status */}
+          <section className="pd-card card">
             <div className="pd-ref-header">
               <div className="pd-ref-text">
                 <span className="pd-ref-label">TRANSACTION REFERENCE</span>
@@ -67,7 +64,6 @@ const PaymentDetail = () => {
               </div>
             </div>
 
-            {/* Profile & Payment Cards */}
             <div className="pd-info-cards">
               <div className="pd-info-card-box">
                 <div className="pd-member-display">
@@ -96,9 +92,8 @@ const PaymentDetail = () => {
               </div>
             </div>
 
-            {/* Statement Items */}
             <div className="pd-statement">
-              <h4 className="pd-section-title">STATEMENT ITEMS</h4>
+              <h4 className="pd-section-title">Statement Items</h4>
               <div className="pd-items-list">
                 <div className="pd-item-row">
                   <div className="pd-item-icon-box purple">
@@ -108,7 +103,7 @@ const PaymentDetail = () => {
                     <p className="pd-item-name">Monthly Membership</p>
                     <p className="pd-item-desc">Billing cycle: Oct 2023</p>
                   </div>
-                  <span className="pd-item-price">$149.00</span>
+                  <span className="pd-item-price">₹149.00</span>
                 </div>
 
                 <div className="pd-item-row">
@@ -119,32 +114,31 @@ const PaymentDetail = () => {
                     <p className="pd-item-name">Personal Training (1hr)</p>
                     <p className="pd-item-desc">Instructor: Marcus V.</p>
                   </div>
-                  <span className="pd-item-price">$50.00</span>
+                  <span className="pd-item-price">₹50.00</span>
                 </div>
               </div>
             </div>
 
-            {/* Price Breakdown */}
             <div className="pd-breakdown">
               <div className="pd-price-row">
                 <span>Subtotal</span>
-                <span>$199.00</span>
+                <span>₹199.00</span>
               </div>
               <div className="pd-price-row text-muted">
                 <span>Tax (7%)</span>
-                <span>$13.93</span>
+                <span>₹13.93</span>
               </div>
               <div className="pd-price-row text-purple">
                 <span>Discounts</span>
-                <span>-$13.93</span>
+                <span>-₹13.93</span>
               </div>
               <div className="pd-total-row-main">
                 <div className="pd-total-label-box">
                   <h2 className="pd-total-label">Total Paid</h2>
                 </div>
                 <div className="pd-total-value-box">
-                  <h2 className="pd-total-amount">$199.00</h2>
-                  <span className="pd-currency">CURRENCY: USD</span>
+                  <h2 className="pd-total-amount">₹199.00</h2>
+                  <span className="pd-currency">CURRENCY: INR</span>
                 </div>
               </div>
             </div>
@@ -153,10 +147,8 @@ const PaymentDetail = () => {
           </section>
         </div>
 
-        {/* ── Right Content: Sidebar ── */}
         <aside className="pd-right-column">
-          {/* Recent Billing History */}
-          <section className="pd-card sidebar-card history-card">
+          <section className="pd-card  history-card">
             <div className="pd-card-header">
                <History size={18} />
                <h3 className="pd-card-title">Recent Billing History</h3>

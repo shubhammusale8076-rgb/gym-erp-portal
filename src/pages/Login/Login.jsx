@@ -13,7 +13,6 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      {/* Left Side */}
       <div className="login-left">
         <div className="login-left-overlay"></div>
         <div className="login-left-content">
@@ -45,9 +44,7 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Right Side */}
       <div className="login-right">
-        {/* Top Right Logo */}
         <div className="right-top-logo">
           <div className="diamond-icon-wrapper">
             <Diamond className="diamond-icon" size={16} />
@@ -56,10 +53,10 @@ const Login = () => {
         </div>
 
         {/* Center Card */}
-        <div className="login-form-card">
+        <div className="login-form-card card">
           <div className="form-card-header">
             <h2 className="form-card-title">Welcome Back</h2>
-            <p className="form-card-subtitle">Access the Elite Club management portal.</p>
+            <p className="form-card-subtitle">Access the <span className='gym-name'>Elite Club</span> management portal.</p>
           </div>
 
           <form onSubmit={handleLogin} className="aura-login-form">
@@ -97,11 +94,11 @@ const Login = () => {
             </button>
           </form>
 
-          <div className="aura-divider">
+          {/* <div className="aura-divider">
             <span className="aura-divider-text">ALTERNATIVE LOGIN</span>
-          </div>
+          </div> */}
 
-          <div className="aura-social-logins">
+          {/* <div className="aura-social-logins">
             <button type="button" className="aura-btn-social">
               <Fingerprint size={18} className="aura-social-icon" />
               BIOMETRIC
@@ -110,12 +107,12 @@ const Login = () => {
               <Key size={18} className="aura-social-icon" />
               SSO
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Footer */}
         <div className="login-footer">
-          <span className="footer-copyright">© 2024 AURA PREMIUM GYM MANAGEMENT.</span>
+          <span className="footer-copyright">© 2026 AURA PREMIUM GYM MANAGEMENT.</span>
           <div className="footer-links">
             <Link to="#">SUPPORT</Link>
              <Link to="#">PRIVACY POLICY</Link>

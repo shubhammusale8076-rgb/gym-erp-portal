@@ -23,15 +23,19 @@ const PageHeader = ({
         )}
 
         {/* Custom Actions */}
-        {actions.map((action, index) => (
-          <button
-            key={index}
-            className={action.className || "btn-primary"}
-            onClick={action.onClick}
-          >
-            {action.icon && action.icon}
-            {action.label}
-          </button>
+        {actions?.map((action, index) => (
+          action.custom ? (
+            <div key={index}>{action.custom}</div>
+          ) : (
+            <button
+              key={index}
+              className={action.className}
+              onClick={action.onClick}
+            >
+              {action.icon}
+              {action.label}
+            </button>
+          )
         ))}
       </div>
     </header>

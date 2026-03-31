@@ -15,7 +15,7 @@
 }
 
 /* ------------------- Left Side (Image Area) ------------------- */
-.login-left {
+.login-page .login-left  {
   position: relative;
   width: 50%;
   background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop');
@@ -29,7 +29,7 @@
   color: #fff;
 }
 
-.login-left-overlay {
+.login-page .login-left .login-left-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -40,13 +40,13 @@
   z-index: 1;
 }
 
-.login-left-content {
+.login-page .login-left .login-left-content {
   position: relative;
   z-index: 2;
   margin-top: 2rem;
 }
 
-.aura-brand-top {
+.login-page .login-left .login-left-content .aura-brand-top {
   font-size: 0.75rem;
   letter-spacing: 0.25em;
   font-weight: 600;
@@ -56,7 +56,7 @@
   margin-bottom: 2rem;
 }
 
-.aura-brand-line {
+.login-page .login-left .login-left-content .aura-brand-top .aura-brand-line {
   display: inline-block;
   width: 30px;
   height: 1px;
@@ -64,30 +64,31 @@
   margin-right: 12px;
 }
 
-.login-title {
+.login-page .login-left .login-left-content .login-title {
   font-size: 4rem;
   line-height: 1.05;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 2rem;
   color: #ffffff;
+  text-transform: capitalize;
 }
 
-.purple-italic {
+.login-page .login-left .login-left-content .purple-italic {
   color: #b05cf2;
   font-style: italic;
-  font-weight: 800;
+  font-weight: 700;
   text-shadow: 0 0 20px rgba(176, 92, 242, 0.3);
 }
 
-.login-subtitle {
+.login-page .login-left .login-left-content .login-subtitle {
   font-size: 1.15rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
   max-width: 480px;
 }
 
-.login-director-badge {
+.login-page .login-left .login-director-badge {
   position: relative;
   z-index: 2;
   display: flex;
@@ -101,7 +102,7 @@
   margin-bottom: 2rem;
 }
 
-.director-avatar {
+.login-page .login-left .login-director-badge .director-avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -110,29 +111,28 @@
   border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.director-info {
+.login-page .login-left .login-director-badge .director-info {
   display: flex;
   flex-direction: column;
 }
 
-.director-role {
+.login-page .login-left .login-director-badge .director-info .director-role {
   font-size: 0.6rem;
   letter-spacing: 0.15em;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.6);
+  color:var(--text-secondary);
   text-transform: uppercase;
   margin-bottom: 0.2rem;
 }
 
-.director-name {
+.login-page .login-left .login-director-badge .director-info .director-name {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--bg-card);
 }
 
 
-/* ------------------- Right Side (Form Area) ------------------- */
-.login-right {
+.login-page .login-right {
   width: 50%;
   position: relative;
   display: flex;
@@ -142,7 +142,7 @@
 }
 
 /* Top Right Logo */
-.right-top-logo {
+.login-page .login-right .right-top-logo {
   position: absolute;
   top: 3rem;
   right: 4rem;
@@ -151,103 +151,105 @@
   gap: 0.6rem;
 }
 
-.diamond-icon-wrapper {
-  background-color: #7427a1;
+.login-page .login-right .right-top-logo .diamond-icon-wrapper {
+  background-color: var(--primary);
   width: 28px;
   height: 28px;
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--bg-card);
 }
 
-.right-logo-text {
+.login-page .login-right .right-top-logo .right-logo-text {
   font-weight: 700;
   font-size: 1.1rem;
-  color: #7427a1;
+  color: var(--primary);
   letter-spacing: -0.01em;
 }
 
 /* Center Form Card */
-.login-form-card {
+.login-page .login-right .login-form-card {
   width: 100%;
   max-width: 440px;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 3.5rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0,0,0,0.02);
+  padding: 3rem;
 }
 
-.form-card-header {
+.login-page .login-right .login-form-card .form-card-header {
   text-align: center;
   margin-bottom: 2.5rem;
 }
 
-.form-card-title {
+.login-page .login-right .login-form-card .form-card-header .form-card-title {
   font-size: 2rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--primary-light);
   margin-bottom: 0.5rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
 }
 
-.form-card-subtitle {
+.login-page .login-right .login-form-card .form-card-header .form-card-subtitle {
   font-size: 0.95rem;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
-.aura-login-form {
+.login-page .login-right .login-form-card .form-card-header .form-card-subtitle .gym-name {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.login-page .login-right .login-form-card .aura-login-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.aura-form-group {
+.login-page .login-right .login-form-card .aura-login-form .aura-form-group {
   display: flex;
   flex-direction: column;
 }
 
-.aura-password-header {
+.login-page .login-right .login-form-card .aura-login-form .aura-password-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
 
-.aura-form-label {
+.login-page .login-right .login-form-card .aura-login-form .aura-form-group .aura-form-label {
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #4b5563;
+  color: var(--text-secondary);
   margin-bottom: 0.6rem;
 }
 
-.aura-forgot-password {
+.login-page .login-right .login-form-card .aura-login-form .aura-form-group .aura-password-header .aura-forgot-password {
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #7427a1;
+  color: var(--primary);
   text-decoration: none;
   transition: opacity 0.2s;
 }
 
-.aura-forgot-password:hover {
+.login-page .login-right .login-form-card .aura-login-form .aura-form-group .aura-password-header .aura-forgot-password:hover {
   opacity: 0.8;
 }
 
-.aura-input-wrapper {
+.login-page .login-right .login-form-card .aura-login-form .aura-form-group .aura-input-wrapper {
   position: relative;
 }
 
-.aura-input-icon {
+.login-page .login-right .login-form-card .aura-login-form .aura-form-group .aura-input-wrapper .aura-input-icon {
   position: absolute;
   top: 50%;
   left: 1rem;
   transform: translateY(-50%);
-  color: #9ca3af;
+  color: var(--text-secondary);
 }
 
-.aura-input {
+.login-page .login-right .login-form-card .aura-login-form .aura-form-group .aura-input {
   width: 100%;
   padding: 0.875rem 1rem 0.875rem 2.75rem;
   border: 1px solid #e5e7eb;
@@ -259,18 +261,18 @@
   outline: none;
 }
 
-.aura-input:focus {
-  background-color: #fff;
-  border-color: #7427a1;
+.login-page .login-right .login-form-card .aura-login-form .aura-form-group .aura-input:focus {
+  background-color: var(--bg-card);
+  border-color: var(--primary);
   box-shadow: 0 0 0 4px rgba(116, 39, 161, 0.1);
 }
 
-.aura-input::placeholder {
+.login-page .login-right .login-form-card .aura-login-form .aura-form-group .aura-input::placeholder {
   color: #d1d5db;
   font-weight: 400;
 }
 
-.aura-btn-submit {
+.login-page .login-right .login-form-card .aura-login-form .aura-btn-submit {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -289,13 +291,13 @@
   box-shadow: 0 4px 12px rgba(116, 39, 161, 0.2);
 }
 
-.aura-btn-submit:hover {
+.login-page .login-right .login-form-card .aura-login-form .aura-btn-submit:hover {
   background-color: #5d1f81;
   box-shadow: 0 6px 16px rgba(116, 39, 161, 0.3);
   transform: translateY(-1px);
 }
 
-.aura-divider {
+.login-page .login-right .login-form-card .aura-login-form .aura-divider {
   display: flex;
   align-items: center;
   text-align: center;
@@ -350,7 +352,7 @@
 }
 
 /* Footer */
-.login-footer {
+.login-page .login-right .login-footer {
   position: absolute;
   bottom: 2rem;
   left: 4rem;
@@ -362,31 +364,31 @@
   padding-top: 2rem;
 }
 
-.footer-copyright {
+.login-page .login-right .login-footer .footer-copyright {
   font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.1em;
-  color: #9ca3af;
+  color: var(--text-secondary);
   text-transform: uppercase;
 }
 
-.footer-links {
+.login-page .login-right .login-footer .footer-links {
   display: flex;
   gap: 2rem;
 }
 
-.footer-links a {
+.login-page .login-right .login-footer .footer-links a {
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #9ca3af;
+  color: var(--text-secondary);
   text-decoration: none;
   text-transform: uppercase;
   transition: color 0.2s;
 }
 
-.footer-links a:hover {
-  color: #7427a1;
+.login-page .login-right .login-footer .footer-links a:hover {
+  color: var(--primary);
 }
 
 /* Responsive adjustments */

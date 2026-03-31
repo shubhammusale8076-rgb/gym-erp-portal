@@ -40,7 +40,7 @@
     height: 130px;
 }
 
-.pm-overlay .pm-modal .pm-subtitle {
+.pm-overlay .pm-modal .pm-header .pm-subtitle {
     font-size: 0.7rem;
     font-weight: 800;
     color: var(--primary);
@@ -50,7 +50,7 @@
     margin-bottom: 0.5rem;
 }
 
-.pm-overlay .pm-modal .pm-title {
+.pm-overlay .pm-modal .pm-header .pm-title {
     font-size: 2.25rem;
     font-weight: 800;
     color: var(--text-primary);
@@ -58,7 +58,7 @@
     letter-spacing: -0.02em;
 }
 
-.pm-overlay .pm-modal .pm-desc {
+.pm-overlay .pm-modal .pm-header .pm-desc {
     font-size: 0.95rem;
     color: var(--text-secondary);
     line-height: 1.5;
@@ -87,38 +87,26 @@
 
 }
 
-.pm-overlay .pm-modal .pm-col {
+.pm-overlay .pm-modal .pm-grid .pm-col {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
 
-.pm-overlay .pm-modal .pm-card {
-    border-radius: var(--section-radius);
-    padding: 2rem;
-}
-
-.pm-overlay .pm-modal .pm-card-header {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-card-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 1.5rem;
 }
 
-.pm-overlay .pm-modal .card-tinted .pm-card-header {
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-
-
-.pm-overlay .pm-modal .pm-card-title {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-card-header .pm-card-title {
     font-size: 1.15rem;
     font-weight: 700;
     color: var(--text-primary);
 }
 
-.pm-overlay .pm-modal .pm-card-subtitle {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-card-header .pm-card-subtitle {
     font-size: 0.8rem;
     color: var(--text-secondary);
     font-weight: 500;
@@ -126,27 +114,27 @@
     display: block;
 }
 
-.pm-overlay .pm-modal .icon-purple {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-card-header .icon-purple {
     color: var(--primary);
 }
 
-.pm-overlay .pm-modal .icon-red {
-    color: #d32f2f;
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-card-header  .icon-red {
+     color: #d32f2f;
 }
 
-.pm-overlay .pm-modal .pm-form-grid {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
 }
 
-.pm-overlay .pm-modal .pm-form-group {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-grid .pm-form-group {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.pm-overlay .pm-modal .pm-form-group label {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-grid .pm-form-group label {
     font-size: 0.65rem;
     font-weight: 800;
     color: var(--text-secondary);
@@ -154,7 +142,7 @@
     text-transform: uppercase;
 }
 
-.pm-overlay .pm-modal .pm-form-group input {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-grid .pm-form-group input {
     background-color: var(--primary-hover);
     border: none;
     border-radius: 12px;
@@ -165,26 +153,26 @@
     transition: background-color 0.2s;
 }
 
-.pm-overlay .pm-modal .pm-form-group input::placeholder {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-grid .pm-form-group input::placeholder {
     color: var(--text-secondary);
 }
 
-.pm-overlay .pm-modal .pm-form-group input:focus {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-grid .pm-form-group input:focus {
     outline: none;
     background-color: var(--primary-hover);
 }
 
-.pm-overlay .pm-modal .pm-form-group.full-width {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-grid .pm-form-group .full-width {
     grid-column: 1 / -1;
 }
 
-.pm-overlay .pm-modal .avatar-upload-area {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .avatar-upload-area {
     display: flex;
     justify-content: center;
     margin-bottom: 1.5rem;
 }
 
-.pm-overlay .pm-modal .avatar-circle {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .avatar-upload-area .avatar-circle {
  width: 150px;
     height: 150px;
     background-color: var(--primary-hover);
@@ -197,14 +185,14 @@
     box-shadow: 0 0 0 2px #f6eef6;
 }
 
-.pm-overlay .pm-modal .avatar-text-placeholder {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .avatar-upload-area .avatar-circle  .avatar-text-placeholder {
     font-size: 3rem;
     font-weight: 700;
     color: var(--text-primary);
     letter-spacing: -0.02em;
 }
 
-.pm-overlay .pm-modal .upload-btn-circle {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .avatar-upload-area .avatar-circle .upload-btn-circle {
     position: absolute;
     bottom: 0px;
     right: 0px;
@@ -223,7 +211,7 @@
 }
 
 
-.pm-overlay .pm-modal .pm-card .pm-upload-hint {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-upload-hint {
     font-size: 0.75rem;
     color: var(--text-secondary);
     line-height: 1.5;
@@ -231,14 +219,14 @@
     margin-bottom: 1rem;
 }
 
-.pm-overlay .pm-modal .pm-card .pm-actions {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-actions {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
 }
 
-.pm-overlay .pm-modal .pm-card .pm-btn-submit {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-actions .pm-btn-submit {
     background-color: var(--primary);
     color: var(--text-on-dark);
     border: none;
@@ -256,33 +244,8 @@
     transition: all 0.2s;
 }
 
-.pm-overlay .pm-modal .pm-btn-submit:hover {
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-actions .pm-btn-submit:hover {
     background-color: var(--primary-hover);
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(var(--primary), 0.4);
-}
-
-
-@media (max-width: 1024px) {
-    .pm-overlay .pm-modal .pm-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .pm-overlay .pm-modal {
-        padding: 3rem;
-    }
-}
-
-@media (max-width: 600px) {
-    .pm-overlay .pm-modal .pm-form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .pm-overlay .pm-modal {
-        padding: 1.5rem;
-    }
-
-    .pm-overlay .pm-modal .pm-title {
-        font-size: 1.75rem;
-    }
 }

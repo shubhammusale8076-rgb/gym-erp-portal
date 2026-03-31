@@ -1,7 +1,10 @@
 /* ProfileModal.css */
 .pm-overlay {
     position: fixed;
-    inset: 0;
+    top : 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -18,7 +21,10 @@
     max-width: 1050px;
     max-height: 95vh;
     padding: 3rem;
+<<<<<<< Updated upstream
     padding-right: 1rem;
+=======
+>>>>>>> Stashed changes
     animation: slideUp 0.3s ease-out;
     position: relative;
 }
@@ -93,6 +99,18 @@
     gap: 2rem;
 }
 
+<<<<<<< Updated upstream
+=======
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card {
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .card-white { background-color: var(--bg-dark); }
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .card-tinted { background-color: var(--bg-dark); }
+
+>>>>>>> Stashed changes
 .pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-card-header {
     display: flex;
     justify-content: space-between;
@@ -100,13 +118,26 @@
     margin-bottom: 1.5rem;
 }
 
+<<<<<<< Updated upstream
 .pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-card-header .pm-card-title {
+=======
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-card-header.justify-start {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-card-title {
+>>>>>>> Stashed changes
     font-size: 1.15rem;
     font-weight: 700;
     color: var(--text-primary);
 }
 
+<<<<<<< Updated upstream
 .pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-card-header .pm-card-subtitle {
+=======
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-card-subtitle {
+>>>>>>> Stashed changes
     font-size: 0.8rem;
     color: var(--text-secondary);
     font-weight: 500;
@@ -114,6 +145,7 @@
     display: block;
 }
 
+<<<<<<< Updated upstream
 .pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-card-header .icon-purple {
     color: var(--primary);
 }
@@ -122,19 +154,32 @@
      color: #d32f2f;
 }
 
+=======
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .icon-purple { color: var(--primary); }
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .icon-red { color: #d32f2f; }
+
+>>>>>>> Stashed changes
 .pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
 }
 
+<<<<<<< Updated upstream
 .pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-grid .pm-form-group {
+=======
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-group {
+>>>>>>> Stashed changes
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
+<<<<<<< Updated upstream
 .pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-grid .pm-form-group label {
+=======
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-group label {
+>>>>>>> Stashed changes
     font-size: 0.65rem;
     font-weight: 800;
     color: var(--text-secondary);
@@ -142,7 +187,11 @@
     text-transform: uppercase;
 }
 
+<<<<<<< Updated upstream
 .pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-grid .pm-form-group input {
+=======
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card  .pm-form-group input {
+>>>>>>> Stashed changes
     background-color: var(--primary-hover);
     border: none;
     border-radius: 12px;
@@ -153,6 +202,7 @@
     transition: background-color 0.2s;
 }
 
+<<<<<<< Updated upstream
 .pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-grid .pm-form-group input::placeholder {
     color: var(--text-secondary);
 }
@@ -166,6 +216,13 @@
     grid-column: 1 / -1;
 }
 
+=======
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-group input::placeholder { color: var(--text-secondary); }
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-group input:focus { outline: none; background-color: var(--primary-hover); }
+
+.pm-overlay .pm-modal .pm-grid .pm-col .pm-card .pm-form-group.full-width { grid-column: 1 / -1; }
+
+>>>>>>> Stashed changes
 .pm-overlay .pm-modal .pm-grid .pm-col .pm-card .avatar-upload-area {
     display: flex;
     justify-content: center;

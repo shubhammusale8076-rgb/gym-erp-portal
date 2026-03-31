@@ -1,4 +1,3 @@
-/* Website Manager Premium Styles */
 
 .website-manager-container {
   display: flex;
@@ -6,8 +5,6 @@
   padding-bottom: 3rem;
 }
 
-
-/* Row 1: Preview & SEO */
 .website-manager-container .wm-top-row {
   display: grid;
   grid-template-columns: 1fr 340px;

@@ -35,13 +35,7 @@ const PaymentDetail = () => {
             label: "Download PDF",
             icon: <Download size={16} />,
             onClick: () => { },
-            className: "btn-secondary box-shadow"
-          },
-          {
-            label: "Refund Transaction",
-            icon: <RotateCcw size={16} />,
-            onClick: () => { },
-            className: "btn-secondary box-shadow"
+            className: "btn-primary"
           }
         ]}
       />
@@ -148,7 +142,7 @@ const PaymentDetail = () => {
         </div>
 
         <aside className="pd-right-column">
-          <section className="pd-card  history-card">
+          <section className="pd-card history-card card">
             <div className="pd-card-header">
                <History size={18} />
                <h3 className="pd-card-title">Recent Billing History</h3>
@@ -171,19 +165,19 @@ const PaymentDetail = () => {
                 </div>
               ))}
             </div>
-            <button className="pd-btn-full-history">View Full History</button>
+            <button className="pd-btn-full-history btn-secondary">View Full History</button>
           </section>
 
           {/* Account Standing */}
-          <section className="pd-card standing-card">
+          <section className="pd-card card">
              <div className="pd-standing-header">
-                <p className="pd-standing-label">ACCOUNT STANDING</p>
+                <p className="pd-standing-label">Account Standing</p>
                 <h2 className="pd-standing-tier">Elite Tier</h2>
              </div>
              <div className="pd-standing-stats">
                 <div className="pd-standing-item">
                    <span className="pd-standing-key">LTV (Lifetime Value)</span>
-                   <span className="pd-standing-val">$2,840.00</span>
+                   <span className="pd-standing-val">₹2,840.00</span>
                 </div>
                 <div className="pd-standing-item">
                    <span className="pd-standing-key">Member Since</span>
@@ -199,7 +193,7 @@ const PaymentDetail = () => {
           </section>
 
           {/* Help Box */}
-          <section className="pd-card help-card">
+          <section className="pd-card card">
              <div className="pd-help-content">
                 <div className="pd-help-text-box">
                    <h4 className="pd-help-title">Need help with this?</h4>

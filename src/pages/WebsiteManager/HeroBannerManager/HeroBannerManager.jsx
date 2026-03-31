@@ -11,9 +11,7 @@ const HeroBannerManager = () => {
   const [bgUrl, setBgUrl] = useState('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop');
 
   return (
-    <div className="hbm-container ">
-
-
+    <div className="hbm-container">
 
       <PageHeader
         title="Hero Section Manager"
@@ -43,15 +41,14 @@ const HeroBannerManager = () => {
             </div>
           </div>
 
-          {/* Copy Configuration Form */}
-          <div className="glass-card hbm-form-panel">
+          <div className="card hbm-form-panel">
             <div className="form-panel-header">
               <Sparkles size={20} className="panel-icon" />
               <h3 className="panel-title">Copy Configuration</h3>
             </div>
 
-            <div className="form-group mt-3">
-              <label className="form-label">HEADLINE</label>
+            <div className="form-group">
+              <label className="form-label">Headline</label>
               <textarea
                 className="form-control hbm-textarea-styled"
                 value={headline}
@@ -61,7 +58,7 @@ const HeroBannerManager = () => {
             </div>
 
             <div className="form-group">
-              <label className="form-label">SUBTEXT</label>
+              <label className="form-label">Subtext</label>
               <textarea
                 className="form-control hbm-textarea-styled"
                 value={subheadline}
@@ -117,10 +114,9 @@ const HeroBannerManager = () => {
             </button>
           </div>
 
-          {/* Background Asset Card */}
           <div className="hbm-utility-card asset-card">
             <div className="asset-header">
-              <h3 className="utility-title mb-0">Background Asset</h3>
+              <h3 className="utility-title">Background Asset</h3>
               <div className="add-icon-btn"><Plus size={16} /></div>
             </div>
 

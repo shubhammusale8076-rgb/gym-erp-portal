@@ -97,7 +97,6 @@ const Trainer = () => {
         ]}
       />
 
-
       <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', margin: '24px 0' }}>
         <KpiCard title="Total Trainers" value="1,534" theme="teal" Icon={Users} />
         <KpiCard title="Active Trainers" value="15" theme="blue" Icon={UserPlus} />
@@ -105,9 +104,7 @@ const Trainer = () => {
         <KpiCard title="Top Rated" value="9" theme="orange" />
       </section>
 
-      {/* FILTER */}
       <div className="trainer-filter">
-
         <div className="tags">
           <button className="active">All Specialties</button>
           <button>Yoga</button>

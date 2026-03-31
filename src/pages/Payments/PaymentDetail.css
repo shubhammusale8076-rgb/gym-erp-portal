@@ -348,9 +348,9 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--border-light);
+  background: var(--primary);
   border: 2px solid #fff;
-  box-shadow: 0 0 0 1px var(--border-light);
+  box-shadow: 0 0 0 1px var(--text-primary);
   z-index: 1;
 }
 
@@ -363,7 +363,7 @@
 .pd-page .pd-main-grid .pd-right-column .history-card .pd-timeline .pd-timeline-item .pd-timeline-line {
   width: 1px;
   flex: 1;
-  background: var(--border-light);
+  background: var(--primary);
   margin: 2px 0;
 }
 
@@ -403,138 +403,124 @@
 }
 
 .pd-page .pd-main-grid .pd-right-column .history-card .pd-timeline .pd-timeline-item .pd-timeline-status.paid {
-  background: #f1f5f9;
-  color: var(--text-muted);
+  background:var(--bg-card);
+  color: var(--primary);
 }
 
 .pd-page .pd-main-grid .pd-right-column .history-card .pd-timeline .pd-timeline-item .pd-timeline-date {
   font-size: 0.75rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   margin-bottom: 0.15rem;
 }
 
 .pd-page .pd-main-grid .pd-right-column .history-card .pd-timeline .pd-timeline-item .pd-timeline-amount {
   font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-secondary);
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
-.pd-btn-full-history {
+.pd-page .pd-main-grid .pd-right-column .history-card .pd-btn-full-history {
   width: 100%;
-  background: transparent;
-  border: 1px solid var(--border-light);
-  padding: 0.6rem;
   border-radius: 10px;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: var(--text-secondary);
   cursor: pointer;
   margin-top: 1rem;
-  transition: all 0.2s;
+  justify-content: center;
 }
 
-.pd-btn-full-history:hover {
+.pd-page .pd-main-grid .pd-right-column .history-card .pd-btn-full-history:hover {
   background: #f8fafc;
-  border-color: var(--text-muted);
+  border-color: var(--primary);
 }
 
-/* Standing Card */
-.standing-card {
-  background: #fff;
-}
 
-.pd-standing-header {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-standing-header {
   margin-bottom: 1.25rem;
 }
 
-.pd-standing-label {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-standing-label {
   font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--text-muted);
+  font-weight: 500;
+  color: var(--text-secondary);
   letter-spacing: 0.05em;
   margin-bottom: 0.25rem;
 }
 
-.pd-standing-tier {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-standing-tier {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #7c3aed;
+  color: var(--primary);
 }
 
-.pd-standing-stats {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-standing-stats {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
 }
 
-.pd-standing-item {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-standing-stats .pd-standing-item {
   display: flex;
   justify-content: space-between;
   font-size: 0.85rem;
 }
 
-.pd-standing-key {
-  color: var(--text-muted);
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-standing-stats .pd-standing-item .pd-standing-key {
+  color: var(--text-secondary);
 }
 
-.pd-standing-val {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-standing-stats .pd-standing-item .pd-standing-val {
   font-weight: 700;
   color: var(--text-primary);
 }
 
-.pd-progress-box {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-progress-box {
   margin-top: 1rem;
 }
 
-.pd-progress-bar {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-progress-box .pd-progress-bar {
   height: 6px;
-  background: #f1f5f9;
+  background: var(--primary-hover);
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 0.5rem;
 }
 
-.pd-progress-fill {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-progress-box .pd-progress-fill {
   height: 100%;
   background: linear-gradient(90deg, #7c3aed, #a78bfa);
   border-radius: 10px;
 }
 
-.pd-progress-text {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-progress-box .pd-progress-text {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
-/* Help Card */
-.help-card {
-  background: #7c3aed;
-  color: #fff;
-  border: none;
-}
-
-.pd-help-content {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-help-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.pd-help-title {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-help-content .pd-help-title {
   font-size: 0.9rem;
   font-weight: 700;
   margin-bottom: 0.15rem;
 }
 
-.pd-help-sub {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-help-content .pd-help-sub {
   font-size: 0.8rem;
   opacity: 0.8;
 }
 
-.pd-help-icon-box {
+.pd-page .pd-main-grid .pd-right-column .pd-card .pd-help-content .pd-help-icon-box {
   width: 36px;
   height: 36px;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--primary-hover);
+  color: var(--primary);
   border-radius: 50%;
   display: flex;
   align-items: center;

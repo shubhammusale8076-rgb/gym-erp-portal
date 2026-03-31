@@ -259,28 +259,10 @@
   color: var(--text-primary);
 }
 
-.header-btn-relative {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-bell {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: transparent;
-  border: 1px solid #e2d9ea;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.01);
-}
-
 .header-badge {
   position: absolute;
-  top: 0px;
-  right: -2px;
+  top: -5px;
+  right: -5px;
   width: 22px;
   height: 22px;
   background-color: #ffd8b1; /* custom peach/orange */

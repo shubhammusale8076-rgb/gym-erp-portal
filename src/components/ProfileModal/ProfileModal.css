@@ -13,23 +13,31 @@
 
 .pm-overlay .pm-modal {
     background: var(--bg-dark);
-    border-radius: 32px;
+    border-radius: var(--section-radius);
     width: 95%;
     max-width: 1050px;
     max-height: 95vh;
-    overflow-y: auto;
-    padding: 3rem 4rem;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    padding: 3rem;
+    padding-right: 1rem;
     animation: slideUp 0.3s ease-out;
+    position: relative;
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .pm-overlay .pm-modal .pm-header {
-     margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    height: 130px;
 }
 
 .pm-overlay .pm-modal .pm-subtitle {
@@ -57,11 +65,26 @@
     width: 70%;
 }
 
+
+.pm-overlay .pm-modal .pm-header .btn-secondary {
+    border: none;
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    background: none;
+    box-shadow: none;
+
+}
+
 .pm-overlay .pm-modal .pm-grid {
     display: grid;
     grid-template-columns: 1.25fr 0.75fr;
     gap: 2rem;
+    padding-right: 2rem;
     align-items: start;
+    overflow-y: auto;
+    height: 60vh;
+
 }
 
 .pm-overlay .pm-modal .pm-col {
@@ -71,28 +94,23 @@
 }
 
 .pm-overlay .pm-modal .pm-card {
-    border-radius: 24px;
-    padding: 2.5rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    border-radius: var(--section-radius);
+    padding: 2rem;
 }
-
-.pm-overlay .pm-modal .card-white { background-color: var(--bg-dark); }
-.pm-overlay .pm-modal .card-tinted { background-color: var(--bg-dark); }
 
 .pm-overlay .pm-modal .pm-card-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    margin-bottom: 1.5rem;
 }
 
-.pm-overlay .pm-modal .pm-card-header.justify-start {
-    justify-content: flex-start;
+.pm-overlay .pm-modal .card-tinted .pm-card-header {
+    justify-content: center;
     align-items: center;
+    gap: 1rem;
 }
 
-.pm-overlay .pm-modal .pm-card-header.gap-2 { gap: 0.5rem; }
-.pm-overlay .pm-modal .mb-8 { margin-bottom: 2rem; }
-.pm-overlay .pm-modal .mb-6 { margin-bottom: 1.5rem; }
 
 .pm-overlay .pm-modal .pm-card-title {
     font-size: 1.15rem;
@@ -108,8 +126,13 @@
     display: block;
 }
 
-.pm-overlay .pm-modal .icon-purple { color: var(--primary); }
-.pm-overlay .pm-modal .icon-red { color: #d32f2f; }
+.pm-overlay .pm-modal .icon-purple {
+    color: var(--primary);
+}
+
+.pm-overlay .pm-modal .icon-red {
+    color: #d32f2f;
+}
 
 .pm-overlay .pm-modal .pm-form-grid {
     display: grid;
@@ -126,7 +149,7 @@
 .pm-overlay .pm-modal .pm-form-group label {
     font-size: 0.65rem;
     font-weight: 800;
-    color: var(--   text-secondary);
+    color: var(--text-secondary);
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
@@ -142,10 +165,18 @@
     transition: background-color 0.2s;
 }
 
-.pm-overlay .pm-modal .pm-form-group input::placeholder { color: var(--text-secondary); }
-.pm-overlay .pm-modal .pm-form-group input:focus { outline: none; background-color: var(--primary-hover); }
+.pm-overlay .pm-modal .pm-form-group input::placeholder {
+    color: var(--text-secondary);
+}
 
-.pm-overlay .pm-modal .pm-form-group.full-width { grid-column: 1 / -1; }
+.pm-overlay .pm-modal .pm-form-group input:focus {
+    outline: none;
+    background-color: var(--primary-hover);
+}
+
+.pm-overlay .pm-modal .pm-form-group.full-width {
+    grid-column: 1 / -1;
+}
 
 .pm-overlay .pm-modal .avatar-upload-area {
     display: flex;
@@ -154,16 +185,16 @@
 }
 
 .pm-overlay .pm-modal .avatar-circle {
-    width: 150px;
+ width: 150px;
     height: 150px;
-    background-color: var(--primary-hover); /* matching the header avatar */
+    background-color: var(--primary-hover);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    border: 8px solid var(--bg-dark);
-    box-shadow: 0 0 0 2px var(--primary-hover);
+    border: 8px solid #ffffff;
+    box-shadow: 0 0 0 2px #f6eef6;
 }
 
 .pm-overlay .pm-modal .avatar-text-placeholder {
@@ -175,8 +206,8 @@
 
 .pm-overlay .pm-modal .upload-btn-circle {
     position: absolute;
-    bottom: 5px;
-    right: 5px;
+    bottom: 0px;
+    right: 0px;
     width: 40px;
     height: 40px;
     background-color: var(--primary);
@@ -191,23 +222,23 @@
     transition: background-color 0.2s;
 }
 
-.pm-overlay .pm-modal .upload-btn-circle:hover { background-color: var(--primary-hover); }
 
-.pm-overlay .pm-modal .pm-upload-hint {
+.pm-overlay .pm-modal .pm-card .pm-upload-hint {
     font-size: 0.75rem;
     color: var(--text-secondary);
     line-height: 1.5;
     text-align: center;
+    margin-bottom: 1rem;
 }
 
-.pm-overlay .pm-modal .pm-actions {
+.pm-overlay .pm-modal .pm-card .pm-actions {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
 }
 
-.pm-overlay .pm-modal .pm-btn-submit {
+.pm-overlay .pm-modal .pm-card .pm-btn-submit {
     background-color: var(--primary);
     color: var(--text-on-dark);
     border: none;
@@ -231,26 +262,27 @@
     box-shadow: 0 10px 25px rgba(var(--primary), 0.4);
 }
 
-.pm-overlay .pm-modal .pm-btn-cancel {
-    background: transparent;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.pm-overlay .pm-modal .pm-btn-cancel:hover {
-    color: var(--text-primary);
-    text-decoration: underline;
-}
 
 @media (max-width: 1024px) {
-    .pm-overlay .pm-modal .pm-grid { grid-template-columns: 1fr; }
-    .pm-overlay .pm-modal { padding: 3rem; }
+    .pm-overlay .pm-modal .pm-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pm-overlay .pm-modal {
+        padding: 3rem;
+    }
 }
+
 @media (max-width: 600px) {
-    .pm-overlay .pm-modal .pm-form-grid { grid-template-columns: 1fr; }
-    .pm-overlay .pm-modal { padding: 1.5rem; }
-    .pm-overlay .pm-modal .pm-title { font-size: 1.75rem; }
+    .pm-overlay .pm-modal .pm-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pm-overlay .pm-modal {
+        padding: 1.5rem;
+    }
+
+    .pm-overlay .pm-modal .pm-title {
+        font-size: 1.75rem;
+    }
 }

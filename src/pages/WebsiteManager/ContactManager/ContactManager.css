@@ -4,87 +4,72 @@
 }
 
 /* Grid Layout */
-.contact-cx-grid {
+.contact-cx-page .contact-cx-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 2rem;
   align-items: start;
 }
 
-.contact-cx-col {
+.contact-cx-page .contact-cx-grid .contact-cx-col {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
 /* Cards */
-.contact-card {
+.contact-cx-page .contact-cx-grid .contact-cx-col .contact-card {
   border-radius: var(--section-radius);
   padding: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-}
-
-.card-white {
-  background-color: var(--bg-card);
 }
 
 .card-tinted {
   background-color: var(--bg-card-secondary);
 }
 
-.card-no-pad-top {
+.contact-cx-page .contact-cx-grid .contact-cx-col .card-no-pad-top {
   padding: 0;
   overflow: hidden;
   height: 410px;
 }
 
 /* Card Header */
-.contact-card-header,
-.contact-hours-header {
+.contact-cx-page .contact-cx-grid .contact-cx-col .contact-card .contact-card-header {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 2.5rem;
 }
 
-.card-icon-box {
+.contact-cx-page .contact-cx-grid .contact-cx-col .contact-card .contact-card-header .card-icon-box  {
   width: 44px;
   height: 44px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.purple-bg {
-  background-color: #5d1b7a;
-}
-
-.gold-bg {
   background-color: var(--primary);
 }
 
-.text-white {
+.contact-cx-page .contact-cx-grid .contact-cx-col .contact-card .contact-card-header .card-icon-box .text-white {
   color: white;
 }
 
-.card-title-stack {
+.contact-cx-page .contact-cx-grid .contact-cx-col .contact-card .contact-card-header .card-title-stack {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
+  flex: 1;
 }
 
-.flex-grow {
-  flex-grow: 1;
-}
 
-.cc-title {
-  font-size: 1.3rem;
+.contact-cx-page .contact-cx-grid .contact-cx-col .contact-card .contact-card-header .card-title-stack .cc-title {
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--text-primary);
 }
 
-.cc-subtitle {
+.contact-cx-page .contact-cx-grid .contact-cx-col .contact-card .contact-card-header .card-title-stack .cc-subtitle {
   font-size: 0.65rem;
   font-weight: 600;
   color: var(--text-secondary);

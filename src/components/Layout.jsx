@@ -131,7 +131,7 @@ const Header = () => {
           </div>
 
           <div className="header-actions">
-            <button className="icon-btn header-btn-relative header-bell" onClick={() => setIsNotifOpen(true)}>
+            <button className="icon-btn" onClick={() => setIsNotifOpen(true)}>
               <Bell size={20} strokeWidth={2} color="#5d5d6c" />
               <span className="header-badge">3</span>
             </button>

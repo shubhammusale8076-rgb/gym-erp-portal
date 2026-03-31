@@ -111,7 +111,7 @@ const Attendance = () => {
 
 
       {/* STAT CARDS - Kept as requested */}
-      <div className="stats-grid">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', margin: '24px 0' }}>
         <KpiCard title="Total Check-Ins Today" value="142" theme="blue" Icon={SignIn} />
         <KpiCard title="Peak Hour" value="06:00 PM" theme="purple" Icon={Clock} />
         <KpiCard title="Avg. Daily Attendance" value="118" theme="orange" Icon={BarChart2} />

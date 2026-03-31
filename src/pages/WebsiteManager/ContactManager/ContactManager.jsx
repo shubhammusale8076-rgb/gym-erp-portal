@@ -23,8 +23,7 @@ const ContactManager = () => {
         {/* Left Column */}
         <div className="contact-cx-col">
 
-          {/* Card 1: Public Presence */}
-          <div className="contact-card card-white">
+          <div className="contact-card card">
             <div className="contact-card-header">
               <div className="card-icon-box purple-bg">
                 <MessageCircleQuestion size={18} className="text-white" strokeWidth={2.5} />
@@ -60,7 +59,7 @@ const ContactManager = () => {
             </div>
           </div>
 
-          <div className="contact-card card-white">
+          <div className="contact-card card">
             <h3 className="social-title">Social Ecosystem</h3>
 
             <div className="social-list">
@@ -103,7 +102,7 @@ const ContactManager = () => {
         <div className="contact-cx-col">
 
           {/* Card 3: Map UI */}
-          <div className="contact-card card-white card-no-pad-top">
+          <div className="contact-card card card-no-pad-top">
             <div className="map-image-area">
               <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80" alt="Map" className="map-bg-img" />
               <div className="map-overlay"></div>
@@ -135,11 +134,11 @@ const ContactManager = () => {
 
 
           <div className="contact-card card-tinted">
-            <div className="contact-hours-header">
+            <div className="contact-card-header">
               <div className="card-icon-box gold-bg">
                 <Clock size={18} className="text-white" strokeWidth={2.5} />
               </div>
-              <div className="card-title-stack flex-grow">
+              <div className="card-title-stack">
                 <h3 className="cc-title">Operating Hours</h3>
                 <span className="cc-subtitle">WEEKLY AVAILABILITY</span>
               </div>

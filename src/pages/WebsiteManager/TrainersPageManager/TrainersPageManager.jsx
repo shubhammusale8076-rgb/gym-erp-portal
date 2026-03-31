@@ -148,7 +148,7 @@ const TrainersPageManager = () => {
 
       <div className="tm-grid">
         {trainers.map((trainer) => (
-          <div key={trainer.id} className="tm-card glass-panel">
+          <div key={trainer.id} className="tm-card card">
             <div className="tm-card-image-wrapper">
               {trainer.imageUrl ? (
                 <img src={trainer.imageUrl} alt={trainer.name} className="tm-card-image" />

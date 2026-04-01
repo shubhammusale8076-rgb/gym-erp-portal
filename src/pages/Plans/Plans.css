@@ -551,33 +551,4 @@
 }
 
 
-/* ── Responsive ── */
-@media (max-width: 1024px) {
-  .plans-cards-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    align-items: stretch;
-  }
 
-  .plan-card.popular {
-    transform: none;
-  }
-}
-
-@media (max-width: 900px) {
-  .plans-cards-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .plan-card.popular {
-    padding: 2.5rem 1.5rem;
-  }
-
-  .plans-middle-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .plans-promo-grid {
-    grid-template-columns: 1fr;
-  }
-}

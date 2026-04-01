@@ -1,7 +1,10 @@
 /* ====== Create Plan Custom Modal (CP) ====== */
 .cp-overlay {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -13,6 +16,7 @@
 
 .cp-overlay .cp-modal {
   background: var(--bg-dark); /* VERY light soft pink tint */
+  box-shadow: 0 4px 10px rgba(var(--primary), 0.4);
   width: 95%;
   max-width: 1050px;
   max-height: 90vh;
@@ -25,11 +29,14 @@
 
 /* Header */
 .cp-overlay .cp-modal .cp-header {
-  margin-bottom: 1.5rem;
+   display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
 }
 
 .cp-overlay .cp-modal .cp-header .cp-title {
-    font-size: 2.25rem;
+    font-size: 1.15rem;
     font-weight: 800;
     color: var(--text-primary);
     margin-bottom: 0.75rem;
@@ -37,11 +44,9 @@
 }
 
 .cp-overlay .cp-modal .cp-header .cp-subtitle {
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--text-secondary);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
 }
 
 .cp-overlay .cp-modal .cp-header .cp-close-btn {
@@ -78,13 +83,13 @@
   padding: 2.5rem;
 }
 
-.cp-overlay .cp-modal .cp-grid .cp-col .cp-card-white {
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-card .cp-card-white {
   background: #ffffff;
   border-radius: 32px;
  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
 }
 
-.cp-overlay .cp-modal .cp-grid .cp-col .cp-full-height {
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-card .cp-full-height {
   flex: 1;
   display: flex;
   flex-direction: column;

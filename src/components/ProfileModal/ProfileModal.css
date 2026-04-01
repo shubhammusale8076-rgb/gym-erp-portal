@@ -82,7 +82,7 @@
 .pm-overlay .pm-modal .pm-grid {
     display: grid;
     grid-template-columns: 1.25fr 0.75fr;
-    gap: 2rem;
+    gap: 1.8rem;
     padding-right: 2rem;
     align-items: start;
     overflow-y: auto;
@@ -93,13 +93,12 @@
 .pm-overlay .pm-modal .pm-grid .pm-col {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .pm-overlay .pm-modal .pm-grid .pm-col .pm-card {
     border-radius: 24px;
-    padding: 2.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    padding: 2rem;
 }
 
 .pm-overlay .pm-modal .pm-grid .pm-col .pm-card .card-white {

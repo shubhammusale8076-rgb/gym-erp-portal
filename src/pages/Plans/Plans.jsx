@@ -319,37 +319,35 @@ const Plans = () => {
         </div>
       </div>
 
-      {(modalMode === 'create' || modalMode === 'edit') && (
-        <AddPlan 
-          onClose={() => setModalMode(null)} 
-          onSave={(formData) => handleSave(formData)} 
-          initialData={modalMode === 'edit' ? selectedPlan : null}
-        />
-      )}
+       {(modalMode === 'create' || modalMode === 'edit') && (
+      <AddPlan
+        onClose={() => setModalMode(null)}
+        onSave={handleSave}
+        initialData={modalMode === 'edit' ? selectedPlan : null}
+      />
+    )}
 
-      {/* Delete Confirmation */}
-      {modalMode === 'delete' && (
-        <div className="modal-overlay" onClick={() => setModalMode(null)}>
-          <div className="modal-dialog modal-dialog-sm" onClick={e => e.stopPropagation()}>
-            <div className="modal-header">
-              <h2 className="heading-3">Archive Plan</h2>
-              <button className="icon-btn" onClick={() => setModalMode(null)}><X size={18} /></button>
-            </div>
-            <div className="modal-body">
-              <div className="delete-confirm-content">
-                <div className="delete-icon-wrapper">
-                  <AlertTriangle size={28} color="var(--danger)" />
-                </div>
-                <p>Are you sure you want to archive the <strong>{selectedPlan?.name}</strong> plan?</p>
-              </div>
-            </div>
-            <div className="modal-footer">
-              <button className="btn btn-secondary" onClick={() => setModalMode(null)}>Cancel</button>
-              <button className="btn btn-danger" onClick={handleDelete}>Archive Plan</button>
-            </div>
+    {modalMode === 'delete' && selectedPlan && (
+      <div className="delete-modal-overlay" onClick={() => setModalMode(null)}>
+        <div className="delete-modal" onClick={(e) => e.stopPropagation()}>
+          <div className="delete-modal-header">
+            <AlertTriangle size={28} className="delete-icon" />
+            <h3>Delete Plan</h3>
+          </div>
+          <p>
+            Are you sure you want to delete <strong>{selectedPlan.name}</strong> plan?
+          </p>
+          <div className="delete-modal-actions">
+            <button className="btn-secondary" onClick={() => setModalMode(null)}>
+              Cancel
+            </button>
+            <button className="btn-danger" onClick={handleDelete}>
+              Delete
+            </button>
           </div>
         </div>
-      )}
+      </div>
+    )}
     </div>
   );
 };

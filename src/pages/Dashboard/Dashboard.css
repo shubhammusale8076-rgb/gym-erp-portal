@@ -168,7 +168,7 @@
 
 .time-filters {
     display: flex;
-    background: #fff;
+    background: var(--bg-card);
     padding: 4px;
     border-radius: 999px;
 }
@@ -373,7 +373,7 @@
 }
 
 .join-btn-white {
-    background: #fff;
+    background: var(--bg-card);
     color: var(--primary);
     border: none;
     padding: 0.8rem 1.5rem;
@@ -594,7 +594,7 @@
 }
 
 .fab-secondary {
-    background: #fff;
+    background: var(--bg-card);
     color: #1a1a1a;
 }
 

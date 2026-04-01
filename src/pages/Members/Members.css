@@ -72,13 +72,13 @@
 }
 
 .view-btn.active {
-    background: #fff;
+    background: var(--bg-card);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* Table Card */
 .members-table-wrapper {
-    background: #fff;
+    background: var(--bg-card);
     border-radius: var(--section-radius);
     overflow: hidden;
     margin-bottom: 1.5rem;
@@ -269,7 +269,7 @@
     justify-content: center;
     border-radius: 50%;
     border: 1px solid #f0f0f0;
-    background: #fff;
+    background: var(--bg-card);
     cursor: pointer;
     color: #7a7a7a;
 }

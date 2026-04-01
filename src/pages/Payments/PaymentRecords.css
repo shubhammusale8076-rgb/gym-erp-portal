@@ -44,7 +44,7 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.6rem 1.2rem;
-  background: white;
+  background: var(--bg-card);
   border: 1px solid #e2e8f0;
   border-radius: 999px;
   font-size: 0.8rem;
@@ -210,7 +210,7 @@
 .pr-page .pr-main-layout .pr-receipt-sidebar .pr-receipt-header .pr-receipt-icon-box {
   width: 48px;
   height: 48px;
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -361,7 +361,7 @@
   width: 50px;
   height: 50px;
   border: 1.5px solid #e2e8f0;
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   display: flex;
   align-items: center;

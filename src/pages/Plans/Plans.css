@@ -51,7 +51,7 @@
   top: -16px;
   left: 50%;
   transform: translateX(-50%);
-  background: #fff;
+  background: var(--bg-card);
   color: var(--primary);
   font-size: 0.75rem;
   font-weight: 800;
@@ -218,7 +218,7 @@
 }
 
 .plans-page .plans-cards-grid .plan-card.theme-elite .plan-features .feature-item .feature-check {
-  background: #fff;
+  background: var(--bg-card);
   color: var(--primary);
 }
 
@@ -248,7 +248,7 @@
 
 
 .plans-page .plans-cards-grid .plan-card.theme-elite .plan-footer-actions .btn-primary {
-  background: #fff;
+  background: var(--bg-card);
   color: var(--primary);
   border: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -400,7 +400,7 @@
 
 /* Right: Table */
 .plans-page .plans-middle-grid .plans-table-card {
-  background: #fff;
+  background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--section-radius);
   padding: 2rem;

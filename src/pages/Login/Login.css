@@ -331,7 +331,7 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 0.875rem;
-  background-color: #ffffff;
+  background-color: var(--bg-card);
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   color: #4b5563;

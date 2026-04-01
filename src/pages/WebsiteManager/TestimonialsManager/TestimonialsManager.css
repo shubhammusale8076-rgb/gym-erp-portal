@@ -159,7 +159,7 @@
   left: 2px;
   width: 18px;
   height: 18px;
-  background-color: white;
+  background-color: var(--bg-card);
   border-radius: 50%;
   transition: transform 0.3s;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -229,7 +229,7 @@
 }
 
 .testi-modal {
-  background-color: #ffffff;
+  background-color: var(--bg-card);
   width: 100%;
   max-width: 620px;
   max-height: 90vh;
@@ -336,7 +336,7 @@
   outline: none;
   border-color: #a21caf;
   /* matches badge color */
-  background-color: white;
+  background-color: var(--bg-card);
 }
 
 .testi-textarea {
@@ -353,7 +353,7 @@
 .testi-textarea:focus {
   outline: none;
   border-color: #a21caf;
-  background-color: white;
+  background-color: var(--bg-card);
 }
 
 .testi-rating-selector {

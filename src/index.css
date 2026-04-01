@@ -291,7 +291,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #ffffff;
+  background-color: var(--bg-card);
   border: 1px solid var(--border-light);
   padding: 0.625rem 1.25rem;
   border-radius: 12px;
@@ -310,7 +310,7 @@ body {
 .search-bar-wrapper {
   display: flex;
   align-items: center;
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 9999px;
   padding: 0.6rem 1.2rem;
   width: 100%;
@@ -321,7 +321,7 @@ body {
 
 .search-bar-wrapper:focus-within {
   box-shadow: 0 0 0 2px rgba(129, 48, 176, 0.1);
-  background: #fff;
+  background: var(--bg-card);
   border: 1px solid rgba(129, 48, 176, 0.2);
 }
 

@@ -189,7 +189,7 @@
 }
 
 .tm-modal {
-  background-color: #ffffff;
+  background-color: var(--bg-card);
   width: 100%;
   max-width: 950px;
   max-height: 90vh;
@@ -374,7 +374,7 @@
 
 .tm-input-group-icon:focus-within {
   border-color: var(--primary);
-  background-color: #ffffff;
+  background-color: var(--bg-card);
 }
 
 .tm-input-icon {
@@ -427,7 +427,7 @@
 
 .tm-input-large:focus {
   border-color: var(--primary);
-  background-color: #ffffff;
+  background-color: var(--bg-card);
 }
 
 /* Skills Array */
@@ -519,7 +519,7 @@
 .tm-modal-textarea:focus {
   outline: none;
   border-color: var(--primary);
-  background-color: #ffffff;
+  background-color: var(--bg-card);
 }
 
 /* Availability Schedule */
@@ -534,7 +534,7 @@
   height: 55px;
   border-radius: 50%;
   border: 1px solid #e2e8f0;
-  background-color: #ffffff;
+  background-color: var(--bg-card);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -602,7 +602,7 @@
 
 .tm-shift-card.active {
   opacity: 1;
-  background-color: #ffffff;
+  background-color: var(--bg-card);
 }
 
 .tm-shift-icon {
@@ -656,7 +656,7 @@
   justify-content: flex-end;
   align-items: center;
   gap: 1.5rem;
-  background-color: #ffffff;
+  background-color: var(--bg-card);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }

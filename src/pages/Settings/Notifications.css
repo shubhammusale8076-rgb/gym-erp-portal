@@ -148,7 +148,7 @@
 .notifications-page .notifications-layout .notif-sidebar .pref-card .notif-toggle .notif-toggle-circle {
     width: 20px;
     height: 20px;
-    background: white;
+    background: var(--bg-card);
     border-radius: 50%;
     position: absolute;
     top: 2px;

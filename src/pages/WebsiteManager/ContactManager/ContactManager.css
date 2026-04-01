@@ -24,7 +24,7 @@
 }
 
 .card-tinted {
-  background-color: var(--bg-card-secondary);
+  background-color: var(--primary-hover);
 }
 
 .contact-cx-page .contact-cx-grid .contact-cx-col .card-no-pad-top {

@@ -184,7 +184,7 @@
 
 .filter-pill.active {
     background: #fdf6ff;
-    color: #8130b0;
+    color: var(--primary);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -194,7 +194,7 @@
     grid-row: span 2;
     display: flex;
     flex-direction: column;
-    background-color: var(--bg-card-secondary);
+    background-color: var(--primary-hover);
 }
 
 .activity-items {
@@ -210,7 +210,7 @@
     padding: 1rem;
     border-radius: var(--section-radius);
     gap: 1rem;
-    background: rgba(255, 255, 255, 0.4)
+    background:var(--bg-card)  ;
 
 }
 
@@ -225,7 +225,7 @@
 }
 
 .purple-bg {
-    background: #8130b0;
+    background: var(--primary);
 }
 
 .lavender-bg {
@@ -265,7 +265,7 @@
     margin-top: auto;
     background: transparent;
     border: none;
-    color: #8130b0;
+    color: var(--primary);
     font-weight: 700;
     font-size: 0.85rem;
     cursor: pointer;
@@ -294,7 +294,7 @@
 }
 
 .revenue-value {
-    color: #8130b0;
+    color: var(--primary);
 }
 
 .progress-bar-wide {
@@ -306,23 +306,20 @@
 
 .progress-bar-wide .fill {
     height: 100%;
-    background: #8130b0;
+    background: var(--primary);
     border-radius: 999px;
 }
 
 /* 4. Spotlight Card */
 .spotlight-card {
     grid-column: span 1;
-    background-color: #8130b0;
+    background-color: var(--primary);
     color: #fff;
     border-radius: var(--section-radius);
     padding: 1.8rem;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
 
-
-
 }
-
 .spotlight-badge {
     font-size: 0.65rem;
     font-weight: 800;
@@ -377,7 +374,7 @@
 
 .join-btn-white {
     background: #fff;
-    color: #8130b0;
+    color: var(--primary);
     border: none;
     padding: 0.8rem 1.5rem;
     border-radius: 999px;
@@ -471,7 +468,7 @@
 .view-all-link-sm {
     font-size: 0.85rem;
     font-weight: 700;
-    color: #8130b0;
+    color: var(--primary);
 }
 
 .trainer-cards-row {
@@ -480,7 +477,7 @@
 }
 
 .trainer-mini-card {
-    background: var(--bg-dark);
+    background: var(--primary-hover);
     padding: 1rem 1.5rem;
     border-radius: 20px;
     display: flex;
@@ -502,12 +499,12 @@
 }
 
 .initials-avatar.purple {
-    background: #8130b0;
+    background: var(--primary);
 }
 
 .initials-avatar.lavender {
     background: #fdf6ff;
-    color: #8130b0;
+    color: var(--primary);
     border: 1px solid rgba(129, 48, 176, 0.2);
 }
 
@@ -548,7 +545,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #8130b0;
+    color: var(--primary);
 }
 
 .cap-title {
@@ -560,7 +557,7 @@
 .cap-percent {
     font-size: 0.7rem;
     font-weight: 700;
-    color: #8c8c8c;
+    color: var(--text-secondary);
 }
 
 /* Floating Actions */
@@ -592,7 +589,7 @@
 }
 
 .fab-primary {
-    background: #8130b0;
+    background: var(--primary);
     color: #fff;
 }
 

@@ -139,7 +139,7 @@
 }
 
 .hbm-container .hbm-grid .hbm-right-col .hbm-utility-card {
-  background: var(--bg-card-secondary);
+  background: var(--primary-hover);
   border-radius: var(--section-radius);
   padding: 1.75rem;
   display: flex;

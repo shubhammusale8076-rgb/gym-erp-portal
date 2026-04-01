@@ -28,7 +28,7 @@
 
 .plans-page .plans-cards-grid .plan-card.theme-standard,
 .plans-page .plans-cards-grid .plan-card.theme-platinum {
-  background-color: #f4eafa;
+  background-color: var(--primary-hover);
   color: var(--text-primary);
   border: 1px solid var(--primary-hover);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);

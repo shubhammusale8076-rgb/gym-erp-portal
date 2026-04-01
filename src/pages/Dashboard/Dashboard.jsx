@@ -58,15 +58,15 @@ const Dashboard = () => {
               <AreaChart data={chartData}>
                 <defs>
                   <linearGradient id="growthGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#8130b0" stopOpacity={0.2} />
-                    <stop offset="95%" stopColor="#8130b0" stopOpacity={0} />
+                    <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.2} />
+                    <stop offset="95%" stopColor="var(--primary)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <Tooltip />
                 <Area
                   type="monotone"
                   dataKey="value"
-                  stroke="#8130b0"
+                  stroke="var(--primary)"
                   strokeWidth={3}
                   fillOpacity={1}
                   fill="url(#growthGradient)"

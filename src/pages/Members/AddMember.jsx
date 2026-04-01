@@ -25,6 +25,8 @@ const AddMember = ({ onClose, onAdd, initialData }) => {
         setFormData({ ...formData, membershipPlan: plan });
     };
 
+    console.log(formData.membershipPlan)
+
     return (
         <div className="am-overlay">
             <div className="am-modal">

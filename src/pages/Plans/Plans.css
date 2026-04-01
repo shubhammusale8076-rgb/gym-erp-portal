@@ -31,6 +31,7 @@
   background-color: #f4eafa;
   color: var(--text-primary);
   border: 1px solid var(--primary-hover);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
 }
 
 .plans-page .plans-cards-grid .plan-card.theme-elite {
@@ -39,7 +40,7 @@
   border: 1px solid var(--primary);
   padding: 3.5rem 2.5rem;
   transform: scale(1.05);
-  box-shadow: 0 10px 30px var(--primary-glow);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
   z-index: 2;
 }
 

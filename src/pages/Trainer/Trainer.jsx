@@ -4,7 +4,8 @@ import { Plus, Filter, Download, Users, Users2, UserX, UserPlus, Edit2, Trash2 }
 import TrainerDetail from "../TrainerDetail/TrainerDetail";
 import AddTrainer from "./AddTrainer";
 import PageHeader from "../../components/PageHeader/PageHeader";
-import KpiCard from "../../components/KpiCard";
+import KpiCard from "../../components/KpiCard/KpiCard";
+import FilterButtons from "../../components/FilterButtons/FilterButtons";
 
 const trainers = [
   {
@@ -54,14 +55,16 @@ const Trainer = () => {
   const [trainersList, setTrainersList] = useState(trainers);
   const [isAddingTrainer, setIsAddingTrainer] = useState(false);
   const [editingTrainer, setEditingTrainer] = useState(null);
-
+  const [filterTags, setFilterTags] = useState("All")
+  const tags = ['All Specialties', 'Yoga', 'HIIT', 'Strength', 'Pilates', 'Zumba'];
+  
   const handleSaveTrainer = (newTrainerData) => {
     if (editingTrainer) {
-      setTrainersList(trainersList.map(t => t.id === editingTrainer.id ? { 
-        ...t, 
-        name: newTrainerData.fullName, 
-        email: newTrainerData.email, 
-        specialty: newTrainerData.specialization 
+      setTrainersList(trainersList.map(t => t.id === editingTrainer.id ? {
+        ...t,
+        name: newTrainerData.fullName,
+        email: newTrainerData.email,
+        specialty: newTrainerData.specialization
       } : t));
     } else {
       const newTrainer = {
@@ -80,6 +83,10 @@ const Trainer = () => {
     setEditingTrainer(null);
   };
 
+   const filterdTrainer = trainersList.filter((trainer) => {
+      const filterLower = filterTags === 'All' || trainer.specialty.toLowerCase().includes(filterTags.toLowerCase());
+      return filterLower;
+   })
 
   return (
     <div className="trainer-page">
@@ -106,17 +113,16 @@ const Trainer = () => {
 
       <div className="trainer-filter">
         <div className="tags">
-          <button className="active">All Specialties</button>
-          <button>Yoga</button>
-          <button>HIIT</button>
-          <button>Strength</button>
-          <button>Pilates</button>
-          <button>Zumba</button>
+
+          <FilterButtons
+            options={['All', ...tags]}
+            selected={filterTags}
+            onChange={setFilterTags}
+          />
         </div>
 
         <div className="filter-icons">
-          <button><Filter size={18} /> Filter</button>
-          <button><Download size={18} /> Export</button>
+          <button className="btn-primary"><Download size={18} /> Export</button>
         </div>
 
       </div>
@@ -136,7 +142,7 @@ const Trainer = () => {
           </thead>
 
           <tbody>
-            {trainersList.map((trainer) => (
+            {filterdTrainer.map((trainer) => (
               <tr key={trainer.id} onClick={() => setSelectedTrainer(trainer)} style={{ cursor: 'pointer' }}>
 
                 <td>

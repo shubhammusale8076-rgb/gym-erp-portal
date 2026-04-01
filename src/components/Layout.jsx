@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import {
   Home,
   User,
@@ -14,13 +14,26 @@ import {
   Bell,
   Search,
   ArrowUpRight,
-  CreditCard
+  CreditCard,
+  LayoutTemplate,
+  UserStar,
+  Images,
+  MessageCircle,
+  Mail
 } from 'lucide-react';
 import ProfileModal from './ProfileModal/ProfileModal';
 import NotificationModal from './NotificationModal/NotificationModal';
 import './Layout.css';
+import ThemeSwitcher from './ThemeSwitcher/ThemeSwitcher';
 
 const Sidebar = () => {
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
   const navItems = [
     {
       category: 'MAIN',
@@ -34,8 +47,8 @@ const Sidebar = () => {
         { name: 'Members List', path: '/members', icon: <User size={20} /> },
         { name: 'Attendance', path: '/attendance', icon: <Calendar size={20} /> },
         { name: 'Payments', path: '/payments', icon: <CreditCard size={20} /> },
-        { name: 'Membership Plans', path: '/plans', icon: <Layers size={20} /> },
-        { name: 'CRM / Leads', path: '/crm', icon: <Target size={20} /> },
+        { name: 'Membership Plans', path: '/membership-plans', icon: <Layers size={20} /> },
+        { name: 'Leads Management', path: '/lead-management', icon: <Target size={20} /> },
         { name: 'Trainers', path: '/trainer', icon: <Dumbbell size={20} /> },
         { name: 'Users', path: '/users', icon: <ShieldCheck size={20} /> },
       ]
@@ -44,11 +57,11 @@ const Sidebar = () => {
       category: 'WEBSITE',
       items: [
         { name: 'Website Manager', path: '/website-manager', icon: <Globe size={20} /> },
-        { name: 'Hero Banner', path: '/website-manager/hero-banner', icon: <Globe size={20} /> },
-        { name: 'Gallery', path: '/website-manager/gallery', icon: <Globe size={20} /> },
-        { name: 'Trainers (Web)', path: '/website-manager/trainers', icon: <Globe size={20} /> },
-        { name: 'Testimonials', path: '/website-manager/testimonials', icon: <Globe size={20} /> },
-        { name: 'Contact Info', path: '/website-manager/contact', icon: <Globe size={20} /> },
+        { name: 'Hero Banner', path: '/website-manager/hero-banner', icon: <LayoutTemplate size={20} /> },
+        { name: 'Gallery', path: '/website-manager/gallery', icon: <Images size={20} /> },
+        { name: 'Trainers (Web)', path: '/website-manager/trainers', icon: <UserStar size={20} /> },
+        { name: 'Testimonials', path: '/website-manager/testimonials', icon: <MessageCircle size={20} /> },
+        { name: 'Contact Info', path: '/website-manager/contact', icon: <Mail size={20} /> },
       ]
     },
     {
@@ -87,8 +100,7 @@ const Sidebar = () => {
         ))}
       </nav>
       <div className="sidebar-footer">
-
-        <button className="nav-item logout-btn">
+        <button className="btn-primary logout-btn" onClick={handleLogout}>
           <LogOut size={20} />
           <span>Log Out</span>
         </button>
@@ -139,6 +151,7 @@ const Header = () => {
               <span className="header-avatar-initials">TA</span>
             </button>
           </div>
+          <ThemeSwitcher/>
         </div>
       </div>
 

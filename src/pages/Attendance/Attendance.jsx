@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Attendance.css';
 import {
   Filter,
@@ -11,20 +11,24 @@ import {
   MoreVertical,
   Search
 } from 'lucide-react';
-import KpiCard from '../../components/KpiCard';
+import KpiCard from '../../components/KpiCard/KpiCard';
 import PageHeader from '../../components/PageHeader/PageHeader';
+import Dropdown from '../../components/Dropdown/Dropdown';
 
 const Attendance = () => {
 
-  // Mock Data
-  const recentActivity = [
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterPlan, setFilterPlan] = useState('Select Plan');
+  const allPlans = ["Standard", "Platinum", "Elite"];
+
+  const [recentActivity, setRecentActivity] = useState([
     {
       id: 1,
       name: "Elena Rodriguez",
       memberId: "#8821",
       avatar: "https://randomuser.me/api/portraits/women/65.jpg",
       checkIn: "08:15 AM",
-      plan: "Premium Plus",
+      plan: "Elite",
     },
     {
       id: 2,
@@ -40,7 +44,7 @@ const Attendance = () => {
       memberId: "#4432",
       avatar: "https://randomuser.me/api/portraits/women/44.jpg",
       checkIn: "09:05 AM",
-      plan: "VIP Access",
+      plan: "Platinum",
     },
     {
       id: 4,
@@ -58,9 +62,9 @@ const Attendance = () => {
       checkIn: "09:30 AM",
       plan: "Platinum",
     }
-  ];
+  ]);
 
-  const todaySchedule = [
+  const [todaySchedule, setTodaySchedule] = useState([
     {
       id: 1,
       name: "High Intensity Pilates",
@@ -85,7 +89,43 @@ const Attendance = () => {
       badge: "UPCOMING",
       badgeType: "normal"
     }
-  ];
+  ]);
+
+  const handleManualCheckIn = () => {
+    const name = window.prompt("Enter member name for check-in:");
+    if (name) {
+      const newCheckIn = {
+        id: Date.now(),
+        name: name,
+        memberId: `#${Math.floor(1000 + Math.random() * 9000)}`,
+        avatar: `https://ui-avatars.com/api/?name=${name.replace(' ', '+')}&background=random&color=fff`,
+        checkIn: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        plan: "Standard",
+      };
+      setRecentActivity([newCheckIn, ...recentActivity]);
+    }
+  };
+
+  const handleAddSession = () => {
+    const sessionName = window.prompt("Enter new session name:");
+    if (sessionName) {
+      const newSession = {
+        id: Date.now(),
+        name: sessionName,
+        time: "TBD • Main Floor",
+        joinRate: 0,
+        badge: "NEW",
+        badgeType: "normal"
+      };
+      setTodaySchedule([...todaySchedule, newSession]);
+    }
+  };
+
+  const filteredActivity = recentActivity.filter(member => {
+    const matchesSearch = member.name.toLowerCase().includes(searchTerm.toLowerCase()) || member.memberId.includes(searchTerm);
+    const matchesPlan = filterPlan === 'Select Plan' || member.plan.includes(filterPlan);
+    return matchesSearch && matchesPlan;
+  });
 
   return (
     <div className="attendance-page">
@@ -95,22 +135,15 @@ const Attendance = () => {
         subtitle="Real-time tracking of gym floor activity and active sessions."
         actions={[
           {
-            label: "Filter Results",
-            icon: <Filter size={16} />,
-            onClick: () => { },
-            className: "btn-filter"
-          },
-          {
             label: "Manual Check-In",
             icon: <SignIn size={16} />,
-            onClick: () => { },
+            onClick: handleManualCheckIn,
             className: "btn-primary"
           }
         ]}
       />
 
 
-      {/* STAT CARDS - Kept as requested */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', margin: '24px 0' }}>
         <KpiCard title="Total Check-Ins Today" value="142" theme="blue" Icon={SignIn} />
         <KpiCard title="Peak Hour" value="06:00 PM" theme="purple" Icon={Clock} />
@@ -118,10 +151,9 @@ const Attendance = () => {
         <KpiCard title="Active Members Now" value="24" theme="teal" Icon={UserCheck} />
       </div>
 
-      {/* MAIN CONTENT SPLIT - UPDATED */}
+
       <div className="attendance-content">
 
-        {/* LEFT COMPONENT: ACTIVE MEMBERS LIST */}
         <div className="active-members-section card">
           <div className="members-section-header">
             <h2 className="heading-5">Active Members</h2>
@@ -130,19 +162,35 @@ const Attendance = () => {
                 <Search size={16} className="search-icon-inline" />
                 <input
                   type="text"
-                  placeholder="Search members by name or email..."
+                  placeholder="Search members by name or ID..."
                   className="search-input-pill"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-              <button className="btn-filter">
-                <Filter size={14} />
-                <span>Filters Result</span>
-              </button>
+              <Dropdown
+                label={filterPlan || "All Plans"}
+                actions={[{
+                  label: "Clear",
+                  onClick: () => setFilterPlan("")
+                },
+                ...allPlans.map(g => ({
+                  label: g,
+                  onClick: () => setFilterPlan(g)
+                }))
+                ]}
+              />
+
             </div>
           </div>
 
           <div className="members-card-list">
-            {recentActivity.map((member) => (
+            {filteredActivity.length === 0 && (
+              <div className="empty-state" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
+                No recent activity found.
+              </div>
+            )}
+            {filteredActivity.map((member) => (
               <div key={member.id} className="member-status-card">
                 <div className="member-main-info">
                   <div className="avatar-rounded">
@@ -170,7 +218,6 @@ const Attendance = () => {
           </div>
         </div>
 
-        {/* RIGHT SIDEBAR: TODAY'S SCHEDULE - UPDATED */}
         <aside className="schedule-sidebar-lavender">
           <div className="sidebar-header">
             <Clock size={20} className="header-icon-purple" />
@@ -205,7 +252,7 @@ const Attendance = () => {
             ))}
           </div>
 
-          <button className="btn-dashed-add">
+          <button className="btn-dashed-add" onClick={handleAddSession}>
             <PlusCircle size={18} />
             <span>Add Extra Session</span>
           </button>

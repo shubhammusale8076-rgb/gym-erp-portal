@@ -1,7 +1,7 @@
 import React from 'react';
 import { Users, TrendingUp, CalendarCheck, Activity, PlusCircle, Download } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import KpiCard from '../../components/KpiCard';
+import KpiCard from '../../components/KpiCard/KpiCard';
 import './Dashboard.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
 

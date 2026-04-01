@@ -38,7 +38,7 @@ const WebsiteManager = () => {
               <h2 className="preview-title">Homepage Hero v2.4</h2>
               <p className="preview-meta">Last published 2 hours ago by Sarah J.</p>
             </div>
-            <button className="edit-site-btn">
+            <button className="edit-site-btn" onClick={() => window.alert('Opening Live Editor with current configurations...')}>
               <Pencil size={18} /> Edit Live Site
             </button>
           </div>
@@ -72,7 +72,7 @@ const WebsiteManager = () => {
       <div className="engagement-card">
         <div className="card-header-flex">
           <h3 className="analytics-title">Engagement Analytics</h3>
-          <button className="download-link"><Download size={16} /> Download Report</button>
+          <button className="download-link" onClick={() => window.alert('Downloading engagement report as PDF...')}><Download size={16} /> Download Report</button>
         </div>
 
         <div className="analytics-grid">
@@ -196,7 +196,7 @@ const WebsiteManager = () => {
               </div>
             </div>
           </div>
-          <a href="#" className="view-audit-link">
+          <a href="#" className="view-audit-link" onClick={(e) => { e.preventDefault(); window.alert('Audit log opened. Configuration saved.'); }}>
             View Audit Log <ArrowRight size={16} />
           </a>
         </div>

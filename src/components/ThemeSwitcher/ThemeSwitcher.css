@@ -1,0 +1,13 @@
+.theme-dropdown {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.theme-dropdown:hover {
+  border-color: var(--primary);
+}

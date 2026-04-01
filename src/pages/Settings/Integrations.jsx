@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     MessageSquare,
     CreditCard,
@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import './Integrations.css';
 
-const IntegrationItem = ({ title, description, badge, active, actionText, icon: Icon, iconColor, iconBg, cardStyle }) => (
+const IntegrationItem = ({ title, description, badge, active, actionText, icon: Icon, iconColor, iconBg, cardStyle, onToggle }) => (
     <div className={`integ-card ${cardStyle}`}>
         <div className="integ-header">
             <div className="integ-icon-box" style={{ background: iconBg, color: iconColor }}>
@@ -28,7 +28,7 @@ const IntegrationItem = ({ title, description, badge, active, actionText, icon: 
         </div>
         
         <div className="integ-footer">
-            <div className="integ-status-block">
+            <div className="integ-status-block" onClick={onToggle} style={{cursor: 'pointer'}}>
                 {active ? (
                     <ToggleRight className="integ-toggle active" size={32} />
                 ) : (
@@ -46,7 +46,7 @@ const IntegrationItem = ({ title, description, badge, active, actionText, icon: 
 );
 
 const Integrations = () => {
-    const integrationsList = [
+    const [integrationsList, setIntegrationsList] = useState([
         {
             title: 'WhatsApp Business',
             description: 'Automate member updates, renewal reminders, and personalized workout plans directly through the world\'s most popular messaging app.',
@@ -91,14 +91,22 @@ const Integrations = () => {
             actionText: 'Connect',
             cardStyle: 'integ-card-tinted'
         }
-    ];
+    ]);
+
+    const handleToggle = (index) => {
+        const newList = [...integrationsList];
+        newList[index].active = !newList[index].active;
+        newList[index].badge = newList[index].active ? 'CONNECTED' : 'DISCONNECTED';
+        newList[index].actionText = newList[index].active ? 'Configure' : 'Connect';
+        setIntegrationsList(newList);
+    };
 
     return (
         <div className="page-container integrations-page">
             <div className="integ-main-grid">
                 
                 {integrationsList.map((item, index) => (
-                    <IntegrationItem key={index} {...item} />
+                    <IntegrationItem key={index} {...item} onToggle={() => handleToggle(index)} />
                 ))}
 
                 <div className="integ-promo-card">

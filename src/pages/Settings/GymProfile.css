@@ -94,7 +94,7 @@
 }
 
 .profile-input:focus {
-    background-color: #fff;
+    background-color: var(--bg-card);
     outline: none;
     border-color: var(--profile-accent);
     box-shadow: 0 0 0 4px rgba(233, 213, 255, 0.3);

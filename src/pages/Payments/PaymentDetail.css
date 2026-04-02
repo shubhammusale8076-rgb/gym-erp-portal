@@ -397,7 +397,7 @@
 }
 
 .pd-page .pd-main-grid .pd-right-column .history-card .pd-timeline .pd-timeline-item .pd-timeline-status.current {
-  background: #fff;
+  background: var(--bg-card);
   border: 1px solid var(--primary);
   color: var(--primary);
 }

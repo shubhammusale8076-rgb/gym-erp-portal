@@ -83,8 +83,9 @@
   padding: 2.5rem;
 }
 
-.cp-overlay .cp-modal .cp-grid .cp-col .cp-card .cp-card-white {
-  background: #ffffff;
+
+.cp-overlay .cp-modal .cp-grid .cp-col .cp-card-white {
+  background: var(--bg-card);
   border-radius: 32px;
  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
 }
@@ -248,7 +249,7 @@
   left: 4px;
   width: 24px;
   height: 24px;
-  background: #fff;
+  background: var(--bg-card);
   border-radius: 50%;
   transition: transform 0.3s;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);

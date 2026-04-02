@@ -24,7 +24,7 @@
 }
 
 .card-tinted {
-  background-color: var(--bg-card-secondary);
+  background-color: var(--primary-hover);
 }
 
 .contact-cx-page .contact-cx-grid .contact-cx-col .card-no-pad-top {
@@ -151,7 +151,7 @@
 }
 
 .active-range {
-  background-color: #ffffff;
+  background-color: var(--bg-card);
   padding: 0.5rem 0.5rem 0.5rem 1rem;
   border-radius: 99px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
@@ -229,7 +229,7 @@
 }
 
 .map-badge-pill {
-  background: white;
+  background: var(--bg-card);
   padding: 0.5rem 1rem;
   border-radius: 99px;
   display: flex;

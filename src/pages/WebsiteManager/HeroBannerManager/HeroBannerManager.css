@@ -116,7 +116,7 @@
 .hbm-container .hbm-grid .hbm-left-col .hbm-form-panel .form-group .hbm-textarea-styled:focus,
 .hbm-container .hbm-grid .hbm-left-col .hbm-form-panel .form-group .hbm-input-styled:focus {
   outline: none;
-  background-color: #ffffff;
+  background-color: var(--bg-card);
   border-color: var(--primary-hover);
   box-shadow: 0 0 0 3px rgba(216, 180, 254, 0.3);
 }
@@ -139,7 +139,7 @@
 }
 
 .hbm-container .hbm-grid .hbm-right-col .hbm-utility-card {
-  background: var(--bg-card-secondary);
+  background: var(--primary-hover);
   border-radius: var(--section-radius);
   padding: 1.75rem;
   display: flex;
@@ -155,7 +155,7 @@
 
 
 .hbm-container .hbm-grid .hbm-right-col .asset-card {
-  background-color: #ffffff;
+  background-color: var(--bg-card);
 }
 
 .hbm-container .hbm-grid .hbm-right-col .hbm-utility-card .utility-title {

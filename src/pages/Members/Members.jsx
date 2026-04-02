@@ -1,32 +1,38 @@
 import React, { useState } from 'react';
-import { Search, Plus, Filter, Edit2, Trash2, UserPlus } from 'lucide-react';
+import { Search, Plus, Filter, Edit2, Trash2, UserPlus, User } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import AddMember from './AddMember';
 import './Members.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
+import Dropdown from '../../components/Dropdown/Dropdown';
+import KpiCard from '../../components/KpiCard/KpiCard';
 
 const initialMembers = [
-  { id: 1, name: 'Alexandra Sterling', email: 'alex.sterling@curator.com', plan: 'Black Diamond Elite', status: 'Active', joinDate: 'Oct 12, 2023' },
-  { id: 2, name: 'Julian Marshall', email: 'j.marshall@outlook.com', plan: 'Foundational Pro', status: 'Active', joinDate: 'Nov 05, 2023' },
-  { id: 3, name: 'Marcus Vane', email: 'mvane_elite@icloud.com', plan: 'Performance Core', status: 'Inactive', joinDate: 'Jan 18, 2024' },
-  { id: 4, name: 'Sienna King', email: 'sienna.k@design.studio', plan: 'Black Diamond Elite', status: 'Active', joinDate: 'Feb 22, 2024' },
-  { id: 5, name: 'Leo Fitzgerald', email: 'l.fitzgerald@modern.fit', plan: 'Foundational Pro', status: 'Active', joinDate: 'Mar 04, 2024' },
+  { id: 1, name: 'Alexandra Sterling', email: 'alex.sterling@curator.com', plan: 'Standard', status: 'Active', joinDate: 'Oct 12, 2023' },
+  { id: 2, name: 'Julian Marshall', email: 'j.marshall@outlook.com', plan: 'Platinum', status: 'Active', joinDate: 'Nov 05, 2023' },
+  { id: 3, name: 'Marcus Vane', email: 'mvane_elite@icloud.com', plan: 'Elite', status: 'Inactive', joinDate: 'Jan 18, 2024' },
+  { id: 4, name: 'Sienna King', email: 'sienna.k@design.studio', plan: 'Standard', status: 'Active', joinDate: 'Feb 22, 2024' },
+  { id: 5, name: 'Leo Fitzgerald', email: 'l.fitzgerald@modern.fit', plan: 'Platinum', status: 'Active', joinDate: 'Mar 04, 2024' },
 ];
 
 const Members = () => {
   const [members, setMembers] = useState(initialMembers);
   const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('Select Status');
+  const [planFilter, setPlanFilter] = useState('Select Plan');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6; // Set to 6 to see pagination better if we add members.
   const [isAddingMember, setIsAddingMember] = useState(false);
   const [editingMember, setEditingMember] = useState(null);
   const navigate = useNavigate();
 
   const handleSaveMember = (newMemberData) => {
     if (editingMember) {
-      setMembers(members.map(m => m.id === editingMember.id ? { 
-        ...m, 
-        name: newMemberData.fullName, 
-        email: newMemberData.email, 
-        plan: newMemberData.membershipPlan 
+      setMembers(members.map(m => m.id === editingMember.id ? {
+        ...m,
+        name: newMemberData.fullName,
+        email: newMemberData.email,
+        plan: newMemberData.membershipPlan
       } : m));
     } else {
       const newMember = {
@@ -43,10 +49,29 @@ const Members = () => {
     setEditingMember(null);
   };
 
-  const filteredMembers = members.filter(member =>
-    member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    member.email.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredMembers = members.filter(member => {
+    const matchesSearch = member.name.toLowerCase().includes(searchTerm.toLowerCase()) || member.email.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = statusFilter === 'Select Status' || member.status === statusFilter;
+    const matchesPlan = planFilter === 'Select Plan' || member.plan === planFilter;
+    return matchesSearch && matchesStatus && matchesPlan;
+  });
+
+  const totalPages = Math.ceil(filteredMembers.length / itemsPerPage) || 1;
+  const currentMembers = filteredMembers.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+  const handleDeleteMember = (id) => {
+    if (window.confirm("Are you sure you want to delete this member?")) {
+      const updatedMembers = members.filter(m => m.id !== id);
+      setMembers(updatedMembers);
+      // Adjust page if we deleted the last item on current page
+      if (currentMembers.length === 1 && currentPage > 1) {
+        setCurrentPage(currentPage - 1);
+      }
+    }
+  };
+
+  const allStatus = ["Active", "Inactive"];
+  const allPlans = ["Standard", "Platinum", "Elite"];
 
   return (
     <div className="members-container">
@@ -63,6 +88,15 @@ const Members = () => {
           }
         ]}
       />
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', margin: '32px 0' }}>
+        <KpiCard title="Total Check-Ins Today" value="142" theme="blue" Icon={User} />
+        <KpiCard title="Peak Hour" value="06:00 PM" theme="purple" Icon={User} />
+        <KpiCard title="Avg. Daily Attendance" value="118" theme="orange" Icon={User} />
+        <KpiCard title="Active Members Now" value="24" theme="teal" Icon={User} />
+      </div>
+
+
       <div className="members-controls">
         <div className="search-bar-wrapper">
           <Search size={18} className="search-icon-inline" />
@@ -71,16 +105,27 @@ const Members = () => {
             placeholder="Search members by name or email..."
             className="search-input-pill"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
           />
         </div>
 
         <div className="action-buttons-group">
-          <button className="btn-filter">
-            <Filter size={18} />
-            <span>Filters Result</span>
-          </button>
 
+          <Dropdown
+            label={statusFilter || "All Status"}
+            actions={allStatus.map(g => ({
+              label: g,
+              onClick: () => setStatusFilter(g)
+            }))}
+          />
+
+          <Dropdown
+            label={planFilter || "All Plans"}
+            actions={allPlans.map(g => ({
+              label: g,
+              onClick: () => setPlanFilter(g)
+            }))}
+          />
         </div>
       </div>
 
@@ -96,7 +141,7 @@ const Members = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredMembers.map((member) => (
+            {currentMembers.map((member) => (
               <tr key={member.id} className="member-row">
                 <td className="member-info-cell">
                   <div className="avatar-wrapper">
@@ -124,7 +169,7 @@ const Members = () => {
                     <button className="action-icon-btn edit-btn" title="Edit" onClick={() => { setEditingMember(member); setIsAddingMember(true); }}>
                       <Edit2 size={16} />
                     </button>
-                    <button className="action-icon-btn delete-btn" title="Delete">
+                    <button className="action-icon-btn delete-btn" title="Delete" onClick={() => handleDeleteMember(member.id)}>
                       <Trash2 size={16} />
                     </button>
                   </div>
@@ -143,20 +188,34 @@ const Members = () => {
 
       <footer className="members-footer">
         <div className="showing-entries">
-          Showing 1 to {filteredMembers.length} of {members.length} members
+          Showing {filteredMembers.length > 0 ? ((currentPage - 1) * itemsPerPage) + 1 : 0} to {Math.min(currentPage * itemsPerPage, filteredMembers.length)} of {filteredMembers.length} members
         </div>
         <div className="pagination">
-          <button className="page-nav prev">
+          <button
+            className="page-nav prev"
+            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+            disabled={currentPage === 1}
+            style={{ opacity: currentPage === 1 ? 0.5 : 1, cursor: currentPage === 1 ? 'not-allowed' : 'pointer' }}
+          >
             <Plus size={16} style={{ transform: 'rotate(-135deg)' }} />
           </button>
           <div className="page-numbers">
-            <button className="page-num active">1</button>
-            <button className="page-num">2</button>
-            <button className="page-num">3</button>
-            <span className="page-ellipsis">...</span>
-            <button className="page-num">12</button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNum => (
+              <button
+                key={pageNum}
+                className={`page-num ${currentPage === pageNum ? 'active' : ''}`}
+                onClick={() => setCurrentPage(pageNum)}
+              >
+                {pageNum}
+              </button>
+            ))}
           </div>
-          <button className="page-nav next">
+          <button
+            className="page-nav next"
+            onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+            disabled={currentPage === totalPages}
+            style={{ opacity: currentPage === totalPages ? 0.5 : 1, cursor: currentPage === totalPages ? 'not-allowed' : 'pointer' }}
+          >
             <Plus size={16} style={{ transform: 'rotate(45deg)' }} />
           </button>
         </div>

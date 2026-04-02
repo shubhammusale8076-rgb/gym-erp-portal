@@ -13,38 +13,7 @@
   flex-wrap: wrap;
 }
 
-.users-page .users-filter-buttons {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
 
-/* Role filter pill buttons */
-.users-page .users-filter-buttons .role-filter-btn {
-  padding: 0.35rem 1.05rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border: 1.5px solid var(--border-light);
-  background: transparent;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  white-space: nowrap;
-}
-
-.users-page .users-filter-buttons .role-filter-btn:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-  background: rgba(13, 148, 136, 0.05);
-}
-
-.users-page .users-filter-buttons .role-filter-btn.active {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: white;
-  box-shadow: 0 3px 8px var(--primary-glow);
-}
 
 /* Table row hover effect */
 .users-page .table-container-wrapper .table-container .users-table-row {

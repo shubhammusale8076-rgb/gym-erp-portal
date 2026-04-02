@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Search, Plus, Edit2, Trash2, X, Shield, User, Eye, EyeOff, AlertTriangle, UserPlus, TrendingUp, CalendarCheck, Activity, Users2 } from 'lucide-react';
 import './Users.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
-import KpiCard from '../../components/KpiCard';
+import KpiCard from '../../components/KpiCard/KpiCard';
+import FilterButtons from '../../components/FilterButtons/FilterButtons';
 
 const ROLES = ['Admin', 'Manager', 'Staff', 'Trainer', 'Receptionist'];
 const STATUS_OPTIONS = ['Active', 'Inactive'];
@@ -170,15 +171,12 @@ export default function Users() {
             />
           </div>
           <div className="users-filter-buttons">
-            {['All', ...ROLES].map((r) => (
-              <button
-                key={r}
-                className={`role-filter-btn ${roleFilter === r ? 'active' : ''}`}
-                onClick={() => setRoleFilter(r)}
-              >
-                {r}
-              </button>
-            ))}
+         
+            <FilterButtons
+              options={['All', ...ROLES]}
+              selected={roleFilter}
+              onChange={setRoleFilter}
+            />
           </div>
         </div>
 

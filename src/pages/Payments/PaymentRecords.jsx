@@ -6,8 +6,9 @@ import {
   ChevronLeft, ChevronRight, Eye, Plus
 } from 'lucide-react';
 import './PaymentRecords.css';
-import KpiCard from '../../components/KpiCard';
+import KpiCard from '../../components/KpiCard/KpiCard';
 import PageHeader from '../../components/PageHeader/PageHeader';
+import Dropdown from '../../components/Dropdown/Dropdown';
 
 const PAYMENTS_DATA = [
   { id: 'TRX-88291', member: 'Elena Rodriguez', method: 'Visa •••• 4242', amount: 199.00, status: 'COMPLETED', date: 'Oct 24, 10:15 AM', avatar: 'https://i.pravatar.cc/150?u=elena' },
@@ -21,8 +22,19 @@ const PaymentRecords = () => {
   const navigate = useNavigate();
   const [selectedPayment, setSelectedPayment] = useState(PAYMENTS_DATA[0]);
   const [statusFilter, setStatusFilter] = useState('All Status');
-  const [methodFilter, setMethodFilter] = useState('All Methods');
   const [timeFilter, setTimeFilter] = useState('Last 30 Days');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+
+  const filteredPayments = PAYMENTS_DATA.filter(payment => {
+    const matchesSearch = payment.member.toLowerCase().includes(searchQuery.toLowerCase()) || payment.id.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesStatus = statusFilter === 'All Status' || payment.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
+
+  const totalPages = Math.ceil(filteredPayments.length / itemsPerPage) || 1;
+  const currentPayments = filteredPayments.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   const handleExport = () => {
     const csv = [
@@ -36,6 +48,9 @@ const PaymentRecords = () => {
   };
 
   const fmt = (n) => `$${n.toFixed(2)}`;
+
+  const timeLine = ["Last 30 Days", "Last 7 Days", "Last 12 Months"]
+  const paymentStatus = ["All Status", "COMPLETED", "PENDING", "REFUNDED"]
 
   return (
     <div className="pr-page page-container">
@@ -64,31 +79,44 @@ const PaymentRecords = () => {
       {/* ── Filter Bar ── */}
       <div className="pr-action-bar">
         <div className="pr-filters-container">
-          <button className="pr-filter-main-btn">
-            <Filter size={16} />
-            <span>FILTERS</span>
-          </button>
+          <div className="search-bar-wrapper" >
+            <Search size={16} className="search-icon-inline" style={{ color: 'var(--text-secondary)', marginRight: '8px' }} />
+            <input
+              type="text"
+              placeholder="Search by ID or Member..."
+              value={searchQuery}
+              onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
+              style={{ background: 'transparent', border: 'none', color: 'var(--text-primary)', outline: 'none' }}
+            />
+          </div>
 
           <div className="pr-dropdown-group">
-            <select className="pr-select" value={timeFilter} onChange={e => setTimeFilter(e.target.value)}>
-              <option>Last 30 Days</option>
-              <option>Last 7 Days</option>
-              <option>Last 12 Months</option>
-            </select>
 
-            <select className="pr-select" value={methodFilter} onChange={e => setMethodFilter(e.target.value)}>
-              <option>All Methods</option>
-              <option>Visa</option>
-              <option>Mastercard</option>
-              <option>Apple Pay</option>
-            </select>
+            <Dropdown
+              label={timeFilter}
+              actions={[{
+                label: "Clear",
+                onClick: () => setTimeFilter("All Plans")
+              },
+              ...timeLine.map(g => ({
+                label: g,
+                onClick: () => setTimeFilter(g)
+              }))
+              ]}
+            />
+            <Dropdown
+              label={statusFilter || "All Status"}
+              actions={[{
+                label: "Clear",
+                onClick: () => setStatusFilter("")
+              },
+              ...paymentStatus.map(g => ({
+                label: g,
+                onClick: () => setStatusFilter(g)
+              }))
+              ]}
+            />
 
-            <select className="pr-select" value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
-              <option>All Status</option>
-              <option>COMPLETED</option>
-              <option>PENDING</option>
-              <option>REFUNDED</option>
-            </select>
           </div>
         </div>
 
@@ -107,7 +135,12 @@ const PaymentRecords = () => {
               </tr>
             </thead>
             <tbody>
-              {PAYMENTS_DATA.map(payment => (
+              {filteredPayments.length === 0 && (
+                <tr>
+                  <td colSpan="4" style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>No payments found.</td>
+                </tr>
+              )}
+              {currentPayments.map(payment => (
                 <tr
                   key={payment.id}
                   className={`pr-table-row ${selectedPayment?.id === payment.id ? 'active' : ''}`}
@@ -140,6 +173,14 @@ const PaymentRecords = () => {
               ))}
             </tbody>
           </table>
+
+          <div className="pagination-footer" >
+            <span>Showing {filteredPayments.length > 0 ? ((currentPage - 1) * itemsPerPage) + 1 : 0} to {Math.min(currentPage * itemsPerPage, filteredPayments.length)} of {filteredPayments.length} transactions</span>
+            <div className='pagination-btn-wrapper'>
+              <button className='pagination-btn' onClick={() => setCurrentPage(Math.max(1, currentPage - 1))} disabled={currentPage === 1} >Prev</button>
+              <button className='pagination-btn' onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))} disabled={currentPage === totalPages} >Next</button>
+            </div>
+          </div>
         </div>
 
         {/* ── Receipt Preview Sidebar ── */}
@@ -155,7 +196,7 @@ const PaymentRecords = () => {
                   <Eye size={20} className="pr-receipt-main-icon" />
                 </button>
               </div>
-              
+
               <div className="pr-receipt-info-grid">
                 <div className="pr-receipt-status-line">
                   <span className="pr-receipt-status-label">STATUS</span>

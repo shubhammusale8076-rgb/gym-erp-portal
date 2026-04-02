@@ -130,7 +130,7 @@ const Plans = () => {
           {
             label: " Archive All",
             icon: <Archive size={16} />,
-            onClick: () => { },
+            onClick: () => { if(window.confirm('Are you sure you want to archive all plans?')) setPlans([]); },
             className: "btn-primary"
           }
         ]}

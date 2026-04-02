@@ -105,7 +105,7 @@
 .website-manager-container .wm-top-row .seo-health-card .seo-header .seo-icon-box {
   width: 44px;
   height: 44px;
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   display: flex;
   align-items: center;

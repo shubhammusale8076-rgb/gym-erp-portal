@@ -25,7 +25,8 @@ import {
 } from 'lucide-react';
 import './CRM.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
-import KpiCard from '../../components/KpiCard';
+import KpiCard from '../../components/KpiCard/KpiCard';
+import Dropdown from '../../components/Dropdown/Dropdown';
 
 // --- Types & Mock Data ---
 
@@ -115,6 +116,8 @@ const formatDate = (dateString) => {
 };
 
 // --- Main Component ---
+const platform = ['Instagram', 'Website', 'Walk-in', 'Direct Call'];
+const status = ['New Lead', 'Trial Scheduled', 'Follow Up', 'Converted'];
 
 const CRM = () => {
   const [leads, setLeads] = useState(INITIAL_LEADS);
@@ -134,27 +137,68 @@ const CRM = () => {
     setTimeout(() => setSelectedSidebarLead(null), 300);
   };
 
-  // Filtering leads
-  const filteredLeads = leads.filter(lead =>
-    lead.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    lead.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    lead.source.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const [filterPlatform, setFilterPlatform] = useState('Select Platform');
+  const [filterStatus, setFilterStatus] = useState('Select Status');
 
-  // Selection Logic
-  const toggleSelectAll = () => {
-    if (selectedLeads.length === filteredLeads.length) {
+  // Filtering leads
+  const normalize = (str) =>
+    str.toLowerCase().replace(/[\s_]+/g, '');
+
+  const filteredLeads = leads.filter((lead) => {
+    const searchLower = searchQuery.toLowerCase();
+
+    const searchMatch =
+      lead.name.toLowerCase().includes(searchLower) ||
+      lead.email.toLowerCase().includes(searchLower) ||
+      lead.source.toLowerCase().includes(searchLower);
+
+    const platformMatch =
+      filterPlatform === 'Select Platform' ||
+      normalize(lead.source) === normalize(filterPlatform);
+
+    const statusMatch =
+      filterStatus === 'Select Status' ||
+      normalize(lead.stage) === normalize(filterStatus);
+
+    return searchMatch && platformMatch && statusMatch;
+  });
+
+  const handleBatchDelete = () => {
+    if (window.confirm(`Are you sure you want to delete ${selectedLeads.length} leads?`)) {
+      setLeads(leads.filter(l => !selectedLeads.includes(l.id)));
       setSelectedLeads([]);
-    } else {
-      setSelectedLeads(filteredLeads.map(l => l.id));
     }
   };
 
-  const toggleSelectLead = (id) => {
-    if (selectedLeads.includes(id)) {
-      setSelectedLeads(selectedLeads.filter(leadId => leadId !== id));
-    } else {
-      setSelectedLeads([...selectedLeads, id]);
+  const handleBatchUpdateStatus = () => {
+    const newStage = window.prompt("Enter new stage value (newLead, trialScheduled, followUp, converted):");
+    if (newStage) {
+      const validStage = STAGES[newStage.toUpperCase()] || newStage;
+      setLeads(leads.map(l => selectedLeads.includes(l.id) ? { ...l, stage: validStage } : l));
+      setSelectedLeads([]);
+    }
+  };
+
+  const handleBatchMessage = () => {
+    window.alert(`Message interface opened for ${selectedLeads.length} selected leads.`);
+  };
+
+  const handleAddLead = () => {
+    const name = window.prompt("Enter new lead name:");
+    if (name) {
+      const newLead = {
+        id: `l${Date.now()}`,
+        name: name,
+        email: `${name.split(' ')[0].toLowerCase()}@example.com`,
+        phone: '+1 (555) 000-0000',
+        source: 'Website',
+        trialDate: null,
+        stage: STAGES.NEW_LEAD,
+        avatar: `https://ui-avatars.com/api/?name=${name.replace(' ', '+')}&background=random&color=fff`,
+        lastContact: 'Just now',
+        lastContactSubtext: 'SYSTEM ENTRY'
+      };
+      setLeads([newLead, ...leads]);
     }
   };
 
@@ -210,6 +254,12 @@ const CRM = () => {
                 </button>
               </div>
             )
+          },
+          {
+            label: "Add Lead",
+            icon: <Plus size={16} />,
+            onClick: handleAddLead,
+            className: "btn-primary"
           }
         ]}
       />
@@ -235,25 +285,37 @@ const CRM = () => {
 
         <div className="action-buttons-group">
 
-          <div className="dropdown-filter">
-            <span>All Platforms</span>
-            <ChevronDown size={14} />
-          </div>
-
-          <div className="dropdown-filter">
-            <span>All Statuses</span>
-            <ChevronDown size={14} />
-          </div>
-          <button className="btn-filter">
-            <Filter size={18} />
-            <span>Filters Result</span>
-          </button>
+          <Dropdown
+            label={filterPlatform}
+            actions={[
+              {
+                label: "Clear",
+                onClick: () => setFilterPlatform("Select Platform")
+              },
+              ...platform.map(g => ({
+                label: g,
+                onClick: () => setFilterPlatform(g)
+              }))]}
+          />
+          <Dropdown
+            label={filterStatus}
+            actions={[
+              {
+                label: "Clear",
+                onClick: () => setFilterStatus("Select Status")
+              },
+              ...status.map(g => ({
+                label: g,
+                onClick: () => setFilterStatus(g)
+              }))]}
+          />
 
         </div>
       </div>
 
       {/* Batch Action Bar */}
-      {/* {selectedLeads.length > 0 && (
+      {/* Batch Action Bar */}
+      {selectedLeads.length > 0 && (
         <div className="batch-action-bar">
           <div className="batch-count">
             <span className="count-number">{selectedLeads.length}</span>
@@ -262,15 +324,15 @@ const CRM = () => {
           <p className="batch-instruction">Perform batch actions on selected prospects</p>
 
           <div className="batch-actions">
-            <button className="batch-btn">Update Status</button>
-            <button className="batch-btn">Send Bulk Message</button>
-            <button className="batch-btn">Assign Owner</button>
-            <button className="batch-btn-danger">
+            <button className="batch-btn" onClick={handleBatchUpdateStatus}>Update Status</button>
+            <button className="batch-btn" onClick={handleBatchMessage}>Send Bulk Message</button>
+            <button className="batch-btn" onClick={() => window.alert('Assign owner opened')}>Assign Owner</button>
+            <button className="batch-btn-danger" onClick={handleBatchDelete}>
               <Trash2 size={16} />
             </button>
           </div>
         </div>
-      )} */}
+      )}
 
       {/* List View */}
       {viewMode === 'list' && (
@@ -278,12 +340,7 @@ const CRM = () => {
           <table className="table-container">
             <thead>
               <tr>
-                {/* <th className="th-checkbox">
-                  <div
-                    className={`custom-checkbox ${selectedLeads.length === filteredLeads.length && filteredLeads.length > 0 ? 'checked' : ''}`}
-                    onClick={toggleSelectAll}
-                  ></div>
-                </th> */}
+
                 <th>LEAD PROFILE</th>
                 <th>STATUS</th>
                 <th>PLATFORM</th>
@@ -294,14 +351,7 @@ const CRM = () => {
             <tbody>
               {filteredLeads.map((lead) => (
                 <tr key={lead.id} className={selectedLeads.includes(lead.id) ? 'selected-row' : ''}>
-                  {/* <td className="td-checkbox">
-                    <div
-                      className={`custom-checkbox ${selectedLeads.includes(lead.id) ? 'checked' : ''}`}
-                      onClick={() => toggleSelectLead(lead.id)}
-                    >
-                      {selectedLeads.includes(lead.id) && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>}
-                    </div>
-                  </td> */}
+
                   <td className="td-profile">
                     <div className="lead-profile-col">
                       {lead.avatar.includes('text=MB') ? (
@@ -334,8 +384,8 @@ const CRM = () => {
                   </td>
                   <td className="td-actions">
                     <div className="action-buttons">
-                      <button className="row-action-btn"><MessageSquare size={16} /></button>
-                      <button className="row-action-btn"><Mail size={16} /></button>
+                      <button className="row-action-btn" onClick={() => window.alert(`Message interface opened for ${lead.name}`)}><MessageSquare size={16} /></button>
+                      <button className="row-action-btn" onClick={() => window.alert(`Email interface opened for ${lead.email}`)}><Mail size={16} /></button>
                       <button className="row-action-btn" onClick={() => openSidebar(lead)}><Eye size={16} /></button>
                     </div>
                   </td>

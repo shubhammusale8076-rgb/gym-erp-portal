@@ -13,7 +13,7 @@
 }
 
 .trainer-detail-modal {
-  background-color: #fff;
+  background-color: var(--bg-card);
   border-radius: 12px;
   width: 100%;
   max-width: 950px;

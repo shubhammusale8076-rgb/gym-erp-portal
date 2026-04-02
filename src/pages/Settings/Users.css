@@ -98,33 +98,39 @@
 }
 
 /* ===== MODAL ===== */
-.modal-overlay {
+.users-page .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
+  z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   animation: fadeIn 0.15s ease-out;
 }
 
-.modal-dialog {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: 20px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  max-width: 520px;
+/* =========================================
+   MODAL DIALOG
+========================================= */
+
+.users-page .modal-overlay .modal-dialog {
+  width: 95%;
+  max-width: 850px;
   max-height: 90vh;
   overflow-y: auto;
+  padding: 2rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--section-radius);
+  background: var(--bg-card);
   animation: slideUp 0.2s ease-out;
 }
 
-.modal-dialog-sm {
-  max-width: 420px;
+.users-page .modal-overlay .modal-dialog.modal-dialog-sm {
+  max-width: 520px;
 }
 
 @keyframes slideUp {
@@ -139,141 +145,120 @@
   }
 }
 
-.modal-header {
+/* =========================================
+   MODAL HEADER / BODY / FOOTER
+========================================= */
+
+.users-page .modal-overlay .modal-dialog .modal-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 1.4rem 1.6rem 0;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
-.modal-body {
-  padding: 1.4rem 1.6rem;
+.users-page .modal-overlay .modal-dialog .modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
 }
 
-.modal-footer {
+.users-page .modal-overlay .modal-dialog .modal-footer {
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
-  padding: 0 1.6rem 1.4rem;
-  border-top: 1px solid var(--border-light);
+  margin-top: 1.25rem;
   padding-top: 1rem;
-  margin-top: 0.4rem;
+  border-top: 1px solid var(--border-light);
 }
 
-/* Two-column row inside modal */
-.modal-row-2 {
+/* =========================================
+   MODAL FORM LAYOUT
+========================================= */
+
+.users-page .modal-row-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-/* Password field */
-.password-field-wrapper {
+/* =========================================
+   PASSWORD FIELD
+========================================= */
+
+.users-page .password-field-wrapper {
   position: relative;
 }
 
-.password-field-wrapper .input-field {
+.users-page .password-field-wrapper .input-field {
   width: 100%;
   padding-right: 2.75rem;
 }
 
-.password-toggle {
+.users-page .password-field-wrapper .password-toggle {
   position: absolute;
-  right: 0.85rem;
   top: 50%;
+  right: 0.85rem;
   transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--text-muted);
   display: flex;
   align-items: center;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
   transition: color var(--transition-fast);
 }
 
-.password-toggle:hover {
+.users-page .password-field-wrapper .password-toggle:hover {
   color: var(--primary);
 }
 
-/* Form validation */
-.input-error {
+/* =========================================
+   FORM VALIDATION
+========================================= */
+
+.users-page .input-error {
   border-color: var(--danger) !important;
   box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.12) !important;
 }
 
-.error-msg {
+.users-page .error-msg {
+  display: block;
+  margin-top: 0.2rem;
   font-size: 0.8rem;
   color: var(--danger);
-  margin-top: 0.2rem;
-  display: block;
 }
 
-.required {
-  color: var(--danger);
+.users-page .required {
   margin-left: 2px;
+  color: var(--danger);
 }
 
-.optional-label {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  font-weight: 400;
+.users-page .optional-label {
   margin-left: 4px;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--text-muted);
 }
 
-/* Delete confirm */
-.delete-confirm-content {
+/* =========================================
+   DELETE CONFIRM MODAL
+========================================= */
+
+.users-page .delete-confirm-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   gap: 1rem;
   padding: 0.5rem 0 0.25rem;
+  text-align: center;
 }
 
-.delete-icon-wrapper {
+.users-page .delete-confirm-content .delete-icon-wrapper {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #fee2e2;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.users-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.users-subtitle {
-  margin-top: 0.25rem;
-  color: var(--text-muted);
-}
-
-
-
-.users-col-right {
-  text-align: right;
-}
-
-.users-actions-col {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-}
-
-.users-empty-state {
-  text-align: center;
-  padding: 2rem 0;
-}
-
-.users-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-light);
+  background: #fee2e2;
 }

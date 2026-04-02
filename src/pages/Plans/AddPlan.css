@@ -35,7 +35,7 @@
     margin-bottom: 1rem;
 }
 
-.cp-overlay .cp-modal .cp-header .cp-title {
+.cp-overlay .cp-modal .cp-header .cp-header-text .cp-title {
     font-size: 1.15rem;
     font-weight: 800;
     color: var(--text-primary);
@@ -43,7 +43,7 @@
     letter-spacing: -0.02em;
 }
 
-.cp-overlay .cp-modal .cp-header .cp-subtitle {
+.cp-overlay .cp-modal .cp-header .cp-header-text .cp-subtitle {
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-secondary);
@@ -52,7 +52,7 @@
 .cp-overlay .cp-modal .cp-header .cp-close-btn {
   background: none;
   border: none;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   cursor: pointer;
   padding: 0.5rem;
   transition: color 0.2s;

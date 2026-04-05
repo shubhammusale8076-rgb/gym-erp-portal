@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { UploadCloud, ChevronDown, Check, Image as LucideImage } from 'lucide-react';
 import './GalleryManager.css';
 import PageHeader from '../../../components/PageHeader/PageHeader';
+import GalleryUploadModal from './GalleryUploadModal';
 
 const GalleryManager = () => {
   const [activeTab, setActiveTab] = useState('All');
+  const [open, setOpen] = useState(false);
   const tabs = ['All', 'Interiors', 'Equipment', 'Staff'];
 
   const images = [
@@ -40,7 +42,7 @@ const GalleryManager = () => {
           <button className="gm-btn-outline">
             Bulk Actions <ChevronDown size={14} />
           </button>
-          <button className="btn-primary">
+          <button className="btn-primary" onClick={() => setOpen(true)}>
             <UploadCloud size={16} /> Upload New Asset
           </button>
         </div>
@@ -119,6 +121,12 @@ const GalleryManager = () => {
           </div>
         </div>
       </div>
+
+      <GalleryUploadModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onSuccess={() => fetchGallery()}
+      />
     </div>
   );
 };

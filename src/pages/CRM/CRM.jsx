@@ -313,26 +313,7 @@ const CRM = () => {
         </div>
       </div>
 
-      {/* Batch Action Bar */}
-      {/* Batch Action Bar */}
-      {selectedLeads.length > 0 && (
-        <div className="batch-action-bar">
-          <div className="batch-count">
-            <span className="count-number">{selectedLeads.length}</span>
-            <span className="count-text">SELECTED</span>
-          </div>
-          <p className="batch-instruction">Perform batch actions on selected prospects</p>
 
-          <div className="batch-actions">
-            <button className="batch-btn" onClick={handleBatchUpdateStatus}>Update Status</button>
-            <button className="batch-btn" onClick={handleBatchMessage}>Send Bulk Message</button>
-            <button className="batch-btn" onClick={() => window.alert('Assign owner opened')}>Assign Owner</button>
-            <button className="batch-btn-danger" onClick={handleBatchDelete}>
-              <Trash2 size={16} />
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* List View */}
       {viewMode === 'list' && (

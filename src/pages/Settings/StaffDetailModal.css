@@ -1,0 +1,596 @@
+.staff-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.staff-detail-overlay .staff-detail-modal {
+  background: var(--bg-dark);
+  border-radius: var(--section-radius);
+  width: 95%;
+  max-width: 1050px;
+  height: 90vh;
+  padding: 2.5rem;
+  animation: slideUp 0.3s ease-out;
+  position: relative;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+ 
+.staff-detail-overlay .staff-detail-modal .close-modal-btn {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--primary);
+  transition: color 0.2s;
+  z-index: 10;
+}
+
+.staff-detail-overlay .staff-detail-modal .close-modal-btn:hover {
+  color: var(--primary-glow);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content {
+  padding: 1rem;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body
+{
+  align-items: start;
+  overflow: auto;
+  height: 45vh;
+  padding-bottom: 1rem;
+  padding-right: 1.5rem;
+}
+/* Header */
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-image-wrapper {
+  position: relative;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-image-wrapper .staff-hero-image {
+  width: 220px;
+  height: 280px;
+  border-radius: 24px;
+  object-fit: cover;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-image-wrapper .staff-role-badge {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary);
+  color: var(--text-on-dark);
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-status-id {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-status-id .staff-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-status-id .staff-status-pill.active {
+  background-color: #dcfce7;
+  color: var(--success);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-status-id .staff-status-pill .status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-status-id .staff-id-text {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-fullname {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0 0 1rem 0;
+  line-height: 1;
+  color: var(--primary);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-tagline {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 500px;
+  margin: 0 0 1.5rem 0;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-action-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-action-buttons .btn-solid-purple, .staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-action-buttons .btn-outline-purple {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-action-buttons .btn-solid-purple {
+  background-color: var(--primary);
+  color: var(--text-on-dark);
+  border: none;
+  box-shadow: 0 8px 20px rgba(109, 40, 217, 0.25);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-action-buttons .btn-solid-purple:hover {
+  background-color: var(--primary-glow);
+  transform: translateY(-2px);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-action-buttons .btn-outline-purple {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary-glow);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-header-section .staff-info-wrapper .staff-action-buttons .btn-outline-purple:hover {
+  background-color: var(--primary-glow);
+  border-color: var(--primary-glow);
+}
+
+/* KPI Section */
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+.staff-kpi-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-icon-wrapper {
+  color: #7e22ce;
+  margin-bottom: 2rem;
+}
+
+.kpi-label {
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+}
+
+.kpi-value-group {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+}
+
+.kpi-main-val {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1f2937;
+  letter-spacing: -0.02em;
+}
+
+.kpi-sub-val {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+  margin-left: 2px;
+}
+
+.kpi-progress-bar {
+  height: 4px;
+  background-color: #f3f4f6;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.kpi-progress-fill {
+  height: 100%;
+  background-color: #7e22ce;
+  border-radius: 9999px;
+}
+
+/* Bio & Specialties */
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .staff-bio-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .staff-bio-grid .section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.01em;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .staff-bio-grid .bio-col-left .bio-text p {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .staff-bio-grid .bio-col-left .bio-text strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Specialties Container */
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .staff-bio-grid .bio-col-right .specialties-container {
+  position: relative;
+  background-color: var(--bg-card);
+  border-radius: 20px;
+  padding: 1rem 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .staff-bio-grid .bio-col-right .specialties-container .specialty-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .staff-bio-grid .bio-col-right .specialties-container .specialty-tags .tag {
+  background-color: var(--primary-hover);
+  color: var(--primary);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .staff-bio-grid .bio-col-right .specialties-container .floating-icon-badge {
+  position: absolute;
+  top: -50px;
+  right: -5px;
+  background-color: var(--primary);
+  color: var(--text-on-dark);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 15px rgba(76, 29, 149, 0.4);
+}
+
+/* Certifications */
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .staff-bio-grid .bio-col-right .certifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--bg-card);
+  padding: 1rem 1rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .staff-bio-grid .bio-col-right .certifications-list .cert-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .staff-bio-grid .bio-col-right .certifications-list .cert-item .cert-icon {
+  background-color: var(--primary-hover);
+  color: var(--primary);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .staff-bio-grid .bio-col-right .certifications-list .cert-item .cert-info h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .staff-bio-grid .bio-col-right .certifications-list .cert-item .cert-info p {
+  margin: 0;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+/* Weekly Schedule */
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .section-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.01em;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .section-header-flex .date-navigator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .section-header-flex .date-navigator .nav-icon {
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .weekly-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.75rem;
+  background-color: var(--primary-hover);
+  padding: 1.4rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .weekly-grid .day-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .weekly-grid .day-column .day-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .weekly-grid .day-column .schedule-card {
+  padding: 1rem 0.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .weekly-grid .day-column .schedule-card .time {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .weekly-grid .day-column .schedule-card .class-name {
+  font-size: 0.75rem;
+  font-weight: 7  00;
+  color: var(--primary);
+  line-height: 1.3;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .weekly-grid .day-column .highlight-border {
+  background-color: var(--bg-card);
+  border-left: 3px solid var(--primary);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .weekly-grid .day-column .default {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .weekly-grid .day-column .schedule-card.solid {
+  background-color: var(--primary-glow);
+  padding: 0.5rem 0.5rem;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .weekly-grid .day-column .schedule-card.solid .time {
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .schedule-section .weekly-grid .day-column .schedule-card.empty .time {
+  opacity: 0.6;
+  font-weight: 500;
+  padding: 0.5rem 0.5rem;
+}
+
+/* Roster Section */
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section {
+  padding-bottom: 2rem;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .section-header-flex .btn-text-link {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .section-header-flex .btn-text-link:hover {
+  text-decoration: underline;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper .roster-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper .roster-table th {
+  font-size: 0.7rem;
+  color: var(--primary);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  padding: 1rem 1rem 1rem 1rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper .roster-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f9fafb;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper .roster-table tr:last-child td {
+  border-bottom: none;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper .roster-table .roster-member {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper .roster-table .roster-member img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper .roster-table .roster-member .roster-name {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper .roster-table .roster-member .roster-email {
+  margin: 0;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper .roster-table .roster-program {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper .roster-table .roster-date {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper .roster-table .progress-badge {
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper .roster-table .progress-badge.success {
+  background-color: var(--success);
+  color: var(--text-on-dark);
+}
+
+.staff-detail-overlay .staff-detail-modal .staff-modal-content .staff-modal-body .roster-section .roster-table-wrapper .roster-table .progress-badge.warning {
+  background-color: var(--warning);
+  color: var(--text-on-dark);
+}
+

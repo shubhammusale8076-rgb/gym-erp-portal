@@ -143,7 +143,7 @@ const Members = () => {
           <tbody>
             {currentMembers.map((member) => (
               <tr key={member.id} className="member-row">
-                <td className="member-info-cell">
+                <td className="member-info-cell" onClick={() => navigate(`/members/${member.id}`)} style={{cursor: 'pointer'}}>
                   <div className="avatar-wrapper">
                     <img
                       src={`https://ui-avatars.com/api/?name=${member.name.replace(' ', '+')}&background=random&color=fff`}
@@ -152,7 +152,7 @@ const Members = () => {
                     />
                   </div>
                   <div className="member-details">
-                    <span className="member-name">{member.name}</span>
+                    <span className="member-name" style={{pointerEvents: 'none'}}>{member.name}</span>
                     <span className="member-email">{member.email}</span>
                   </div>
                 </td>

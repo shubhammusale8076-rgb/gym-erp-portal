@@ -27,6 +27,7 @@ import './CRM.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import KpiCard from '../../components/KpiCard/KpiCard';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import AddProspectModal from './AddProspectModal';
 
 // --- Types & Mock Data ---
 
@@ -126,6 +127,7 @@ const CRM = () => {
   const [selectedLeads, setSelectedLeads] = useState([]);
   const [selectedSidebarLead, setSelectedSidebarLead] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const openSidebar = (lead) => {
     setSelectedSidebarLead(lead);
@@ -184,22 +186,24 @@ const CRM = () => {
   };
 
   const handleAddLead = () => {
-    const name = window.prompt("Enter new lead name:");
-    if (name) {
-      const newLead = {
-        id: `l${Date.now()}`,
-        name: name,
-        email: `${name.split(' ')[0].toLowerCase()}@example.com`,
-        phone: '+1 (555) 000-0000',
-        source: 'Website',
-        trialDate: null,
-        stage: STAGES.NEW_LEAD,
-        avatar: `https://ui-avatars.com/api/?name=${name.replace(' ', '+')}&background=random&color=fff`,
-        lastContact: 'Just now',
-        lastContactSubtext: 'SYSTEM ENTRY'
-      };
-      setLeads([newLead, ...leads]);
-    }
+    setIsAddModalOpen(true);
+  };
+
+  const handleAddNewProspect = (newProspect) => {
+    const newLead = {
+      id: `l${Date.now()}`,
+      name: newProspect.name,
+      email: newProspect.email || `${newProspect.name.split(' ')[0].toLowerCase()}@example.com`,
+      phone: newProspect.phone || '+1 (555) 000-0000',
+      source: newProspect.source,
+      trialDate: null,
+      stage: STAGES.NEW_LEAD,
+      avatar: `https://ui-avatars.com/api/?name=${newProspect.name.replace(' ', '+')}&background=random&color=fff`,
+      lastContact: 'Just now',
+      lastContactSubtext: 'SYSTEM ENTRY'
+    };
+    setLeads([newLead, ...leads]);
+    setIsAddModalOpen(false);
   };
 
   // HTML5 Drag and Drop handlers for Kanban
@@ -556,6 +560,11 @@ const CRM = () => {
         )}
       </div>
 
+      <AddProspectModal 
+        isOpen={isAddModalOpen} 
+        onClose={() => setIsAddModalOpen(false)} 
+        onAdd={handleAddNewProspect} 
+      />
     </div>
   );
 };

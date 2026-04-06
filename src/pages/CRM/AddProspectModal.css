@@ -1,0 +1,447 @@
+.add-prospect-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.add-prospect-overlay .add-prospect-modal {
+  background: var(--bg-dark);
+  border-radius: var(--section-radius);
+  width: 95%;
+  max-width: 1050px;
+  height: 90vh;
+  padding: 3rem;
+  animation: slideUp 0.3s ease-out;
+  position: relative;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-close-btn {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--primary);
+  transition: color 0.2s;
+  z-index: 10;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-close-btn:hover {
+  color: var(--primary-glow);
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-header-section {
+  margin-bottom: 1rem;
+  padding-right: 40px;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-header-section .module-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-header-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-header-section .modal-header-desc {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  margin: 0;
+  max-width: 600px;
+  line-height: 1.5;
+  border-left: 2px solid var(--primary);
+  padding-left: 1rem;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  align-items: start;
+  overflow: auto;
+  height: 68vh;
+  padding-bottom: 2rem;
+  padding-right: 1rem;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card {
+  background: var(--bg-card);
+  border-radius: var(--section-radius);
+  padding: 1.5rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+  margin-bottom: 1rem;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card:last-child {
+  margin-bottom: 0;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1.5rem 0;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .card-title .title-icon {
+  background: var(--primary-glow);  
+  padding: 5px;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+}
+
+/* Upload Area */
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2.5rem;
+  background: var(--primary);
+  background-image: linear-gradient(135deg, #fdf8ff 0%, #faf5ff 100%);
+  border: 1px dashed #e9d5ff;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .upload-area:hover {
+  border-color: #d8b4fe;
+  background-image: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .upload-area .upload-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--primary-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(109, 40, 217, 0.1);
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .upload-area .upload-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+/* Forms */
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .input-group-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .input-group-row .input-field {
+  margin-bottom: 0;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .input-field label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .input-field input,
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .input-field textarea {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.875rem 1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  transition: all 0.2s;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .input-field textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .input-field input::placeholder,
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .input-field textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .input-field input:focus,
+.add-prospect-overlay .add-prospect-modal .modal-content .left-column .prospect-card .input-field textarea:focus {
+  outline: none;
+  background: var(--bg-dark);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(216, 180, 254, 0.2);
+}
+
+/* Metadata Section */
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--section-radius);
+}
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .card-title{
+  margin-bottom: 0.2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section {
+  margin-bottom: 1.5rem;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section:last-child {
+  margin-bottom: 0;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  display: block;
+}
+
+/* Source Grid */
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section .source-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section .source-grid .source-btn {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section .source-grid .source-btn .btn-icon {
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section .source-grid .source-btn:hover {
+  border-color: var(--primary);
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section .source-grid .source-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--bg-dark);
+  box-shadow: 0 4px 10px rgba(109, 40, 217, 0.3);
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section .source-grid .source-btn.active .btn-icon {
+  color: var(--bg-dark);
+}
+
+/* Interest Toggle */
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section .interest-toggle {
+  display: flex;
+  background: var(--bg-dark);
+  border-radius: 9999px;
+  padding: 0.25rem;
+  border: 1px solid var(--border-color);
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section .interest-toggle .interest-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  padding: 0.6rem 0;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section .interest-toggle .interest-btn.active {
+  background: var(--primary);
+  color: var(--bg-dark);
+  box-shadow: 0 2px 8px rgba(109, 40, 217, 0.3);
+}
+
+/* Select */
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section .select-wrapper {
+  position: relative;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section .select-wrapper .goal-select {
+  width: 100%;
+  appearance: none;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.875rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section .select-wrapper .goal-select:focus {
+  outline: none;
+  border-color: var(- -primary);
+  box-shadow: 0 0 0 3px rgba(216, 180, 254, 0.2);
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .metadata-card .metadata-section .select-wrapper .select-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+/* Buttons */
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .add-prospect-submit-btn {
+  width: 100%;
+  background: var(--primary);
+  color: var(--bg-dark);
+  border: none;
+  border-radius: 9999px;
+  padding: 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 8px 20px rgba(109, 40, 217, 0.3);
+  margin-bottom: 0.75rem;
+  margin-top: 1rem;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .add-prospect-submit-btn:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(109, 40, 217, 0.4);
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .cancel-btn {
+  width: 100%;
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  padding: 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 1.5rem;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .cancel-btn:hover {
+  background: var(--bg-dark);
+  border-color: var(--border-color);
+}
+
+/* Aura Statement */
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .aura-statement-card {
+  height: 160px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  background-image: url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  padding: 1.2rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .aura-statement-card .statement-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.25rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .aura-statement-card .statement-overlay .statement-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--text-on-dark);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.add-prospect-overlay .add-prospect-modal .modal-content .right-column .aura-statement-card .statement-overlay p {
+  color: var(--text-on-dark);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+}

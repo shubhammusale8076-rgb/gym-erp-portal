@@ -13,8 +13,6 @@
   flex-wrap: wrap;
 }
 
-
-
 /* Table row hover effect */
 .users-page .table-container-wrapper .table-container .users-table-row {
   transition: background-color var(--transition-fast);
@@ -230,4 +228,201 @@
   align-items: center;
   justify-content: center;
   background: #fee2e2;
+}
+
+/* =========================================
+   ADD USER MODAL STYLES (NEW DESIGN)
+========================================= */
+
+.users-page .add-user-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.users-page .add-user-modal-dialog {
+  background-color: white;
+  width: 100%;
+  max-width: 680px;
+  border-radius: 28px;
+  padding: 3rem 3.5rem;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  margin: auto;
+  animation: slideUp 0.2s ease-out;
+}
+
+.users-page .add-user-modal-header {
+  margin-bottom: 2.5rem;
+}
+
+.users-page .close-action-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.users-page .close-action-btn:hover {
+  color: #1f2937;
+}
+
+.users-page .add-user-modal-header .title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #5b21b6;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem 0;
+}
+
+.users-page .add-user-modal-header .subtitle {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 0;
+  max-width: 80%;
+  line-height: 1.6;
+}
+
+.users-page .input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 2rem;
+  column-gap: 2.5rem;
+}
+
+.users-page .add-user-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.users-page .add-user-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #9ca3af;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.users-page .add-user-field {
+  width: 100%;
+  background-color: #fff9fd;
+  border: none;
+  padding: 1rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  color: #1f2937;
+  transition: all 0.2s;
+}
+
+.users-page .add-user-field:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #d8b4fe;
+}
+
+.users-page .add-user-field::placeholder {
+  color: #cbd5e1;
+}
+
+.users-page .add-user-field.input-error {
+  box-shadow: 0 0 0 2px #ef4444;
+}
+
+.users-page .error-msg-inline {
+  color: #ef4444;
+  margin-left: 0.25rem;
+}
+
+.users-page .select-wrapper {
+  position: relative;
+}
+
+.users-page .select-field {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 3rem;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 10 L8 14 L12 10 L16 14 L20 10'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.25rem center;
+}
+
+.users-page .add-user-password-wrapper {
+  position: relative;
+}
+
+.users-page .add-user-password-wrapper .add-user-field {
+  padding-right: 3rem;
+}
+
+.users-page .pw-toggle {
+  position: absolute;
+  top: 50%;
+  right: 1.25rem;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #d8b4fe;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.users-page .pw-toggle:hover {
+  color: #c084fc;
+}
+
+.users-page .add-user-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+
+.users-page .btn-cancel-text {
+  background: transparent;
+  border: none;
+  color: #6d28d9;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.users-page .btn-cancel-text:hover {
+  text-decoration: underline;
+}
+
+.users-page .btn-solid-purple-pill {
+  background-color: #6d28d9;
+  color: white;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(109, 40, 217, 0.25);
+  transition: all 0.2s;
+}
+
+.users-page .btn-solid-purple-pill:hover {
+  background-color: #5b21b6;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .users-page .input-grid {
+    grid-template-columns: 1fr;
+  }
 }

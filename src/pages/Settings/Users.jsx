@@ -4,6 +4,7 @@ import './Users.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import KpiCard from '../../components/KpiCard/KpiCard';
 import FilterButtons from '../../components/FilterButtons/FilterButtons';
+import StaffDetailModal from './StaffDetailModal';
 
 const ROLES = ['Admin', 'Manager', 'Staff', 'Trainer', 'Receptionist'];
 const STATUS_OPTIONS = ['Active', 'Inactive'];
@@ -198,7 +199,7 @@ export default function Users() {
                 const rs = getRoleStyle(user.role);
                 return (
                   <tr key={user.id} className="users-table-row">
-                    <td>
+                    <td onClick={() => { setSelectedUser(user); setModalMode('view'); }} style={{ cursor: 'pointer' }}>
                       <div className="users-name-col">
                         <div className="user-avatar" style={{ background: rs.bg, color: rs.color }}>
                           {user.name.charAt(0)}
@@ -209,7 +210,7 @@ export default function Users() {
                         </div>
                       </div>
                     </td>
-                    <td>
+                    <td onClick={() => { setSelectedUser(user); setModalMode('view'); }} style={{ cursor: 'pointer' }}>
                       <span className="role-badge" style={{ background: rs.bg, color: rs.color }}>
                         {user.role}
                       </span>
@@ -264,109 +265,113 @@ export default function Users() {
 
       {/* ===== CREATE / EDIT MODAL ===== */}
       {(modalMode === 'create' || modalMode === 'edit') && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h2 className="heading-3">{modalMode === 'create' ? 'Add New User' : 'Edit User'}</h2>
-              <button className="icon-btn" onClick={closeModal}><X size={18} /></button>
+        <div className="modal-overlay add-user-overlay" onClick={closeModal}>
+          <div className="add-user-modal-dialog" onClick={(e) => e.stopPropagation()}>
+            <div className="add-user-modal-header">
+              <button className="close-action-btn" onClick={closeModal}><X size={20} /></button>
+              <h2 className="title">{modalMode === 'create' ? 'Add New User' : 'Edit User'}</h2>
+              <p className="subtitle">Configure credentials and access levels for new staff members.</p>
             </div>
 
-            <div className="modal-body">
-              {/* Name */}
-              <div className="input-group">
-                <label className="input-label">Full Name <span className="required">*</span></label>
-                <input
-                  type="text"
-                  className={`input-field ${errors.name ? 'input-error' : ''}`}
-                  placeholder="e.g. Ravi Sharma"
-                  value={form.name}
-                  onChange={(e) => handleFormChange('name', e.target.value)}
-                />
-                {errors.name && <span className="error-msg">{errors.name}</span>}
-              </div>
-
-              {/* Email */}
-              <div className="input-group">
-                <label className="input-label">Email Address <span className="required">*</span></label>
-                <input
-                  type="email"
-                  className={`input-field ${errors.email ? 'input-error' : ''}`}
-                  placeholder="e.g. ravi@gymsync.com"
-                  value={form.email}
-                  onChange={(e) => handleFormChange('email', e.target.value)}
-                />
-                {errors.email && <span className="error-msg">{errors.email}</span>}
-              </div>
-
-              {/* Role & Status — side by side */}
-              <div className="modal-row-2">
-                <div className="input-group">
-                  <label className="input-label">Role <span className="required">*</span></label>
-                  <select
-                    className="input-field"
-                    value={form.role}
-                    onChange={(e) => handleFormChange('role', e.target.value)}
-                  >
-                    {ROLES.map((r) => <option key={r} value={r}>{r}</option>)}
-                  </select>
-                </div>
-                <div className="input-group">
-                  <label className="input-label">Status <span className="required">*</span></label>
-                  <select
-                    className="input-field"
-                    value={form.status}
-                    onChange={(e) => handleFormChange('status', e.target.value)}
-                  >
-                    {STATUS_OPTIONS.map((s) => <option key={s} value={s}>{s}</option>)}
-                  </select>
-                </div>
-              </div>
-
-              {/* Password */}
-              <div className="input-group">
-                <label className="input-label">
-                  Password {modalMode === 'edit' && <span className="optional-label">(leave blank to keep current)</span>}
-                  {modalMode === 'create' && <span className="required">*</span>}
-                </label>
-                <div className="password-field-wrapper">
+            <div className="add-user-modal-body">
+              <div className="input-grid">
+                
+                {/* Name */}
+                <div className="add-user-input-group">
+                  <label className="add-user-label">FULL NAME {errors.name && <span className="error-msg-inline">*</span>}</label>
                   <input
-                    type={showPassword ? 'text' : 'password'}
-                    className={`input-field ${errors.password ? 'input-error' : ''}`}
-                    placeholder="Min. 6 characters"
-                    value={form.password}
-                    onChange={(e) => handleFormChange('password', e.target.value)}
+                    type="text"
+                    className={`add-user-field ${errors.name ? 'input-error' : ''}`}
+                    placeholder="e.g. Alexander Vance"
+                    value={form.name}
+                    onChange={(e) => handleFormChange('name', e.target.value)}
                   />
-                  <button type="button" className="password-toggle" onClick={() => setShowPassword((v) => !v)}>
-                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                  </button>
                 </div>
-                {errors.password && <span className="error-msg">{errors.password}</span>}
-              </div>
 
-              {/* Confirm Password */}
-              <div className="input-group">
-                <label className="input-label">
-                  Confirm Password {modalMode === 'create' && <span className="required">*</span>}
-                </label>
-                <div className="password-field-wrapper">
+                {/* Email */}
+                <div className="add-user-input-group">
+                  <label className="add-user-label">EMAIL ADDRESS {errors.email && <span className="error-msg-inline">*</span>}</label>
                   <input
-                    type={showConfirmPassword ? 'text' : 'password'}
-                    className={`input-field ${errors.confirmPassword ? 'input-error' : ''}`}
-                    placeholder="Re-enter password"
-                    value={form.confirmPassword}
-                    onChange={(e) => handleFormChange('confirmPassword', e.target.value)}
+                    type="email"
+                    className={`add-user-field ${errors.email ? 'input-error' : ''}`}
+                    placeholder="alex@eliteclub.com"
+                    value={form.email}
+                    onChange={(e) => handleFormChange('email', e.target.value)}
                   />
-                  <button type="button" className="password-toggle" onClick={() => setShowConfirmPassword((v) => !v)}>
-                    {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                  </button>
                 </div>
-                {errors.confirmPassword && <span className="error-msg">{errors.confirmPassword}</span>}
+
+                {/* Role */}
+                <div className="add-user-input-group">
+                  <label className="add-user-label">ROLE</label>
+                  <div className="select-wrapper">
+                    <select
+                      className="add-user-field select-field"
+                      value={form.role}
+                      onChange={(e) => handleFormChange('role', e.target.value)}
+                    >
+                      {ROLES.map((r) => <option key={r} value={r}>{r}</option>)}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Status */}
+                <div className="add-user-input-group">
+                  <label className="add-user-label">STATUS</label>
+                  <div className="select-wrapper">
+                    <select
+                      className="add-user-field select-field"
+                      value={form.status}
+                      onChange={(e) => handleFormChange('status', e.target.value)}
+                    >
+                      {STATUS_OPTIONS.map((s) => <option key={s} value={s}>{s}</option>)}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Password */}
+                <div className="add-user-input-group">
+                  <label className="add-user-label">
+                    PASSWORD {errors.password && <span className="error-msg-inline">*</span>}
+                  </label>
+                  <div className="add-user-password-wrapper">
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      className={`add-user-field ${errors.password ? 'input-error' : ''}`}
+                      placeholder="• • • • • • • •"
+                      value={form.password}
+                      onChange={(e) => handleFormChange('password', e.target.value)}
+                    />
+                    <button type="button" className="pw-toggle" onClick={() => setShowPassword((v) => !v)}>
+                      {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Confirm Password */}
+                <div className="add-user-input-group">
+                  <label className="add-user-label">
+                    CONFIRM PASSWORD {errors.confirmPassword && <span className="error-msg-inline">*</span>}
+                  </label>
+                  <div className="add-user-password-wrapper">
+                    <input
+                      type={showConfirmPassword ? 'text' : 'password'}
+                      className={`add-user-field ${errors.confirmPassword ? 'input-error' : ''}`}
+                      placeholder="• • • • • • • •"
+                      value={form.confirmPassword}
+                      onChange={(e) => handleFormChange('confirmPassword', e.target.value)}
+                    />
+                    <button type="button" className="pw-toggle" onClick={() => setShowConfirmPassword((v) => !v)}>
+                      {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                </div>
+                
               </div>
             </div>
 
-            <div className="modal-footer">
-              <button className="btn btn-secondary" onClick={closeModal}>Cancel</button>
-              <button className="btn btn-primary" onClick={handleSave}>
+            <div className="add-user-modal-footer">
+              <button className="btn-cancel-text" onClick={closeModal}>Cancel</button>
+              <button className="btn-solid-purple-pill" onClick={handleSave}>
                 {modalMode === 'create' ? 'Create User' : 'Save Changes'}
               </button>
             </div>
@@ -401,6 +406,12 @@ export default function Users() {
           </div>
         </div>
       )}
+
+      <StaffDetailModal 
+        isOpen={modalMode === 'view'} 
+        onClose={closeModal} 
+        staffUser={selectedUser} 
+      />
     </div>
   );
 }

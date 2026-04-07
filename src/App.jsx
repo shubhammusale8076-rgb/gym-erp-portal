@@ -27,6 +27,7 @@ import SettingWrapper from './pages/Settings/SettingWrapper';
 import Settings from './pages/Settings/Settings'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import { ThemeProvider } from './context/ThemeContext';
+import StaffDetailModal from './pages/Settings/StaffDetailModal';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
             <Route path="website-manager/testimonials" element={<TestimonialsManager />} />
             <Route path="website-manager/contact" element={<ContactManager />} />
             <Route path="users" element={<Users />} />
+            <Route path="users/:id" element={<StaffDetailModal />} />
             <Route path="settings" element={<SettingWrapper />} >
               <Route index element={<Settings />} />
               <Route path="profile" element={<GymProfile />} />

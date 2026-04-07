@@ -1,34 +1,39 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { 
-  Mail, Phone, MapPin, Edit2, Snowflake, MoreHorizontal, 
-  CheckCircle2, ChevronRight, CreditCard, Coffee, 
-  Bell, FileText, Key, XCircle, ArrowRight
+import {
+  Mail, Phone, MapPin, Edit2, Snowflake, MoreHorizontal,
+  CheckCircle2, ChevronRight, CreditCard, Coffee,
+  Bell, FileText, Key, XCircle, ArrowRight,
+  UserRoundPlus,
+  TrendingUp,
+  CalendarDays,
+  ChartNoAxesCombined
 } from 'lucide-react';
 import './MemberDetail.css';
+import KpiCard from '../../../components/KpiCard/KpiCard';
 
 const MemberDetail = () => {
   const { id } = useParams();
 
   return (
     <div className="member-detail-page">
-      
-      {/* Profile Header Section */}
+
+
       <section className="profile-header-section">
         <div className="profile-info-wrapper">
           <div className="profile-image-container">
-            <img 
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=250&auto=format&fit=crop" 
-              alt="Elena Rodriguez" 
-              className="profile-image" 
+            <img
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=250&auto=format&fit=crop"
+              alt="Elena Rodriguez"
+              className="profile-image"
             />
             <span className="tier-badge">ELITE TIER</span>
           </div>
-          
+
           <div className="profile-details">
             <div className="member-id-pill">MEMBER ID: #AUR-9872</div>
-            <h1 className="detail-page-member-name">Elena<br/>Rodriguez</h1>
-            
+            <h1 className="detail-page-member-name">Elena<br />Rodriguez</h1>
+
             <div className="member-contact-info">
               <div className="contact-item">
                 <Mail size={14} className="contact-icon" />
@@ -59,77 +64,32 @@ const MemberDetail = () => {
         </div>
       </section>
 
-      {/* KPI Cards Section */}
-     {/* KPI Cards Section */}
-        <section className="kpi-cards-section">
-          <div className="kpi-card join-date">
-            <div className="kpi-top">
-              <span className="kpi-title">JOIN DATE</span>
-              <div className="kpi-icon-circle">
-                <span className="material-symbols-outlined">groups</span>
-              </div>
-            </div>
-            <h3 className="kpi-number">Mar 2022</h3>
-            <p className="kpi-text">Loyalty Member (2.4 yrs)</p>
-            <div className="kpi-wave"></div>
-          </div>
-
-          <div className="kpi-card expiry">
-            <div className="kpi-top">
-              <span className="kpi-title">MEMBERSHIP EXPIRY</span>
-              <div className="kpi-icon-circle">
-                <span className="material-symbols-outlined">trending_up</span>
-              </div>
-            </div>
-            <h3 className="kpi-number">Apr 2025</h3>
-            <p className="kpi-text">Auto-renew active</p>
-            <div className="kpi-wave"></div>
-          </div>
-
-          <div className="kpi-card attendance">
-            <div className="kpi-top">
-              <span className="kpi-title">TOTAL ATTENDANCE</span>
-              <div className="kpi-icon-circle">
-                <span className="material-symbols-outlined">calendar_month</span>
-              </div>
-            </div>
-            <h3 className="kpi-number">412</h3>
-            <p className="kpi-text">Check-ins since registration</p>
-            <div className="kpi-wave"></div>
-          </div>
-
-          <div className="kpi-card balance">
-            <div className="kpi-top">
-              <span className="kpi-title">ACCOUNT BALANCE</span>
-              <div className="kpi-icon-circle">
-                <span className="material-symbols-outlined">monitoring</span>
-              </div>
-            </div>
-            <h3 className="kpi-number">$180.00</h3>
-            <p className="kpi-text">Pre-paid spa credits</p>
-            <div className="kpi-wave"></div>
-          </div>
-        </section>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', margin: '32px 0' }}>
+        <KpiCard title="Join Date" value="Mar 2022" theme="blue" Icon={UserRoundPlus} />
+        <KpiCard title="Membership Expiry" value="Apr 2025" theme="purple" Icon={TrendingUp} />
+        <KpiCard title="Total Attendance" value="412" theme="orange" Icon={CalendarDays } />
+        <KpiCard title="Account Balance" value="$180.00" theme="teal" Icon={ChartNoAxesCombined } />
+      </div>
 
       {/* Main Content Grid */}
       <section className="main-content-grid">
-        
+
         {/* Left Column */}
         <div className="content-left-col">
-          
+
           <div className="section-block">
             <h3 className="section-title">Plan Configuration</h3>
             <div className="plan-card">
               <h4 className="plan-name">Elite Curator</h4>
               <p className="plan-desc">Tailored wellness experience for the high-achieving individual.</p>
-              
+
               <ul className="plan-features">
                 <li><span className="feature-icon-wrapper"><CheckCircle2 size={12} strokeWidth={3} /></span> Personal Wellness Concierge</li>
                 <li><span className="feature-icon-wrapper"><CheckCircle2 size={12} strokeWidth={3} /></span> 24/7 Premium Club Access</li>
                 <li><span className="feature-icon-wrapper"><CheckCircle2 size={12} strokeWidth={3} /></span> Unlimited Recovery & Spa Suite</li>
                 <li><span className="feature-icon-wrapper"><CheckCircle2 size={12} strokeWidth={3} /></span> 4 Guest Monthly Passes</li>
               </ul>
-              
+
               <button className="btn-upgrade-plan">
                 Upgrade Plan Options <ArrowRight size={16} />
               </button>
@@ -168,11 +128,11 @@ const MemberDetail = () => {
 
         {/* Right Column */}
         <div className="content-right-col">
-          
+
           <div className="section-block">
             <h3 className="section-title">Attendance Timeline</h3>
             <div className="timeline-container">
-              
+
               <div className="timeline-item">
                 <div className="timeline-marker default"></div>
                 <div className="timeline-content">

@@ -5,6 +5,7 @@ import PageHeader from '../../components/PageHeader/PageHeader';
 import KpiCard from '../../components/KpiCard/KpiCard';
 import FilterButtons from '../../components/FilterButtons/FilterButtons';
 import StaffDetailModal from './StaffDetailModal';
+import { useNavigate } from 'react-router-dom';
 
 const ROLES = ['Admin', 'Manager', 'Staff', 'Trainer', 'Receptionist'];
 const STATUS_OPTIONS = ['Active', 'Inactive'];
@@ -30,6 +31,7 @@ const roleColors = {
 const getRoleStyle = (role) => roleColors[role] || { bg: '#f1f5f9', color: '#475569' };
 
 export default function Users() {
+  const navigate = useNavigate();
   const [users, setUsers] = useState(initialUsers);
   const [searchTerm, setSearchTerm] = useState('');
   const [roleFilter, setRoleFilter] = useState('All');
@@ -199,7 +201,7 @@ export default function Users() {
                 const rs = getRoleStyle(user.role);
                 return (
                   <tr key={user.id} className="users-table-row">
-                    <td onClick={() => { setSelectedUser(user); setModalMode('view'); }} style={{ cursor: 'pointer' }}>
+                    <td onClick={() => navigate(`/users/${user.id}`)} style={{ cursor: 'pointer' }}>
                       <div className="users-name-col">
                         <div className="user-avatar" style={{ background: rs.bg, color: rs.color }}>
                           {user.name.charAt(0)}

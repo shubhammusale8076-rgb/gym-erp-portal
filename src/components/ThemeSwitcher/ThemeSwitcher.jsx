@@ -6,8 +6,8 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 const themes = [
   { label: "Light", value: "light", color: "#7427a1" },
   { label: "Dark", value: "dark", color: "#0f0f12" },
-  { label: "Electric", value: "electric", color: "#3b82f6" },
-  { label: "Emerald", value: "emerald", color: "#10b981" },
+  { label: "Gold", value: "gold", color: "#F5B400" },
+
 ];
 
 const ThemeSwitcher = () => {

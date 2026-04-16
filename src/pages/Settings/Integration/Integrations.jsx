@@ -4,46 +4,11 @@ import {
     CreditCard,
     AtSign,
     Landmark,
-    ExternalLink,
-    ToggleLeft,
-    ToggleRight,
-    Link2
+
 } from 'lucide-react';
 import './Integrations.css';
+import IntegrationItem from './IntegrationItem';
 
-const IntegrationItem = ({ title, description, badge, active, actionText, icon: Icon, iconColor, iconBg, cardStyle, onToggle }) => (
-    <div className={`integ-card ${cardStyle}`}>
-        <div className="integ-header">
-            <div className="integ-icon-box" style={{ background: iconBg, color: iconColor }}>
-                <Icon size={24} strokeWidth={2.5} />
-            </div>
-            <div className={`integ-badge ${active ? 'badge-connected' : 'badge-disconnected'}`}>
-                {badge}
-            </div>
-        </div>
-        
-        <div className="integ-body">
-            <h3 className="integ-title">{title}</h3>
-            <p className="integ-desc">{description}</p>
-        </div>
-        
-        <div className="integ-footer">
-            <div className="integ-status-block" onClick={onToggle} style={{cursor: 'pointer'}}>
-                {active ? (
-                    <ToggleRight className="integ-toggle active" size={32} />
-                ) : (
-                    <ToggleLeft className="integ-toggle inactive" size={32} />
-                )}
-                <span className="integ-status-text">
-                    {active ? 'ACTIVE' : 'INACTIVE'}
-                </span>
-            </div>
-            <button className={`integ-action-btn ${active ? 'active' : ''}`}>
-                {actionText} {active ? <ExternalLink size={14} /> : <Link2 size={16} />}
-            </button>
-        </div>
-    </div>
-);
 
 const Integrations = () => {
     const [integrationsList, setIntegrationsList] = useState([
@@ -56,7 +21,8 @@ const Integrations = () => {
             badge: 'CONNECTED',
             active: true,
             actionText: 'Configure',
-            cardStyle: 'integ-card-white'
+            cardStyle: 'integ-card-white',
+            provider:"WHATSAPP"
         },
         {
             title: 'Stripe Payments',
@@ -67,7 +33,8 @@ const Integrations = () => {
             badge: 'CONNECTED',
             active: true,
             actionText: 'Configure',
-            cardStyle: 'integ-card-white'
+            cardStyle: 'integ-card-white',
+            provider:"STRIPE"
         },
         {
             title: 'SendGrid',
@@ -78,7 +45,8 @@ const Integrations = () => {
             badge: 'DISCONNECTED',
             active: false,
             actionText: 'Connect',
-            cardStyle: 'integ-card-tinted'
+            cardStyle: 'integ-card-tinted',
+            provider:"SENDGRID"
         },
         {
             title: 'Razorpay',
@@ -89,7 +57,8 @@ const Integrations = () => {
             badge: 'DISCONNECTED',
             active: false,
             actionText: 'Connect',
-            cardStyle: 'integ-card-tinted'
+            cardStyle: 'integ-card-tinted',
+            provider:"RAZORPAY"
         }
     ]);
 

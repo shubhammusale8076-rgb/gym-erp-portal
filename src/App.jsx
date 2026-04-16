@@ -12,7 +12,7 @@ import Attendance from './pages/Attendance/Attendance';
 import WebsiteManager from './pages/WebsiteManager/WebsiteManager';
 import Users from './pages/Settings/Users';
 import GymProfile from './pages/Settings/GymProfile';
-import Integrations from './pages/Settings/Integrations';
+import Integrations from './pages/Settings/Integration/Integrations';
 import Notifications from './pages/Settings/Notifications';
 import Payments from './pages/Settings/Payments';
 import Security from './pages/Settings/Security';
@@ -28,6 +28,8 @@ import Settings from './pages/Settings/Settings'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import { ThemeProvider } from './context/ThemeContext';
 import StaffDetailModal from './pages/Settings/StaffDetailModal';
+import IntegrationSetupPage from './pages/Settings/Integration/IntegrationSetupPage';
+import IntegrationWizard from './components/integration-wizard/IntegrationWizard';
 
 function App() {
   return (
@@ -59,10 +61,13 @@ function App() {
               <Route index element={<Settings />} />
               <Route path="profile" element={<GymProfile />} />
               <Route path="integrations" element={<Integrations />} />
+              
               <Route path="notifications" element={<Notifications />} />
               <Route path="payments" element={<Payments />} />
               <Route path="security" element={<Security />} />
             </Route>
+            <Route path="integrations/:provider" element={<IntegrationSetupPage />} />
+            <Route path="integrations/:provider/setup" element={<IntegrationWizard />} />
 
 
             <Route path="*" element={

@@ -1,0 +1,475 @@
+/* IntegrationDetails.css */
+.integration-details-page {
+    color: var(--text-primary, #1e293b);
+}
+
+.integration-details-page .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary, #5c20b8);
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
+}
+
+.integration-details-page .back-link:hover {
+    text-decoration: underline;
+}
+
+/* Header Area */
+.integration-details-page .details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.integration-details-page .details-header .header-left {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.integration-details-page .details-header .provider-icon-large {
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-glow);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Mocking razorpay blue square symbol */
+.integration-details-page .details-header .provider-icon-large .mock-icon-inner {
+    width: 28px;
+    height: 28px;
+    background-color: #0f172a;
+    border-radius: 6px;
+    position: relative;
+}
+.mock-icon-inner::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #38bdf8;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.integration-details-page .details-header .header-titles .title-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 6px;
+}
+
+.integration-details-page .details-header .header-titles .title-row h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.integration-details-page .details-header .header-titles .title-row .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--primary, #5c20b8);
+    background-color: rgba(92, 32, 184, 0.1);
+    padding: 6px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+
+.integration-details-page .details-header .header-titles .title-row .live-badge .dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary, #5c20b8);
+    border-radius: 50%;
+}
+
+.integration-details-page .details-header .header-titles p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 500px;
+    line-height: 1.5;
+}
+
+.integration-details-page .details-header .header-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.integration-details-page .details-header .header-actions .btn-integ {
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 13px;
+
+}
+
+
+/* Grid Layout */
+.integration-details-page .details-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 24px;
+}
+
+.integration-details-page .details-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Reusable Card */
+.integration-details-page .details-card {
+    padding: 30px;
+}
+
+.integration-details-page .details-card .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.integration-details-page .details-card .card-header.space-between {
+    justify-content: space-between;
+}
+
+.integration-details-page .details-card .header-title-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.integration-details-page .details-card .card-header .header-icon {
+    color: var(--primary, #5c20b8);
+}
+
+.integration-details-page .details-card .card-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary, #1e293b);
+}
+
+/* Left Col - Overview */
+.integration-details-page .details-card .status-banner {
+    background-color: var(--primary-hover);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+}
+
+.integration-details-page .details-card .status-banner .tiny-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.integration-details-page .details-card .status-banner p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.integration-details-page .details-card .stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.integration-details-page .details-card .stats-list .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.integration-details-page .details-card .stats-list .stat-row .stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.integration-details-page .details-card .stats-list .stat-row .stat-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.integration-details-page .details-card .stats-list .stat-row .stat-value.success-text {
+    color: #10b981;
+}
+
+/* Left Col - Events Mapping */
+.integration-details-page .details-card .mapping-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.integration-details-page .details-card .mapping-list .mapping-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.integration-details-page .details-card .mapping-list .mapping-item .mapping-info h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: var(--text-primary);
+}
+
+
+.integration-details-page .details-card .mapping-list .mapping-item .mapping-info p {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.integration-details-page .details-card .mapping-list .mapping-item .toggle-switch {
+    width: 44px;
+    height: 24px;
+    background-color: #cbd5e1;
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.toggle-switch.active {
+    background-color: var(--primary, #5c20b8);
+}
+
+.toggle-switch .slider {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.toggle-switch.active .slider {
+    transform: translateX(20px);
+}
+
+/* Right Col - Content */
+.integration-details-page .details-card .config-keys-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.integration-details-page .details-card .input-group label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.integration-details-page .details-card .mt-4 {
+    margin-top: 24px;
+}
+
+.integration-details-page .details-card .input-box {
+    background-color: var(--primary-hover);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-family: monospace;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
+}
+
+.input-box.with-icon {
+    justify-content: space-between;
+}
+
+.input-box .input-icon {
+    color: #64748b;
+    cursor: pointer;
+}
+
+.input-box.with-copy {
+    justify-content: space-between;
+    border: 1px dashed rgba(92, 32, 184, 0.3);
+}
+
+.input-box.with-copy span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.input-box .copy-btn {
+    background-color: rgba(92, 32, 184, 0.1);
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    color: var(--primary, #5c20b8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: 0.2s;
+}
+
+.input-box .copy-btn:hover {
+    background-color: var(--primary, #5c20b8);
+    color: white;
+}
+
+.input-help {
+    font-size: 11px;
+    color: #64748b;
+    margin: 8px 0 0 0;
+}
+
+/* Webhooks Testing Section */
+.integration-details-page .details-card .card-header .status-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #10b981;
+    background-color: rgba(16, 185, 129, 0.1);
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+
+.integration-details-page .details-card .card-header .status-pill .dot {
+    width: 6px;
+    height: 6px;
+    background-color: #10b981;
+    border-radius: 50%;
+}
+
+.integration-details-page .details-card .test-environment-box {
+    background-color: var(--primary-hover);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.integration-details-page .details-card .test-environment-box .test-info h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 6px 0;
+}
+
+.integration-details-page .details-card .test-environment-box .test-info p {
+    font-size: 12px;
+    color: #64748b;
+    margin: 0;
+    max-width: 380px;
+    line-height: 1.4;
+}
+
+.integration-details-page .details-card .test-environment-box .btn-test {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: white;
+    border: 1px solid var(--border-light, #cbd5e1);
+    color: var(--primary, #5c20b8);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.integration-details-page .details-card .test-environment-box .btn-test:hover {
+    background-color: rgba(92, 32, 184, 0.04);
+}
+
+.integration-details-page .details-card .payload-delivery-section .section-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.integration-details-page .details-card .code-console {
+    background-color: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: monospace;
+}
+
+.integration-details-page .details-card .code-console .console-header {
+    background-color: #0f172a;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.integration-details-page .details-card .code-console .status-code {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 12px;
+}
+
+.integration-details-page .details-card .code-console .request-path {
+    color: #94a3b8;
+    font-size: 12px;
+    flex: 1;
+}
+
+.integration-details-page .details-card .code-console .timestamp {
+    color: #64748b;
+    font-size: 11px;
+}
+
+.integration-details-page .details-card .code-console .code-block {
+    margin: 0;
+    padding: 16px;
+    color: #e2e8f0;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-x: auto;
+}

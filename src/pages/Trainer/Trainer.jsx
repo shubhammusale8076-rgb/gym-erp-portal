@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./Trainer.css";
 import { Plus, Filter, Download, Users, Users2, UserX, UserPlus, Edit2, Trash2 } from "lucide-react";
-import TrainerDetail from "../TrainerDetail/TrainerDetail";
-import AddTrainer from "./AddTrainer";
 import PageHeader from "../../components/PageHeader/PageHeader";
 import KpiCard from "../../components/KpiCard/KpiCard";
 import FilterButtons from "../../components/FilterButtons/FilterButtons";
+import TrainerProfileModal from "../../components/TrainerProfileModal/TrainerProfileModal";
 
 const trainers = [
   {
@@ -13,10 +12,20 @@ const trainers = [
     name: "Alex Rivera",
     email: "alex.rivera@fitmanager.com",
     specialty: "Strength Training",
+    certifications: 'NASM-CPT, Precision Nutrition L1',
+    bio: 'Certified personal trainer with over 8 years of experience helping clients achieve their fitness goals through functional movement and strength training. Specialized in athletic performance and recovery protocols. I believe fitness is a communal journey.',
     members: 24,
     schedule: "Mon - Fri\n06:00 AM - 02:00 PM",
     status: "Active",
-    img: "https://randomuser.me/api/portraits/men/32.jpg"
+    imageUrl: "https://randomuser.me/api/portraits/men/32.jpg",
+    social: {
+      community: '@alex_the_coach',
+      linkedin: 'linkedin.com/in/arivera'
+    },
+    availability: ['MON', 'TUE', 'THU', 'FRI'],
+    shifts: ['morning'],
+    skills: ['Yoga', 'HIIT', 'Powerlifting'],
+
   },
   {
     id: 2,
@@ -26,7 +35,7 @@ const trainers = [
     members: 18,
     schedule: "Tue - Sat\n08:00 AM - 04:00 PM",
     status: "Active",
-    img: "https://randomuser.me/api/portraits/women/44.jpg"
+    imageUrl: "https://randomuser.me/api/portraits/women/44.jpg"
   },
   {
     id: 3,
@@ -36,7 +45,7 @@ const trainers = [
     members: 15,
     schedule: "Wed - Sun\n10:00 AM - 06:00 PM",
     status: "Active",
-    img: "https://randomuser.me/api/portraits/women/65.jpg"
+    imageUrl: "https://randomuser.me/api/portraits/women/65.jpg"
   },
   {
     id: 4,
@@ -46,7 +55,7 @@ const trainers = [
     members: 30,
     schedule: "Returning Oct 15th",
     status: "On Leave",
-    img: "https://randomuser.me/api/portraits/men/21.jpg"
+    imageUrl: "https://randomuser.me/api/portraits/men/21.jpg"
   }
 ];
 
@@ -57,36 +66,44 @@ const Trainer = () => {
   const [editingTrainer, setEditingTrainer] = useState(null);
   const [filterTags, setFilterTags] = useState("All")
   const tags = ['All Specialties', 'Yoga', 'HIIT', 'Strength', 'Pilates', 'Zumba'];
-  
-  const handleSaveTrainer = (newTrainerData) => {
+
+  const handleSaveTrainer = (formData) => {
     if (editingTrainer) {
-      setTrainersList(trainersList.map(t => t.id === editingTrainer.id ? {
-        ...t,
-        name: newTrainerData.fullName,
-        email: newTrainerData.email,
-        specialty: newTrainerData.specialization
-      } : t));
+      setTrainersList(prev =>
+        prev.map(t =>
+          t.id === editingTrainer.id
+            ? {
+              ...t,
+              name: formData.name,
+              specialty: formData.certifications,
+              imageUrl: formData.imageUrl || t.imageUrl
+            }
+            : t
+        )
+      );
     } else {
       const newTrainer = {
-        id: trainersList.length + 1,
-        name: newTrainerData.fullName,
-        email: newTrainerData.email,
-        specialty: newTrainerData.specialization,
+        id: Date.now(),
+        name: formData.name,
+        email: "new@trainer.com",
+        specialty: formData.certifications,
         members: 0,
         schedule: "TBD",
         status: "Active",
-        img: "https://randomuser.me/api/portraits/lego/1.jpg"
+        imageUrl: formData.imageUrl || "https://randomuser.me/api/portraits/lego/1.jpg"
       };
-      setTrainersList([...trainersList, newTrainer]);
+
+      setTrainersList(prev => [...prev, newTrainer]);
     }
+
     setIsAddingTrainer(false);
     setEditingTrainer(null);
   };
 
-   const filterdTrainer = trainersList.filter((trainer) => {
-      const filterLower = filterTags === 'All' || trainer.specialty.toLowerCase().includes(filterTags.toLowerCase());
-      return filterLower;
-   })
+  const filterdTrainer = trainersList.filter((trainer) => {
+    const filterLower = filterTags === 'All' || trainer.specialty.toLowerCase().includes(filterTags.toLowerCase());
+    return filterLower;
+  })
 
   return (
     <div className="trainer-page">
@@ -147,7 +164,7 @@ const Trainer = () => {
 
                 <td>
                   <div className="trainer-info">
-                    <img src={trainer.img} alt="" />
+                    <img src={trainer.imageUrl} alt="" />
                     <div>
                       <p className="trainer-name">{trainer.name}</p>
                       <span>{trainer.email}</span>
@@ -190,17 +207,36 @@ const Trainer = () => {
       </div>
 
       {selectedTrainer && (
-        <TrainerDetail
-          trainer={selectedTrainer}
+        <TrainerProfileModal
+          isOpen={selectedTrainer}
           onClose={() => setSelectedTrainer(null)}
+          data={selectedTrainer}
         />
       )}
 
       {isAddingTrainer && (
-        <AddTrainer
-          onClose={() => { setIsAddingTrainer(false); setEditingTrainer(null); }}
-          onAdd={handleSaveTrainer}
-          initialData={editingTrainer}
+        <TrainerProfileModal
+          isOpen={isAddingTrainer}
+          onClose={() => {
+            setIsAddingTrainer(false);
+            setEditingTrainer(null);
+          }}
+          data={
+            editingTrainer || {
+              name: "",
+              certifications: "",
+              bio: "",
+              imageUrl: "",
+              skills: [],
+              availability: [],
+              shifts: [],
+              social: {
+                community: "",
+                linkedin: ""
+              }
+            }
+          }
+          onSave={handleSaveTrainer}
         />
       )}
 

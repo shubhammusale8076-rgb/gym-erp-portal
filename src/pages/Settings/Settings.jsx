@@ -25,7 +25,7 @@ function Settings() {
                 </div>
                 <div className="set-footer-user">
                     <span className="set-stat">12 ACTIVE STAFF</span>
-                    <Link to="/settings/users" className="set-link">
+                    <Link to="/users" className="set-link">
                         Manage <ArrowRight size={14} />
                     </Link>
                 </div>
@@ -41,10 +41,6 @@ function Settings() {
                 </div>
                 <div className="set-content">
                     <h2 className="set-title">Gym Profile</h2>
-                    {/* <div className="set-gym-pill">
-                        <Building2 size={16} className="set-gym-pill-icon" />
-                        <span className="set-gym-pill-text">Aura Premium Downtown</span>
-                    </div> */}
                     <p className="set-desc">
                         Update your public identity. Manage brand logos, contact details,
                         and physical studio locations.

@@ -7,7 +7,11 @@ function IntegrationItem({ title, description, badge, active, actionText, icon: 
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(`/integrations/${provider.toLowerCase()}`);
+        if (active) {
+            navigate(`/settings/integrations/${provider.toLowerCase()}/details`);
+        } else {
+            navigate(`/integrations/${provider.toLowerCase()}`);
+        }
     };
   return (
       <div className={`integ-card ${cardStyle}`}>

@@ -445,20 +445,371 @@
 
 
 
-.step-verify {
-    text-align: center;
-    padding: 40px 0;
+/* Verify Configuration Styles */
+.verify-config-container {
+    display: flex;
+    gap: 50px;
+    width: 100%;
 }
 
-.step-verify button {
-    padding: 12px 24px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+.verify-config-container .verify-left-panel {
+    flex: 1;
+    max-width: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+.verify-config-container .verify-left-panel .guide-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.verify-config-container .verify-left-panel .guide-description {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Verify Main Card */
+.verify-main-card {
+    background-color: var(--bg-card);
+    border-radius: var(--section-radius, 24px);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--border-light);
+}
+
+.verify-loader-ring {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.verify-loader-ring .ring-outer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 14px solid rgba(92, 32, 184, 0.1);
+    animation: pulse-ring 2s infinite ease-in-out;
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 0.2; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.verify-loader-ring .ring-inner {
+    width: 86px;
+    height: 86px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    z-index: 2;
+}
+
+.verify-loader-ring .spin-icon {
+    color: var(--primary);
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+.verify-phase-info {
+    text-align: center;
+}
+
+.verify-phase-info .phase-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    display: block;
+    text-transform: uppercase;
+}
+
+.verify-phase-info .phase-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+}
+
+.verify-phase-info .phase-time {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Status Grid */
+.verify-status-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.verify-status-grid .status-card {
+    background-color: var(--primary-hover);
+    border-radius: var(--section-radius, 16px);
+    padding: 24px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid var(--border-light);
+}
+
+.verify-status-grid .status-card.info-card {
+    background-color: var(--primary-hover);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.verify-status-grid .status-card.info-card .info-icon {
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+.verify-status-grid .status-card.info-card p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.verify-status-grid .status-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--bg-card, #ffffff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.verify-status-grid .status-content {
+    flex: 1;
+}
+
+.verify-status-grid .status-content h4 {
     font-size: 15px;
     font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+}
+
+.verify-status-grid .status-content p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.verify-status-grid .status-check {
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.verify-status-grid .status-loader {
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.verify-status-grid .status-loader .spin {
+    animation: spin 2s linear infinite;
+}
+
+.verify-status-grid .status-card.active {
+    background-color: rgba(92, 32, 184, 0.05); /* Same as primary hover slightly darker context */
+}
+
+.verify-status-grid .status-card.active .status-icon {
+    background-color: var(--primary);
+    color: white;
+}
+
+
+/* Right Panel */
+.verify-right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.verify-right-panel .troubleshooting-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--section-radius, 24px);
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.verify-right-panel .trouble-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.verify-right-panel .trouble-header .header-icon {
+    color: var(--primary);
+}
+
+.verify-right-panel .trouble-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 0;
+}
+
+.verify-right-panel .trouble-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0 0 24px 0;
+}
+
+.verify-right-panel .trouble-item {
+    margin-bottom: 20px;
+}
+
+.verify-right-panel .trouble-item h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 6px 0;
+}
+
+.verify-right-panel .trouble-item p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.verify-right-panel .trouble-item code {
+    background-color: var(--primary-hover);
+    color: #e55393;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: monospace;
+}
+
+.verify-right-panel .support-box {
+    background-color: var(--primary-hover);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    margin-top: 30px;
+}
+
+.verify-right-panel .support-icon {
+    color: var(--primary);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.verify-right-panel .support-content h5 {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 6px 0;
+    letter-spacing: 0.5px;
+}
+
+.verify-right-panel .support-content p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+}
+
+.verify-right-panel .support-content a {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.verify-right-panel .verified-infra {
+    height: 140px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Mimic network background map */
+.verify-right-panel .verified-infra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at center, rgba(56, 189, 248, 0.15) 0%, transparent 60%),
+        linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 20px 20px, 20px 20px;
+    transform: perspective(500px) rotateX(60deg) scale(2);
+    transform-origin: top center;
+}
+
+.verify-right-panel .verified-infra::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid rgba(56, 189, 248, 0.4);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2), inset 0 0 20px rgba(56, 189, 248, 0.2);
+    background: radial-gradient(circle at center, rgba(56, 189, 248, 0.2) 0%, transparent 70%);
+}
+
+.verify-right-panel .infra-overlay {
+    position: relative;
+    padding: 16px;
+    width: 100%;
+    z-index: 10;
+}
+
+.verify-right-panel .infra-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .step-success {

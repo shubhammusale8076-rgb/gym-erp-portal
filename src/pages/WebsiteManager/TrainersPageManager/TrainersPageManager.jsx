@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Sparkles, Plus, Edit2, Trash2, Camera, X, Users, Link as LinkIcon, Sun, Moon } from 'lucide-react';
 import './TrainersPageManager.css';
 import PageHeader from '../../../components/PageHeader/PageHeader';
+import TrainerProfileModal from '../../../components/TrainerProfileModal/TrainerProfileModal';
 
 const TrainersPageManager = () => {
   const [trainers, setTrainers] = useState([
@@ -141,9 +142,7 @@ const TrainersPageManager = () => {
 
       <div className="tm-actions-row">
         <span className="tm-count">{trainers.length} active trainers</span>
-        <button className="btn-primary tm-btn-add" onClick={openAddModal}>
-          <Plus size={16} /> Add Trainer
-        </button>
+
       </div>
 
       <div className="tm-grid">
@@ -191,184 +190,12 @@ const TrainersPageManager = () => {
         ))}
       </div>
 
-
-
-      {/* --- Profile Settings Modal --- */}
-      {isModalOpen && activeTrainer && (
-        <div className="tm-modal-overlay">
-          <div className="tm-modal glass-panel">
-
-            <div className="tm-modal-header">
-              <div>
-                <h2 className="tm-modal-title">Trainer Profile Settings</h2>
-                <p className="tm-modal-subtitle">Personalize your community presence and availability.</p>
-              </div>
-              <button className="tm-modal-close" onClick={closeModal}>
-                <X size={20} />
-              </button>
-            </div>
-
-            <div className="tm-modal-body">
-              {/* Left Column */}
-              <div className="tm-modal-col-left">
-                <div className="tm-photo-section">
-                  <span className="tm-section-label tm-photo-label">PROFILE PHOTO</span>
-                  <div className="tm-avatar-wrapper">
-                    {activeTrainer.imageUrl ? (
-                      <img src={activeTrainer.imageUrl} alt="Profile" className="tm-avatar" />
-                    ) : (
-                      <div className="tm-avatar-placeholder"><Camera size={40} /></div>
-                    )}
-                    <button className="tm-badge-btn-photo">
-                      <Camera size={14} />
-                    </button>
-                  </div>
-                  <button className="tm-btn-upload">Upload New Photo</button>
-                  <span className="tm-photo-hint">Recommended: 800x800px high-res portrait.</span>
-                </div>
-
-                <div className="tm-social-section">
-                  <span className="tm-section-label">COMMUNITY LINKS</span>
-                  <div className="tm-input-group-icon">
-                    <span className="tm-input-icon"><Users size={16} /></span>
-                    <input
-                      type="text"
-                      className="tm-modal-input"
-                      placeholder="@username"
-                      value={activeTrainer.social.community}
-                      onChange={(e) => handleSocialChange('community', e.target.value)}
-                    />
-                  </div>
-                  <div className="tm-input-group-icon">
-                    <span className="tm-input-icon"><LinkIcon size={16} /></span>
-                    <input
-                      type="text"
-                      className="tm-modal-input"
-                      placeholder="linkedin.com/in/..."
-                      value={activeTrainer.social.linkedin}
-                      onChange={(e) => handleSocialChange('linkedin', e.target.value)}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column */}
-              <div className="tm-modal-col-right">
-
-                <div className="tm-form-row">
-                  <div className="tm-form-group">
-                    <label className="tm-section-label">Trainer Name</label>
-                    <input
-                      type="text"
-                      className="tm-modal-input tm-input-large"
-                      value={activeTrainer.name}
-                      onChange={(e) => handleActiveChange('name', e.target.value)}
-                    />
-                  </div>
-                  <div className="tm-form-group">
-                    <label className="tm-section-label">Certifications</label>
-                    <input
-                      type="text"
-                      className="tm-modal-input tm-input-large"
-                      value={activeTrainer.certifications}
-                      onChange={(e) => handleActiveChange('certifications', e.target.value)}
-                    />
-                  </div>
-                </div>
-
-                <div className="tm-form-group">
-                  <label className="tm-section-label">Specialized Skills</label>
-                  <div className="tm-skills-container">
-                    {activeTrainer.skills.map(skill => (
-                      <span key={skill} className="tm-skill-pill">
-                        {skill} <button onClick={() => handleRemoveSkill(skill)}><X size={12} /></button>
-                      </span>
-                    ))}
-                    <div className="tm-skill-add-wrapper">
-                      <input
-                        type="text"
-                        placeholder="Type and press Enter"
-                        className="tm-skill-input"
-                        value={newSkillText}
-                        onChange={e => setNewSkillText(e.target.value)}
-                        onKeyDown={handleAddSkill}
-                      />
-                      <button className="tm-skill-add-btn" onClick={handleAddSkill}>
-                        <Plus size={14} /> Add Skill
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="tm-form-group">
-                  <label className="tm-section-label">My Journey (Bio)</label>
-                  <textarea
-                    className="tm-modal-textarea"
-                    rows="4"
-                    value={activeTrainer.bio}
-                    onChange={(e) => handleActiveChange('bio', e.target.value)}
-                  />
-                </div>
-
-                <div className="tm-form-group">
-                  <label className="tm-section-label tm-section-label-spaced">AVAILABILITY SCHEDULE</label>
-
-                  <div className="tm-days-row">
-                    {daysOfWeek.map(day => {
-                      const isActive = activeTrainer.availability.includes(day);
-                      return (
-                        <button
-                          key={day}
-                          className={`tm-day-circle ${isActive ? 'active' : ''}`}
-                          onClick={() => toggleDay(day)}
-                          type="button"
-                        >
-                          {day}
-                          <span className="tm-day-dot"></span>
-                        </button>
-                      )
-                    })}
-                  </div>
-
-                  <div className="tm-shifts-row">
-                    <button
-                      className={`tm-shift-card ${activeTrainer.shifts.includes('morning') ? 'active' : ''}`}
-                      onClick={() => toggleShift('morning')}
-                      type="button"
-                    >
-                      <div className="tm-shift-icon"><Sun size={20} /></div>
-                      <div className="tm-shift-details">
-                        <span className="tm-shift-title">MORNING SHIFT</span>
-                        <span className="tm-shift-time">06:00 AM - 11:00 AM</span>
-                      </div>
-                    </button>
-                    <div className="tm-shift-divider"></div>
-                    <button
-                      className={`tm-shift-card ${activeTrainer.shifts.includes('evening') ? 'active' : ''}`}
-                      onClick={() => toggleShift('evening')}
-                      type="button"
-                    >
-                      <div className="tm-shift-icon"><Moon size={20} /></div>
-                      <div className="tm-shift-details">
-                        <span className="tm-shift-title">EVENING SHIFT</span>
-                        <span className="tm-shift-time">04:00 PM - 09:00 PM</span>
-                      </div>
-                    </button>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-
-            <div className="tm-modal-footer">
-              <button className="btn-secondary" onClick={closeModal}>Cancel Changes</button>
-              <button className="btn-primary" onClick={handleSaveProfile}>Save Profile</button>
-            </div>
-
-          </div>
-        </div>
-      )}
+      <TrainerProfileModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        data={activeTrainer}
+        onSave={handleSaveProfile}
+      />
 
     </div>
   );

@@ -118,7 +118,7 @@ const IntegrationWizard = () => {
                 );
 
             case "success":
-                return <StepSuccess />;
+                return <StepSuccess provider={provider} />;
 
             default:
                 return null;

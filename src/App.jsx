@@ -25,11 +25,13 @@ import PaymentRecords from './pages/Payments/PaymentRecords';
 import PaymentDetail from './pages/Payments/PaymentDetail';
 import SettingWrapper from './pages/Settings/SettingWrapper';
 import Settings from './pages/Settings/Settings'
+import IntegrationDetails from './pages/Settings/Integration/IntegrationDetails';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import { ThemeProvider } from './context/ThemeContext';
 import StaffDetailModal from './pages/Settings/StaffDetailModal';
 import IntegrationSetupPage from './pages/Settings/Integration/IntegrationSetupPage';
 import IntegrationWizard from './components/integration-wizard/IntegrationWizard';
+import Events from './pages/Events/Events';
 
 function App() {
   return (
@@ -61,13 +63,14 @@ function App() {
               <Route index element={<Settings />} />
               <Route path="profile" element={<GymProfile />} />
               <Route path="integrations" element={<Integrations />} />
-              
+              <Route path="integrations/:provider/details" element={<IntegrationDetails />} />
               <Route path="notifications" element={<Notifications />} />
               <Route path="payments" element={<Payments />} />
               <Route path="security" element={<Security />} />
             </Route>
             <Route path="integrations/:provider" element={<IntegrationSetupPage />} />
             <Route path="integrations/:provider/setup" element={<IntegrationWizard />} />
+            <Route path="events" element={<Events />} />
 
 
             <Route path="*" element={

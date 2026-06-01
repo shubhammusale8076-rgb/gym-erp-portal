@@ -11,10 +11,10 @@ const FilterButtons = ({
       {options.map((option) => (
         <button
           key={option}
-          className={`role-filter-btn ${selected === option ? 'active' : "" }`}
-          onClick={() => onChange(option)}
+          className={`role-filter-btn ${selected === (option.value || option) ? 'active' : ""}`}
+          onClick={() => onChange(option.value || option)}
         >
-          {option}
+          {option.label || option}
         </button>
       ))}
     </div>

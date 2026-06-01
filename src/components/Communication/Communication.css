@@ -1,0 +1,266 @@
+/* Communication Component Styles */
+
+/* Base Card */
+.communication-card {
+  padding: 0rem;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.comm-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  background: linear-gradient(to right, rgba(37, 211, 102, 0.02), transparent);
+}
+
+.comm-header-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(37, 211, 102, 0.1);
+  color: #25D366;
+  border-radius: 12px;
+}
+
+.comm-header-text h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.comm-header-text p {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.comm-card-body {
+  padding: 24px;
+}
+
+.comm-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+/* WhatsApp Action Button */
+.wa-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.wa-btn-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wa-btn-icon {
+  flex-shrink: 0;
+}
+
+.wa-spin-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Sizes */
+.wa-btn-sm {
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.wa-btn-md {
+  padding: 12px 16px;
+  font-size: 13px;
+}
+
+.wa-btn-lg {
+  padding: 14px 20px;
+  font-size: 14px;
+}
+
+/* Variants */
+.wa-btn-primary {
+  background: #25D366;
+  color: white;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+}
+
+.wa-btn-primary:hover:not(:disabled) {
+  background: #22c35e;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+}
+
+.wa-btn-secondary {
+  background: #E7FCEF;
+  color: #128C7E;
+}
+
+.wa-btn-secondary:hover:not(:disabled) {
+  background: #d4f7e1;
+}
+
+.wa-btn-outline {
+  background: transparent;
+  border: 1px solid #25D366;
+  color: #25D366;
+}
+
+.wa-btn-outline:hover:not(:disabled) {
+  background: rgba(37, 211, 102, 0.05);
+}
+
+.wa-btn-ghost {
+  background: transparent;
+  color: #64748b;
+}
+
+.wa-btn-ghost:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.04);
+  color: #25D366;
+}
+
+/* States */
+.wa-btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(100%);
+}
+
+.wa-btn-icon-only {
+  width: auto;
+  padding: 10px;
+}
+
+/* Bulk Modal */
+.bulk-wa-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.bulk-wa-modal {
+  background: white;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.bulk-wa-header {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.bulk-wa-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bulk-wa-icon {
+  color: #25D366;
+  background: rgba(37, 211, 102, 0.1);
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.bulk-wa-title h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.bulk-wa-body {
+  padding: 24px;
+}
+
+.audience-summary {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border: 1px dashed #cbd5e1;
+}
+
+.audience-stat h4 {
+  margin: 0 0 4px 0;
+  font-size: 12px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.audience-stat p {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.message-preview-box {
+  background: #E7FCEF;
+  border-left: 4px solid #25D366;
+  border-radius: 0 12px 12px 0;
+  padding: 16px;
+}
+
+.message-preview-box h5 {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  color: #128C7E;
+}
+
+.message-preview-box p {
+  margin: 0;
+  font-size: 13px;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.bulk-wa-footer {
+  padding: 20px 24px;
+  background: #f8fafc;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}

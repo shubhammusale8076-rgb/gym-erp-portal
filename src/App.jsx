@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -28,26 +28,66 @@ import Settings from './pages/Settings/Settings'
 import IntegrationDetails from './pages/Settings/Integration/IntegrationDetails';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import { ThemeProvider } from './context/ThemeContext';
-import StaffDetailModal from './pages/Settings/StaffDetailModal';
 import IntegrationSetupPage from './pages/Settings/Integration/IntegrationSetupPage';
 import IntegrationWizard from './components/integration-wizard/IntegrationWizard';
 import Events from './pages/Events/Events';
+import TrainerDetails from './pages/Trainer/TrainerDetails';
+import TrainerAssignmentManager from './pages/Trainer/TrainerAssignmentManager';
+import TrainerAttendance from './pages/Trainer/TrainerAttendance';
+import Toast from './components/Toast/Toast';
+import Roles from './pages/Settings/Roles';
 
-function App() {
+import PrivateRoute from './routes/PrivateRoute';
+import PublicRoute from './routes/PublicRoute';
+import MembershipManagement from './pages/Members/MembershipManagement/MembershipManagement';
+import MemberSubscriptionPage from './pages/Members/MemberSubscriptionPage/MemberSubscriptionPage';
+import IntegrationStatusPage from './pages/Settings/Integration/IntegrationStatusPage';
+
+import SessionModal from './components/SessionModal/SessionModal';
+import { useIdleTimeout } from './hooks/useIdleTimeout';
+import { useDispatch } from 'react-redux';
+import { logout, sessionExpired } from './redux/authSlice';
+import PaymentPage from './pages/Payments/PaymentPage';
+
+const AppContent = () => {
+  useIdleTimeout();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const handleStorageChange = (e) => {
+      if (e.key === 'auth_sync_logout') {
+        dispatch(logout());
+      } else if (e.key === 'auth_sync_login') {
+        // Option to reload or sync login state
+        window.location.reload();
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [dispatch]);
+
   return (
-
-    <ThemeProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
+    <>
+      <ScrollToTop />
+      <SessionModal />
+      <Routes>
+        <Route element={<PublicRoute />}>
           <Route path="/login" element={<Login />} />
+        </Route>
+
+        <Route element={<PrivateRoute />}>
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="members" element={<Members />} />
             <Route path="members/:id" element={<MemberDetail />} />
             <Route path="membership-plans" element={<Plans />} />
+            <Route path="membership-management" element={<MembershipManagement />} />
+            <Route path="members/:id/subscription" element={<MemberSubscriptionPage />} />
             <Route path="lead-management" element={<CRM />} />
             <Route path="trainer" element={<Trainer />} />
+            <Route path="trainer/:id" element={<TrainerDetails />} />
+            <Route path="trainer/assignment-member" element={<TrainerAssignmentManager />} />
+            <Route path="trainer-attendance" element={<TrainerAttendance />} />
             <Route path="attendance" element={<Attendance />} />
             <Route path="payments" element={<PaymentRecords />} />
             <Route path="payments/:id" element={<PaymentDetail />} />
@@ -58,11 +98,12 @@ function App() {
             <Route path="website-manager/testimonials" element={<TestimonialsManager />} />
             <Route path="website-manager/contact" element={<ContactManager />} />
             <Route path="users" element={<Users />} />
-            <Route path="users/:id" element={<StaffDetailModal />} />
+            <Route path="payment/:token" element={<PaymentPage />}/>
             <Route path="settings" element={<SettingWrapper />} >
               <Route index element={<Settings />} />
               <Route path="profile" element={<GymProfile />} />
               <Route path="integrations" element={<Integrations />} />
+              <Route path="roles" element={<Roles />} />
               <Route path="integrations/:provider/details" element={<IntegrationDetails />} />
               <Route path="notifications" element={<Notifications />} />
               <Route path="payments" element={<Payments />} />
@@ -70,6 +111,7 @@ function App() {
             </Route>
             <Route path="integrations/:provider" element={<IntegrationSetupPage />} />
             <Route path="integrations/:provider/setup" element={<IntegrationWizard />} />
+            <Route path="integrations" element={<IntegrationStatusPage />} />
             <Route path="events" element={<Events />} />
 
 
@@ -80,10 +122,23 @@ function App() {
               </div>
             } />
           </Route>
-        </Routes>
+
+        </Route>
+
+      </Routes>
+
+      <Toast />
+    </>
+  );
+};
+
+function App() {
+  return (
+    <ThemeProvider>
+      <BrowserRouter>
+        <AppContent />
       </BrowserRouter>
     </ThemeProvider>
-
   );
 }
 

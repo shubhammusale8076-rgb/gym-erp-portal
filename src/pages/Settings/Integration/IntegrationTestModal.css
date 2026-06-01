@@ -1,0 +1,150 @@
+.integration-test-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.72);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem;
+}
+
+
+
+.integration-test-modal-overlay .integration-test-modal {
+    width: 100%;
+    max-width: 1200px;
+    max-height: 98vh;
+    border-radius: var(--section-radius);
+    background: var(--bg-dark);
+    animation: modalFade 0.3s ease;
+}
+
+@keyframes modalFade {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(20px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.integration-test-modal-overlay .integration-test-modal .integration-test-header {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 15vh;
+    padding: 1.5rem 2rem;
+    border-bottom:1px solid rgba(9, 9, 9, 0.145);
+}
+
+.integration-test-modal-overlay .integration-test-modal .integration-test-header .integration-test-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.integration-test-modal-overlay .integration-test-modal .integration-test-header .integration-test-title img {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.integration-test-modal-overlay .integration-test-modal .integration-test-header .integration-test-title h2 {
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.integration-test-modal-overlay .integration-test-modal .integration-test-header .integration-test-title p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+}
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.integration-test-modal-overlay .integration-test-modal .integration-test-header .modal-close-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: none;
+    cursor:pointer;
+    color: var(--primary);
+    background:var(--primary-hover);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+.integration-test-modal-overlay .integration-test-modal .integration-test-header .modal-close-btn:hover {
+
+    background: rgba(255,255,255,0.12);
+
+    transform: rotate(90deg);
+}
+
+
+.integration-test-modal-overlay .integration-test-modal .integration-test-body {
+    height: 75vh;
+    padding: 2rem;
+    overflow: auto;
+    
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+.integration-test-modal-overlay .integration-test-modal .integration-test-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.integration-test-modal-overlay .integration-test-modal .integration-test-body::-webkit-scrollbar-thumb {
+    background:var(--primary);
+    border-radius: 999px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .integration-test-modal-overlay {
+        padding: 1rem;
+    }
+
+    .integration-test-header {
+        padding: 1.2rem;
+    }
+
+    .integration-test-body {
+        padding: 1.2rem;
+    }
+
+    .integration-test-title h2 {
+        font-size: 1.05rem;
+    }
+}

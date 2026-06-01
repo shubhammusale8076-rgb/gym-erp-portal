@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from "react";
 import './TrainerProfileModal.css'
-import { X, Camera, Users, Link as LinkIcon, Plus, Sun, Moon } from "lucide-react";
+import { X, Camera, Users, Link as LinkIcon, Plus, Upload } from "lucide-react";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { useDispatch } from "react-redux";
+import { deleteProfileImage, uploadProfileImage } from "../../apiservice/apiservice";
+import { showToast } from "../../redux/toastSlice";
 
 const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-
 
 const TrainerProfileModal = ({ isOpen, onClose, data, onSave }) => {
   const [trainer, setTrainer] = useState(null);
   const [newSkillText, setNewSkillText] = useState("");
+  const dispatch = useDispatch();
+  const [uploading, setUploading] = useState(false);
+  const [profileImageUrl, setProfileImageUrl] = useState('');
+  const [profileImagePublicId, setProfileImagePublicId] = useState('');
+
+
 
   useEffect(() => {
     if (data) {
-      setTrainer(data);
+      setTrainer({
+        ...data,
+        availability: data.availability || []
+      });
     }
   }, [data]);
 
@@ -21,13 +33,6 @@ const TrainerProfileModal = ({ isOpen, onClose, data, onSave }) => {
 
   const handleChange = (field, value) => {
     setTrainer(prev => ({ ...prev, [field]: value }));
-  };
-
-  const handleSocialChange = (field, value) => {
-    setTrainer(prev => ({
-      ...prev,
-      social: { ...prev.social, [field]: value }
-    }));
   };
 
   const handleAddSkill = (e) => {
@@ -51,21 +56,34 @@ const TrainerProfileModal = ({ isOpen, onClose, data, onSave }) => {
     }));
   };
 
-  const toggleDay = (day) => {
+  // ----------- AVAILABILITY HANDLERS -----------
+
+  const addAvailability = () => {
     setTrainer(prev => ({
       ...prev,
-      availability: prev.availability.includes(day)
-        ? prev.availability.filter(d => d !== day)
-        : [...prev.availability, day]
+      availability: [
+        ...(prev.availability || []),
+        { dayOfWeek: "MON", startTime: "", endTime: "" }
+      ]
     }));
   };
 
-  const toggleShift = (shift) => {
+  const updateAvailability = (index, field, value) => {
+    const updated = [...trainer.availability];
+    updated[index][field] = value;
+
     setTrainer(prev => ({
       ...prev,
-      shifts: prev.shifts.includes(shift)
-        ? prev.shifts.filter(s => s !== shift)
-        : [...prev.shifts, shift]
+      availability: updated
+    }));
+  };
+
+  const removeAvailability = (index) => {
+    const updated = trainer.availability.filter((_, i) => i !== index);
+
+    setTrainer(prev => ({
+      ...prev,
+      availability: updated
     }));
   };
 
@@ -74,13 +92,57 @@ const TrainerProfileModal = ({ isOpen, onClose, data, onSave }) => {
     onClose();
   };
 
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    try {
+      setUploading(true);
+
+      const data = await uploadProfileImage(file, "TRAINER");
+
+      // delete old image if exists
+      if (profileImagePublicId) {
+        await deleteProfileImage(profileImagePublicId);
+      }
+      dispatch(showToast({ message: data.message, type: "success" }));
+
+
+      setProfileImageUrl(data.url);
+      setProfileImagePublicId(data.publicId);
+
+    } catch (err) {
+      alert("Image upload failed");
+      console.log(err)
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  // 🔥 REMOVE IMAGE
+  const handleRemoveImage = async () => {
+    try {
+      if (profileImagePublicId) {
+        const response = await deleteProfileImage(profileImagePublicId);
+        dispatch(showToast({ message: response.message, type: "success" }));
+      }
+
+      setProfileImageUrl('');
+      setProfileImagePublicId('');
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const displayProfileImage =profileImageUrl || trainer?.profileImageUrl;
+
   // ---------------- UI ----------------
 
   return (
     <div className="tm-modal-overlay">
       <div className="tm-modal glass-panel">
 
-        {/* HEADER */}
         <div className="tm-modal-header">
           <div>
             <h2 className="tm-modal-title">Trainer Profile Settings</h2>
@@ -103,22 +165,35 @@ const TrainerProfileModal = ({ isOpen, onClose, data, onSave }) => {
               <span className="tm-section-label">PROFILE PHOTO</span>
 
               <div className="tm-avatar-wrapper">
-                {trainer.imageUrl ? (
-                  <img src={trainer.imageUrl} alt="Profile" className="tm-avatar" />
+                {displayProfileImage ? (
+                  <img src={displayProfileImage} alt="Profile" className="tm-avatar" />
                 ) : (
                   <div className="tm-avatar-placeholder">
                     <Camera size={40} />
                   </div>
                 )}
-                <button className="tm-badge-btn-photo">
-                  <Camera size={14} />
-                </button>
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="profileUpload"
+                  style={{ display: "none" }}
+                  onChange={handleImageUpload}
+                />
+                <label htmlFor="profileUpload" className="tm-badge-btn-photo">
+                  {uploading ? "..." : <Upload size={16} />}
+                </label>
               </div>
 
-              <button className="tm-btn-upload">Upload New Photo</button>
               <span className="tm-photo-hint">
                 Recommended: 800x800px high-res portrait.
               </span>
+
+              {profileImageUrl && (
+                <button type="button" className="btn-secondary" onClick={handleRemoveImage}>
+                  Remove Image
+                </button>
+              )}
+
             </div>
 
             {/* SOCIAL */}
@@ -130,9 +205,9 @@ const TrainerProfileModal = ({ isOpen, onClose, data, onSave }) => {
                 <input
                   type="text"
                   className="tm-modal-input"
-                  placeholder="@username"
-                  value={trainer.social.community}
-                  onChange={(e) => handleSocialChange("community", e.target.value)}
+                  placeholder="@instagram"
+                  value={trainer.instagramHandle}
+                  onChange={(e) => handleChange("instagramHandle", e.target.value)}
                 />
               </div>
 
@@ -142,8 +217,8 @@ const TrainerProfileModal = ({ isOpen, onClose, data, onSave }) => {
                   type="text"
                   className="tm-modal-input"
                   placeholder="linkedin.com/in/..."
-                  value={trainer.social.linkedin}
-                  onChange={(e) => handleSocialChange("linkedin", e.target.value)}
+                  value={trainer.linkedinUrl}
+                  onChange={(e) => handleChange("linkedinUrl", e.target.value)}
                 />
               </div>
             </div>
@@ -152,15 +227,15 @@ const TrainerProfileModal = ({ isOpen, onClose, data, onSave }) => {
           {/* RIGHT */}
           <div className="tm-modal-col-right">
 
-            {/* NAME + CERT */}
+            {/* BASIC INFO */}
             <div className="tm-form-row">
               <div className="tm-form-group">
                 <label className="tm-section-label">Trainer Name</label>
                 <input
                   type="text"
                   className="tm-modal-input tm-input-large"
-                  value={trainer.name}
-                  onChange={(e) => handleChange("name", e.target.value)}
+                  value={trainer.fullName}
+                  onChange={(e) => handleChange("fullName", e.target.value)}
                 />
               </div>
 
@@ -173,6 +248,40 @@ const TrainerProfileModal = ({ isOpen, onClose, data, onSave }) => {
                   onChange={(e) => handleChange("certifications", e.target.value)}
                 />
               </div>
+            </div>
+
+            {/* EMAIL + PHONE */}
+            <div className="tm-form-row">
+              <div className="tm-form-group">
+                <label className='tm-section-label'>Email</label>
+                <input
+                  type="email"
+                  className="tm-modal-input tm-input-large"
+                  value={trainer.email}
+                  onChange={(e) => handleChange("email", e.target.value)}
+                />
+              </div>
+
+              <div className="tm-form-group">
+                <label className='tm-section-label'>Phone</label>
+                <input
+                  type="text"
+                  className="tm-modal-input tm-input-large"
+                  value={trainer.phoneNumber}
+                  onChange={(e) => handleChange("phoneNumber", e.target.value)}
+                />
+              </div>
+            </div>
+
+            {/* EXPERIENCE */}
+            <div className="tm-form-group">
+              <label className='tm-section-label'>Experience (Years)</label>
+              <input
+                type="number"
+                className="tm-modal-input tm-input-large"
+                value={trainer.experienceInYears}
+                onChange={(e) => handleChange("experienceInYears", e.target.value)}
+              />
             </div>
 
             {/* SKILLS */}
@@ -216,58 +325,107 @@ const TrainerProfileModal = ({ isOpen, onClose, data, onSave }) => {
               />
             </div>
 
-            {/* AVAILABILITY */}
+            {/* AVAILABILITY (NEW MODEL) */}
             <div className="tm-form-group">
               <label className="tm-section-label">AVAILABILITY SCHEDULE</label>
 
-              <div className="tm-days-row">
-                {daysOfWeek.map(day => {
-                  const isActive = trainer.availability.includes(day);
-                  return (
+              <div className="tm-availability-list">
+
+                {(trainer.availability || []).map((slot, index) => (
+                  <div key={index} className="tm-form-row">
+
+                    <div className="tm-form-group">
+                      <select
+                        className="tm-modal-input"
+                        value={slot.dayOfWeek}
+                        onChange={(e) =>
+                          updateAvailability(index, "dayOfWeek", e.target.value)
+                        }
+                      >
+                        {daysOfWeek.map(day => (
+                          <option key={day} value={day}>{day}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="tm-form-group">
+                      <input
+                        type="time"
+                        className="tm-modal-input"
+                        value={slot.startTime}
+                        onChange={(e) =>
+                          updateAvailability(index, "startTime", e.target.value)
+                        }
+                      />
+                    </div>
+
+                    <div className="tm-form-group">
+                      <input
+                        type="time"
+                        className="tm-modal-input"
+                        value={slot.endTime}
+                        onChange={(e) =>
+                          updateAvailability(index, "endTime", e.target.value)
+                        }
+                      />
+                    </div>
+
                     <button
-                      key={day}
-                      className={`tm-day-circle ${isActive ? "active" : ""}`}
-                      onClick={() => toggleDay(day)}
                       type="button"
+                      className="tm-remove-btn"
+                      onClick={() => removeAvailability(index)}
                     >
-                      {day}
-                      <span className="tm-day-dot"></span>
+                      <X size={16} />
                     </button>
-                  );
-                })}
+
+                  </div>
+                ))}
+
+                <button
+                  type="button"
+                  className="tm-skill-add-btn"
+                  onClick={addAvailability}
+                >
+                  <Plus size={14} /> Add Slot
+                </button>
+
               </div>
+            </div>
 
-              <div className="tm-shifts-row">
-                <button
-                  className={`tm-shift-card ${trainer.shifts.includes("morning") ? "active" : ""}`}
-                  onClick={() => toggleShift("morning")}
-                  type="button"
-                >
-                  <Sun size={20} />
-                  <div>
-                    <span>MORNING</span>
-                    <span>06:00 AM - 11:00 AM</span>
-                  </div>
-                </button>
+            {/* STATUS */}
+            <div className="tm-form-group">
+              <label className="tm-section-label">Status</label>
 
-                <button
-                  className={`tm-shift-card ${trainer.shifts.includes("evening") ? "active" : ""}`}
-                  onClick={() => toggleShift("evening")}
-                  type="button"
-                >
-                  <Moon size={20} />
-                  <div>
-                    <span>EVENING</span>
-                    <span>04:00 PM - 09:00 PM</span>
-                  </div>
-                </button>
+              <div className="tm-toggle-row">
+                <ToggleSwitch
+                  label="Active"
+                  checked={trainer.active}
+                  onChange={(val) => handleChange("active", val)}
+                />
+
+                <ToggleSwitch
+                  label="Available"
+                  checked={trainer.available}
+                  onChange={(val) => handleChange("available", val)}
+                />
+
+                <ToggleSwitch
+                  label="Visible"
+                  checked={trainer.visibleOnWebsite}
+                  onChange={(val) => handleChange("visibleOnWebsite", val)}
+                />
+
+                <ToggleSwitch
+                  label="Featured"
+                  checked={trainer.featured}
+                  onChange={(val) => handleChange("featured", val)}
+                />
               </div>
             </div>
 
           </div>
         </div>
 
-        {/* FOOTER */}
         <div className="tm-modal-footer">
           <button className="btn-secondary" onClick={onClose}>
             Cancel

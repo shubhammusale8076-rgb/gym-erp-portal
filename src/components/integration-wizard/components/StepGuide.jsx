@@ -1,7 +1,7 @@
 import React from "react";
 import { ExternalLink, Info, Search } from "lucide-react";
 
-const StepGuide = ({ provider }) => {
+const StepGuide = ({ provider, config }) => {
     const providerName = provider ? provider.charAt(0).toUpperCase() + provider.slice(1) : 'Provider';
 
     return (
@@ -46,7 +46,7 @@ const StepGuide = ({ provider }) => {
                 </div>
 
                 <a
-                    href={`https://dashboard.${provider || 'stripe'}.com`}
+                    href={config.link}
                     target="_blank"
                     rel="noreferrer"
                     className="btn-primary open-dashboard-btn"

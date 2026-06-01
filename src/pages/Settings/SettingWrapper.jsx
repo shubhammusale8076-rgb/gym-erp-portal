@@ -16,6 +16,7 @@ const SettingWrapper = () => {
         { name: "Settings", path: "/settings" },
         { name: "Profile", path: "/settings/profile" },
         { name: "Security", path: "/settings/security" },
+        { name: "Roles", path: "/settings/roles" },
         { name: "Integrations", path: "/settings/integrations" },
         { name: "Notifications", path: "/settings/notifications" },
         { name: "Payments", path: "/settings/payments" }
@@ -35,6 +36,11 @@ const SettingWrapper = () => {
         "/settings/security": {
             title: "Security Settings",
             subtitle: "Protect your account and monitor system access.",
+            actions: []
+        },
+        "/settings/roles": {
+            title: "Roles Management",
+            subtitle: "Manage roles and permissions for your gym.",
             actions: []
         },
         "/settings/integrations": {

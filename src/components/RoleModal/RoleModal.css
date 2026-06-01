@@ -1,0 +1,327 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-overlay .role-modal {
+    background: #ffffff;
+    width: 1000px;
+    max-width: 95vw;
+    max-height: 90vh;
+    border-radius: var(--section-radius);
+    padding: 2rem 2.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.25);
+}
+
+.modal-overlay .role-modal .modal-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.modal-overlay .role-modal .modal-header div h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+
+.modal-overlay .role-modal .modal-header div p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+}
+
+.modal-overlay .role-modal .modal-header .close-modal-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s;
+}
+
+.modal-overlay .role-modal .modal-header .close-modal-btn:hover {
+    color: #1e293b;
+}
+
+
+.modal-overlay .role-modal .modal-body {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    padding-right: 1rem;
+    gap: 3rem;
+    overflow-y: auto;
+}
+
+.modal-overlay .role-modal .modal-body .role-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.modal-overlay .role-modal .modal-body .role-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.modal-overlay .role-modal .modal-body .role-form .form-group label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+}
+
+.modal-overlay .role-modal .modal-body .role-form .form-group input,
+.modal-overlay .role-modal .modal-body .role-form .form-group textarea {
+    padding: 1rem 0;
+    border: none;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 1.5rem;
+    outline: none;
+    transition: border-color 0.2s;
+    color: var(--primary);
+}
+
+.modal-overlay .role-modal .modal-body .role-form .form-group textarea {
+    font-size: 1rem;
+    min-height: 80px;
+    font-weight: 500;
+    resize: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #cbd5e0;
+}
+
+.form-group input:focus {
+    border-bottom-color: var(--primary);
+}
+
+/* Permission Matrix */
+.modal-overlay .role-modal .modal-body .role-form .matrix-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.matrix-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.permission-item {
+    background: var(--primary-hover);
+    padding: 1.5rem;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.perm-info h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.perm-info p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e2e8f0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--primary);
+}
+
+input:checked+.slider:before {
+    transform: translateX(24px);
+}
+
+/* Preview Section */
+.modal-preview-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.impact-card {
+    height: 300px;
+    border-radius: var(--section-radius);
+    overflow: hidden;
+    position: relative;
+}
+
+.impact-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.impact-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+    color: white;
+}
+
+.impact-overlay span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+}
+
+.impact-overlay h3 {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.impact-overlay p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+.summary-preview {
+    background: var(--primary-hover);
+    border-radius: var(--section-radius);
+    padding: 2rem;
+}
+
+.summary-preview h4 {
+    color: var(--primary);
+    margin: 0 0 1.5rem 0;
+    font-size: 1.1rem;
+}
+
+.summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+.summary-item .label {
+    color: var(--text-secondary);
+}
+
+.summary-item .value {
+    color: #1e293b;
+    font-weight: 700;
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 1.5rem 2.5rem 0rem;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.discard-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+}
+
+.footer-actions {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.save-draft-btn {
+    padding: 1rem 2.5rem;
+    border-radius: 100px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    color: var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.submit-btn {
+    padding: 1rem 2.5rem;
+    border-radius: 100px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 20px -5px rgba(107, 70, 193, 0.4);
+}

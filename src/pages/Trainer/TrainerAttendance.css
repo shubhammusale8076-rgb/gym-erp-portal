@@ -1,0 +1,153 @@
+.trainer-attendance-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.trainer-attendance-container .attendance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+.trainer-attendance-container .attendance-header .view-toggle {
+    background: var(--primary-hover);
+    padding: 6px;
+    border-radius: 50px;
+    display: flex;
+    gap: 4px;
+}
+
+.trainer-attendance-container .attendance-header .view-toggle .toggle-btn {
+    padding: 10px 24px;
+    border: none;
+    background: transparent;
+    border-radius: 50px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.trainer-attendance-container .attendance-header .view-toggle .toggle-btn.active {
+    background: white;
+    color: var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.trainer-attendance-container .trainer-filter-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0 2rem;
+}
+
+.trainer-attendance-container .table-container-wrapper .table-container td .trainer-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.trainer-attendance-container .table-container-wrapper .table-container td .trainer-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.trainer-attendance-container .table-container-wrapper .table-container td .trainer-initials {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.trainer-attendance-container .table-container-wrapper .table-container td .trainer-name {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Status Pills */
+.trainer-attendance-container .table-container-wrapper .table-container td .status-pill {
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.trainer-attendance-container .table-container-wrapper .table-container td .status-pill.present {
+    background: #f0fdf4;
+    color: #166534;
+}
+
+.trainer-attendance-container .table-container-wrapper .table-container td .status-pill.late {
+    background: #fffbeb;
+    color: #92400e;
+}
+
+.trainer-attendance-container .table-container-wrapper .table-container td .status-pill.absent {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.trainer-attendance-container .table-container-wrapper .table-container td .status-pill.on-leave {
+    background: #eff6ff;
+    color: #1e40af;
+}
+
+.trainer-attendance-container .table-container-wrapper .table-container td .edit-btn-circular {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.trainer-attendance-container .table-container-wrapper .table-container td .edit-btn-circular:hover {
+    background: #f3e8ff;
+}
+
+/* Footer */
+.trainer-attendance-container .attendance-footer {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .attendance-header {
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .attendance-table-card {
+        overflow-x: auto;
+    }
+}

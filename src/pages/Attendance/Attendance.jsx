@@ -28,7 +28,11 @@ const Attendance = () => {
       memberId: "#8821",
       avatar: "https://randomuser.me/api/portraits/women/65.jpg",
       checkIn: "08:15 AM",
+      checkOut: "10:15 AM",
       plan: "Elite",
+      source: "Biometric",
+      hours: "2",
+
     },
     {
       id: 2,
@@ -36,7 +40,11 @@ const Attendance = () => {
       memberId: "#9012",
       avatar: "https://randomuser.me/api/portraits/men/21.jpg",
       checkIn: "08:42 AM",
+      checkOut: "10:15 AM",
       plan: "Standard",
+      source: "Biometric",
+      hours: "2",
+
     },
     {
       id: 3,
@@ -44,7 +52,11 @@ const Attendance = () => {
       memberId: "#4432",
       avatar: "https://randomuser.me/api/portraits/women/44.jpg",
       checkIn: "09:05 AM",
+      checkOut: "11:15 AM",
       plan: "Platinum",
+      source: "Biometric",
+      hours: "2",
+
     },
     {
       id: 4,
@@ -52,7 +64,11 @@ const Attendance = () => {
       memberId: "#1290",
       avatar: "https://randomuser.me/api/portraits/men/32.jpg",
       checkIn: "09:12 AM",
+      checkOut: "11:15 AM",
       plan: "Platinum",
+      source: "Biometric",
+      hours: "2",
+
     },
     {
       id: 5,
@@ -60,7 +76,11 @@ const Attendance = () => {
       memberId: "#1290",
       avatar: "https://randomuser.me/api/portraits/men/32.jpg",
       checkIn: "09:30 AM",
+      checkOut: "--",
       plan: "Platinum",
+      source: "Biometric",
+      hours: "--",
+
     }
   ]);
 
@@ -153,68 +173,68 @@ const Attendance = () => {
 
 
       <div className="attendance-content">
-
-        <div className="active-members-section card">
-          <div className="members-section-header">
-            <h2 className="heading-5">Active Members</h2>
-            <div className="search-filter-group">
-              <div className="search-bar-wrapper">
-                <Search size={16} className="search-icon-inline" />
-                <input
-                  type="text"
-                  placeholder="Search members by name or ID..."
-                  className="search-input-pill"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </div>
-              <Dropdown
-                label={filterPlan || "All Plans"}
-                actions={[{
-                  label: "Clear",
-                  onClick: () => setFilterPlan("")
-                },
-                ...allPlans.map(g => ({
-                  label: g,
-                  onClick: () => setFilterPlan(g)
-                }))
-                ]}
+        <div className='attendance-table-content'>
+          <div className="search-filter-group">
+            <div className="search-bar-wrapper">
+              <Search size={16} className="search-icon-inline" />
+              <input
+                type="text"
+                placeholder="Search members by name or ID..."
+                className="search-input-pill"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
-
             </div>
+            <Dropdown
+              label={filterPlan || "All Plans"}
+              actions={[{
+                label: "Clear",
+                onClick: () => setFilterPlan("")
+              },
+              ...allPlans.map(g => ({
+                label: g,
+                onClick: () => setFilterPlan(g)
+              }))
+              ]}
+            />
           </div>
 
-          <div className="members-card-list">
-            {filteredActivity.length === 0 && (
-              <div className="empty-state" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
-                No recent activity found.
-              </div>
-            )}
-            {filteredActivity.map((member) => (
-              <div key={member.id} className="member-status-card">
-                <div className="member-main-info">
-                  <div className="avatar-rounded">
-                    <img src={member.avatar} alt={member.name} />
-                  </div>
-                  <div className="member-text">
-                    <h4 className="member-name-bold">{member.name}</h4>
-                    <p className="member-sub-info">
-                      {member.plan} • ID: {member.memberId}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="member-checkin-info">
-                  <div className="checkin-time-block">
-                    <span className="info-label">CHECKED IN</span>
-                    <span className="info-value-time">{member.checkIn}</span>
-                  </div>
-                  <button className="more-btn-circular">
-                    <MoreVertical size={16} />
-                  </button>
-                </div>
-              </div>
-            ))}
+          <div className="table-container-wrapper">
+            <table className="table-container">
+              <thead>
+                <tr>
+                  <th>MEMBER</th>
+                  <th>CHECK-IN</th>
+                  <th>CHECK-OUT</th>
+                  <th>PLAN</th>
+                  <th>SOURCE</th>
+                  <th>HOURS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredActivity.map(row => (
+                  <tr key={row.id}>
+                    <td>
+                      <div className="member-name-cell">
+                        {row.avatar ? (
+                          <img src={row.avatar} alt={row.name} className="member-avatar" />
+                        ) : (
+                          <div className="member-initials" style={{ backgroundColor: row.color }}>
+                            {row.initials}
+                          </div>
+                        )}
+                        <span className="member-name">{row.name}</span>
+                      </div>
+                    </td>
+                    <td>{row.checkIn}</td>
+                    <td>{row.checkOut}</td>
+                    <td>{row.plan}</td>
+                    <td>{row.source}</td>
+                    <td>{row.hours}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 

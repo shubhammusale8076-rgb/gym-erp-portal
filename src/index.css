@@ -20,7 +20,7 @@
   --badge-peach: #ffd7b5;
 
   --text-primary: #1d1d1f;
-  --text-secondary: #6e6e72;
+  --text-secondary: #717e91;
   --text-muted: #afafb6;
   --text-on-primary: #000000;
   --text-on-dark: #ffffff;
@@ -148,7 +148,7 @@ body {
   padding: 20px;
   border-radius: var(--section-radius);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
-
+  
 }
 
 a{
@@ -156,7 +156,7 @@ a{
 }
 
 .box-shadow {
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 
 }
 

@@ -1,0 +1,393 @@
+.assignment-manager-container {
+    display: flex;
+    gap: 32px;
+}
+
+.assignment-manager-container .assignment-main-content {
+    width: 75%;
+}
+
+
+/* Filter Section */
+.assignment-manager-container .assignment-main-content .filter-section {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.assignment-manager-container .assignment-main-content .filter-section .trainer-selector-wrapper label,
+.assignment-manager-container .assignment-main-content .filter-section .status-filter-wrapper label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.assignment-manager-container .assignment-main-content .filter-section .action-menu .menu-trigger.with-label {
+    width: 200px;
+    height: 49px;
+    padding: 6px 10px;
+    border: 1px solid var(--primary);
+    border-radius: var(--dropdown-radius);
+    gap: 6px;
+    font-size: 14px;
+}
+
+.assignment-manager-container .assignment-main-content .filter-section .action-menu .menu-dropdown {
+    position: absolute;
+    right: 0px;
+    top: 60px;
+    width: 200px;
+    border: 1px solid var(--primary);
+}
+
+
+.assignment-manager-container .assignment-main-content .filter-section .status-filter-wrapper .tab-filters {
+    background: var(--primary-hover);
+    padding: 8px;
+    border-radius: 12px;
+    display: flex;
+    border: 1px solid var(--primary-hover);
+}
+
+.assignment-manager-container .assignment-main-content .filter-section .status-filter-wrapper .tab-btn {
+    padding: 8px 25px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.assignment-manager-container .assignment-main-content .filter-section .status-filter-wrapper .tab-btn.active {
+    background: white;
+    color: var(--primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper {
+    margin-top: 20px;
+}
+
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-info-col {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-info-col .member-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-info-col .member-initials {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--primary-hover);
+    border: 1px solid var(--primary);
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-info-col .name-details .name {
+    font-weight: 600;
+    color: var(--primary);
+    margin: 0;
+    font-size: 15px;
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-info-col .name-details .email {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin: 2px 0 0 0;
+}
+
+/* Badges */
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-plan-col .plan-badge {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-plan-col .plan-badge.platinum {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-plan-col .plan-badge.elite {
+    background: #f3e8ff;
+    color: #6b21a8;
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-plan-col .plan-badge.standard {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-status-col .status-badge {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-status-col .status-badge.active {
+    background: #f3e8ff;
+    color: var(--primary);
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-status-col .status-badge.inactive {
+    background: #f3f4f6;
+    color: var(--text-secondary);
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-trainer-col .trainer-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-trainer-col .trainer-indicator .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-trainer-col .unassigned-text {
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 1px;
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-actions-col .assign-btn {
+    color: var(--primary);
+    background: transparent;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.assignment-manager-container .assignment-main-content .table-container-wrapper .member-row-card .member-actions-col .more-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+/* Sidebar */
+.assignment-manager-container .trainer-sidebar {
+    width: 320px;
+}
+
+.assignment-manager-container .trainer-sidebar .sidebar-card {
+    background: var(--primary-hover);
+    border-radius: var(--section-radius);
+    padding: 20px;
+    position: sticky;
+    top: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    text-align: center;
+}
+
+.assignment-manager-container .trainer-sidebar .sidebar-card .sidebar-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.assignment-manager-container .trainer-sidebar .sidebar-card .sidebar-status .status-indicator {
+    min-width: fit-content;
+    background: var(--bg-card);
+    color: #22c55e;
+    border-radius: 8px;
+    padding: 15px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.5px;
+}
+
+.assignment-manager-container .trainer-sidebar .sidebar-card .sidebar-status .status-indicator .pulse-dot {
+    width: 6px;
+    height: 6px;
+    background: #22c55e;
+    border-radius: 50%;
+}
+
+
+
+.assignment-manager-container .trainer-sidebar .sidebar-card .sidebar-status .edit-sidebar-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.assignment-manager-container .trainer-sidebar .sidebar-card .profile-image-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px auto;
+}
+
+.assignment-manager-container .trainer-sidebar .sidebar-card .profile-image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 4px;
+    background: var(--bg-card);
+    position: relative;
+    z-index: 2;
+}
+
+.assignment-manager-container .trainer-sidebar .sidebar-card .profile-image-container .image-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.assignment-manager-container .trainer-sidebar .sidebar-card .sidebar-profile h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0 0 10px 0;
+    color: var(--text-primary);
+}
+
+.assignment-manager-container .trainer-sidebar .sidebar-card .sidebar-profile .title {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 0 0 32px 0;
+}
+
+.assignment-manager-container .trainer-sidebar .capacity-section {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    text-align: left;
+    width: 100%;
+}
+
+.assignment-manager-container .trainer-sidebar .capacity-section .capacity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.assignment-manager-container .trainer-sidebar .capacity-section .capacity-header label {
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+}
+
+.assignment-manager-container .trainer-sidebar .capacity-section .capacity-header .count {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.assignment-manager-container .trainer-sidebar .capacity-section .capacity-header .total {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.assignment-manager-container .trainer-sidebar .capacity-section .progress-bar-container {
+    height: 6px;
+    background: #dfcef8;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.assignment-manager-container .trainer-sidebar .capacity-section .progress-bar-container .progress-bar {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.assignment-manager-container .trainer-sidebar .capacity-section .capacity-note {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0;
+    text-align: center;
+}
+
+.assignment-manager-container .trainer-sidebar .specializations-section {
+    text-align: left;
+    margin-bottom: 32px;
+}
+
+.assignment-manager-container .trainer-sidebar .specializations-section label {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.assignment-manager-container .trainer-sidebar .specializations-section .spec-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.assignment-manager-container .trainer-sidebar .specializations-section .spec-pill {
+    padding: 8px 16px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.assignment-manager-container .trainer-sidebar .view-roster-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--bg-card);
+
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.assignment-manager-container .trainer-sidebar .view-roster-btn:hover {
+    background: var(--primary);
+    color: white;
+}

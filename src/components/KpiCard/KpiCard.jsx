@@ -7,12 +7,12 @@ const KpiCard = ({ title, value, theme = 'teal', Icon = ChevronRight }) => {
     <div className={`kpi-card kpi-theme-${theme}`}>
       <div className="kpi-card-content">
         <div className="kpi-card-header">
-          <p className="kpi-card-title">{title}</p>
+        <h3 className="kpi-card-value">{value}</h3>
           <button className="kpi-card-action">
             <Icon size={20} className="kpi-action-icon" />
           </button>
         </div>
-        <h3 className="kpi-card-value">{value}</h3>
+          <p className="kpi-card-title">{title}</p>
       </div>
       
       {/* Wave Background Graphic */}
@@ -20,7 +20,7 @@ const KpiCard = ({ title, value, theme = 'teal', Icon = ChevronRight }) => {
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="kpi-wave-svg">
           <path 
             fill="currentColor" 
-            fillOpacity="0.15" 
+            fillOpacity="0.5" 
             d="M 25,100 C 45,100 55,55 70,55 C 80,55 85,65 100,45 L 100,100 Z"
           ></path>
         </svg>

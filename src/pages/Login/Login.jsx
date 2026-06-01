@@ -2,13 +2,46 @@ import React, { useState } from 'react';
 import { Mail, Lock, ArrowRight, Fingerprint, Key, Diamond } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
+import { useDispatch } from 'react-redux';
+import { showToast } from '../../redux/toastSlice';
+import { loginSuccess } from '../../redux/authSlice';
+import { loginUser } from '../../apiservice/apiservice';
 
 const Login = () => {
+  const [loginData, setLoginData] = useState({ userName: "", password: "" });
   const navigate = useNavigate();
+  const [error, setError] = useState();
+  const dispatch = useDispatch();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    navigate('/');
+    try {
+      const data = await loginUser(loginData);
+
+      const { token, id, role } = data;
+
+      // Save auth info via Redux
+      dispatch(loginSuccess({ token, userId: id, role }));
+
+      if (data?.token) {
+        dispatch(showToast({ message: "Login successful!", type: "success" }));
+        navigate('/')
+      }
+      else {
+        setError("Something went wrong!");
+        dispatch(showToast({ message: error.message || "Login failed", type: "error" }));
+
+      }
+    } catch (error) {
+      console.log(error)
+      dispatch(showToast({ message: error.message || "Login failed", type: "error" }));
+
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -20,14 +53,14 @@ const Login = () => {
             <span className="aura-brand-line"></span>
             AURA PREMIUM
           </div>
-          
+
           <h1 className="login-title">
             The sanctuary<br />
             of<br />
             <span className="purple-italic">elite</span><br />
             <span className="purple-italic">performance.</span>
           </h1>
-          
+
           <p className="login-subtitle">
             Curating the world's most exclusive fitness<br />
             experiences through sophisticated data and<br />
@@ -65,9 +98,12 @@ const Login = () => {
               <div className="aura-input-wrapper">
                 <Mail className="aura-input-icon" size={18} />
                 <input
+                  name="userName"
                   type="email"
                   className="aura-input"
-                  placeholder="name@aurapremium.com"
+                  placeholder="Enter email"
+                  value={loginData.userName}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -81,9 +117,12 @@ const Login = () => {
               <div className="aura-input-wrapper">
                 <Lock className="aura-input-icon" size={18} />
                 <input
+                  name="password"
                   type="password"
                   className="aura-input"
-                  placeholder="••••••••••••"
+                  placeholder="Enter password"
+                  value={loginData.password}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -115,7 +154,7 @@ const Login = () => {
           <span className="footer-copyright">© 2026 AURA PREMIUM GYM MANAGEMENT.</span>
           <div className="footer-links">
             <Link to="#">SUPPORT</Link>
-             <Link to="#">PRIVACY POLICY</Link>
+            <Link to="#">PRIVACY POLICY</Link>
           </div>
         </div>
       </div>

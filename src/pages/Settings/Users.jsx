@@ -1,38 +1,44 @@
-import React, { useState } from 'react';
+import { getToken, getUserId, getRole } from '../../utils/auth';
+import React, { useState, useEffect } from 'react';
 import { Search, Plus, Edit2, Trash2, X, Shield, User, Eye, EyeOff, AlertTriangle, UserPlus, TrendingUp, CalendarCheck, Activity, Users2 } from 'lucide-react';
 import './Users.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import KpiCard from '../../components/KpiCard/KpiCard';
 import FilterButtons from '../../components/FilterButtons/FilterButtons';
-import StaffDetailModal from './StaffDetailModal';
 import { useNavigate } from 'react-router-dom';
+import { getAllUsers } from '../../apiservice/apiservice';
+import Pagination from '../../components/Pagination/Pagination';
 
-const ROLES = ['Admin', 'Manager', 'Staff', 'Trainer', 'Receptionist'];
+const ROLES = [
+  { label: 'Admin', value: 'ROLE_ADMIN' },
+  { label: 'Owner', value: 'ROLE_OWNER' },
+  { label: 'Manager', value: 'ROLE_MANAGER' },
+  { label: 'Staff', value: 'ROLE_STAFF' },
+  { label: 'Trainer', value: 'ROLE_TRAINER' },
+  { label: 'Receptionist', value: 'ROLE_RECEPTIONIST' },
+  { label: 'Member', value: 'ROLE_MEMBER' },
+];
 const STATUS_OPTIONS = ['Active', 'Inactive'];
 
-const initialUsers = [
-  { id: 1, name: 'Ravi Sharma', email: 'ravi@gymsync.com', role: 'Admin', status: 'Active', createdAt: '2025-06-10', lastLogin: '2026-03-14' },
-  { id: 2, name: 'Priya Patel', email: 'priya@gymsync.com', role: 'Manager', status: 'Active', createdAt: '2025-08-01', lastLogin: '2026-03-13' },
-  { id: 3, name: 'Arjun Mehta', email: 'arjun@gymsync.com', role: 'Trainer', status: 'Active', createdAt: '2025-09-15', lastLogin: '2026-03-10' },
-  { id: 4, name: 'Sneha Joshi', email: 'sneha@gymsync.com', role: 'Receptionist', status: 'Inactive', createdAt: '2025-11-20', lastLogin: '2026-01-05' },
-  { id: 5, name: 'Karan Singh', email: 'karan@gymsync.com', role: 'Staff', status: 'Active', createdAt: '2026-01-08', lastLogin: '2026-03-14' },
-];
 
-const emptyForm = { name: '', email: '', role: 'Staff', status: 'Active', password: '', confirmPassword: '' };
+const emptyForm = { name: '', email: '', role: 'ROLE_STAFF', status: 'Active', password: '', confirmPassword: '' };
 
 const roleColors = {
-  Admin: { bg: '#ede9fe', color: '#7c3aed' },
-  Manager: { bg: '#dbeafe', color: '#1d4ed8' },
-  Staff: { bg: '#e0f2fe', color: '#0369a1' },
-  Trainer: { bg: '#dcfce7', color: '#15803d' },
-  Receptionist: { bg: '#fef9c3', color: '#a16207' },
+  ROLE_ADMIN: { bg: '#ede9fe', color: '#7c3aed' },
+  ROLE_MANAGER: { bg: '#dbeafe', color: '#1d4ed8' },
+  ROLE_STAFF: { bg: '#e0f2fe', color: '#0369a1' },
+  ROLE_TRAINER: { bg: '#dcfce7', color: '#15803d' },
+  ROLE_RECEPTIONIST: { bg: '#fef9c3', color: '#a16207' },
+  ROLE_OWNER: { bg: '#fef3c7', color: '#92400e' },
+  ROLE_MEMBER: { bg: '#fdc7feff', color: '#920e8cff' },
 };
 
-const getRoleStyle = (role) => roleColors[role] || { bg: '#f1f5f9', color: '#475569' };
+const getRoleStyle = (authority) => roleColors[authority] || { bg: '#f1f5f9', color: '#475569' };
 
 export default function Users() {
   const navigate = useNavigate();
-  const [users, setUsers] = useState(initialUsers);
+  const token = getToken();
+  const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [roleFilter, setRoleFilter] = useState('All');
   const [modalMode, setModalMode] = useState(null); // 'create' | 'edit' | 'delete'
@@ -41,14 +47,33 @@ export default function Users() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
+  const fetchAllUsers = async () => {
+    try {
+      const response = await getAllUsers(token);
+      console.log("users", response)
+      setUsers(response);
+    } catch (error) {
+      console.error('Error:', error.response || error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllUsers();
+  }, []);
 
   const filteredUsers = users.filter((u) => {
     const matchSearch =
-      u.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      u.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       u.email.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchRole = roleFilter === 'All' || u.role === roleFilter;
+    const matchRole = roleFilter === 'All' || u.authority === roleFilter;
     return matchSearch && matchRole;
   });
+
+  const totalPages = Math.ceil(filteredUsers.length / pageSize) || 1;
+  const currentUsers = filteredUsers.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   const openCreate = () => {
     setForm(emptyForm);
@@ -139,6 +164,10 @@ export default function Users() {
     if (errors[field]) setErrors((prev) => { const e = { ...prev }; delete e[field]; return e; });
   };
 
+  const getRoleLabel = (value) => {
+    return ROLES.find(r => r.value === value)?.label || value;
+  };
+
   return (
     <div className="users-page">
       <PageHeader
@@ -155,9 +184,9 @@ export default function Users() {
       />
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', margin: '24px 0' }}>
         <KpiCard title="Total Users" value={users.length} theme="teal" Icon={Users2} />
-        <KpiCard title="Active Users" value="42,500" theme="blue" Icon={TrendingUp} />
-        <KpiCard title="Inactive Users" value="342" theme="purple" Icon={CalendarCheck} />
-        <KpiCard title="Admins" value="24" theme="orange" Icon={Activity} />
+        <KpiCard title="Active Users" value={users.filter((u) => u.enabled === true).length} theme="blue" Icon={TrendingUp} />
+        <KpiCard title="Inactive Users" value={users.filter((u) => u.enabled === false).length} theme="purple" Icon={CalendarCheck} />
+        <KpiCard title="Admins" value={users.filter((u) => u.authority === 'ROLE_ADMIN').length} theme="orange" Icon={Activity} />
       </div>
 
       <div className="users-panel">
@@ -170,15 +199,15 @@ export default function Users() {
               placeholder="Search users by name or email…"
               className="search-input-pill"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
             />
           </div>
           <div className="users-filter-buttons">
-         
+
             <FilterButtons
-              options={['All', ...ROLES]}
+              options={['All', ...ROLES.map(r => ({ label: r.label, value: r.value }))]}
               selected={roleFilter}
-              onChange={setRoleFilter}
+              onChange={(val) => { setRoleFilter(val); setCurrentPage(1); }}
             />
           </div>
         </div>
@@ -197,33 +226,43 @@ export default function Users() {
               </tr>
             </thead>
             <tbody>
-              {filteredUsers.map((user) => {
-                const rs = getRoleStyle(user.role);
+              {currentUsers.map((user) => {
+                const rs = getRoleStyle(user.authority);
                 return (
                   <tr key={user.id} className="users-table-row">
                     <td onClick={() => navigate(`/users/${user.id}`)} style={{ cursor: 'pointer' }}>
                       <div className="users-name-col">
                         <div className="user-avatar" style={{ background: rs.bg, color: rs.color }}>
-                          {user.name.charAt(0)}
+                          {user.fullName.charAt(0)}
                         </div>
                         <div>
-                          <p className="users-font-medium" >{user.name}</p>
+                          <p className="users-font-medium" >{user.fullName}</p>
                           <p className="users-text-sm" >{user.email}</p>
                         </div>
                       </div>
                     </td>
                     <td onClick={() => { setSelectedUser(user); setModalMode('view'); }} style={{ cursor: 'pointer' }}>
                       <span className="role-badge" style={{ background: rs.bg, color: rs.color }}>
-                        {user.role}
+                        {getRoleLabel(user.authority)}
                       </span>
                     </td>
                     <td>
-                      <span className={`badge ${user.status === 'Active' ? 'badge-success' : 'badge-danger'}`}>
-                        {user.status}
+                      <span className={`badge ${user.enabled ? 'badge-success' : 'badge-danger'}`}>
+                        {user.enabled ? 'Active' : 'Inactive'}
                       </span>
                     </td>
-                    <td >{user.createdAt}</td>
-                    <td >{user.lastLogin}</td>
+                    <td >{user.creationDate}</td>
+                    <td>
+                      {user.lastLoginDate
+                        ? new Date(user.lastLoginDate).toLocaleString("en-IN", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })
+                        : "Not logged in yet"}
+                    </td>
                     <td>
                       <div className="users-actions-col">
                         <button
@@ -260,8 +299,15 @@ export default function Users() {
 
         <div className="users-footer">
           <p className="users-text-sm" style={{ color: 'var(--text-muted)' }}>
-            Showing {filteredUsers.length} of {users.length} users
+            Showing {filteredUsers.length > 0 ? ((currentPage - 1) * pageSize) + 1 : 0} to {Math.min(currentPage * pageSize, filteredUsers.length)} of {filteredUsers.length} users
           </p>
+          {filteredUsers.length > pageSize && (
+            <Pagination
+              totalPages={totalPages}
+              currentPage={currentPage}
+              onPageChange={setCurrentPage}
+            />
+          )}
         </div>
       </div>
 
@@ -277,7 +323,7 @@ export default function Users() {
 
             <div className="add-user-modal-body">
               <div className="input-grid">
-                
+
                 {/* Name */}
                 <div className="add-user-input-group">
                   <label className="add-user-label">FULL NAME {errors.name && <span className="error-msg-inline">*</span>}</label>
@@ -367,7 +413,7 @@ export default function Users() {
                     </button>
                   </div>
                 </div>
-                
+
               </div>
             </div>
 
@@ -409,11 +455,6 @@ export default function Users() {
         </div>
       )}
 
-      <StaffDetailModal 
-        isOpen={modalMode === 'view'} 
-        onClose={closeModal} 
-        staffUser={selectedUser} 
-      />
     </div>
   );
 }

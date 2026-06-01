@@ -7,58 +7,55 @@
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   z-index: 2000;
-  padding: 2rem;
-  overflow-y: auto;
 }
 
-.add-plan-modal {
-  background: white;
-  width: 100%;
-  max-width: 900px;
-  border-radius: 32px;
-  padding: 3.5rem;
+.add-plan-overlay .add-plan-modal {
+  background: var(--bg-dark);
+  border-radius: var(--section-radius);
+  width: 95%;
+  max-width: 1050px;
+  height: 90vh;
+  padding: 3rem 1rem 3rem 3rem;
+  animation: slideUp 0.3s ease-out;
   position: relative;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  margin: auto;
-  font-family: 'Inter', sans-serif;
-  color: #1f2937;
-  animation: slideUp 0.2s ease-out;
+
 }
+
+
 
 /* Header */
-.add-plan-header {
+.add-plan-overlay .add-plan-modal .add-plan-header {
   margin-bottom: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10%;
+  padding-right: 3rem;
 }
 
-.add-plan-header .title {
+.add-plan-overlay .add-plan-modal .add-plan-header .title {
   font-size: 2rem;
   font-weight: 800;
   color: #1f2937;
   letter-spacing: -0.02em;
-  margin: 0 0 0.5rem 0;
 }
 
-.add-plan-header .subtitle {
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: #9ca3af;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+.add-plan-overlay .add-plan-modal .add-plan-header .subtitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
 }
 
-.close-action-btn {
-  position: absolute;
-  top: 2.5rem;
-  right: 2.5rem;
+.add-plan-overlay .add-plan-modal .add-plan-header .close-action-btn {
   background: transparent;
   border: none;
-  color: #9ca3af;
+  color: var(--text-secondary);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -69,6 +66,15 @@
 
 .close-action-btn:hover {
   color: #4b5563;
+}
+
+.add-plan-body {
+  height: 80%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 3rem;
+  padding-bottom: 2rem;
+
 }
 
 /* Grid Layout */
@@ -93,17 +99,15 @@
 
 /* Section Labels */
 .section-label {
-  font-size: 0.6rem;
-  font-weight: 800;
-  color: #9ca3af;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
   margin-bottom: 0.75rem;
   display: block;
 }
 
 .section-label.purple-label {
-  color: #7e22ce;
+  color: var(--primary);
 }
 
 /* Left Column Fields */
@@ -114,28 +118,28 @@
 
 .input-pill {
   width: 100%;
-  background-color: #fdf5f9;
+  background-color: var(--primary-hover);
   border: none;
   padding: 1rem 1.25rem;
   border-radius: 9999px;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #1f2937;
+  color: var(--text-primary);
   transition: all 0.2s;
 }
 
 .input-pill:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #e9d5ff;
+  box-shadow: 0 0 0px 1px var(--primary);
 }
 
 .input-pill::placeholder {
-  color: #d1bdcd;
+  color: var(--text-secondary);
 }
 
 /* Monetization Card */
 .monetization-card {
-  background-color: #f6eaf3;
+  background-color: var(--primary-hover);
   border-radius: 24px;
   padding: 2rem 1.5rem;
   display: flex;
@@ -153,7 +157,7 @@
 .currency-sign {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #c9b4ca;
+  color: var(--primary);
   margin-top: 0.5rem;
 }
 
@@ -161,8 +165,8 @@
   background: transparent;
   border: none;
   font-size: 4rem;
-  font-weight: 800;
-  color: #c9b4ca;
+  font-weight: 700;
+  color: var(--primary);
   width: 100%;
   letter-spacing: -0.04em;
 }
@@ -172,12 +176,12 @@
 }
 
 .price-input::placeholder {
-  color: #d9c7d9;
+  color: var(--primary-light);
 }
 
 .billed-text {
   font-size: 0.7rem;
-  color: #9ca3af;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
@@ -185,7 +189,7 @@
 .cover-image-placeholder {
   width: 100%;
   height: 100px;
-  border-radius: 20px 20px 0 0;
+  border-radius: var(--section-radius);
   overflow: hidden;
   margin-top: auto;
 }
@@ -195,7 +199,7 @@
   height: 100%;
   object-fit: cover;
   opacity: 0.6;
-  filter: grayscale(100%);
+  filter: grayscale(80%);
 }
 
 /* Right Column: Core Benefits */
@@ -216,14 +220,14 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  color: #7e22ce;
+  color: var(--primary);
   font-size: 0.7rem;
   font-weight: 800;
   cursor: pointer;
 }
 
 .plus-icon-circle {
-  background-color: #7e22ce;
+  background-color: var(--primary);
   color: white;
   width: 16px;
   height: 16px;
@@ -241,14 +245,14 @@
 }
 
 .benefit-pill {
-  background: white;
-  border: 1px solid #f3f4f6;
+  background: var(--primary-hover);
+  border: 1px solid var(--primary-glow);
   border-radius: 9999px;
   padding: 0.85rem 1.25rem;
   display: flex;
   align-items: center;
   gap: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.015);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.015);
   position: relative;
 }
 
@@ -256,8 +260,8 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 2px solid #7e22ce;
-  color: #7e22ce;
+  border: 2px solid var(--primary);
+  color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -267,33 +271,29 @@
 .benefit-text {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #374151;
+  color: var(--text-primary);
   flex: 1;
 }
 
 .remove-benefit-btn {
   background: transparent;
   border: none;
-  color: #d1d5db;
+  color: var(--primary);
   cursor: pointer;
   padding: 0.25rem;
-  opacity: 0;
   transition: all 0.2s;
   position: absolute;
   right: 1rem;
 }
 
-.benefit-pill:hover .remove-benefit-btn {
-  opacity: 1;
-}
 
 .remove-benefit-btn:hover {
   color: #ef4444;
 }
 
 .new-benefit-pill {
-  background: #fdfdfd;
-  border: 1px dashed #e5e7eb;
+  background: var(--primary-hover);
+  border: 2px dashed var(--primary-glow);
   box-shadow: none;
   padding: 0.85rem 2rem;
 }
@@ -302,15 +302,14 @@
   width: 100%;
   background: transparent;
   border: none;
-  font-size: 0.8rem;
-  font-style: italic;
-  color: #6b7280;
+  font-size: 0.85rem;
+  color: var(--text-primary);
   outline: none;
   text-align: center;
 }
 
 .new-benefit-input::placeholder {
-  color: #9ca3af;
+  color: var(--text-primary);
 }
 
 /* Plan Settings */
@@ -319,8 +318,6 @@
 }
 
 .settings-card {
-  background-color: #f5eff9;
-  border-radius: 20px;
   padding: 1.5rem 1.5rem;
   display: flex;
   justify-content: space-between;
@@ -331,7 +328,7 @@
 .settings-info h4 {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #6d28d9;
+  color: var(--primary);
   margin: 0 0 0.25rem 0;
 }
 
@@ -372,14 +369,14 @@
   background: white;
   border-radius: 50%;
   transition: transform 0.3s;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.toggle-checkbox:checked + .toggle-label {
-  background: #7e22ce;
+.toggle-checkbox:checked+.toggle-label {
+  background: var(--primary);
 }
 
-.toggle-checkbox:checked + .toggle-label::after {
+.toggle-checkbox:checked+.toggle-label::after {
   transform: translateX(20px);
 }
 
@@ -400,60 +397,53 @@
 
 .marketplace-text {
   font-size: 0.55rem;
-  color: #9ca3af;
+  color: var(--text-secondary);
   text-align: right;
   line-height: 1.6;
   margin: 0;
 }
 
 .btn-cancel-text {
-  background: transparent;
-  border: none;
-  color: #4b5563;
-  font-weight: 600;
   font-size: 0.85rem;
+  padding: 0.8rem 1.5rem;
   cursor: pointer;
 }
 
-.btn-cancel-text:hover {
-  color: #1f2937;
-  text-decoration: underline;
-}
 
 .btn-solid-purple-pill {
-  background-color: #6d28d9;
-  color: white;
-  border: none;
-  padding: 0.9rem 2.5rem;
-  border-radius: 9999px;
   font-weight: 700;
   font-size: 0.9rem;
+  padding: 0.8rem 1.5rem;
+
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(109, 40, 217, 0.25);
   transition: all 0.2s;
 }
 
-.btn-solid-purple-pill:hover {
-  background-color: #5b21b6;
-  transform: translateY(-2px);
+.drag-handle{
+  cursor: grab;
 }
+
 
 @media (max-width: 768px) {
   .add-plan-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+
   .add-plan-footer {
     flex-direction: column;
     gap: 1.5rem;
   }
+
   .footer-right-actions {
     flex-direction: column;
     width: 100%;
   }
+
   .btn-solid-purple-pill {
     width: 100%;
   }
+
   .marketplace-text {
     text-align: center;
   }

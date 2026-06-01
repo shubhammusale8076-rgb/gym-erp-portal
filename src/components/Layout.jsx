@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/authSlice';
 import {
   Home,
   User,
@@ -19,7 +21,8 @@ import {
   UserStar,
   Images,
   MessageCircle,
-  Mail
+  Mail,
+  Badge
 } from 'lucide-react';
 import ProfileModal from './ProfileModal/ProfileModal';
 import NotificationModal from './NotificationModal/NotificationModal';
@@ -29,9 +32,10 @@ import ThemeSwitcher from './ThemeSwitcher/ThemeSwitcher';
 const Sidebar = () => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    localStorage.clear();
+    dispatch(logout());
     navigate("/login");
   };
   const navItems = [
@@ -45,12 +49,14 @@ const Sidebar = () => {
       category: 'OPERATIONS',
       items: [
         { name: 'Members List', path: '/members', icon: <User size={20} /> },
+        { name: 'Membership Management', path: '/membership-management', icon: <Badge size={20} /> },
+        { name: 'Users', path: '/users', icon: <ShieldCheck size={20} /> },
+        { name: 'Trainers', path: '/trainer', icon: <Dumbbell size={20} /> },
         { name: 'Attendance', path: '/attendance', icon: <Calendar size={20} /> },
+        { name: 'Trainer Attendance', path: '/trainer-attendance', icon: <Calendar size={20} /> },
         { name: 'Payments', path: '/payments', icon: <CreditCard size={20} /> },
         { name: 'Membership Plans', path: '/membership-plans', icon: <Layers size={20} /> },
         { name: 'Leads Management', path: '/lead-management', icon: <Target size={20} /> },
-        { name: 'Trainers', path: '/trainer', icon: <Dumbbell size={20} /> },
-        { name: 'Users', path: '/users', icon: <ShieldCheck size={20} /> },
       ]
     },
     {
@@ -137,10 +143,10 @@ const Header = () => {
           <h1 className="header-title">Welcome back Shubham 👋</h1>
         </div>
         <div className="header-right">
-          <div className="header-search">
+          {/* <div className="header-search">
             <Search size={18} className="search-icon" />
             <input type="text" placeholder="Search courses" className="search-input" />
-          </div>
+          </div> */}
 
           <div className="header-actions">
             <button className="icon-btn" onClick={() => setIsNotifOpen(true)}>

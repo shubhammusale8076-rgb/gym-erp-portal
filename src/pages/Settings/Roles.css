@@ -1,0 +1,646 @@
+
+.role-management-page {
+    min-height: 100vh;
+}
+
+.role-management-page .roles-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-bottom: 28px;
+    gap: 20px;
+}
+
+.role-management-page .filter-toolbar {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+}
+
+.role-management-page .filter-toolbar .toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg-card);
+    padding: 0.2rem 0.8rem;
+    border-radius: var(--section-radius);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+}
+
+.filter-select {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 0 16px;
+    height: 50px;
+    border-radius: 16px;
+    color: var(--text-secondary);
+}
+
+.role-management-page .filter-toolbar .toolbar-actions .view-switcher {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.04);
+    border-radius: 16px;
+    padding: 5px;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+
+.role-management-page .filter-toolbar .toolbar-actions .view-switcher button {
+    width: 42px;
+    height: 42px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.role-management-page .filter-toolbar .toolbar-actions .view-switcher button.active {
+    background:var(--primary-hover);
+    color: var(--primary);
+}
+
+
+
+.role-management-page .roles-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 24px;
+}
+
+.role-management-page .roles-layout .roles-sidebar {
+    background: var(--primary-hover);
+    height: fit-content;
+}
+
+
+.role-management-page .roles-layout .roles-sidebar .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.role-management-page .roles-layout .roles-sidebar .sidebar-header h3 {
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+.role-management-page .roles-layout .roles-sidebar .sidebar-header span {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.role-management-page .roles-layout .roles-sidebar .roles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+
+.role-management-page .roles-layout .roles-sidebar .roles-list .role-card {
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-radius: var(--section-radius);
+    background: var(--bg-card);
+}
+
+.role-management-page .roles-layout .roles-sidebar .roles-list .role-card .role-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.role-management-page .roles-layout .roles-sidebar .roles-list .role-card .role-card-top h4 {
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: var(--primary);
+}
+
+.role-management-page .roles-layout .roles-sidebar .roles-list .role-card .role-card-top p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.role-management-page .roles-layout .roles-sidebar .roles-list .role-card .role-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.role-management-page .roles-layout .roles-sidebar .roles-list .role-card .role-card-footer .role-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.system-badge,
+.custom-badge,
+.risk-badge {
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.system-badge {
+    background: rgba(255, 238, 238, 0.981);
+    color: #f87171;
+}
+
+.custom-badge {
+    background: rgba(59,130,246,0.15);
+    color: #60a5fa;
+}
+
+.risk-high {
+    background: rgba(239,68,68,0.15);
+    color: #f87171;
+}
+
+.risk-medium {
+    background: rgba(245,158,11,0.15);
+    color: #fbbf24;
+}
+
+.risk-low {
+    background: rgba(16,185,129,0.15);
+    color: #34d399;
+}
+
+.role-management-page .roles-layout .roles-sidebar .roles-list .role-card .role-users {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.role-management-page .roles-layout .roles-sidebar .roles-list .role-card .role-users .role-user-count{
+    color: var(--primary);
+}
+
+
+.role-management-page .roles-layout  .role-details-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 1rem;
+}
+
+.role-management-page .roles-layout  .role-details-panel .details-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.role-management-page .roles-layout  .role-details-panel .details-header .details-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.role-management-page .roles-layout  .role-details-panel .details-header .details-title h2 {
+    font-size: 1.9rem;
+    color: var(--primary);
+}
+
+.role-management-page .roles-layout  .role-details-panel .details-header p {
+    color: var(--text-secondary);
+}
+
+.role-management-page .roles-layout  .role-details-panel .details-header .details-actions {
+    display: flex;
+    align-items:center;
+    gap: 15px;
+}
+
+.role-management-page .roles-layout  .role-details-panel .details-header .details-actions button{
+    padding: 0.7rem 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease-in-out;
+
+}
+.role-management-page .roles-layout  .role-details-panel .details-header .details-actions .btn-danger{
+    background-color: var(--bg-card);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    border-radius: 999px ;
+}
+
+.role-management-page .roles-layout  .role-details-panel .details-header .details-actions .btn-secondary{
+    border: 1px solid var(--primary);
+}
+
+.role-management-page .roles-layout  .role-details-panel .details-header .details-actions button:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+.role-management-page .roles-layout  .role-details-panel .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 16px;
+    padding:0 1rem;
+}
+
+
+.role-management-page .roles-layout  .role-details-panel .card-header h3 {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.role-management-page .roles-layout  .role-details-panel .card-header p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .permissions-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .permissions-wrapper .permission-group {
+    overflow: hidden;
+    border-radius: var(--section-radius);
+    padding: 0.5rem;
+}
+
+
+.role-management-page .roles-layout  .role-details-panel .content-card .permissions-wrapper .permission-group .permission-group-header {
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.role-management-page .roles-layout  .role-details-panel .content-card .permissions-wrapper .permission-group .permission-group-header .group-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+}
+
+
+.role-management-page .roles-layout  .role-details-panel .content-card .permissions-wrapper .permission-group .permissions-list {
+    padding: 12px 18px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .permissions-wrapper .permission-group .permissions-list .permission-item {
+    width: 48%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-radius: var(--section-radius);
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .permissions-wrapper .permission-group .permissions-list .permission-item:last-child {
+    border-bottom: none;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .permissions-wrapper .permission-group .permissions-list .permission-item h5 {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .permissions-wrapper .permission-group .permissions-list .permission-item p {
+    color: var(--primary);
+    font-size: 13px;
+}
+
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row {
+    padding: 16px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row .user-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row .user-left .user-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 99px;
+    background: var(--primary-hover);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row .user-left .user-details {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row .user-left .user-details .user-phone {
+    font-size:1rem;
+    color: var(--primary);
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row .user-left .user-details .user-name-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row .user-left h5 {
+    font-size: 1rem;
+    color: var(--primary);
+
+
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row .user-left p {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row .user-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row .user-right .status-active,
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row .user-right .status-pending {
+    padding: 8px 12px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row .user-right .status-active {
+    background: rgb(218, 255, 231);
+    color: #07b871;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row .user-right .status-pending {
+    background: rgb(255, 245, 224);
+    color: #ff9900;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .users-table .user-row .user-right .table-action-btn {
+    height: 36px;
+    padding: 0 14px;
+    border-radius: 99px;
+    border: none;
+    background: rgba(255, 204, 204, 0.337);
+    color: var(--danger);
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .empty-users-state{
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.role-management-page .roles-layout  .role-details-panel .content-card .empty-users-state h4{
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.role-management-page .roles-layout  .role-details-panel .empty-state {
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+}
+
+.role-management-page .roles-layout  .role-details-panel .empty-state svg {
+    color: var(--primary);
+}
+
+.role-management-page .roles-layout  .role-details-panel .empty-state h3 {
+    font-size: 2rem;
+}
+
+.role-management-page .roles-layout  .role-details-panel .empty-state p {
+    color: var(--text-secondary);
+    max-width: 400px;
+}
+
+
+.role-management-page .modal-overlay  {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.role-management-page .modal-overlay .assign-user-modal {
+    width: 600px;
+    max-height: 85vh;
+    overflow: hidden;
+    border-radius: var(--section-radius);
+    background: var(--bg-dark);
+    display: flex;
+    flex-direction: column;
+}
+
+.role-management-page .modal-overlay .assign-user-modal .assign-modal-header {
+    padding: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.role-management-page .modal-overlay .assign-user-modal .assign-modal-header h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 6px;
+}
+
+.role-management-page .modal-overlay .assign-user-modal .assign-modal-header p {
+    color: var(--text-secondary);
+}
+
+.role-management-page .modal-overlay .assign-user-modal .modal-close-btn {
+    width: 38px;
+    height: 38px;
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.role-management-page .modal-overlay .assign-user-modal .assign-search-box {
+    margin: 0px 24px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.role-management-page .modal-overlay .assign-user-modal .assign-users-list {
+    padding: 0 24px 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.role-management-page .modal-overlay .assign-user-modal .assign-users-list .assign-user-card {
+    background: var(--bg-card);
+    border-radius: var(--section-radius);
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out   ;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.role-management-page .modal-overlay .assign-user-modal .assign-users-list .assign-user-card:hover {
+    border-color: rgba(232, 99, 241, 0.3);
+}
+
+.role-management-page .modal-overlay .assign-user-modal .assign-users-list .assign-user-card.selected {
+    border-color: var(--primary);
+    background: rgba(232, 99, 241, 0.08);
+}
+
+.role-management-page .modal-overlay .assign-user-modal .assign-users-list .assign-user-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.role-management-page .modal-overlay .assign-user-modal .assign-users-list .assign-user-left .assign-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius:999px;
+    background:var(--primary);
+    color: var(--bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.role-management-page .modal-overlay .assign-user-modal .assign-users-list .assign-user-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.role-management-page .modal-overlay .assign-user-modal .assign-users-list .assign-user-right .selected-icon{
+    color: var(--primary);
+}
+
+
+
+.role-management-page .modal-overlay .assign-user-modal .search-loading-state,
+.role-management-page .modal-overlay .assign-user-modal .empty-search-state {
+    min-height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 14px;
+    color: var(--text-secondary);
+}
+
+.role-management-page .modal-overlay .assign-user-modal .empty-search-state svg {
+    color: var(--primary);
+}
+
+.role-management-page .modal-overlay .assign-user-modal .empty-search-state p{
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+}
+
+.role-management-page .modal-overlay .assign-user-modal .empty-search-state p span{
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+.role-management-page .modal-overlay .assign-user-modal .search-loading-state {
+    font-size: 15px;
+}
+
+
+.role-management-page .modal-overlay .assign-user-modal .assign-modal-footer {
+    padding: 20px 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+}
+
+.role-management-page .modal-overlay .assign-user-modal .assign-modal-footer button{
+    padding: 0.8rem 1.8rem;
+}

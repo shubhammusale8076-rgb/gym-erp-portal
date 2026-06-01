@@ -1,109 +1,113 @@
-import React, { useState } from "react";
+import { getToken, getUserId, getRole } from '../../utils/auth';
+import React, { useEffect, useState } from "react";
 import "./Trainer.css";
 import { Plus, Filter, Download, Users, Users2, UserX, UserPlus, Edit2, Trash2 } from "lucide-react";
 import PageHeader from "../../components/PageHeader/PageHeader";
 import KpiCard from "../../components/KpiCard/KpiCard";
 import FilterButtons from "../../components/FilterButtons/FilterButtons";
 import TrainerProfileModal from "../../components/TrainerProfileModal/TrainerProfileModal";
+import { useNavigate } from "react-router-dom";
+import Pagination from "../../components/Pagination/Pagination";
+import { addTrainer, deleteTrainer, getAllTrainers, updateTrainer } from "../../apiservice/apiservice";
+import { useDispatch } from 'react-redux';
+import { showToast } from '../../redux/toastSlice';
+import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationModal';
 
-const trainers = [
-  {
-    id: 1,
-    name: "Alex Rivera",
-    email: "alex.rivera@fitmanager.com",
-    specialty: "Strength Training",
-    certifications: 'NASM-CPT, Precision Nutrition L1',
-    bio: 'Certified personal trainer with over 8 years of experience helping clients achieve their fitness goals through functional movement and strength training. Specialized in athletic performance and recovery protocols. I believe fitness is a communal journey.',
-    members: 24,
-    schedule: "Mon - Fri\n06:00 AM - 02:00 PM",
-    status: "Active",
-    imageUrl: "https://randomuser.me/api/portraits/men/32.jpg",
-    social: {
-      community: '@alex_the_coach',
-      linkedin: 'linkedin.com/in/arivera'
-    },
-    availability: ['MON', 'TUE', 'THU', 'FRI'],
-    shifts: ['morning'],
-    skills: ['Yoga', 'HIIT', 'Powerlifting'],
+// ✅ Updated mock data aligned with entity (summary only)
 
-  },
-  {
-    id: 2,
-    name: "Sarah Chen",
-    email: "s.chen@fitmanager.com",
-    specialty: "Yoga & Mindfulness",
-    members: 18,
-    schedule: "Tue - Sat\n08:00 AM - 04:00 PM",
-    status: "Active",
-    imageUrl: "https://randomuser.me/api/portraits/women/44.jpg"
-  },
-  {
-    id: 3,
-    name: "Elena Rodriguez",
-    email: "elena.r@fitmanager.com",
-    specialty: "Pilates Specialist",
-    members: 15,
-    schedule: "Wed - Sun\n10:00 AM - 06:00 PM",
-    status: "Active",
-    imageUrl: "https://randomuser.me/api/portraits/women/65.jpg"
-  },
-  {
-    id: 4,
-    name: "Mike Johnson",
-    email: "mike.j@fitmanager.com",
-    specialty: "HIIT Master",
-    members: 30,
-    schedule: "Returning Oct 15th",
-    status: "On Leave",
-    imageUrl: "https://randomuser.me/api/portraits/men/21.jpg"
-  }
-];
+
 
 const Trainer = () => {
-  const [selectedTrainer, setSelectedTrainer] = useState(null);
-  const [trainersList, setTrainersList] = useState(trainers);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(true);
+  const [trainersList, setTrainersList] = useState([]);
   const [isAddingTrainer, setIsAddingTrainer] = useState(false);
   const [editingTrainer, setEditingTrainer] = useState(null);
-  const [filterTags, setFilterTags] = useState("All")
-  const tags = ['All Specialties', 'Yoga', 'HIIT', 'Strength', 'Pilates', 'Zumba'];
 
-  const handleSaveTrainer = (formData) => {
-    if (editingTrainer) {
-      setTrainersList(prev =>
-        prev.map(t =>
-          t.id === editingTrainer.id
-            ? {
-              ...t,
-              name: formData.name,
-              specialty: formData.certifications,
-              imageUrl: formData.imageUrl || t.imageUrl
-            }
-            : t
-        )
-      );
-    } else {
-      const newTrainer = {
-        id: Date.now(),
-        name: formData.name,
-        email: "new@trainer.com",
-        specialty: formData.certifications,
-        members: 0,
-        schedule: "TBD",
-        status: "Active",
-        imageUrl: formData.imageUrl || "https://randomuser.me/api/portraits/lego/1.jpg"
-      };
+  const [filterTags, setFilterTags] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
-      setTrainersList(prev => [...prev, newTrainer]);
+  const [deletingTrainerId, setDeletingTrainerId] = useState(null);
+  const [confirmModal, setConfirmModal] = useState({
+    open: false,
+    trainerId: null,
+    name: null,
+  });
+
+  const tags = ['All', 'Yoga', 'HIIT', 'Strength', 'Pilates', 'Zumba'];
+
+  const fetchAllTrainer = async () => {
+    try {
+      const response = await getAllTrainers();
+      setTrainersList(response);
+    } catch (error) {
+      console.error('Error:', error.response || error.message);
     }
-
-    setIsAddingTrainer(false);
-    setEditingTrainer(null);
   };
 
-  const filterdTrainer = trainersList.filter((trainer) => {
-    const filterLower = filterTags === 'All' || trainer.specialty.toLowerCase().includes(filterTags.toLowerCase());
-    return filterLower;
-  })
+  useEffect(() => {
+    fetchAllTrainer();
+  }, []);
+
+  // ✅ Updated save logic (entity aligned)
+  const handleSaveTrainer = async (formData) => {
+
+    try {
+      if (editingTrainer) {
+        const response = await updateTrainer(editingTrainer.id, formData);
+        dispatch(showToast({ message: response.message, type: "success" }));
+
+      } else {
+        const response = await addTrainer(formData);
+        dispatch(showToast({ message: response.message, type: "success" }));
+      }
+
+      fetchAllTrainer();
+
+      setIsAddingTrainer(false);
+      setEditingTrainer(null);
+
+    } catch (error) {
+      console.log(error)
+      dispatch(showToast({ message: error.message, type: "error" }));
+
+    }
+
+  };
+
+  const handleDeleteTrainer = async (id) => {
+    try {
+      setDeletingTrainerId(id);
+      const response = await deleteTrainer(id);
+      dispatch(showToast({ message: response.message, type: "success" }));
+      fetchAllTrainer();
+      setConfirmModal({ open: false, memberId: null })
+    } catch (error) {
+      console.error('Error:', error.response || error.message);
+      dispatch(showToast({ message: error.message, type: "error" }));
+    }
+    finally {
+      setDeletingTrainerId(null);
+    }
+  };
+
+  // ✅ Updated filter (skills based)
+  const filteredTrainer = trainersList.filter((trainer) => {
+    if (filterTags === 'All') return true;
+
+    return trainer.skills?.some(skill =>
+      skill.toLowerCase().includes(filterTags.toLowerCase())
+    );
+  });
+
+  const totalPages = Math.ceil(filteredTrainer.length / pageSize) || 1;
+  const paginatedTrainers = filteredTrainer.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
 
   return (
     <div className="trainer-page">
@@ -121,27 +125,29 @@ const Trainer = () => {
         ]}
       />
 
+      {/* KPI */}
       <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', margin: '24px 0' }}>
-        <KpiCard title="Total Trainers" value="1,534" theme="teal" Icon={Users} />
-        <KpiCard title="Active Trainers" value="15" theme="blue" Icon={UserPlus} />
-        <KpiCard title="On Leave" value="3" theme="purple" Icon={UserX} />
+        <KpiCard title="Total Trainers" value={trainersList.length} theme="teal" Icon={Users} />
+        <KpiCard title="Active Trainers" value={trainersList.filter(t => t.active).length} theme="blue" Icon={UserPlus} />
+        <KpiCard title="Unavailable" value={trainersList.filter(t => !t.available).length} theme="purple" Icon={UserX} />
         <KpiCard title="Top Rated" value="9" theme="orange" />
       </section>
 
+      {/* FILTER */}
       <div className="trainer-filter">
         <div className="tags">
-
           <FilterButtons
-            options={['All', ...tags]}
+            options={tags}
             selected={filterTags}
-            onChange={setFilterTags}
+            onChange={(val) => { setFilterTags(val); setCurrentPage(1); }}
           />
         </div>
 
         <div className="filter-icons">
-          <button className="btn-primary"><Download size={18} /> Export</button>
+          <button className="btn-primary">
+            <Download size={18} /> Export
+          </button>
         </div>
-
       </div>
 
       {/* TABLE */}
@@ -150,51 +156,79 @@ const Trainer = () => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Specialty</th>
+              <th>Skills</th>
+              <th>Experience</th>
               <th>Assigned Members</th>
-              <th>Schedule</th>
               <th>Status</th>
               <th className="actions-column">ACTIONS</th>
             </tr>
           </thead>
 
           <tbody>
-            {filterdTrainer.map((trainer) => (
-              <tr key={trainer.id} onClick={() => setSelectedTrainer(trainer)} style={{ cursor: 'pointer' }}>
+            {paginatedTrainers.map((trainer) => (
+              <tr key={trainer.id}  >
 
+                {/* NAME */}
                 <td>
                   <div className="trainer-info">
-                    <img src={trainer.imageUrl} alt="" />
+                    <img src={trainer.profileImageUrl} alt="" />
                     <div>
-                      <p className="trainer-name">{trainer.name}</p>
+                      <p className="trainer-name" style={{ cursor: 'pointer' }}
+                        onClick={() => navigate(`/trainer/${trainer.id}`)}>{trainer.fullName}</p>
                       <span>{trainer.email}</span>
                     </div>
                   </div>
                 </td>
 
+                {/* SKILLS */}
                 <td>
                   <span className="specialty">
-                    {trainer.specialty}
+                    {trainer.skills?.slice(0, 2).join(", ")}
                   </span>
                 </td>
 
-                <td className="members">{trainer.members}</td>
-
-                <td className="schedule">
-                  {trainer.schedule}
-                </td>
-
+                {/* EXPERIENCE */}
                 <td>
-                  <span className={trainer.status === "Active" ? "status active" : "status leave"}>
-                    {trainer.status}
+                  {trainer.experienceInYears} yrs
+                </td>
+
+                {/* MEMBERS */}
+                <td className="members">
+                  {trainer.assignedMembersCount}
+                </td>
+
+                {/* STATUS */}
+                <td>
+                  <span className={trainer.available ? "status active" : "status leave"}>
+                    {trainer.available ? "Available" : "Busy"}
                   </span>
                 </td>
+
+                {/* ACTIONS */}
                 <td className="actions-cell">
                   <div className="row-actions">
-                    <button className="action-icon-btn edit-btn" title="Edit" onClick={(e) => { e.stopPropagation(); setEditingTrainer(trainer); setIsAddingTrainer(true); }}>
+                    <button
+                      className="action-icon-btn edit-btn"
+                      title="Edit"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setEditingTrainer(trainer);
+                        setIsAddingTrainer(true);
+                      }}
+                    >
                       <Edit2 size={16} />
                     </button>
-                    <button className="action-icon-btn delete-btn" title="Delete">
+
+                    <button className="action-icon-btn delete-btn" title="Delete"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setConfirmModal({
+                          open: true,
+                          trainerId: trainer.id,
+                          name: trainer.fullName,
+                        });
+                      }}
+                    >
                       <Trash2 size={16} />
                     </button>
                   </div>
@@ -205,15 +239,21 @@ const Trainer = () => {
           </tbody>
         </table>
       </div>
+      <footer className="members-footer" style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="showing-entries" style={{ color: 'var(--text-muted)', fontSize: '14px' }}>
+          Showing {filteredTrainer.length > 0 ? ((currentPage - 1) * pageSize) + 1 : 0} to {Math.min(currentPage * pageSize, filteredTrainer.length)} of {filteredTrainer.length} trainers
+        </div>
 
-      {selectedTrainer && (
-        <TrainerProfileModal
-          isOpen={selectedTrainer}
-          onClose={() => setSelectedTrainer(null)}
-          data={selectedTrainer}
-        />
-      )}
+        {filteredTrainer.length > pageSize && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+          />
+        )}
+      </footer>
 
+      {/* MODAL */}
       {isAddingTrainer && (
         <TrainerProfileModal
           isOpen={isAddingTrainer}
@@ -223,22 +263,52 @@ const Trainer = () => {
           }}
           data={
             editingTrainer || {
-              name: "",
-              certifications: "",
+              fullName: "",
+              email: "",
+              phoneNumber: "",
+              experienceInYears: 0,
               bio: "",
-              imageUrl: "",
+              profileImageUrl: "",
               skills: [],
-              availability: [],
-              shifts: [],
-              social: {
-                community: "",
-                linkedin: ""
-              }
+              certifications: "",
+              instagramHandle: "",
+              linkedinUrl: "",
+              availability: [], // ✅ NEW
+              active: true,
+              available: true,
+              visibleOnWebsite: true,
+              featured: false
             }
           }
           onSave={handleSaveTrainer}
         />
       )}
+
+      <ConfirmationModal
+        isOpen={confirmModal.open}
+        title="Delete Trainer"
+        description={
+          <>
+            Are you sure you want to permanently delete{" "}
+            <span className="highlight-name">
+              {confirmModal?.name}
+            </span>
+            ? This action cannot be undone.
+          </>
+        }
+        confirmText="Delete Trainer"
+        variant="danger"
+        loading={deletingTrainerId === confirmModal.trainerId}
+        onClose={() =>
+          setConfirmModal({
+            open: false,
+            trainerId: null,
+          })
+        }
+        onConfirm={() =>
+          handleDeleteTrainer(confirmModal.trainerId)
+        }
+      />
 
     </div>
   );

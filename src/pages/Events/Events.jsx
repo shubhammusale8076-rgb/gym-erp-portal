@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, Filter, MoreHorizontal, Plus, X } from 'lucide-react';
 import './Events.css';
+import Pagination from '../../components/Pagination/Pagination';
 
 const Events = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,6 +14,8 @@ const Events = () => {
     ]);
 
     const [newEvent, setNewEvent] = useState({ name: '', type: '', status: 'SUCCESS' });
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 10;
 
     const getStatusClass = (status) => {
         switch (status) {
@@ -36,6 +39,9 @@ const Events = () => {
         setIsModalOpen(false);
         setNewEvent({ name: '', type: '', status: 'SUCCESS' });
     };
+
+    const totalPages = Math.ceil(events.length / pageSize) || 1;
+    const paginatedEvents = events.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
     return (
         <div className="events-page">
@@ -90,7 +96,7 @@ const Events = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {events.map((evt) => (
+                        {paginatedEvents.map((evt) => (
                             <tr key={evt.id}>
                                 <td className="event-id">{evt.id}</td>
                                 <td className="event-name">
@@ -113,6 +119,19 @@ const Events = () => {
                         ))}
                     </tbody>
                 </table>
+
+                <footer className="members-footer" style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 10px' }}>
+                    <div className="showing-entries" style={{ color: 'var(--text-muted)', fontSize: '14px' }}>
+                        Showing {events.length > 0 ? ((currentPage - 1) * pageSize) + 1 : 0} to {Math.min(currentPage * pageSize, events.length)} of {events.length} events
+                    </div>
+                    {events.length > pageSize && (
+                        <Pagination
+                            totalPages={totalPages}
+                            currentPage={currentPage}
+                            onPageChange={setCurrentPage}
+                        />
+                    )}
+                </footer>
             </div>
 
             {/* Create Event Modal */}

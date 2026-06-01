@@ -87,7 +87,29 @@ function Settings() {
 
             </div>
 
-            {/* 4. Notifications & Alerts */}
+            {/* 4. Roles & Permissions */}
+            <div className="set-card set-card-roles">
+                <div className="set-notif-left">
+                    <div className="set-icon-box">
+                        <Bell size={22} className="set-icon-svg" />
+                    </div>
+                    <div className="overlay-icon">
+                        <UserCog size={180} className="set-overlay-icon" />
+                    </div>
+                    <h2 className="set-title">Roles & Permissions</h2>
+                    <p className="set-desc">
+                        Orchestrate your team. Add staff accounts, define bespoke
+                        roles, and calibrate system permissions.
+                    </p>
+                </div>
+                <div className="set-footer-user">
+                    <Link to="/settings/roles" className="set-link">
+                        Manage <ArrowRight size={14} />
+                    </Link>
+                </div>
+            </div>
+
+            {/* 5. Notifications & Alerts */}
             <div className="set-card set-card-notifications">
                 <div className="set-notif-left">
                     <div className="set-icon-box">
@@ -99,21 +121,10 @@ function Settings() {
                         class check-ins, and promotional bursts.
                     </p>
                 </div>
-                <div className="set-notif-right">
-                    <div className="set-toggle-card">
-                        <div className="set-toggle-icon-wrap"><Bell size={16} /></div>
-                        <span className="set-toggle-label">Membership<br />Expiry</span>
-                        <ToggleRight size={32} className="set-toggle-active" weight="fill" />
-                    </div>
-                    <div className="set-toggle-card inactive">
-                        <div className="set-toggle-icon-wrap"><Calendar size={16} /></div>
-                        <span className="set-toggle-label">Class<br />Reminders</span>
-                        <ToggleLeft size={32} className="set-toggle-inactive" />
-                    </div>
-                </div>
+
             </div>
 
-            {/* 5. Payments */}
+            {/* 6. Payments */}
             <div className="set-card set-card-payments">
                 <div className="set-icon-box">
                     <Wallet size={22} className="set-icon-svg" />
@@ -133,7 +144,7 @@ function Settings() {
                 </div>
             </div>
 
-            {/* 6. Security (Full Width) */}
+            {/* 7. Security (Full Width) */}
             <div className="set-card set-card-security">
                 <div className="set-sec-left">
                     <div className="set-sec-badge">

@@ -42,30 +42,22 @@
     height: 60px;
     background-color: var(--primary-glow);
     border-radius: 16px;
+    padding: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 /* Mocking razorpay blue square symbol */
-.integration-details-page .details-header .provider-icon-large .mock-icon-inner {
-    width: 28px;
-    height: 28px;
-    background-color: #0f172a;
+.integration-details-page .details-header .provider-icon-large .provider-logo-img {
+    width: 100%;
+    height: 100%;
     border-radius: 6px;
+    object-fit: cover;
     position: relative;
 }
-.mock-icon-inner::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background-color: #38bdf8;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+
+
 
 .integration-details-page .details-header .header-titles .title-row {
     display: flex;
@@ -473,3 +465,77 @@
     line-height: 1.6;
     overflow-x: auto;
 }
+
+/* Added dynamically generated status and chip classes */
+.integration-details-page .details-header .header-titles .title-row .live-badge.success {
+    color: #10b981;
+    background-color: rgba(16, 185, 129, 0.1);
+}
+.integration-details-page .details-header .header-titles .title-row .live-badge.success .dot {
+    background-color: #10b981;
+}
+
+.integration-details-page .details-header .header-titles .title-row .live-badge.error {
+    color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.1);
+}
+.integration-details-page .details-header .header-titles .title-row .live-badge.error .dot {
+    background-color: #ef4444;
+}
+
+.integration-details-page .details-header .header-titles .title-row .live-badge.warning {
+    color: #f59e0b;
+    background-color: rgba(245, 158, 11, 0.1);
+}
+.integration-details-page .details-header .header-titles .title-row .live-badge.warning .dot {
+    background-color: #f59e0b;
+}
+
+.integration-details-page .details-header .header-titles .title-row .live-badge.neutral {
+    color: #64748b;
+    background-color: rgba(100, 116, 139, 0.1);
+}
+.integration-details-page .details-header .header-titles .title-row .live-badge.neutral .dot {
+    background-color: #64748b;
+}
+
+.integration-details-page .btn-danger {
+    color: #ef4444 !important;
+    background-color: rgba(239, 68, 68, 0.1) !important;
+    border: none;
+}
+.integration-details-page .btn-danger:hover {
+    background-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+.integration-details-page .events-chip-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.integration-details-page .event-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #334155;
+}
+
+.integration-details-page .event-chip .chip-icon {
+    color: #10b981;
+}
+
+.integration-details-page .details-card .card-header .status-pill.warning {
+    color: #b45309;
+    background-color: #fffbeb;
+}
+.integration-details-page .details-card .card-header .status-pill.warning .dot {
+    background-color: #f59e0b;
+}
+

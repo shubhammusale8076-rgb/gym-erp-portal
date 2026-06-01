@@ -1,235 +1,633 @@
-import React, { useState } from 'react';
-import { User, Check, Upload, Tag, Asterisk, PlusCircle, ArrowRight, Camera, X, Phone } from 'lucide-react';
+import { getToken } from '../../utils/auth';
+import React, { useEffect, useState } from 'react';
+import {
+    User,
+    Upload,
+    Tag,
+    ArrowRight,
+    Camera,
+    X,
+    Phone
+} from 'lucide-react';
+
 import './AddMember.css';
 
-const AddMember = ({ onClose, onAdd, initialData }) => {
+import {
+    deleteProfileImage,
+    getPlanList,
+    uploadProfileImage
+} from '../../apiservice/apiservice';
+
+import { useDispatch } from 'react-redux';
+import { showToast } from '../../redux/toastSlice';
+
+const AddMember = ({ onClose, onAdd, onUpdate, member = null }) => {
+
+    const token = getToken();
+    const dispatch = useDispatch();
+
+    const isEditMode = !!member;
+
     const [formData, setFormData] = useState({
-        fullName: initialData?.name || '',
-        email: initialData?.email || '',
-        phoneNumber: '',
-        dateOfBirth: '',
-        membershipPlan: initialData?.plan || 'Elite',
-        emergencyContactName: '',
-        emergencyContactPhone: '',
-        trainer: ''
+        fullName: member?.fullName || '',
+        email: member?.email || '',
+        phoneNumber: member?.phoneNumber || '',
+        password: '',
+        aadhaarNumber: member?.aadhaarNumber || '',
+        planId: member?.planId || '',
+        address: member?.address || '',
+        emergencyContactName: member?.emergencyContactName || '',
+        emergencyContactNumber: member?.emergencyContactNumber || '',
+        durationInDays: member?.durationInDays || '',
     });
 
-    const isEdit = !!initialData;
+    const [plans, setPlans] = useState([]);
+
+    const [profileImageUrl, setProfileImageUrl] = useState(
+        member?.profileImageUrl || ''
+    );
+
+    const [profileImagePublicId, setProfileImagePublicId] = useState(
+        member?.profileImagePublicId || ''
+    );
+
+    const [uploading, setUploading] = useState(false);
+
+    const fetchAllPlans = async () => {
+        try {
+            const response = await getPlanList(token);
+            setPlans(response);
+        } catch (error) {
+            console.error('Error:', error.response || error.message);
+        }
+    };
+
+    useEffect(() => {
+        fetchAllPlans();
+    }, []);
+
+    const handleImageUpload = async (e) => {
+
+        const file = e.target.files[0];
+
+        if (!file) return;
+
+        try {
+
+            setUploading(true);
+
+            const data = await uploadProfileImage(
+                file,
+                "MEMBER"
+            );
+
+            const isExistingImage =
+                profileImagePublicId &&
+                profileImagePublicId !== member?.profileImagePublicId;
+
+            if (isExistingImage) {
+                await deleteProfileImage(profileImagePublicId, token);
+            }
+
+            dispatch(
+                showToast({
+                    message: data.message,
+                    type: "success"
+                })
+            );
+
+            setProfileImageUrl(data.url);
+            setProfileImagePublicId(data.publicId);
+
+        } catch (err) {
+
+            console.error(err);
+
+            dispatch(
+                showToast({
+                    message: "Image upload failed",
+                    type: "error"
+                })
+            );
+
+        } finally {
+            setUploading(false);
+        }
+    };
+
+    const handleRemoveImage = async () => {
+
+        try {
+
+            if (profileImagePublicId) {
+                await deleteProfileImage(profileImagePublicId, token);
+            }
+
+            setProfileImageUrl('');
+            setProfileImagePublicId('');
+
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const handleClose = async () => {
+
+        const isNewUploadedImage =
+            profileImagePublicId &&
+            profileImagePublicId !== member?.profileImagePublicId;
+
+        if (isNewUploadedImage) {
+            await deleteProfileImage(profileImagePublicId, token);
+        }
+
+        onClose();
+    };
+
+    const formatIndianPhoneNumber = (phone) => {
+
+    if (!phone) return '';
+
+    // Remove spaces/dashes/etc
+    let cleaned = phone.replace(/\D/g, '');
+
+    // Remove leading 0
+    if (cleaned.startsWith('0')) {
+        cleaned = cleaned.substring(1);
+    }
+
+    // Remove existing 91 if user entered
+    if (cleaned.startsWith('91') && cleaned.length > 10) {
+        cleaned = cleaned.substring(2);
+    }
+
+    // Final Indian format
+    return `91${cleaned}`;
+};
 
     const handleSubmit = (e) => {
+
         e.preventDefault();
-        onAdd(formData);
+
+        if (!formData.planId) {
+            alert("Please select a membership plan");
+            return;
+        }
+
+        if (!formData.durationInDays) {
+            alert("Please select duration");
+            return;
+        }
+
+        if (
+            formData.aadhaarNumber &&
+            formData.aadhaarNumber.length !== 12
+        ) {
+            alert("Aadhaar must be 12 digits");
+            return;
+        }
+
+        const payload = {
+            fullName: formData.fullName.trim(),
+            email: formData.email.trim().toLowerCase(),
+            phoneNumber: formatIndianPhoneNumber(formData.phoneNumber),
+            aadhaarNumber: formData.aadhaarNumber,
+            address: formData.address,
+            emergencyContactName: formData.emergencyContactName,
+            emergencyContactNumber: formData.emergencyContactNumber,
+            planId: formData.planId,
+            durationInDays: formData.durationInDays,
+            profileImageUrl: profileImageUrl || null,
+            profileImagePublicId: profileImagePublicId || null,
+        };
+
+        if (isEditMode) {
+            payload.password = formData.password;
+        }
+
+        if (isEditMode) {
+
+            onUpdate({
+                ...payload,
+                id: member.id
+            });
+
+        } else {
+
+            onAdd(payload);
+        }
     };
 
-    const handlePlanSelect = (plan) => {
-        setFormData({ ...formData, membershipPlan: plan });
+    const handlePlanSelect = (planId) => {
+        setFormData({
+            ...formData,
+            planId
+        });
     };
 
-    console.log(formData.membershipPlan)
+    const handleDurationSelect = (days) => {
+        setFormData({
+            ...formData,
+            durationInDays: days
+        });
+    };
 
     return (
         <div className="am-overlay">
+
             <div className="am-modal">
+
                 <header className="am-header">
-                        <span className="am-subtitle">MEMBER CURATOR</span>
-                        <h1 className="am-title">{isEdit ? 'Edit Member Profile' : 'Add New Member'}</h1>
-                        <p className="am-desc">
-                            {isEdit ? 'Update the details and membership tier for the existing athlete in the Elite Club ecosystem.' : 'Onboard a new athlete into the Elite Club ecosystem. Precision and clarity ensure a seamless transition into their new lifestyle.'}
-                        </p>
-                        <button type="button" className="btn-secondary" onClick={onClose}>
-                            <X  size={30}/>
-                        </button>
+
+                    <span className="am-subtitle">
+                        MEMBER CURATOR
+                    </span>
+
+                    <h1 className="am-title">
+                        {isEditMode
+                            ? 'Update Member'
+                            : 'Add New Member'}
+                    </h1>
+
+                    <p className="am-desc">
+                        {isEditMode
+                            ? 'Update member information and membership details.'
+                            : 'Onboard a new athlete into the Elite Club ecosystem.'}
+                    </p>
+
+                    <button
+                        type="button"
+                        className="btn-secondary"
+                        onClick={handleClose}
+                    >
+                        <X size={30} />
+                    </button>
+
                 </header>
 
-                <form className="am-grid" onSubmit={handleSubmit}>
+                <form
+                    className="am-grid"
+                    onSubmit={handleSubmit}
+                >
+
                     <div className="am-col">
 
                         <div className="am-card card">
+
                             <div className="am-card-header">
-                                <h3 className="am-card-title">Personal Information</h3>
+                                <h3 className="am-card-title">
+                                    Personal Information
+                                </h3>
                                 <User size={16} className="icon-purple" />
                             </div>
 
                             <div className="am-form-grid">
+
                                 <div className="am-form-group">
                                     <label>Full Name</label>
+
                                     <input
                                         type="text"
-                                        placeholder="e.g. Julian Sterling"
                                         value={formData.fullName}
-                                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                                        placeholder='Enter Full Name'
+                                        onChange={(e) =>
+                                            setFormData({
+                                                ...formData,
+                                                fullName: e.target.value
+                                            })
+                                        }
                                         required
                                     />
                                 </div>
+
                                 <div className="am-form-group">
-                                    <label>Email Address</label>
+                                    <label>Email</label>
+
                                     <input
                                         type="email"
-                                        placeholder="julian.s@auraelite.com"
                                         value={formData.email}
-                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        placeholder='Enter Email'
+                                        onChange={(e) =>
+                                            setFormData({
+                                                ...formData,
+                                                email: e.target.value
+                                            })
+                                        }
                                         required
                                     />
                                 </div>
+
                                 <div className="am-form-group">
                                     <label>Phone Number</label>
+
                                     <input
                                         type="tel"
-                                        placeholder="+1 (555) 000-0000"
                                         value={formData.phoneNumber}
-                                        onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+                                        placeholder='Enter Phone Number'
+                                        onChange={(e) => {
+                                            const value =
+                                                e.target.value.replace(/\D/g, '');
+
+                                            setFormData({
+                                                ...formData,
+                                                phoneNumber: value
+                                            });
+                                        }}
                                     />
                                 </div>
-                                <div className="am-form-group ">
-                                    <label>Date of Birth</label>
+
+                                {/* {isEditMode && (
+                                    <div className="am-form-group">
+                                        <label>Password</label>
+
+                                        <input
+                                            type="password"
+                                            placeholder='Enter Password'
+                                            value={formData.password}
+                                            onChange={(e) =>
+                                                setFormData({
+                                                    ...formData,
+                                                    password: e.target.value
+                                                })
+                                            }
+                                            required
+                                        />
+                                    </div>
+                                )} */}
+
+                                <div className="am-form-group">
+                                    <label>Aadhaar Number</label>
+
                                     <input
-                                        type="date"
-                                        value={formData.dateOfBirth}
-                                        onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
+                                        type="text"
+                                        maxLength={12}
+                                        placeholder='Enter Aadhaar Number'
+                                        value={formData.aadhaarNumber}
+                                        onChange={(e) =>
+                                            setFormData({
+                                                ...formData,
+                                                aadhaarNumber: e.target.value
+                                            })
+                                        }
                                     />
                                 </div>
+
                             </div>
+
+                            <div className="am-form-group">
+                                <label>Address</label>
+
+                                <input
+                                    type="text"
+                                    placeholder='Enter Address'
+                                    value={formData.address}
+                                    onChange={(e) =>
+                                        setFormData({
+                                            ...formData,
+                                            address: e.target.value
+                                        })
+                                    }
+                                />
+                            </div>
+
                         </div>
 
-                        <div className="am-card card">
+                        <div className="am-card card premium-card">
+
                             <div className="am-card-header mb-8">
-                                <div className="am-title-stack">
-                                    <h3 className="am-card-title">Membership Tier</h3>
-                                    <span className="am-card-subtitle">Select the curated experience for the member.</span>
-                                </div>
+                                <h3 className="am-card-title">
+                                    Membership Plan
+                                </h3>
+
                                 <Tag size={16} className="icon-purple" />
                             </div>
 
-                            <div className="am-tier-grid">
-                                {/* Standard */}
-                                <div
-                                    className={`am-tier-card ${formData.membershipPlan === 'Standard' ? 'selected' : ''}`}
-                                    onClick={() => handlePlanSelect('Standard')}
-                                >
-                                    <div className="tier-card-top">
-                                        <span className="tier-badge-outline">STANDARD</span>
-                                        <div className={`radio-circle ${formData.membershipPlan === 'Standard' ? 'active' : ''}`}></div>
+                            <div className="premium-tier-grid">
+
+                                {plans.map(plan => (
+
+                                    <div
+                                        key={plan.id}
+                                        className={`premium-tier-card ${
+                                            formData.planId === plan.id
+                                                ? 'active'
+                                                : ''
+                                        }`}
+                                        onClick={() =>
+                                            handlePlanSelect(plan.id)
+                                        }
+                                    >
+
+                                        <h3 className="tier-name">
+                                            {plan.name}
+                                        </h3>
+
+                                        <div className="tier-price">
+                                            <span className="currency">₹</span>
+
+                                            <span className="amount">
+                                                {plan.price}
+                                            </span>
+
+                                            <span className="period">
+                                                /month
+                                            </span>
+                                        </div>
+
                                     </div>
-                                    <div className="tier-price">
-                                        <h2>₹99</h2><span>/mo</span>
-                                    </div>
-                                    <ul className="tier-features">
-                                        <li><Check size={12} className="feature-check" /> Gym Access</li>
-                                        <li><Check size={12} className="feature-check" /> Locker Room</li>
-                                    </ul>
-                                </div>
-                                {/* Elite */}
-                                <div
-                                    className={`am-tier-card ${formData.membershipPlan === 'Elite' ? 'selected ' : ''}`}
-                                    onClick={() => handlePlanSelect('Elite')}
-                                >
-                                    <div className="tier-card-top">
-                                        <span className="tier-badge-solid">ELITE</span>
-                                        <div className="badge-star-icon">★</div>
-                                    </div>
-                                    <div className="tier-price">
-                                        <h2>$189</h2><span>/mo</span>
-                                    </div>
-                                    <ul className="tier-features">
-                                        <li className="purple-text"><Check size={12} className="feature-check purple" /> All Standard Perks</li>
-                                        <li className="purple-text"><Check size={12} className="feature-check purple" /> Pool & Sauna</li>
-                                        <li className="purple-text"><Check size={12} className="feature-check purple" /> 2 Guest Passes</li>
-                                    </ul>
-                                </div>
-                                {/* Platinum */}
-                                <div
-                                    className={`am-tier-card ${formData.membershipPlan === 'Platinum' ? 'selected' : ''}`}
-                                    onClick={() => handlePlanSelect('Platinum')}
-                                >
-                                    <div className="tier-card-top">
-                                        <span className="tier-badge-outline">PLATINUM</span>
-                                        <div className={`radio-circle ${formData.membershipPlan === 'Platinum' ? 'active' : ''}`}></div>
-                                    </div>
-                                    <div className="tier-price">
-                                        <h2>$299</h2><span>/mo</span>
-                                    </div>
-                                    <ul className="tier-features">
-                                        <li><Check size={12} className="feature-check" /> All Elite Perks</li>
-                                        <li><Check size={12} className="feature-check" /> Private Training</li>
-                                    </ul>
-                                </div>
+                                ))}
+
                             </div>
                         </div>
+
+                        <div className="am-card card premium-card">
+
+                            <div className="am-card-header">
+                                <h3 className="am-card-title">
+                                    Select Duration
+                                </h3>
+                            </div>
+
+                            <div className="premium-duration-grid">
+
+                                {[30, 90, 180, 365].map(days => {
+
+                                    const months =
+                                        Math.round(days / 30);
+
+                                    return (
+
+                                        <div
+                                            key={days}
+                                            className={`premium-duration-card ${
+                                                formData.durationInDays === days
+                                                    ? 'active'
+                                                    : ''
+                                            }`}
+                                            onClick={() =>
+                                                handleDurationSelect(days)
+                                            }
+                                        >
+
+                                            <div className="duration-main">
+
+                                                <span className="duration-months">
+                                                    {months}
+                                                </span>
+
+                                                <span className="duration-label">
+                                                    Month{months > 1 ? 's' : ''}
+                                                </span>
+
+                                            </div>
+
+                                            <div className="duration-days">
+                                                {days} Days
+                                            </div>
+
+                                        </div>
+                                    );
+                                })}
+
+                            </div>
+
+                        </div>
+
                     </div>
 
                     <div className="am-col">
 
-                        <div className="am-card card">
-                            <h3 className="am-card-title profile-title ">Profile Portrait</h3>
+                        <div className="am-card card am-profile-card">
+
+                            <h3 className="am-card-title">
+                                Profile Portrait
+                            </h3>
 
                             <div className="avatar-upload-area">
+
                                 <div className="avatar-circle">
-                                    <Camera size={48} className="avatar-placeholder-icon" strokeWidth={1.5} />
-                                    <button className="upload-btn-circle" type="button">
-                                        <Upload size={16} strokeWidth={3} />
-                                    </button>
+
+                                    {profileImageUrl ? (
+
+                                        <img
+                                            src={profileImageUrl}
+                                            alt="profile"
+                                            className="avatar-img"
+                                        />
+
+                                    ) : (
+
+                                        <Camera size={48} />
+
+                                    )}
+
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        id="profileUpload"
+                                        style={{ display: "none" }}
+                                        onChange={handleImageUpload}
+                                    />
+
+                                    <label
+                                        htmlFor="profileUpload"
+                                        className="upload-btn-circle"
+                                    >
+                                        {uploading
+                                            ? "..."
+                                            : <Upload size={16} />}
+                                    </label>
+
                                 </div>
+
                             </div>
 
-                            <p className="am-upload-hint">
-                                High-resolution portraits (JPEG, PNG) elevate the member directory experience.
+                            <p className='am-upload-hint'>
+                                Recommended: 800x800px high-res portrait.
                             </p>
+
+                            {profileImageUrl && (
+                                <button
+                                    type="button"
+                                    className="btn-secondary"
+                                    onClick={handleRemoveImage}
+                                >
+                                    Remove Image
+                                </button>
+                            )}
+
                         </div>
 
                         <div className="am-card card contact-card">
-                      
-                            <div className="am-card-header ">
-                                <h3 className="am-card-title">Emergency Contact</h3>
+
+                            <div className="am-card-header">
+
+                                <h3 className="am-card-title">
+                                    Emergency Contact
+                                </h3>
+
                                 <Phone size={16} className="icon-purple" />
+
                             </div>
 
                             <div className="am-form-stack">
+
                                 <input
                                     type="text"
+                                    className='pink-input'
                                     placeholder="Contact Name"
-                                    className="pink-input"
                                     value={formData.emergencyContactName}
-                                    onChange={(e) => setFormData({ ...formData, emergencyContactName: e.target.value })}
+                                    onChange={(e) =>
+                                        setFormData({
+                                            ...formData,
+                                            emergencyContactName: e.target.value
+                                        })
+                                    }
                                 />
+
                                 <input
                                     type="tel"
                                     placeholder="Phone Number"
-                                    className="pink-input"
-                                    value={formData.emergencyContactPhone}
-                                    onChange={(e) => setFormData({ ...formData, emergencyContactPhone: e.target.value })}
+                                    className='pink-input'
+                                    value={formData.emergencyContactNumber}
+                                    onChange={(e) => {
+
+                                        const value =
+                                            e.target.value.replace(/\D/g, '');
+
+                                        setFormData({
+                                            ...formData,
+                                            emergencyContactNumber: value
+                                        });
+                                    }}
                                 />
+
                             </div>
 
-                            <div className="am-divider"></div>
-
-                            {/* Assign Trainer */}
-                            <div className="am-card-header mb-8 justify-start gap-2">
-                                <h3 className="am-card-title">Assign Trainer</h3>
-                                <User size={16} className="icon-purple" />
-                            </div>
-
-                            <select
-                                className="pink-input"
-                                value={formData.trainer}
-                                onChange={(e) => setFormData({ ...formData, trainer: e.target.value })}
-                            >
-                                <option value="">No Trainer Assigned</option>
-                                <option value="trainer1">John Smith</option>
-                                <option value="trainer2">Jane Doe</option>
-                            </select>
                         </div>
 
-                        {/* Action Buttons */}
                         <div className="am-actions">
-                            <button type="submit" className="am-btn-submit">
-                                {isEdit ? 'Save Profile Changes' : 'Create Member Account'} <ArrowRight size={16} />
+
+                            <button
+                                type="submit"
+                                className="am-btn-submit"
+                                disabled={!formData.planId}
+                            >
+                                {isEditMode
+                                    ? 'Update Member'
+                                    : 'Create Member'}
+
+                                <ArrowRight size={16} />
                             </button>
 
                         </div>
 
                     </div>
+
                 </form>
+
             </div>
+
         </div>
     );
 };

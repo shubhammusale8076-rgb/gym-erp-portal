@@ -106,11 +106,15 @@
 }
 
 
-.am-overlay .am-modal .am-grid .am-col .am-card .am-card-header .am-card-title {
+.am-overlay .am-modal .am-grid .am-col .am-card .am-card-header .am-card-title,
+.am-overlay .am-modal .am-grid .am-col .am-card .am-card-title {
     font-size: 1.15rem;
     font-weight: 800;
     color: var(--text-primary);
+    margin-bottom: 1.1rem;
+    text-align: center;
 }
+
 
 .am-overlay .am-modal .am-grid .am-col .am-card .am-card-header .am-card-subtitle {
     font-size: 0.8rem;
@@ -136,13 +140,15 @@
     gap: 1.5rem;
 }
 
-.am-overlay .am-modal .am-grid .am-col .am-card .am-form-grid .am-form-group {
+.am-overlay .am-modal .am-grid .am-col .am-card .am-form-grid .am-form-group,
+.am-overlay .am-modal .am-grid .am-col .am-card .am-form-group {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.am-overlay .am-modal .am-grid .am-col .am-card .am-form-grid .am-form-group label {
+.am-overlay .am-modal .am-grid .am-col .am-card .am-form-grid .am-form-group label,
+.am-overlay .am-modal .am-grid .am-col .am-card .am-form-group label {
     font-size: 0.65rem;
     font-weight: 600;
     color: var(--text-secondary);
@@ -150,7 +156,8 @@
     text-transform: capitalize;
 }
 
-.am-overlay .am-modal .am-grid .am-col .am-card .am-form-grid .am-form-group input {
+.am-overlay .am-modal .am-grid .am-col .am-card .am-form-grid .am-form-group input,
+.am-overlay .am-modal .am-grid .am-col .am-card .am-form-group input{
     background-color: var(--primary-hover);
     border: none;
     border-radius: 12px;
@@ -161,146 +168,143 @@
     transition: background-color 0.2s;
 }
 
+.am-overlay .am-modal .am-grid .am-col .am-card .am-form-group {
+    margin-top: 1rem;
+}
+
 .am-overlay .am-modal .am-grid .am-col .am-card .am-form-grid .am-form-group input::placeholder {
     color: var(--text-primary);
 }
 
-.am-overlay .am-modal .am-grid .am-col .am-card .am-form-grid .am-form-group input:focus {
+.am-overlay .am-modal .am-grid .am-col .am-card .am-form-grid .am-form-group input:focus,
+.am-overlay .am-modal .am-grid .am-col .am-card .am-form-group input:focus {
     outline: none;
     border: 1px solid var(--primary);
 }
 
+.am-overlay .am-modal .am-grid .am-col .premium-card {
+    background: linear-gradient(145deg, #ffffff, #f5f0ff);
+    border-radius:var(--section-radius);
+    padding: 20px;
+}
+
 /* Tier Selection */
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
-    padding: 0.8rem;
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
 }
 
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card {
-    background: var;
-    border-radius: var(--section-radius);
-    padding: 1.5rem;
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-tier-grid .premium-tier-card {
+    padding: 18px;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid #eee;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    border: 2px solid var(--primary-hover);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
-
+    transition: all 0.25s ease;
 }
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card.selected {
-    border-color: var(--primary);
-    background: var(--primary-hover);
-
-}
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card:hover {
-    transform: translateY(-2px);
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-tier-grid .premium-tier-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
 }
 
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-tier-grid .premium-tier-card.active {
+  border: 2px solid var(--primary);
+  background: linear-gradient(145deg, #f3e8ff, #ffffff);
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.15);
 
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
+}
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-tier-grid .premium-tier-card .tier-name {
+  font-weight: 600;
+  margin-bottom: 8px;
 }
 
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-card-top .tier-badge-outline {
-    font-size: 0.55rem;
-    font-weight: 800;
-    color: var(--text-primary);
-    border: 1px solid var(--primary);
-    padding: 0.3rem 0.6rem;
-    border-radius: 99px;
-    letter-spacing: 0.05em;
+
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-tier-grid .premium-tier-card .tier-price {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
 }
 
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-card-top .tier-badge-solid {
-    font-size: 0.55rem;
-    font-weight: 800;
-    color: #ffffff;
-    background-color: var(--primary);
-    padding: 0.3rem 0.6rem;
-    border-radius: 99px;
-    letter-spacing: 0.05em;
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-tier-grid .premium-tier-card .tier-price .currency {
+  font-size: 14px;
+} 
+
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-tier-grid .premium-tier-card .tier-price .amount {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary);
 }
 
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-card-top .radio-circle {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    border: 1px solid #cbd5e1;
-}
-
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-card-top .radio-circle.active {
-    border: 4px solid var(--primary);
-}
-
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-card-top .badge-star-icon {
-    color: var(--primary);
-    font-size: 1rem;
-    line-height: 1;
-}
-
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-price {
-    display: flex;
-    align-items: baseline;
-    margin-bottom: 0.75rem;
-}
-
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-price h2 {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--text-primary);
-    margin: 0;
-}
-
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-price span {
-    font-size: 0.75rem;
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-tier-grid .premium-tier-card .tier-price .period {
+    font-size: 13px;
     color: var(--text-secondary);
-    font-weight: 600;
-    margin-left: 2px;
 }
 
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-features {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
+
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-duration-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-duration-grid .premium-duration-card {
+  padding: 16px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #eee;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-duration-grid .premium-duration-card.active {
+  border: 2px solid var(--primary);
+  background: linear-gradient(145deg, #f3e8ff, #ffffff);
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.15);
+}
+
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-duration-grid .premium-duration-card .duration-main {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-duration-grid .premium-duration-card .duration-months {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-duration-grid .premium-duration-card .duration-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-duration-grid .premium-duration-card .duration-days {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.am-overlay .am-modal .am-grid .am-col .premium-card .premium-duration-grid .premium-duration-card .duration-badge {
+  margin-top: 8px;
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.am-overlay .am-modal .am-grid .am-col .am-profile-card {
+    display:flex;
     flex-direction: column;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 16px;
 }
 
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-features li {
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: flex-start;
-    gap: 0.4rem;
-}
-
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-features li.purple-text {
-    color: var(--primary);
-    font-weight: 600;
-}
-
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-features .feature-check {
-    color: var(--text-secondary);
-    margin-top: 1px;
-}
-
-.am-overlay .am-modal .am-grid .am-col .am-card .am-tier-grid .am-tier-card .tier-features .feature-check.purple {
-    color: var(--primary);
-}
-
-.am-overlay .am-modal .am-grid .am-col .am-card .profile-title,
-.am-overlay .am-modal .am-grid .am-col .am-card .am-upload-hint{
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-/* Avatar Upload Area */
 .am-overlay .am-modal .am-grid .am-col .am-card .avatar-upload-area {
     display: flex;
     justify-content: center;
@@ -320,9 +324,12 @@
     box-shadow: 0 0 0 2px #f6eef6;
 }
 
-.am-overlay .am-modal .am-grid .am-col .am-card .avatar-upload-area .avatar-circle .avatar-placeholder-icon {
-    color: var(--text-secondary);
+.am-overlay .am-modal .am-grid .am-col .am-card .avatar-upload-area .avatar-circle .avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
+
 
 .am-overlay .am-modal .am-grid .am-col .am-card .avatar-upload-area .avatar-circle .upload-btn-circle {
     position: absolute;

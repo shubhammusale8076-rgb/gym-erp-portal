@@ -25,6 +25,7 @@
 .users-page .table-container-wrapper .table-container .users-table-row td {
   font-size: 0.85rem;
 }
+
 .users-page .table-container-wrapper .table-container td .users-name-col {
   display: flex;
   align-items: center;
@@ -60,8 +61,32 @@
   font-weight: 600;
 }
 
-.users-page .table-container-wrapper .table-container td .badge{
+.users-page .table-container-wrapper .table-container td .badge {
   font-size: 0.85rem;
+  display: inline-block;
+  padding: 4px 10px;
+  font-weight: 600;
+  border-radius: 999px;
+  text-align: center;
+  min-width: 70px;
+}
+
+.users-page .table-container-wrapper .table-container td .badge-success {
+  background-color: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.users-page .table-container-wrapper .table-container td .badge-danger {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.users-page .table-container-wrapper .table-container td .users-actions-col {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 /* ===== MODAL ===== */

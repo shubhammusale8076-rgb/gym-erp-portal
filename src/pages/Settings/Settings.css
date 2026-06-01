@@ -137,7 +137,8 @@
 }
 
 /* Specific Card: Gym Profile */
-.set-card-gym {
+.set-card-gym,
+.set-card-roles {
     grid-column: span 1;
 }
 
@@ -242,11 +243,10 @@
 
 /* Specific Card: Notifications */
 .set-card-notifications {
-    grid-column: span 2;
+    grid-column: span 1;
     display: flex;
     flex-direction: row;
     gap: 32px;
-    align-items: center;
 }
 
 .set-notif-left {
@@ -259,51 +259,6 @@
     margin-bottom: 0;
 }
 
-.set-notif-right {
-    flex: 1;
-    background-color: var(--primary-hover);
-    border-radius: 20px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.set-toggle-card {
-    background: var(--bg-card);
-    border-radius: 12px;
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-}
-
-.set-toggle-card.inactive {
-    opacity: 0.6;
-    background: rgba(255, 255, 255, 0.4);
-    box-shadow: none;
-}
-
-.set-toggle-icon-wrap {
-    color: #777;
-}
-
-.set-toggle-label {
-    flex-grow: 1;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #333;
-    line-height: 1.2;
-}
-
-.set-toggle-active {
-    color: #57208d;
-}
-
-.set-toggle-inactive {
-    color: #ccc;
-}
 
 /* Specific Card: Payments */
 .set-card-payments {

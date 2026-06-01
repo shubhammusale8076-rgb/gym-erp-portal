@@ -1,12 +1,15 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
-  ArrowLeft, Download, Mail, CheckCircle2, 
-  RotateCcw, CreditCard, User, History, 
-  Trophy, HelpCircle, Dumbbell, Eye
+  ArrowLeft, Download, Mail, CheckCircle2,
+  RotateCcw, CreditCard, User, History,
+  Trophy, HelpCircle, Dumbbell, Eye,
+  FileText, Send
 } from 'lucide-react';
 import './PaymentDetail.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
+import WhatsAppActionButton from '../../components/Communication/WhatsAppActionButton';
+import CommunicationActionsCard from '../../components/Communication/CommunicationActionsCard';
 
 const BILLING_HISTORY = [
   { id: 'TRX-88291', date: 'OCT 24, 2023', amount: 199.00, status: 'CURRENT' },
@@ -52,8 +55,8 @@ const PaymentDetail = () => {
               <div className="pd-ref-badges">
                 <span className="pd-status-pill paid">PAID</span>
                 <div className="pd-stripe-tag">
-                   <CheckCircle2 size={12} />
-                   <span>Secured via Stripe</span>
+                  <CheckCircle2 size={12} />
+                  <span>Secured via Stripe</span>
                 </div>
               </div>
             </div>
@@ -91,7 +94,7 @@ const PaymentDetail = () => {
               <div className="pd-items-list">
                 <div className="pd-item-row">
                   <div className="pd-item-icon-box purple">
-                     <Mail size={18} />
+                    <Mail size={18} />
                   </div>
                   <div className="pd-item-info">
                     <p className="pd-item-name">Monthly Membership</p>
@@ -102,7 +105,7 @@ const PaymentDetail = () => {
 
                 <div className="pd-item-row">
                   <div className="pd-item-icon-box lavender">
-                     <Dumbbell size={18} />
+                    <Dumbbell size={18} />
                   </div>
                   <div className="pd-item-info">
                     <p className="pd-item-name">Personal Training (1hr)</p>
@@ -144,8 +147,8 @@ const PaymentDetail = () => {
         <aside className="pd-right-column">
           <section className="pd-card history-card card">
             <div className="pd-card-header">
-               <History size={18} />
-               <h3 className="pd-card-title">Recent Billing History</h3>
+              <History size={18} />
+              <h3 className="pd-card-title">Recent Billing History</h3>
             </div>
             <div className="pd-timeline">
               {BILLING_HISTORY.map((item, idx) => (
@@ -170,39 +173,61 @@ const PaymentDetail = () => {
 
           {/* Account Standing */}
           <section className="pd-card card">
-             <div className="pd-standing-header">
-                <p className="pd-standing-label">Account Standing</p>
-                <h2 className="pd-standing-tier">Elite Tier</h2>
-             </div>
-             <div className="pd-standing-stats">
-                <div className="pd-standing-item">
-                   <span className="pd-standing-key">LTV (Lifetime Value)</span>
-                   <span className="pd-standing-val">₹2,840.00</span>
-                </div>
-                <div className="pd-standing-item">
-                   <span className="pd-standing-key">Member Since</span>
-                   <span className="pd-standing-val">Jan 2022</span>
-                </div>
-             </div>
-             <div className="pd-progress-box">
-                <div className="pd-progress-bar">
-                   <div className="pd-progress-fill" style={{ width: '75%' }} />
-                </div>
-                <p className="pd-progress-text">75% Renewal Likelihood Score</p>
-             </div>
+            <div className="pd-standing-header">
+              <p className="pd-standing-label">Account Standing</p>
+              <h2 className="pd-standing-tier">Elite Tier</h2>
+            </div>
+            <div className="pd-standing-stats">
+              <div className="pd-standing-item">
+                <span className="pd-standing-key">LTV (Lifetime Value)</span>
+                <span className="pd-standing-val">₹2,840.00</span>
+              </div>
+              <div className="pd-standing-item">
+                <span className="pd-standing-key">Member Since</span>
+                <span className="pd-standing-val">Jan 2022</span>
+              </div>
+            </div>
+            <div className="pd-progress-box">
+              <div className="pd-progress-bar">
+                <div className="pd-progress-fill" style={{ width: '75%' }} />
+              </div>
+              <p className="pd-progress-text">75% Renewal Likelihood Score</p>
+            </div>
           </section>
 
           {/* Help Box */}
           <section className="pd-card card">
-             <div className="pd-help-content">
-                <div className="pd-help-text-box">
-                   <h4 className="pd-help-title">Need help with this?</h4>
-                   <p className="pd-help-sub">Flag billing discrepancy</p>
-                </div>
-                <div className="pd-help-icon-box">
-                   <HelpCircle size={20} />
-                </div>
-             </div>
+            <div className="pd-help-content">
+              <div className="pd-help-text-box">
+                <h4 className="pd-help-title">Need help with this?</h4>
+                <p className="pd-help-sub">Flag billing discrepancy</p>
+              </div>
+              <div className="pd-help-icon-box">
+                <HelpCircle size={20} />
+              </div>
+            </div>
+          </section>
+
+          <section className="pd-card card" style={{ marginTop: '24px' }}>
+            <CommunicationActionsCard
+              title="Payment Communication"
+              description="Send receipts, invoices, or payment reminders directly via WhatsApp."
+            >
+              <WhatsAppActionButton
+                label="Send Receipt"
+                icon={FileText}
+                eventType="SEND_RECEIPT"
+                payload={{ transactionId: id }}
+                variant="primary"
+              />
+              <WhatsAppActionButton
+                label="Send Payment Reminder"
+                icon={Send}
+                eventType="PAYMENT_REMINDER"
+                payload={{ transactionId: id }}
+                variant="secondary"
+              />
+            </CommunicationActionsCard>
           </section>
         </aside>
       </main>

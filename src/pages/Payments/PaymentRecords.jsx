@@ -9,6 +9,7 @@ import './PaymentRecords.css';
 import KpiCard from '../../components/KpiCard/KpiCard';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import Pagination from '../../components/Pagination/Pagination';
 
 const PAYMENTS_DATA = [
   { id: 'TRX-88291', member: 'Elena Rodriguez', method: 'Visa •••• 4242', amount: 199.00, status: 'COMPLETED', date: 'Oct 24, 10:15 AM', avatar: 'https://i.pravatar.cc/150?u=elena' },
@@ -96,11 +97,11 @@ const PaymentRecords = () => {
               label={timeFilter}
               actions={[{
                 label: "Clear",
-                onClick: () => setTimeFilter("All Plans")
+                onClick: () => { setTimeFilter("All Plans"); setCurrentPage(1); }
               },
               ...timeLine.map(g => ({
                 label: g,
-                onClick: () => setTimeFilter(g)
+                onClick: () => { setTimeFilter(g); setCurrentPage(1); }
               }))
               ]}
             />
@@ -108,11 +109,11 @@ const PaymentRecords = () => {
               label={statusFilter || "All Status"}
               actions={[{
                 label: "Clear",
-                onClick: () => setStatusFilter("")
+                onClick: () => { setStatusFilter(""); setCurrentPage(1); }
               },
               ...paymentStatus.map(g => ({
                 label: g,
-                onClick: () => setStatusFilter(g)
+                onClick: () => { setStatusFilter(g); setCurrentPage(1); }
               }))
               ]}
             />
@@ -176,10 +177,13 @@ const PaymentRecords = () => {
 
           <div className="pagination-footer" >
             <span>Showing {filteredPayments.length > 0 ? ((currentPage - 1) * itemsPerPage) + 1 : 0} to {Math.min(currentPage * itemsPerPage, filteredPayments.length)} of {filteredPayments.length} transactions</span>
-            <div className='pagination-btn-wrapper'>
-              <button className='pagination-btn' onClick={() => setCurrentPage(Math.max(1, currentPage - 1))} disabled={currentPage === 1} >Prev</button>
-              <button className='pagination-btn' onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))} disabled={currentPage === totalPages} >Next</button>
-            </div>
+            {filteredPayments.length > itemsPerPage && (
+              <Pagination
+                totalPages={totalPages}
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+              />
+            )}
           </div>
         </div>
 

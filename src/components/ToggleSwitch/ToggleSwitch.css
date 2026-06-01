@@ -1,0 +1,56 @@
+/* Wrapper */
+.ts-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Label */
+.ts-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Switch */
+.ts-switch {
+  width: 40px;
+  height: 22px;
+  border-radius: 20px;
+  background:#cfd4da;
+  position: relative;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+}
+
+/* Thumb */
+.ts-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: all 0.25s ease;
+}
+
+/* ON state */
+.ts-switch.ts-on {
+  background: var(--primary);
+}
+
+.ts-switch.ts-on .ts-thumb {
+  transform: translateX(18px);
+}
+
+/* Hover */
+.ts-switch:hover {
+  transform: scale(1.05);
+}
+
+/* Disabled */
+.ts-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

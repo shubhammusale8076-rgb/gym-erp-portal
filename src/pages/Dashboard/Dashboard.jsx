@@ -1,9 +1,10 @@
-import React from 'react';
-import { Users, TrendingUp, CalendarCheck, Activity, PlusCircle, Download } from 'lucide-react';
+import React, { useState } from 'react';
+import { Users, TrendingUp, CalendarCheck, Activity, PlusCircle, Download, MessageCircle } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import KpiCard from '../../components/KpiCard/KpiCard';
 import './Dashboard.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
+import BulkWhatsAppModal from '../../components/Communication/BulkWhatsAppModal';
 
 const chartData = [
   { name: 'JAN', value: 10 },
@@ -15,12 +16,20 @@ const chartData = [
 ];
 
 const Dashboard = () => {
+  const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
+
   return (
     <div className="dashboard-container">
       <PageHeader
         title="Dashboard Overview"
         subtitle="Curating the peak performance of Elite Club"
         actions={[
+          {
+            label: "Bulk Broadcast",
+            icon: <MessageCircle size={16} />,
+            onClick: () => setIsBulkModalOpen(true),
+            className: "btn-secondary"
+          },
           {
             label: "Download Report",
             icon: <Download size={16} />,
@@ -234,11 +243,17 @@ const Dashboard = () => {
 
         {/* Floating Action Buttons */}
         <div className="floating-actions">
+          <button className="fab fab-secondary" onClick={() => setIsBulkModalOpen(true)}><MessageCircle size={24} /></button>
           <button className="fab fab-secondary"><Activity size={24} /></button>
           <button className="fab fab-primary"><PlusCircle size={28} /></button>
         </div>
 
       </div>
+
+      <BulkWhatsAppModal
+        isOpen={isBulkModalOpen}
+        onClose={() => setIsBulkModalOpen(false)}
+      />
     </div>
   );
 };

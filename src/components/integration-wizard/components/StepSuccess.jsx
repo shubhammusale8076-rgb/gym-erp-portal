@@ -1,12 +1,13 @@
 import React from "react";
 import { Check, MonitorPlay, CreditCard } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const StepSuccess = ({ provider = "Stripe" }) => {
+  const navigate = useNavigate();
   const providerName = provider ? provider.charAt(0).toUpperCase() + provider.slice(1) : "Integration";
 
   return (
-    <div className="step-success-container">
-      <div className="success-top-accent"></div>
+    <div className="step-success-container card">
       
       <div className="success-check-circle">
         <Check size={36} strokeWidth={3} />
@@ -41,8 +42,8 @@ const StepSuccess = ({ provider = "Stripe" }) => {
       </div>
 
       <div className="success-actions">
-        <button className="btn-dashboard">Go to Dashboard</button>
-        <button className="btn-logs">View Connection Logs</button>
+        <button className="btn-primary" onClick={()=>navigate('/settings/integrations')}>Manage Integrations</button>
+        <button className="btn-logs" onClick={()=>navigate('/setting/events')}>View Events Page</button>
       </div>
     </div>
   );

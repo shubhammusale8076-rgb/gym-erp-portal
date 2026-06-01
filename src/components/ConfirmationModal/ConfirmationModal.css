@@ -1,0 +1,155 @@
+/* ================================
+   PREMIUM CONFIRMATION MODAL
+================================ */
+
+.confirmation-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.confirmation-overlay .confirmation-modal {
+    width: 100%;
+    max-width: 440px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(20px);
+    border-radius:var(--section-radius);
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow:
+        0 10px 40px rgba(15, 23, 42, 0.12),
+        0 2px 10px rgba(15, 23, 42, 0.06);
+}
+
+.confirmation-overlay .confirmation-modal .confirmation-header{
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+}
+
+/* Icon */
+.confirmation-overlay .confirmation-modal .confirmation-header .modal-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+/* Variants */
+.confirmation-overlay .confirmation-modal .confirmation-header .modal-icon.danger {
+    color: #dc2626;
+}
+
+.confirmation-overlay .confirmation-modal .confirmation-header .modal-icon.warning {
+    color: #d97706;
+}
+
+.confirmation-overlay .confirmation-modal .confirmation-header .modal-icon.info {
+    color: #2563eb;
+}
+
+/* Content */
+.confirmation-overlay .confirmation-modal .confirmation-header  h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #dc2626;
+}
+
+.confirmation-overlay .confirmation-modal .modal-content .modal-description {
+    font-size: 0.96rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.confirmation-overlay .confirmation-modal .modal-content .highlight-name {
+    color: var(--primary);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* Actions */
+.confirmation-overlay .confirmation-modal .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+/* Buttons */
+.confirmation-overlay .confirmation-modal .modal-actions .modal-btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 14px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+/* Secondary */
+.confirmation-overlay .confirmation-modal .modal-actions .modal-btn.secondary {
+    background: #f8fafc;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.confirmation-overlay .confirmation-modal .modal-actions .modal-btn.secondary:hover {
+    background: #f1f5f9;
+    transform: translateY(-1px);
+}
+
+/* Primary */
+.confirmation-overlay .confirmation-modal .modal-actions .modal-btn.primary {
+    color: white;
+}
+
+/* Danger */
+.modal-btn.primary.danger {
+    background: linear-gradient(180deg,
+            #ef4444 0%,
+            #dc2626 100%);
+}
+
+.modal-btn.primary.danger:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(220, 38, 38, 0.24);
+}
+
+/* Warning */
+.modal-btn.primary.warning {
+    background: linear-gradient(180deg,
+            #f59e0b 0%,
+            #d97706 100%);
+}
+
+.modal-btn.primary.warning:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(217, 119, 6, 0.24);
+}
+
+/* Info */
+.modal-btn.primary.info {
+    background: linear-gradient(180deg,
+            #3b82f6 0%,
+            #2563eb 100%);
+}
+
+.modal-btn.primary.info:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.24);
+}
+
+.modal-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}

@@ -1,146 +1,60 @@
 .attendance-page {
-  background-color: var(--bg-dark);
-  min-height: calc(100vh - var(--header-height));
-  font-family: inherit;
+    background-color: var(--bg-dark);
+    min-height: calc(100vh - var(--header-height));
+    font-family: inherit;
 }
 
 
 
 /* Main Content Split */
 .attendance-page .attendance-content {
-  display: flex;
-  gap: 32px;
-  flex-wrap: wrap;
-}
-
-/* Active Members Section (Left) */
-.attendance-page .attendance-content .active-members-section {
-  flex: 2;
-  min-width: 600px;
-}
-
-.attendance-page .attendance-content .active-members-section .members-section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  background: var(--primary-hover);
-  padding:0.7rem 0.8rem;
-  border-radius: var(--section-radius);
-}
-
-.attendance-page .attendance-content .active-members-section .members-section-header .search-filter-group {
     display: flex;
-    justify-content: end;
-    gap: 12px;
-    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
 }
 
+.attendance-page .attendance-content .attendance-table-content {
+    width: 68%;
+}
 
-.attendance-page .attendance-content .active-members-section .members-section-header .search-filter-group .search-bar-wrapper {
+.attendance-page .attendance-content .attendance-table-content .search-filter-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+
+.attendance-page .attendance-content .attendance-table-content .search-filter-group .search-bar-wrapper {
     padding: 0.6rem 1rem;
     width: 60%;
     border: 1px solid var(--primary-glow);
 
-  }
+}
 
-  .attendance-page .attendance-content .active-members-section .members-section-header .search-filter-group .search-bar-wrapper input{
+.attendance-page .attendance-content .attendance-table-content .search-filter-group .search-bar-wrapper input {
     font-size: 14px;
-  }
-
-
-/* Member Cards */
-.attendance-page .attendance-content .active-members-section .members-card-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
 }
 
-.attendance-page .attendance-content .active-members-section .members-card-list .member-status-card {
-    padding: 0.8rem 1rem;
-    border-radius: 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.attendance-page .attendance-content .active-members-section .members-card-list .member-status-card .member-main-info {
+.attendance-page .attendance-content .attendance-table-content .member-name-cell {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
+    gap: 16px;
 }
 
-.attendance-page .attendance-content .active-members-section .members-card-list .member-status-card .member-main-info .avatar-rounded {
-    width: 48px;
-    height: 48px;
-    overflow: hidden;
+.attendance-page .attendance-content .attendance-table-content .member-name-cell .member-avatar {
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-}
-
-.attendance-page .attendance-content .active-members-section .members-card-list .member-status-card .member-main-info .avatar-rounded img {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
 }
 
-.attendance-page .attendance-content .active-members-section .members-card-list .member-status-card .member-main-info .member-name-bold {
-    margin: 0;
-    font-size: 1.1rem;
-    color: var(--text-primary);
-    font-weight: 700;
-}
-
-.attendance-page .attendance-content .active-members-section .members-card-list .member-status-card .member-main-info .member-sub-info {
-    margin: 0.2rem 0 0 0;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-}
-
-.attendance-page .attendance-content .active-members-section .members-card-list .member-status-card .member-checkin-info {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.attendance-page .attendance-content .active-members-section .members-card-list .member-status-card .member-checkin-info .checkin-time-block {
-    display: flex;
-    flex-direction: column;
-    text-align: right;
-}
-
-.attendance-page .attendance-content .active-members-section .members-card-list .member-status-card .member-checkin-info .checkin-time-block .info-label {
-    font-size: 0.65rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    letter-spacing: 0.05em;
-}
-
-.attendance-page .attendance-content .active-members-section .members-card-list .member-status-card .member-checkin-info .checkin-time-block .info-value-time {
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: var(--primary);
-    margin-top: 0.1rem;
-}
-
-.attendance-page .attendance-content .active-members-section .members-card-list .member-status-card .member-checkin-info .more-btn-circular {
-    background: var(--primary-hover);
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    color: #1d1d1f;
-}
 
 /* Right Sidebar: Schedule */
 .attendance-page .attendance-content .schedule-sidebar-lavender {
-    flex: 1;
-    min-width: 320px;
-    background-color: var(--primary-hover); /* Soft purple as in image */
-    border-radius:var(--section-radius);
+    width: 30%;
+    background-color: var(--primary-hover);
+    /* Soft purple as in image */
+    border-radius: var(--section-radius);
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -262,18 +176,18 @@
     transition: all 0.2s;
 }
 
-.attendance-page .attendance-content .schedule-sidebar-lavender  .btn-dashed-add:hover {
+.attendance-page .attendance-content .schedule-sidebar-lavender .btn-dashed-add:hover {
     background: rgba(129, 48, 176, 0.03);
     border-color: rgba(129, 48, 176, 0.4);
 }
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .attendance-page .attendance-content {
-    flex-direction: column;
-  }
-  
-  .active-members-section {
-      min-width: 100%;
-  }
+    .attendance-page .attendance-content {
+        flex-direction: column;
+    }
+
+    .active-members-section {
+        min-width: 100%;
+    }
 }
